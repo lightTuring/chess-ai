@@ -17,11 +17,15 @@ public class Piece {
     }
 
     //Pegar o nome da peça
-    public String getPiece(){
-      
-    }
+    public String getPiece(int io, int jo){
+      String s = "";
+      for (PieceList p : PieceList.values()) {
+        if (b[io][jo] == p.getNumber())
+        {
+          s = p.getName();
 
-
-
+        }
+      }
+      return s;
     }
 }
