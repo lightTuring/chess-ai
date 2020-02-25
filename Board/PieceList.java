@@ -11,7 +11,7 @@ public enum PieceList {
 	B_BISHOP(10, "B_BISHOP"),
 	B_KNIGHT(9, "B_KNIGHT"),
 	B_ROOK(8, "B_ROOK"),
-	B_QUEEN(4, "B_QUEEN"),
+	B_QUEEN(11, "B_QUEEN"),
 	B_KING(12, "B_KING"),
 	B_PAWN(7, "B_PAWN");
 

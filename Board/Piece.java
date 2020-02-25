@@ -2,14 +2,9 @@ package rules;
 
 public class Piece {
 
-    byte[][] b;
-
-    Piece (byte [][] board){
-      b = board;
-    }
 
     //Mover a peça alterando o valor do array
-    public void move(int io, int jo, int ia, int ja) {
+    public void move(int io, int jo, int ia, int ja, byte[][] b) {
       if (b[io][jo] != 0 && io < 8 && jo < 8){
         b[ia][ja] = b[io][jo];
         b[io][jo] = 0;
@@ -17,7 +12,7 @@ public class Piece {
     }
 
     //Pegar o nome da peça
-    public String getPiece(int io, int jo){
+    public String getPiece(int io, int jo, byte[][] b){
       String s = "";
       for (PieceList p : PieceList.values()) {
         if (b[io][jo] == p.getNumber())
