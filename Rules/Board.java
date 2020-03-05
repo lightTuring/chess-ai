@@ -13,13 +13,13 @@ public class Board {
             }
         }
         for (int i = 0; i < chessBoard[2].length; i++)
-            chessBoard[i] = 'p';
+            chessBoard[2][i] = 'p';
         for (int i = 0; i < chessBoard[5].length; i++)
-            chessBoard[i] = 'P';
+            chessBoard[5][i] = 'P';
         for (int i = 0; i < chessBoard[2].length; i++)
-            chessBoard[i] = posInitBlack[i];
+            chessBoard[2][i] = posInitBlack[i];
         for (int i = 0; i < chessBoard[5].length; i++)
-            chessBoard[i] = posInitWhite[i];
+            chessBoard[5][i] = posInitWhite[i];
     }
 
     public void getChange(int begin_x, int begin_y, int final_x, int final_y){
