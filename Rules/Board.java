@@ -45,5 +45,7 @@ public class Board {
     
         */
     }
-
+    public char getPiece(int pos_x, int pos_y){
+        return chessBoard[pos_x][pos_y];
+    }
 }
