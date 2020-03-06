@@ -86,7 +86,7 @@ public class Board {
         hasTowerMoved = true;
     }
     public boolean hasPawnMoved(int pos_i, int pos_j){
-	char piece = getPiece(pos_i, pos_j);
+	    char piece = getPiece(pos_i, pos_j);
         if (piece != 'p' || piece != 'P') {
             throw new Exception("A casa indicada não contém um peão");
         }
