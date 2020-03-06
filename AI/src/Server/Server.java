@@ -12,8 +12,8 @@ public class Server {
     ServerSocket server;
     private String moviment;
 
-    public Server() throws Exception{
-        server = new ServerSocket(5005);        
+    public Server(int channel) throws Exception{
+        server = new ServerSocket(channel);        
     }
 
     public void sendMoviment() throws Exception{
