@@ -21,7 +21,7 @@ public enum PieceList {
 	private final boolean color;
 
 	//Construtor
-	Pieces(char l, boolean s)
+	PieceList(char l, boolean s)
 	{
 		letter = l;
 		color = s;
