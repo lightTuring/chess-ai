@@ -10,50 +10,50 @@ public class Controller {
 
 
   public ArrayList<Coordinate> movePawn(byte i, byte j) {
-    if (b.chessBoard[i][j] == 'P') {
+    if (b.getPiece(i, j) == 'P') {
       ArrayList<Coordinate> movesP = new ArrayList<Coordinate> ();
       Coordinate x;
 
-      if (b.chessBoard[i-1][j+1] != 'o' && ((i-1)>=0 && (i-1)<8) && (j+1)<8) {
-        x = new Coordinate(i, j, (byte)(i-1), (byte)(j+1));
+      if (b.getPiece(i-1, j+1) != 'o' && ((i-1)>=0 && (i-1)<8) && (j+1)<8) {
+        x = new Coordinate(i, j, (i-1), (j+1));
         movesP.add(x);
         }
 
-      if (b.chessBoard[i+1][j+1] != 'o' &&  (i+1)<8 && (j+1)<8) {
-        x = new Coordinate(i, j, (byte)(i+1), (byte)(j+1));
+      if (b.getPiece(i+1, j+1) != 'o' &&  (i+1)<8 && (j+1)<8) {
+        x = new Coordinate(i, j, (i+1), (j+1));
         movesP.add(x);
       }
 
-      if (i<8 && j<8) {
-        x = new Coordinate(i, j, (byte)(i), (byte)(j+1));
+      if (i<8 && j<8 && b.getPiece(i, j+1) == 'o') {
+        x = new Coordinate(i, j, (i), (j+1));
         movesP.add(x);
       }
 
-      if (b.hasPawnMoved(i, j) == false) {
-        x = new Coordinate(i, j, (byte)(i), (byte)(j+2));
+      if (b.hasPawnMoved(i, j) == false && b.getPiece(i, j+2) == 'o') {
+        x = new Coordinate(i, j, (i), (j+2));
         movesP.add(x);
       }
     }
-    if (b.chessBoard[i][j] == 'p') {
+    if (b.getPiece(i, j) == 'p') {
         ArrayList<Coordinate> movesP = new ArrayList<Coordinate> ();
         Coordinate x;
 
-        if (b.chessBoard[i-1][j-1] != 'o' && ((i-1)>=0 && (i-1)<8) && (j-1)>=0 && (j-1)<8) {
-          x = new Coordinate(i, j, (byte)(i-1), (byte)(j-1));
+        if (b.getPiece(i-1, j-1) != 'o' && ((i-1)>=0 && (i-1)<8) && (j-1)>=0 && (j-1)<8) {
+          x = new Coordinate(i, j, (i-1), (j-1));
           movesP.add(x);
           }
 
-        if (b.chessBoard[i+1][j-1] != 'o' &&  (i+1)<8 && (j-1)>=0 && (j-1)<8) {
-          x = new Coordinate(i, j, (byte)(i+1), (byte)(j-1));
+        if (b.getPiece(i+1, j-1) != 'o' &&  (i+1)<8 && (j-1)>=0 && (j-1)<8) {
+          x = new Coordinate(i, j, (i+1), (j-1));
           movesP.add(x);
         }
 
-        if (i<8 && j<8) {
-          x = new Coordinate(i, j, (byte)(i), (byte)(j-1));
+        if (i<8 && j<8 && b.getPiece(i, j-1) == 'o') {
+          x = new Coordinate(i, j, (i), (j-1));
           movesP.add(x);
         }
-        if (b.hasPawnMoved(i, j) == false) {
-          x = new Coordinate(i, j, (byte)(i), (byte)(j-2));
+        if (b.hasPawnMoved(i, j) == false && b.getPiece(i, j-2) == 'o') {
+          x = new Coordinate(i, j, (i), (j-2));
           movesP.add(x);
         }
       }
