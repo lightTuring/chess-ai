@@ -59,7 +59,7 @@ public class Board {
 
         */
     }
-    public char getPiece(int pos_x, int pos_y){
+    public char getPiece(int pos_x, int pos_y) throws IllegalArgumentException {
         if (pos_x >= 8 || pos_y >= 8) {
             throw new IllegalArgumentException("Argumentos não indicam uma casa válida");
         }
