@@ -12,55 +12,55 @@ public class Controller {
   }
 
 
-  public ArrayList<Coordinate> movePawn(byte i, byte j) throws ArrayIndexOutOfBoundsException {
+  public ArrayList<Coordinate> movePawn(byte i, byte j) throws Exception {
 	  ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
 	  Coordinate x;
 
     if (b.getPiece(i, j) == 'P') {
 
   		  if (b.getPiece(i+1, j-1) != 'o') {
-  		    x = new Coordinate(i, j, (i-1), (j+1));
+  		    x = new Coordinate(i, j, i+1, j-1);
   		    movesP.add(x);
   		    }
 
-  		  if (b.getPiece(i+1, j+1) != 'o' ) {
+  		  if (b.getPiece(i+1, j+1) != 'o') {
   		    x = new Coordinate(i, j, (i+1), (j+1));
   		    movesP.add(x);
   		  }
 
-  		  if (b.getPiece(i, j+1) == 'o') {
-  		    x = new Coordinate(i, j, (i), (j+1));
+  		  if (b.getPiece(i+1, j) == 'o') {
+  		    x = new Coordinate(i, j, (i+1), (j));
   		    movesP.add(x);
   		  }
 
-  		  if (b.hasPawnMoved(i, j) == false && b.getPiece(i, j+2) == 'o') {
-  		    x = new Coordinate(i, j, (i), (j+2));
+  		  if (b.hasPawnMoved(i, j) == false && b.getPiece(i+2, j) == 'o') {
+  		    x = new Coordinate(i, j, (i+2), (j));
   		    movesP.add(x);
   		  }
   		}
-  		if (b.getPiece(i, j) == 'p') {
+  	if (b.getPiece(i, j) == 'p') {
 
-  		if (b.getPiece(i-1, j-1) != 'o') {
+  		if (b.getPiece(i-1, j+1) != 'o') {
+  		  x = new Coordinate(i, j, (i-1), (j+1));
+  		  movesP.add(x);
+  		  }
+
+  		if (b.getPiece(i-1, j-1) != 'o' ) {
   		  x = new Coordinate(i, j, (i-1), (j-1));
   		  movesP.add(x);
-  		  }
-
-  		if (b.getPiece(i+1, j-1) != 'o' ) {
-  		  x = new Coordinate(i, j, (i+1), (j-1));
-  		  movesP.add(x);
   		}
 
-  		if (b.getPiece(i, j-1) == 'o') {
-  		  x = new Coordinate(i, j, (i), (j-1));
+  		if (b.getPiece(i-1, j) == 'o') {
+  		  x = new Coordinate(i, j, (i-1), (j));
   		  movesP.add(x);
   		}
-  		if (b.hasPawnMoved(i, j) == false && b.getPiece(i, j-2) == 'o') {
-  	          x = new Coordinate(i, j, (i), (j-2));
+  		if (b.hasPawnMoved(i, j) == false && b.getPiece(i-2, j) == 'o') {
+  	          x = new Coordinate(i, j, (i-2), (j));
   	          movesP.add(x);
   	        }
   	      }
   	   else {
-  	     return null;
+  	     IllegalArgumentExceptionreturn null;
   	    }
 
 
