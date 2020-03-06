@@ -60,6 +60,9 @@ public class Board {
         */
     }
     public char getPiece(int pos_x, int pos_y){
+        if (pos_x >= 8 || pos_y >= 8) {
+            throw IllegalArgumentException("Argumentos não indicam uma casa válida");
+        }
         return chessBoard[pos_x][pos_y];
     }
     public void printImage(){
