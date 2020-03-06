@@ -1,8 +1,8 @@
 public class Coordinate {
-  int initial_i;
-  int initial_j;
-  int final_i;
-  int final_j;
+  protected int initial_i;
+  protected int initial_j;
+  protected int final_i;
+  protected int final_j;
 
   public Coordinate(int initial_i, int initial_j, int final_i, int final_j){
     this.initial_i = initial_i;
