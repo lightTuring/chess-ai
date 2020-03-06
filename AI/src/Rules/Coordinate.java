@@ -1,3 +1,5 @@
+package Rules;
+
 public class Coordinate {
   protected int initial_i;
   protected int initial_j;

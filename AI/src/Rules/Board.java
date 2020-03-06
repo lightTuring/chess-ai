@@ -1,3 +1,5 @@
+package Rules;
+
 public class Board {
 
     private char[][] chessBoard = new char[8][8];

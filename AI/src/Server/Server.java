@@ -1,3 +1,5 @@
+package Server;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -11,13 +13,13 @@ public class Server {
     private String moviment;
 
     public Server() throws Exception{
-        server = new ServerSocket(5000);        
+        server = new ServerSocket(5005);        
     }
 
     public void sendMoviment() throws Exception{
         Socket socket = server.accept();
         try(PrintWriter w = new PrintWriter(socket.getOutputStream())){
-            w.println(moviment);
+            w.println(this.moviment);
         }
     }
     public void setMoviment(int xo, int yo, int xf, int yf){
