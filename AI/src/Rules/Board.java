@@ -24,23 +24,13 @@ public class Board {
         for (int i = 0; i < 8; i++)
             chessBoard[7][i] = posInitWhite[i];
     }
-
-    public boolean isWhite(int pos_x, int pos y) {
-	for (int i = 0; i++; i < 8) {
-	    if (getPiece(pos_x, pos_y) == posInitWhite[i]) {
-		return true;
-	    }
-	}
-	return false;
+    //comparação por tabela ASCII
+    public boolean isWhite(int pos_i, int pos_j) {
+    	return ((int)getPiece(pos_i, pos_j) < 90);
     }
-
-    public boolean isBlack(int pos_x, int pos y) {
-        for (int i = 0; i++; i < 8) {
-            if (getPiece(pos_x, pos_y) == posInitBlack[i]) {
-                return true;
-            }
-        }
-        return false;
+    //comparação por tabela ASCII
+    public boolean isBlack(int pos_i, int pos_j) {
+    	return ((int)getPiece(pos_i, pos_j) > 97);
     }
 
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
