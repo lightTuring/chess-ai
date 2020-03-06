@@ -77,7 +77,25 @@ public class Controller {
 		if (b.getPiece(ii, j) == 'o') {
 		    x = new Coordinate(i, j, ii, j);
 		    movesP.add(x);
+		} 
+		else if (b.isWhite(i, j) && b.isWhite) {
+		    // Interrompe o for-loop:
+		    ii = 8;
 		}
+		else if (b.isBlack(i, j) && b.isBlack) {
+		    // Interrompe o for-loop:
+		    ii = 8;
+		}
+		else if (b.isWhite(i, j) && b.isBlack(ii, j)) {
+			x = new Coordinate(i, j, ii, j);
+			movesP.add(x);
+		    }
+		}
+                else {
+                    x = new Coordinate(i, j, ii, j);
+                    movesP.add(x);
+                    }
+                }
 	    }
         }
 	// Checa se a torre não está à beira de cima do mapa (de cima para baixo).
@@ -90,3 +108,4 @@ public class Controller {
 	    }
 	}
     }
+}
