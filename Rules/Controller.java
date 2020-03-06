@@ -10,15 +10,22 @@ public class Controller {
 
   public ArrayList<Coordinate> movePawn(byte i, byte j, char[][] b) {
 
-    ArrayList<Coordinate> moves = new ArrayList<Coordinate> ();
+    ArrayList<Coordinate> movesP = new ArrayList<Coordinate> ();
     Coordinate x;
 
     if (b[i-1][j+1] != 'o' && ((i-1)>=0 && (i-1)<8) && (j+1)<8) {
-      x = new Coordinate(i, j, (byte)(i-1), (byte)(j+1);
-      moves.add(x);
+      x = new Coordinate(i, j, (byte)(i-1), (byte)(j+1));
+      movesP.add(x);
       }
-    else if (char[i+1][j+1] != 'o') {
-      
+
+    if (b[i+1][j+1] != 'o' &&  (i+1)<8 && (j+1)<8) {
+      x = new Coordinate(i, j, (byte)(i+1), (byte)(j+1));
+      movesP.add(x);
+    }
+
+    if (i<8 && j<8) {
+      x = new Coordinate(i, j, (byte)(i), (byte)(j+1));
+      movesP.add(x);
     }
   }
 }
