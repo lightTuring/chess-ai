@@ -53,7 +53,7 @@ public class Controller {
  
 	if (b.getPiece(i-1, j) == 'o') {
   	    x = new Coordinate(i, j, (i-1), (j));
-  	     movesP.add(x);
+  	    movesP.add(x);
   	}
   	if (b.hasPawnMoved(i, j) == false && b.getPiece(i-2, j) == 'o') {
   	    x = new Coordinate(i, j, (i-2), (j));
@@ -66,3 +66,18 @@ public class Controller {
      return movesP;
     }
 }
+
+    public ArrayList<Coordinate> getTowerMoves(byte i, byte j) {
+	ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
+	Coordinate x;
+	// Checa se a torre não está à beira do mapa.
+	if (i < 7) {
+	    // Para cada casa a baixo na coluna.
+	    for (int ii = i + 1; ii++; ii < 8) {
+		if (b.getPiece(ii, j) == 'o') {
+		    x = new Coordinate(i, j, ii, j);
+		    movesP.add(x);
+		}
+	    }
+        }
+    }
