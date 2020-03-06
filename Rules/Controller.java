@@ -8,37 +8,17 @@ public class Controller {
     }
 
 
-  public ArrayList movePawn(byte i, byte j, char[][] b) {
-    String s = "";
-    ArrayList<String> moves = new ArrayList<String> ();
+  public ArrayList<Coordinate> movePawn(byte i, byte j, char[][] b) {
 
-    if ("Implementar checagem de cor") {
-      if (char[i-1][j+1] != 'O') {
-        //Aqui implementar adição das coordenadas no Arraylist
+    ArrayList<Coordinate> moves = new ArrayList<Coordinate> ();
+    Coordinate x;
+
+    if (b[i-1][j+1] != 'o' && ((i-1)>=0 && (i-1)<8) && (j+1)<8) {
+      x = new Coordinate(i, j, (byte)(i-1), (byte)(j+1);
+      moves.add(x);
       }
+    else if (char[i+1][j+1] != 'o') {
+      
     }
-  }
-
-
-
-  //Controles de movimento (falta implementar a checagem de validade)
-
-  public void move(int io, int jo, int ia, int ja, char[][] b) {
-    if (b[io][jo] != 'R' && io < 8 && jo < 8){
-      b[ia][ja] = b[io][jo];
-      b[io][jo] = 'O';
-    }
-  }
-
-  //Pegar o nome da peça
-  public char getPiece(int io, int jo, char[][] b){
-    String s = "";
-    for (PieceList p : PieceList.values()) {
-      if (b[io][jo] == p.getLetter())
-      {
-        s = p.getLetter();
-      }
-    }
-    return s;
   }
 }

@@ -8,12 +8,12 @@ public enum PieceList {
 	W_QUEEN('D', true),
 	W_KING('R', true),
 	W_PAWN('P', true),
-	B_BISHOP('B', false),
-	B_KNIGHT('C', false),
-	B_ROOK('T', false),
-	B_QUEEN('D', false),
-	B_KING('R', false),
-	B_PAWN('P', false);
+	B_BISHOP('b', false),
+	B_KNIGHT('c', false),
+	B_ROOK('t', false),
+	B_QUEEN('d', false),
+	B_KING('r', false),
+	B_PAWN('p', false);
 
 
 	//True = Branco; False = preto
