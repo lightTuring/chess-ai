@@ -3,8 +3,8 @@ package Rules;
 public class Board {
 
     private char[][] chessBoard = new char[8][8];
-    private char[] posInitBlack = {'t', 'c', 'b', 'k', 'q', 'b', 'c', 't'};
-    private char[] posInitWhite = {'T', 'C', 'B', 'K', 'Q', 'B', 'C', 'T'};
+    private char[] posInitBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
+    private char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
 
     private boolean hasKingMoved = false;
     private boolean hasTowerMoved = false;

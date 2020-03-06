@@ -15,7 +15,7 @@ public class Controller {
   public ArrayList<Coordinate> movePawn(byte i, byte j) throws Exception {
     ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
     Coordinate x;
-    // Se o peão for preto:
+    // Se o peão for Branco:
     if (b.getPiece(i, j) == 'P') {
 	// Se a casa na diagonal esquerda tiver alguma peça:
 	if (b.getPiece(i+1, j-1) != 'o') {
