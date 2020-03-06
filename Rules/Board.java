@@ -7,7 +7,7 @@ public class Board {
     private boolean hasKingMoved = false;
     private boolean hasTowerMoved = false;
 
-    public Board(){
+    public Board() {
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[i].length; j++) {
                 chessBoard[i][j] = 'o';
