@@ -6,11 +6,12 @@ public class Controller {
 
   private Board b = new Board();
 
+/*
   public ArrayList<Coordinate> getAllMoves(char[][] b) {
 	return null;
 
   }
-
+*/
 
   public ArrayList<Coordinate> getPawnMoves(byte i, byte j) throws Exception {
     ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
