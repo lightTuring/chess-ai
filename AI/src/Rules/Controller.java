@@ -112,7 +112,7 @@ public class Controller {
 		ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
 	    Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
-		byte[][] addingSpecificCoordinate = {{1,2,-1,2,-2,1,-2,-1},{1, -2, -1, -2, -2, 1, -2, -1}};
+		byte[][] addingSpecificCoordinate = {{1,2,-1,2,-2,1,-2,-1},{1, -2, -1, -2, -2, 1, -2, -1},{2,-1,2,1,1,-2,-1,-2},{2,1,2,-1,1,2,-1,2}};
 	    if(b.getPiece(pos_i, pos_j) == 'C' || b.getPiece(pos_i, pos_j) == 'c') {//if serve como uma segurança de que a peça é um cavalo
 	    	//caso de todos os movimentos possiveis(centro do tabuleiro)
 	    	if(pos_i > 1 && pos_i < 6 && pos_j > 1 && pos_j < 6) {
@@ -130,6 +130,18 @@ public class Controller {
 	    	else if(pos_i == 6 && pos_j == 6) {
 	    		for(byte i = 0; i < addingSpecificCoordinate[1].length; i+=2) {
 	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[1][i], pos_j + addingSpecificCoordinate[1][i+1]);
+	    			movesP.add(x);
+	    		}
+	    	}
+	    	else if(pos_i == 1 && pos_j == 6) {
+	    		for(byte i = 0; i < addingSpecificCoordinate[2].length; i+=2) {
+	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[2][i], pos_j + addingSpecificCoordinate[2][i+1]);
+	    			movesP.add(x);
+	    		}
+	    	}
+	    	else if(pos_i == 1 && pos_j == 1) {
+	    		for(byte i = 0; i < addingSpecificCoordinate[3].length; i+=2) {
+	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[3][i], pos_j + addingSpecificCoordinate[3][i+1]);
 	    			movesP.add(x);
 	    		}
 	    	}
