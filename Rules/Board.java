@@ -6,8 +6,8 @@ public class Board {
     private char[] posInitBlack = {'t', 'c', 'b', 'k', 'q', 'b', 'c', 't'};
     private char[] posInitWhite = {'T', 'C', 'B', 'K', 'Q', 'B', 'C', 'T'};
 
-    private boolean kingMoved = false;
-    private boolean towerMoved = false;
+    private boolean hasKingMoved = false;
+    private boolean hasTowerMoved = false;
 
     public Board(){
         for (int i = 0; i < chessBoard.length; i++) {
@@ -70,17 +70,17 @@ public class Board {
             System.out.println();
         }
     }
-    public boolean getStateMovimentKing(){
-        return kingMoved;
+    public boolean getHasKingMoved(){
+        return hasKingMoved;
     }
-    public void setStateMovimentKing(boolean b){
-        kingMoved = b;
+    public void setHasKingMoved(boolean b){
+        hasKingMoved = b;
     }
 
-    public boolean getStateMovimentTower(){
-        return towerMoved;
+    public boolean getHasTowerMoved(){
+        return hasTowerMoved;
     }
-    public void setStateMovimentTower(boolean b){
-        towerMoved = b;
+    public void setHasTowerMoved(boolean b){
+        hasTowerMoved = b;
     }
 }
