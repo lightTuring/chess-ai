@@ -2,13 +2,14 @@ import java.util.ArrayList;
 
 public class Controller {
 
+  Board b = new Board();
 
   public ArrayList<Coordinate> getAllMoves(char[][] b) {
 
     }
 
 
-  public ArrayList<Coordinate> movePawn(byte i, byte j, Board b.chessBoard) {
+  public ArrayList<Coordinate> movePawn(byte i, byte j) {
     if (b.chessBoard[i][j] == 'P') {
       ArrayList<Coordinate> movesP = new ArrayList<Coordinate> ();
       Coordinate x;
@@ -28,6 +29,11 @@ public class Controller {
         movesP.add(x);
       }
 
+      if (b.hasPawnMoved(i, j) == false) {
+        x = new Coordinate(i, j, (byte)(i), (byte)(j+2));
+        movesP.add(x);
+      }
+    }
     if (b.chessBoard[i][j] == 'p') {
         ArrayList<Coordinate> movesP = new ArrayList<Coordinate> ();
         Coordinate x;
@@ -46,11 +52,16 @@ public class Controller {
           x = new Coordinate(i, j, (byte)(i), (byte)(j-1));
           movesP.add(x);
         }
+        if (b.hasPawnMoved(i, j) == false) {
+          x = new Coordinate(i, j, (byte)(i), (byte)(j-2));
+          movesP.add(x);
+        }
+      }
     else {
       return null;
     }
 
-    }
+
     return movesP;
   }
 
