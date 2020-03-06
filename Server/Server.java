@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -21,7 +23,7 @@ public class Server {
     public void setMoviment(int xo, int yo, int xf, int yf){
         moviment += String.valueOf(xo)+String.valueOf(yo)+String.valueOf(xf)+String.valueOf(yf);//O split é dado por todos os chars, pois o valor das variaveis são compreendidos entre 0-7
     }
-    public void finalizeCommunication(){
+    public void finalizeCommunication() throws IOException{
         server.close();
     }
 
