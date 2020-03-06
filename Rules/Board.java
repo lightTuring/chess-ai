@@ -22,7 +22,7 @@ public class Board {
             chessBoard[5][i] = posInitWhite[i];
     }
 
-    public void getChange(int begin_x, int begin_y, int final_x, int final_y){
+    public void changePos(int begin_x, int begin_y, int final_x, int final_y){
         change(begin_x, begin_y, final_x, final_y);
     }
 
@@ -48,7 +48,7 @@ public class Board {
     public char getPiece(int pos_x, int pos_y){
         return chessBoard[pos_x][pos_y];
     }
-    public void getImage(){
+    public void printImage(){
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[i].length; j++) {
                 System.out.print(chessBoard[i][j]+' ');
