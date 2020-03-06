@@ -89,10 +89,10 @@ public class Board {
 	char piece = getPiece(pos_x, pos_y);
 	if (piece != 'p' || piece != 'P') {
 	    throw new Exception("A casa indicada não contém um peão");
-	else if (piece == 'p' && pos_x == 2) {
+	else if (piece == 'p' && pos_y == 2) {
 	    return false;
 	}
-	else if (piece == 'P' && pos_x == 5) {
+	else if (piece == 'P' && pos_y == 5) {
 	    return false;
 	} else {
 	    return true;
