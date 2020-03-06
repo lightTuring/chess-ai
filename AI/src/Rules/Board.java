@@ -15,14 +15,14 @@ public class Board {
                 chessBoard[i][j] = 'o';
             }
         }
-        for (int i = 0; i < chessBoard[2].length; i++)
-            chessBoard[2][i] = 'p';
-        for (int i = 0; i < chessBoard[5].length; i++)
-            chessBoard[5][i] = 'P';
-        for (int i = 0; i < chessBoard[2].length; i++)
-            chessBoard[2][i] = posInitBlack[i];
-        for (int i = 0; i < chessBoard[5].length; i++)
-            chessBoard[5][i] = posInitWhite[i];
+        for (int i = 0; i < 8; i++)
+            chessBoard[1][i] = 'p';
+        for (int i = 0; i < 8; i++)
+            chessBoard[6][i] = 'P';
+        for (int i = 0; i < 8; i++)
+            chessBoard[0][i] = posInitBlack[i];
+        for (int i = 0; i < 8; i++)
+            chessBoard[7][i] = posInitWhite[i];
     }
 
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
@@ -90,10 +90,10 @@ public class Board {
         if (piece != 'p' || piece != 'P') {
             throw new Exception("A casa indicada não contém um peão");
         }
-        else if (piece == 'p' && pos_i == 2) {
+        else if (piece == 'p' && pos_i == 1) {
             return false;
         }
-        else if (piece == 'P' && pos_i == 5) {
+        else if (piece == 'P' && pos_i == 6) {
             return false;
         } else {
             return true;
