@@ -60,7 +60,7 @@ public class Controller {
         }
      }
      else {
-         IllegalArgumentExceptionreturn null;
+         throw new IllegalArgumentException("Argumentos dados a getLegalPawn não correspondem a um peão.");
      }
      return movesP;
     }
