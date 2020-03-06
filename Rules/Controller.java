@@ -27,5 +27,7 @@ public class Controller {
       x = new Coordinate(i, j, (byte)(i), (byte)(j+1));
       movesP.add(x);
     }
+
+    return movesP;
   }
 }
