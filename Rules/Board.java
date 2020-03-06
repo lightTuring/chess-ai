@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Board {
 
     private char[][] chessBoard = new char[8][8];
@@ -30,7 +28,7 @@ public class Board {
     }
 
     private void setChange(int begin_x, int begin_y, int final_x, int final_y){
-        if(kingMoved == false && towerMoved == false &&
+        if(getHasKingMoved() == false && getHasTowerMoved() == false &&
          (((chessBoard[begin_x][begin_y] == 'k' && chessBoard[final_x][final_y] == 't')||(chessBoard[begin_x][begin_y] == 't' && chessBoard[final_x][final_y] == 'k')) ^
          ((chessBoard[begin_x][begin_y] == 'K' && chessBoard[final_x][final_y] == 'T')||(chessBoard[begin_x][begin_y] == 'T' && chessBoard[final_x][final_y] == 'K')))){
             //estou usando este algoritmo pq não sei de fato qual é a peça final e inicial e tbm nn sei a cor das duas
@@ -61,7 +59,7 @@ public class Board {
     }
     public char getPiece(int pos_x, int pos_y){
         if (pos_x >= 8 || pos_y >= 8) {
-            throw IllegalArgumentException("Argumentos não indicam uma casa válida");
+            throw new IllegalArgumentException("Argumentos não indicam uma casa válida");
         }
         return chessBoard[pos_x][pos_y];
     }
@@ -85,7 +83,7 @@ public class Board {
     public void setHasTowerMovedAsTrue(){
         this.hasTowerMoved = true;
     }
-    public boolean hasPawnMoved(int pos_i, int pos_j){
+    public boolean hasPawnMoved(int pos_i, int pos_j) throws Exception{
         char piece = getPiece(pos_i, pos_j);
         if (piece != 'p' || piece != 'P') {
             throw new Exception("A casa indicada não contém um peão");
