@@ -12,7 +12,7 @@ public class Server {
         server = new ServerSocket(5000);        
     }
 
-    public void sendMoviment(){
+    public void sendMoviment() throws Exception{
         Socket socket = server.accept();
         try(PrintWriter w = new PrintWriter(socket.getOutputStream())){
             w.println(moviment);
