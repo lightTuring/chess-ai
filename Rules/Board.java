@@ -85,4 +85,17 @@ public class Board {
     public void setHasTowerMovedAsTrue(){
         hasTowerMoved = true;
     }
+    public boolean hasPawnMoved(int pos_x, int pos_y){
+	char piece = getPiece(pos_x, pos_y);
+	if (piece != 'p' || piece != 'P') {
+	    throw new Exception("A casa indicada não contém um peão");
+	else if (piece == 'p' && pos_x == 2) {
+	    return false;
+	}
+	else if (piece == 'P' && pos_x == 5) {
+	    return false;
+	} else {
+	    return true;
+	}
+    }
 }
