@@ -87,15 +87,16 @@ public class Board {
     }
     public boolean hasPawnMoved(int pos_x, int pos_y){
 	char piece = getPiece(pos_x, pos_y);
-	if (piece != 'p' || piece != 'P') {
-	    throw new Exception("A casa indicada não contém um peão");
-	else if (piece == 'p' && pos_y == 2) {
-	    return false;
-	}
-	else if (piece == 'P' && pos_y == 5) {
-	    return false;
-	} else {
-	    return true;
-	}
+        if (piece != 'p' || piece != 'P') {
+            throw new Exception("A casa indicada não contém um peão");
+        }
+        else if (piece == 'p' && pos_y == 2) {
+            return false;
+        }
+        else if (piece == 'P' && pos_y == 5) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
