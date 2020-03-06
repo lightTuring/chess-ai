@@ -28,7 +28,7 @@ public class Board {
 
     private void change(int begin_x, int begin_y, int final_x, int final_y){
         // a verificação é com a peça final? está peça de comparação é o rei?
-        if(chessBoard[final_x][final_y] != 'K' && chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8){
+        if(chessBoard[final_x][final_y] != 'K' || chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8){
             chessBoard[final_x][final_y] = chessBoard[begin_x][begin_y];
             chessBoard[begin_x][begin_y] = 'o';
         }
@@ -47,5 +47,13 @@ public class Board {
     }
     public char getPiece(int pos_x, int pos_y){
         return chessBoard[pos_x][pos_y];
+    }
+    public void getImage(){
+        for (int i = 0; i < chessBoard.length; i++) {
+            for (int j = 0; j < chessBoard[i].length; j++) {
+                System.out.print(chessBoard[i][j]+' ');
+            }
+            System.out.println();
+        }
     }
 }
