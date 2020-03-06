@@ -6,6 +6,9 @@ public class Board {
     private char[] posInitBlack = {'t', 'c', 'b', 'k', 'q', 'b', 'c', 't'};
     private char[] posInitWhite = {'T', 'C', 'B', 'K', 'Q', 'B', 'C', 'T'};
 
+    private boolean kingMoved = false;
+    private boolean towerMoved = false;
+
     public Board(){
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[i].length; j++) {
@@ -27,8 +30,19 @@ public class Board {
     }
 
     private void setChange(int begin_x, int begin_y, int final_x, int final_y){
+        if(kingMoved == false && towerMoved == false &&
+         (((chessBoard[begin_x][begin_y] == 'k' && chessBoard[final_x][final_y] == 't')||(chessBoard[begin_x][begin_y] == 't' && chessBoard[final_x][final_y] == 'k')) ^ 
+         ((chessBoard[begin_x][begin_y] == 'K' && chessBoard[final_x][final_y] == 'T')||(chessBoard[begin_x][begin_y] == 'T' && chessBoard[final_x][final_y] == 'K')))){
+            //estou usando este algoritmo pq não sei de fato qual é a peça final e inicial e tbm nn sei a cor das duas
+            char a = chessBoard[begin_x][begin_y];
+            char b = chessBoard[final_x][final_y];
+
+            chessBoard[begin_x][begin_y] = b;
+            chessBoard[final_x][final_y] = a;
+        }
+
         // a verificação é com a peça final? está peça de comparação é o rei?
-        if(chessBoard[final_x][final_y] != 'K' || chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8){
+        else if(chessBoard[final_x][final_y] != 'K' && chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8){
             chessBoard[final_x][final_y] = chessBoard[begin_x][begin_y];
             chessBoard[begin_x][begin_y] = 'o';
         }
@@ -55,5 +69,18 @@ public class Board {
             }
             System.out.println();
         }
+    }
+    public boolean getStateMovimentKing(){
+        return kingMoved;
+    }
+    public void setStateMovimentKing(boolean b){
+        kingMoved = b;
+    }
+
+    public boolean getStateMovimentTower(){
+        return towerMoved;
+    }
+    public void setStateMovimentTower(boolean b){
+        towerMoved = b;
     }
 }
