@@ -12,7 +12,7 @@ public class Controller {
   }
 
 
-  public ArrayList<Coordinate> movePawn(byte i, byte j) throws Exception {
+  public ArrayList<Coordinate> getLegalPawn(byte i, byte j) throws Exception {
     ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
     Coordinate x;
     // Se o peão for Branco:
