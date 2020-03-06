@@ -3,8 +3,8 @@ package Rules;
 public class Board {
 
     private char[][] chessBoard = new char[8][8];
-    public final char[] posInitBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
-    public final char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
+    private char[] posInitBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
+    private char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
 
     private boolean hasKingMoved = false;
     private boolean hasTowerMoved = false;
@@ -23,6 +23,24 @@ public class Board {
             chessBoard[0][i] = posInitBlack[i];
         for (int i = 0; i < 8; i++)
             chessBoard[7][i] = posInitWhite[i];
+    }
+
+    public boolean isWhite(int pos_x, int pos y) {
+	for (int i = 0; i++; i < 8) {
+	    if (getPiece(pos_x, pos_y) == posInitWhite[i]) {
+		return true;
+	    }
+	}
+	return false;
+    }
+
+    public boolean isBlack(int pos_x, int pos y) {
+        for (int i = 0; i++; i < 8) {
+            if (getPiece(pos_x, pos_y) == posInitBlack[i]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
