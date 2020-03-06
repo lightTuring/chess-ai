@@ -23,10 +23,10 @@ public class Board {
     }
 
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
-        change(begin_x, begin_y, final_x, final_y);
+        setChange(begin_x, begin_y, final_x, final_y);
     }
 
-    private void change(int begin_x, int begin_y, int final_x, int final_y){
+    private void setChange(int begin_x, int begin_y, int final_x, int final_y){
         // a verificação é com a peça final? está peça de comparação é o rei?
         if(chessBoard[final_x][final_y] != 'K' || chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8){
             chessBoard[final_x][final_y] = chessBoard[begin_x][begin_y];
