@@ -73,14 +73,13 @@ public class Board {
     public boolean getHasKingMoved(){
         return hasKingMoved;
     }
-    public void setHasKingMoved(boolean b){
-        hasKingMoved = b;
+    public void setHasKingMovedAsTrue(){
+        hasKingMoved = true;
     }
-
     public boolean getHasTowerMoved(){
         return hasTowerMoved;
     }
-    public void setHasTowerMoved(boolean b){
-        hasTowerMoved = b;
+    public void setHasTowerMovedAsTrue(){
+        hasTowerMoved = true;
     }
 }
