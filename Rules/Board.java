@@ -72,16 +72,16 @@ public class Board {
         }
     }
     public boolean getHasKingMoved(){
-        return hasKingMoved;
+        return this.hasKingMoved;
     }
     public void setHasKingMovedAsTrue(){
-        hasKingMoved = true;
+        this.hasKingMoved = true;
     }
     public boolean getHasTowerMoved(){
-        return hasTowerMoved;
+        return this.hasTowerMoved;
     }
     public void setHasTowerMovedAsTrue(){
-        hasTowerMoved = true;
+        this.hasTowerMoved = true;
     }
     public boolean hasPawnMoved(int pos_i, int pos_j) throws Exception{
         char piece = getPiece(pos_i, pos_j);
