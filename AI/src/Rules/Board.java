@@ -33,7 +33,9 @@ public class Board {
     public boolean isBlack(int pos_i, int pos_j) throws BoardOutOfBoundsException {
     	return ((int)getPiece(pos_i, pos_j) > 97);
     }
-
+    public boolean ItsMyColor(int me_i, int me_j, int that_piece_i, int that_piece_j) throws BoardOutOfBoundsException {
+    	return ((isBlack(me_i, me_j) && isBlack(that_piece_i, that_piece_j))||(isWhite(me_i, me_j)&& isWhite(that_piece_i, that_piece_j)));
+    }
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
         setChange(begin_x, begin_y, final_x, final_y);
     }
