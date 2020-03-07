@@ -4,6 +4,8 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
 
 ## Rules
 
+O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
+
 ### Board
 
 Classe que cria o tabuleiro e realiza algumas operações analogas aos métodos presentes nela.
@@ -98,8 +100,6 @@ public boolean hasPawnMoved(int pos_i, int pos_j);
 public ArrayList<Coordinate> indexOfPiece(char b);
 ```
 - Retorna um _ArrayList_ das coordenadas das peças passada no argumento.
-
-
 
 ### Controller
 
