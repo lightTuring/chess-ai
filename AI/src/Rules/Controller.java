@@ -219,6 +219,18 @@ public class Controller {
 	    			movesK.add(x);
 	    		}
 	    	}
+	    	else if(pos_i == 7 && pos_j == 0) {
+	    		for(byte i = 0; i < addingSpecificCoordinate[4].length; i+=2) {
+	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[4][i], pos_j + addingSpecificCoordinate[4][i+1]);
+	    			movesK.add(x);
+	    		}
+	    	}
+	    	else if(pos_i == 7 && pos_j == 7) {
+	    		for(byte i = 0; i < addingSpecificCoordinate[5].length; i+=2) {
+	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[5][i], pos_j + addingSpecificCoordinate[5][i+1]);
+	    			movesK.add(x);
+	    		}
+	    	}
 	    }
 
 		return movesK;
