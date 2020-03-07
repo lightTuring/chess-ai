@@ -88,12 +88,11 @@ public class Controller {
 		else if (b.isWhite(i, j) && b.isBlack(ii, j)) {
 			x = new Coordinate(i, j, ii, j);
 			movesP.add(x);
-		    }
 		}
+		// Se a torre é preta e a peça é branca.
                 else {
                     x = new Coordinate(i, j, ii, j);
                     movesP.add(x);
-                    }
                 }
 	    }
         }
