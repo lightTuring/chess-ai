@@ -4,6 +4,80 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
 
 ## Rules
 
+### Board
+
+Classe que cria o tabuleiro e realiza algumas operações analogas aos métodos presentes nela.
+
+```java
+public Board();
+```
+- Método construtor da classe.
+
+```java
+public boolean isWhite(int pos_i, int pos_j);
+```
+- Retorna um boolean dizendo se a peça na posição _pos_i_ e _pos_j_ é branca ou não.
+
+```java
+public boolean isBlack(int pos_i, int pos_j);
+```
+- Retorna um boolean dizendo se a peça na posição _pos_i_ e _pos_j_ é preta ou não.
+
+```java
+public boolean ItsMyColor(int me_i, int me_j, int that_piece_i, int that_piece_j);
+```
+- Retorna se duas peças apresentam a mesma cor.
+
+```java
+public void changePos(int begin_x, int begin_y, int final_x, int final_y);
+```
+- Chamada pública do método de troca.
+
+```java
+private void setChange(int begin_x, int begin_y, int final_x, int final_y);
+```
+- Realiza a operação de troca de posição entre duas peças.
+
+```java
+public char getPiece(int pos_x, int pos_y);
+```
+- Retorna a peça presente na posição passada pelo argumento.
+
+```java
+public void printImage();
+```
+- Imprime uma imagem do tabuleiro no terminal.
+
+```java
+public boolean getHasKingMoved();
+```
+- Retorna se o rei deu o seu primeiro movimento.
+
+```java
+public boolean setHasKingMovedAsTrue();
+```
+- Declara que o rei deu o seu primeiro movimento.
+
+```java
+public boolean getHasTowerMoved();
+```
+- Retorna se a torre deu o seu primeiro movimento.
+
+```java
+public boolean setHasTowerMovedAsTrue();
+```
+- Declara que a torre deu o seu primeiro movimento.
+
+```java
+public boolean hasPawnMoved(int pos_i, int pos_j);
+```
+- Retorna se determinado(por suas coordenadas) peão deu o seu primeiro movimento.
+
+```java
+public ArrayList<Coordinate> indexOfPiece(char b);
+```
+- Retorna um _ArrayList_ das coordenadas das peças passada no argumento.
+
 ## Server
 
 Neste pacote está contido o arquivo 'Server.java', que faz o Server da nossa comunicação Socket com a placa que faz a ponte com o hardware. Em Server.java está disposto os seguintes métodos:
