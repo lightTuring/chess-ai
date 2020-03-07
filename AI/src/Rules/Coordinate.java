@@ -12,4 +12,7 @@ public class Coordinate {
     this.final_i = final_i;
     this.final_j = final_j;
   }
+  public void printC () {
+    System.out.print(initial_i + ", " + initial_j + ", " + final_i + ", " + final_j);
+  } 
 }
