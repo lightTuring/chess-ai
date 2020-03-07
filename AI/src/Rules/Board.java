@@ -90,25 +90,25 @@ public class Board {
     public boolean getHasWhiteKingMoved(){
         return this.hasWhiteKingMoved;
     }
-    public void setHasKingWhiteMovedAsTrue(){
+    private void setHasKingWhiteMovedAsTrue(){
         this.hasWhiteKingMoved = true;
     }
     public boolean getHasWhiteTowerMoved(){
         return this.hasWhiteTowerMoved;
     }
-    public void setHasTowerMovedAsTrue(){
+    private void setHasWhiteTowerMovedAsTrue(){
         this.hasWhiteTowerMoved = true;
     }
     public boolean getHasBlackKingMoved(){
         return this.hasBlackKingMoved;
     }
-    public void setHasBlackKingMovedAsTrue(){
+    private void setHasBlackKingMovedAsTrue(){
         this.hasBlackKingMoved = true;
     }
     public boolean getHasBlackTowerMoved(){
         return this.hasBlackTowerMoved;
     }
-    public void setHasBlackTowerMovedAsTrue(){
+    private void setHasBlackTowerMovedAsTrue(){
         this.hasBlackTowerMoved = true;
     }
     public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException, BoardOutOfBoundsException {
