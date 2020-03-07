@@ -108,7 +108,7 @@ public class Controller {
 	}
     }
 
-  public ArrayList<Coordinate> getHorseMoves(byte pos_i, byte pos_j) throws Exception{
+  public ArrayList<Coordinate> getKnightMoves(byte pos_i, byte pos_j) throws Exception{
 		ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
 	  Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
