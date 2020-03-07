@@ -76,7 +76,7 @@ public class Controller {
 	// Checa se a torre não está à beira de baixo do mapa (de cima para baixo).
 	if (i < 7) {
 	    // Para cada casa a baixo na coluna.
-	    for (int ii = i + 1; ii++; ii < 8) {
+	    for (int ii = i + 1; ii < 8; ii++) {
 		if (b.getPiece(ii, j) == 'o') {
 		    x = new Coordinate(i, j, ii, j);
 		    movesP.add(x);
@@ -103,7 +103,7 @@ public class Controller {
 	// Checa se a torre não está à beira de cima do mapa (de cima para baixo).
 	if (i > 0) {
 	    // Para cada casa de cima na coluna.
-	    for (int ii = i - 1; ii--; ii > 0) {
+	    for (int ii = i - 1; ii > 0; ii--) {
 		if (b.getPiece(ii, j) == 'o') {
 		    x = new Coordinate(i, j, ii, j);
 		    movesP.add(x);
@@ -129,7 +129,7 @@ public class Controller {
 	}
 	//
 	if (j < 7) {
-            for (int jj = j + 1; jj++; jj < 8) {
+            for (int jj = j + 1; jj < 7; jj++) {
                 if (b.getPiece(i, jj) == 'o') {
                     x = new Coordinate(i, j, i, jj);
                     movesP.add(x);
@@ -154,7 +154,7 @@ public class Controller {
             }
 	}
 	if (j > 0) {
-            for (int jj = j - 1; jj--; jj < 0) {
+            for (int jj = j - 1; jj < 0; jj--) {
                 if (b.getPiece(i, jj) == 'o') {
                     x = new Coordinate(i, j, i, jj);
                     movesP.add(x);
