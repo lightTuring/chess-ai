@@ -1,4 +1,5 @@
 package Rules;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -6,7 +7,7 @@ public class Board {
     private char[][] chessBoard = new char[8][8];
     private char[] posInitBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
     private char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
-    
+
     private boolean hasWhiteKingMoved = false;
     private boolean hasWhiteTowerMoved = false;
     private boolean hasBlackKingMoved = false;
@@ -81,7 +82,7 @@ public class Board {
     public void printImage(){
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[i].length; j++) {
-                System.out.print(chessBoard[i][j]+' ');
+                System.out.print(chessBoard[i][j]);
             }
             System.out.println();
         }
