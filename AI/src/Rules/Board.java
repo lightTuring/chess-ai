@@ -107,4 +107,17 @@ public class Board {
             return true;
         }
     }
+    public ArrayList<Coordinate> (char b) {
+        ArrayList<Coordinate> list = new ArrayList <Coordinate> ();
+        Coordinate x;
+        for (int i = 0; i<8; i++) {
+            for (int j = 0; j<8; j++) {
+                if (chessBoard[i][j] == b) {
+                    x = new Coordinate (-1,-1, i, j);
+                    list.add(x);
+                }
+            }
+        }
+        return list;
+    }
 }
