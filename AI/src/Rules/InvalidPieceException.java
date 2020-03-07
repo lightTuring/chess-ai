@@ -6,6 +6,10 @@ entre os argumentos e os parâmetros de um método.
 */
 public class InvalidPieceException extends Exception {
     public InvalidPieceException(String message) {
-	super(message);
+	if (message.isEmpty()) {
+	    super("A peça encontrada não corresponde à esperada pelo contexto");
+	} else {
+	    super(message);
+	}
     }
 }
