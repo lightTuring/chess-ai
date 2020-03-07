@@ -6,10 +6,6 @@ entre os argumentos e os parâmetros de um método.
 */
 public class UnexpectedPieceException extends Exception {
     public UnexpectedPieceException(String message) {
-	if (message.isEmpty()) {
-	    super("A peça encontrada não corresponde à esperada pelo contexto");
-	} else {
-	    super(message);
-	}
+	super(message);
     }
 }
