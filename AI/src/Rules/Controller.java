@@ -76,7 +76,7 @@ public class Controller {
 		if (b.getPiece(ii, j) == 'o') {
 		    x = new Coordinate(i, j, ii, j);
 		    movesP.add(x);
-		} 
+		}
 		else if (b.isWhite(i, j) && b.isWhite) {
 		    // Interrompe o for-loop:
 		    ii = 8;
@@ -110,7 +110,7 @@ public class Controller {
 
   public ArrayList<Coordinate> getHorseMoves(byte pos_i, byte pos_j) throws Exception{
 		ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
-	    Coordinate x;
+	  Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
 		byte[][] addingSpecificCoordinate = {{1,2,-1,2,-2,1,-2,-1},{1, -2, -1, -2, -2, 1, -2, -1},{2,-1,2,1,1,-2,-1,-2},{2,1,2,-1,1,2,-1,2}};
 	    if(b.getPiece(pos_i, pos_j) == 'C' || b.getPiece(pos_i, pos_j) == 'c') {//if serve como uma segurança de que a peça é um cavalo
@@ -146,8 +146,50 @@ public class Controller {
 	    		}
 	    	}
 	    }
-	    
+
 		return movesP;
-		
+
 	}
+
+    public ArrayList <Coordinate> getBishopMoves(byte pos_i, byte pos_j) {
+      ArrayList<Coordinate> movesB = new ArrayList<Coordinate>();
+      Coordinate x;
+
+      for (byte i = 1; (pos_i + i) < 8; i++) {
+        if (pos_j + i < 8 && b.getPiece(pos_i + i, pos_j + i) == 'o') {
+          x = new Coordinate(pos_i, pos_j, pos_i + i, pos_j + i);
+          movesB.add(x);
+        }
+        else {
+          break;
+        }
+      }
+      for (byte i = 1; (pos_i + i) < 8; i++) {
+        if (pos_j - i >= 0 && b.getPiece(pos_i + i, pos_j - i) == 'o') {
+          x = new Coordinate(pos_i, pos_j, pos_i + i, pos_j - i);
+          movesB.add(x);
+          }
+        else {
+          break;
+          }
+      }
+      for (byte i = 1; (pos_i - i) >= 0; i++) {
+        if (pos_j + i < 8 && b.getPiece(pos_i - i, pos_j + i) == 'o') {
+          x = new Coordinate(pos_i, pos_j, pos_i - i, pos_j + i);
+          movesB.add(x);
+        }
+        else {
+          break;
+        }
+      }
+      for (byte i = 1; (pos_i - i) >= 0; i++) {
+        if ((pos_j - i) >= 0 && b.getPiece(pos_i - i, pos_j - i) == 'o') {
+          x = new Coordinate(pos_i, pos_j, pos_i - i, pos_j - i);
+          movesB.add(x);
+        }
+        else {
+          break;
+        }
+    }
+  }
 }
