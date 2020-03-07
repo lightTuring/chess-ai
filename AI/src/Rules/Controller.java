@@ -13,7 +13,7 @@ public class Controller {
   }
 */
 
-  public ArrayList<Coordinate> getPawnMoves(byte i, byte j) throws UnexpectedPieceException {
+  public ArrayList<Coordinate> getPawnMoves(byte i, byte j) throws UnexpectedPieceException, BoardOutOfBoundsException {
     ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
     Coordinate x;
     // Se o peão for Branco:
@@ -61,7 +61,7 @@ public class Controller {
         }
      }
      else {
-         throw new UnexpectedPieceExpection("Argumentos dados a Controller.getPawnMoves não correspondem a um peão.");
+         throw new UnexpectedPieceException("Argumentos dados a Controller.getPawnMoves não correspondem a um peão.");
      }
      return movesP;
     }
