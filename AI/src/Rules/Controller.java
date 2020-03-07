@@ -66,9 +66,13 @@ public class Controller {
      return movesP;
     }
 
-    public ArrayList<Coordinate> getTowerMoves(byte i, byte j) {
+    public ArrayList<Coordinate> getTowerMoves(byte i, byte j) throws UnexpectedPieceException {
 	ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
 	Coordinate x;
+	// Checa se (i, j) é realmente uma torre:
+	if (b.getPiece(i, j) != 't' && b.getPiece(i, j) != 'T') {
+	    throw new UnexpectedPieceException("argumentos dados a Controller.getTowerMoves não correspondem a uma torre");
+	}
 	// Checa se a torre não está à beira de baixo do mapa (de cima para baixo).
 	if (i < 7) {
 	    // Para cada casa a baixo na coluna.
