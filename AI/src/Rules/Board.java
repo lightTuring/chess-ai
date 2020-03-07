@@ -25,11 +25,11 @@ public class Board {
             chessBoard[7][i] = posInitWhite[i];
     }
     //comparação por tabela ASCII
-    public boolean isWhite(int pos_i, int pos_j) {
+    public boolean isWhite(int pos_i, int pos_j) throws BoardOutOfBoundsException {
     	return ((int)getPiece(pos_i, pos_j) < 90);
     }
     //comparação por tabela ASCII
-    public boolean isBlack(int pos_i, int pos_j) {
+    public boolean isBlack(int pos_i, int pos_j) throws BoardOutOfBoundsException {
     	return ((int)getPiece(pos_i, pos_j) > 97);
     }
 
@@ -93,7 +93,7 @@ public class Board {
     public void setHasTowerMovedAsTrue(){
         this.hasTowerMoved = true;
     }
-    public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException {
+    public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException, BoardOutOfBoundsException {
         char piece = getPiece(pos_i, pos_j);
         if (piece != 'p' || piece != 'P') {
             throw new UnexpectedPieceException("Board.hasPawnMoved foi chamado em uma casa que não contém um peão");
