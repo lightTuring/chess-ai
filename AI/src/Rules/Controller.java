@@ -292,4 +292,19 @@ public class Controller {
     }
 	return movesB;
   }
+
+  public ArrayList<Coordinate> getKingMoves(byte i, byte j) {
+	ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
+	Coordinate c;
+	for (int x = -1; x<=1 && x>=-1; x++) {
+		for (int y = -1; y<=1 && y>=-1; y++) {
+			if (y != 0 || x!=0) {
+				c = new Coordinate(i, j, i + x, j+y);
+				moves.add(c);
+			}
+		}
+	}
+	
+	return moves;
+  }
 }
