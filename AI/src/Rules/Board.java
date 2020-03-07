@@ -1,4 +1,5 @@
 package Rules;
+import java.util.ArrayList;
 
 public class Board {
 
@@ -107,7 +108,7 @@ public class Board {
             return true;
         }
     }
-    public ArrayList<Coordinate> (char b) {
+    public ArrayList<Coordinate> index (char b) {
         ArrayList<Coordinate> list = new ArrayList <Coordinate> ();
         Coordinate x;
         for (int i = 0; i<8; i++) {
