@@ -61,7 +61,7 @@ public class Controller {
         }
      }
      else {
-         throw new UnexpectedPieceException("Argumentos dados a Controller.getPawnMoves não correspondem a um peão.");
+         throw new UnexpectedPieceException("Argumentos dados a Controller.getPawnMoves não correspondem a um Peão.");
      }
      return movesP;
     }
@@ -71,7 +71,7 @@ public class Controller {
 	Coordinate x;
 	// Checa se (i, j) é realmente uma torre:
 	if (b.getPiece(i, j) != 't' && b.getPiece(i, j) != 'T') {
-	    throw new UnexpectedPieceException("argumentos dados a Controller.getTowerMoves não correspondem a uma torre");
+	    throw new UnexpectedPieceException("Argumentos dados a Controller.getTowerMoves não correspondem a uma Torre");
 	}
 	// Checa se a torre não está à beira de baixo do mapa (de cima para baixo).
 	if (i < 7) {
@@ -181,69 +181,19 @@ public class Controller {
 	return movesP;
     }
 
-  // Lança que exceção?
   public ArrayList<Coordinate> getKnightMoves(byte pos_i, byte pos_j) throws Exception{
 		ArrayList<Coordinate> movesK = new ArrayList<Coordinate>();
 	  Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
-		byte[][] addingSpecificCoordinate = {{1,2,-1,2,-2,1,-2,-1},{1, -2, -1, -2, -2, 1, -2, -1},{2,-1,2,1,1,-2,-1,-2},{2,1,2,-1,1,2,-1,2},{-2,1,-1,2},
-				{-2,-1,-1,-2},{2,-1,1,-2},{2,1,1,2}};
 	    if(b.getPiece(pos_i, pos_j) == 'C' || b.getPiece(pos_i, pos_j) == 'c') {//if serve como uma segurança de que a peça é um cavalo
-	    	//caso de todos os movimentos possiveis(centro do tabuleiro)
-	    	if(pos_i > 1 && pos_i < 6 && pos_j > 1 && pos_j < 6) {
-	    		for(byte i = 0; i < addingGeneralCoordinate.length; i+=2) {
-	    			x = new Coordinate(pos_i, pos_j, pos_i + addingGeneralCoordinate[i], pos_j + addingGeneralCoordinate[i+1]);
-	    			movesK.add(x);
-	    		}
-	    	}
-	    	else if(pos_i == 6 && pos_j == 1) {
-	    		for(byte i = 0; i < addingSpecificCoordinate[0].length; i+=2) {
-	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[0][i], pos_j + addingSpecificCoordinate[0][i+1]);
-	    			movesK.add(x);
-	    		}
-	    	}
-	    	else if(pos_i == 6 && pos_j == 6) {
-	    		for(byte i = 0; i < addingSpecificCoordinate[1].length; i+=2) {
-	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[1][i], pos_j + addingSpecificCoordinate[1][i+1]);
-	    			movesK.add(x);
-	    		}
-	    	}
-	    	else if(pos_i == 1 && pos_j == 6) {
-	    		for(byte i = 0; i < addingSpecificCoordinate[2].length; i+=2) {
-	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[2][i], pos_j + addingSpecificCoordinate[2][i+1]);
-	    			movesK.add(x);
-	    		}
-	    	}
-	    	else if(pos_i == 1 && pos_j == 1) {
-	    		for(byte i = 0; i < addingSpecificCoordinate[3].length; i+=2) {
-	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[3][i], pos_j + addingSpecificCoordinate[3][i+1]);
-	    			movesK.add(x);
-	    		}
-	    	}
-	    	else if(pos_i == 7 && pos_j == 0) {
-	    		for(byte i = 0; i < addingSpecificCoordinate[4].length; i+=2) {
-	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[4][i], pos_j + addingSpecificCoordinate[4][i+1]);
-	    			movesK.add(x);
-	    		}
-	    	}
-	    	else if(pos_i == 7 && pos_j == 7) {
-	    		for(byte i = 0; i < addingSpecificCoordinate[5].length; i+=2) {
-	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[5][i], pos_j + addingSpecificCoordinate[5][i+1]);
-	    			movesK.add(x);
-	    		}
-	    	}
-	    	else if(pos_i == 0 && pos_j == 7) {
-	    		for(byte i = 0; i < addingSpecificCoordinate[6].length; i+=2) {
-	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[6][i], pos_j + addingSpecificCoordinate[6][i+1]);
-	    			movesK.add(x);
-	    		}
-	    	}
-	    	else if(pos_i == 0 && pos_j == 0) {
-	    		for(byte i = 0; i < addingSpecificCoordinate[7].length; i+=2) {
-	    			x = new Coordinate(pos_i, pos_j, pos_i + addingSpecificCoordinate[7][i], pos_j + addingSpecificCoordinate[7][i+1]);
-	    			movesK.add(x);
-	    		}
-	    	}
+	    	for(byte i = 0; i < addingGeneralCoordinate.length; i+=2) {
+    			if(((pos_i + addingGeneralCoordinate[i]) >= 0 && (pos_i + addingGeneralCoordinate[i]) <= 7) && ((pos_j + addingGeneralCoordinate[i+1]) >= 0 && (pos_j + addingGeneralCoordinate[i+1] <= 7))) {
+    				x = new Coordinate(pos_i, pos_j, (pos_i + addingGeneralCoordinate[i]), (pos_j + addingGeneralCoordinate[i+1]));
+        			movesK.add(x);
+    			}
+    		}
+	    }else {
+	    	 throw new UnexpectedPieceException("Argumentos dados a Controller.getKnightMoves não correspondem a um Cavalo");
 	    }
 
 		return movesK;
