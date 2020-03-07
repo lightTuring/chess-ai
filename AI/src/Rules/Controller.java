@@ -66,7 +66,7 @@ public class Controller {
      return movesP;
     }
 
-    public ArrayList<Coordinate> getTowerMoves(byte i, byte j) throws UnexpectedPieceException {
+    public ArrayList<Coordinate> getTowerMoves(byte i, byte j) throws UnexpectedPieceException, BoardOutOfBoundsException {
 	ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
 	Coordinate x;
 	// Checa se (i, j) é realmente uma torre:
@@ -178,6 +178,7 @@ public class Controller {
                 }
             }
 	}
+	return movesP;
     }
 
   // Lança que exceção?
@@ -224,7 +225,7 @@ public class Controller {
 
 	}
 
-    public ArrayList <Coordinate> getBishopMoves(byte pos_i, byte pos_j) {
+    public ArrayList <Coordinate> getBishopMoves(byte pos_i, byte pos_j) throws BoardOutOfBoundsException {
       ArrayList<Coordinate> movesB = new ArrayList<Coordinate>();
       Coordinate x;
 
@@ -264,5 +265,6 @@ public class Controller {
           break;
         }
     }
+	return movesB;
   }
 }
