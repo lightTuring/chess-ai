@@ -81,11 +81,11 @@ public class Controller {
 		    x = new Coordinate(i, j, ii, j);
 		    movesP.add(x);
 		}
-		else if (b.isWhite(i, j) && b.isWhite) {
+		else if (b.isWhite(i, j) && b.isWhite(ii, j)) {
 		    // Interrompe o for-loop:
 		    ii = 8;
 		}
-		else if (b.isBlack(i, j) && b.isBlack) {
+		else if (b.isBlack(i, j) && b.isBlack(ii, j)) {
 		    // Interrompe o for-loop:
 		    ii = 8;
 		}
@@ -107,7 +107,76 @@ public class Controller {
 		if (b.getPiece(ii, j) == 'o') {
 		    x = new Coordinate(i, j, ii, j);
 		    movesP.add(x);
+		}
+                else if (b.isWhite(i, j) && b.isWhite(ii, j)) {
+                    // Interrompe o for-loop:
+                    ii = 0;
+                }
+                else if (b.isBlack(i, j) && b.isBlack(ii, j)) {
+                    // Interrompe o for-loop:
+                    ii = 0;
+                }
+                else if (b.isWhite(i, j) && b.isBlack(ii, j)) {
+                        x = new Coordinate(i, j, ii, j);
+                        movesP.add(x);
+                }
+                // Se a torre é preta e a peça é branca.
+                else {
+                    x = new Coordinate(i, j, ii, j);
+                    movesP.add(x);
+                }
 	    }
+	}
+	//
+	if (j < 7) {
+            for (int jj = j + 1; jj++; jj < 8) {
+                if (b.getPiece(i, jj) == 'o') {
+                    x = new Coordinate(i, j, i, jj);
+                    movesP.add(x);
+                }
+                else if (b.isWhite(i, j) && b.isWhite(i, jj)) {
+                    // Interrompe o for-loop:
+                    jj = 8;
+                }
+                else if (b.isBlack(i, j) && b.isBlack(i, jj)) {
+                    // Interrompe o for-loop:
+                    jj = 8;
+                }
+                else if (b.isWhite(i, j) && b.isBlack(i, jj)) {
+                        x = new Coordinate(i, j, i, jj);
+                        movesP.add(x);
+                }
+                // Se a torre é preta e a peça é branca.
+                else {
+                    x = new Coordinate(i, j, i, jj);
+                    movesP.add(x);
+                }
+            }
+	}
+	if (j > 0) {
+            for (int jj = j - 1; jj--; jj < 0) {
+                if (b.getPiece(i, jj) == 'o') {
+                    x = new Coordinate(i, j, i, jj);
+                    movesP.add(x);
+                }
+                else if (b.isWhite(i, j) && b.isWhite(i, jj)) {
+                    // Interrompe o for-loop:
+                    jj = 0;
+                }
+                else if (b.isBlack(i, j) && b.isBlack(i, jj)) {
+                    // Interrompe o for-loop:
+                    jj = 0;
+                }
+                else if (b.isWhite(i, j) && b.isBlack(i, jj)) {
+                        x = new Coordinate(i, j, i, jj);
+                        movesP.add(x);
+                }
+                // Se a torre é preta e a peça é branca.
+                else {
+                    x = new Coordinate(i, j, i, jj);
+                    movesP.add(x);
+                }
+            }
 	}
     }
 
