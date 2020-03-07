@@ -67,9 +67,9 @@ public class Board {
 
         */
     }
-    public char getPiece(int pos_x, int pos_y) throws IllegalArgumentException {
+    public char getPiece(int pos_x, int pos_y) throws BoardOutOfBoundsException {
         if (pos_x >= 8 || pos_y >= 8) {
-            throw new IllegalArgumentException("Argumentos não indicam uma casa válida");
+            throw new BoardOutOfBoundsException("Board.getPiece tentou acessa uma casa além dos limites do tabuleiro.");
         }
         return chessBoard[pos_x][pos_y];
     }
@@ -93,10 +93,10 @@ public class Board {
     public void setHasTowerMovedAsTrue(){
         this.hasTowerMoved = true;
     }
-    public boolean hasPawnMoved(int pos_i, int pos_j) throws Exception{
+    public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException {
         char piece = getPiece(pos_i, pos_j);
         if (piece != 'p' || piece != 'P') {
-            throw new Exception("A casa indicada não contém um peão");
+            throw new UnexpectedPieceException("Board.hasPawnMoved foi chamado em uma casa que não contém um peão");
         }
         else if (piece == 'p' && pos_i == 1) {
             return false;
