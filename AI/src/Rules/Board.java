@@ -6,9 +6,11 @@ public class Board {
     private char[][] chessBoard = new char[8][8];
     private char[] posInitBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
     private char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
-
-    private boolean hasKingMoved = false;
-    private boolean hasTowerMoved = false;
+    
+    private boolean hasWhiteKingMoved = false;
+    private boolean hasWhiteTowerMoved = false;
+    private boolean hasBlackKingMoved = false;
+    private boolean hasBlackTowerMoved = false;
 
     public Board() {
         for (int i = 0; i < chessBoard.length; i++) {
@@ -41,7 +43,7 @@ public class Board {
     }
 
     private void setChange(int begin_x, int begin_y, int final_x, int final_y){
-        if(getHasKingMoved() == false && getHasTowerMoved() == false &&
+        if((getHasWhiteKingMoved() == false && getHasWhiteTowerMoved() == false) || (getHasBlackKingMoved() == false && getHasBlackTowerMoved() == false)&&
          (((chessBoard[begin_x][begin_y] == 'k' && chessBoard[final_x][final_y] == 't')||(chessBoard[begin_x][begin_y] == 't' && chessBoard[final_x][final_y] == 'k')) ^
          ((chessBoard[begin_x][begin_y] == 'K' && chessBoard[final_x][final_y] == 'T')||(chessBoard[begin_x][begin_y] == 'T' && chessBoard[final_x][final_y] == 'K')))){
             //estou usando este algoritmo pq não sei de fato qual é a peça final e inicial e tbm nn sei a cor das duas
@@ -84,17 +86,29 @@ public class Board {
             System.out.println();
         }
     }
-    public boolean getHasKingMoved(){
-        return this.hasKingMoved;
+    public boolean getHasWhiteKingMoved(){
+        return this.hasWhiteKingMoved;
     }
-    public void setHasKingMovedAsTrue(){
-        this.hasKingMoved = true;
+    public void setHasKingWhiteMovedAsTrue(){
+        this.hasWhiteKingMoved = true;
     }
-    public boolean getHasTowerMoved(){
-        return this.hasTowerMoved;
+    public boolean getHasWhiteTowerMoved(){
+        return this.hasWhiteTowerMoved;
     }
     public void setHasTowerMovedAsTrue(){
-        this.hasTowerMoved = true;
+        this.hasWhiteTowerMoved = true;
+    }
+    public boolean getHasBlackKingMoved(){
+        return this.hasBlackKingMoved;
+    }
+    public void setHasBlackKingMovedAsTrue(){
+        this.hasBlackKingMoved = true;
+    }
+    public boolean getHasBlackTowerMoved(){
+        return this.hasBlackTowerMoved;
+    }
+    public void setHasBlackTowerMovedAsTrue(){
+        this.hasBlackTowerMoved = true;
     }
     public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException, BoardOutOfBoundsException {
         char piece = getPiece(pos_i, pos_j);
