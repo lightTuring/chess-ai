@@ -49,24 +49,45 @@ public void printImage();
 - Imprime uma imagem do tabuleiro no terminal.
 
 ```java
-public boolean getHasKingMoved();
+public boolean getHasWhiteKingMoved();
 ```
-- Retorna se o rei deu o seu primeiro movimento.
+- Retorna se o rei branco deu o seu primeiro movimento.
 
 ```java
-public boolean setHasKingMovedAsTrue();
+public boolean setHasWhiteKingMovedAsTrue();
 ```
-- Declara que o rei deu o seu primeiro movimento.
+- Declara que o rei branco deu o seu primeiro movimento.
 
 ```java
-public boolean getHasTowerMoved();
+public boolean getHasWhiteTowerMoved();
 ```
-- Retorna se a torre deu o seu primeiro movimento.
+- Retorna se a torre branca deu o seu primeiro movimento.
 
 ```java
-public boolean setHasTowerMovedAsTrue();
+public boolean setHasWhiteTowerMovedAsTrue();
 ```
-- Declara que a torre deu o seu primeiro movimento.
+- Declara que a torre branca deu o seu primeiro movimento.
+
+```java
+public boolean getHasBlackKingMoved();
+```
+- Retorna se o rei preto deu o seu primeiro movimento.
+
+```java
+public boolean setHasBlackKingMovedAsTrue();
+```
+- Declara que o rei preto deu o seu primeiro movimento.
+
+```java
+public boolean getHasBlackTowerMoved();
+```
+- Retorna se a torre preta deu o seu primeiro movimento.
+
+```java
+public boolean setHasBlackTowerMovedAsTrue();
+```
+- Declara que a torre preta deu o seu primeiro movimento.
+
 
 ```java
 public boolean hasPawnMoved(int pos_i, int pos_j);
