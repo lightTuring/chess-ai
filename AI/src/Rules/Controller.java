@@ -186,7 +186,8 @@ public class Controller {
 		ArrayList<Coordinate> movesK = new ArrayList<Coordinate>();
 	  Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
-		byte[][] addingSpecificCoordinate = {{1,2,-1,2,-2,1,-2,-1},{1, -2, -1, -2, -2, 1, -2, -1},{2,-1,2,1,1,-2,-1,-2},{2,1,2,-1,1,2,-1,2}};
+		byte[][] addingSpecificCoordinate = {{1,2,-1,2,-2,1,-2,-1},{1, -2, -1, -2, -2, 1, -2, -1},{2,-1,2,1,1,-2,-1,-2},{2,1,2,-1,1,2,-1,2},{-2,1,-1,2},
+				{-2,-1,-1,-2}};
 	    if(b.getPiece(pos_i, pos_j) == 'C' || b.getPiece(pos_i, pos_j) == 'c') {//if serve como uma segurança de que a peça é um cavalo
 	    	//caso de todos os movimentos possiveis(centro do tabuleiro)
 	    	if(pos_i > 1 && pos_i < 6 && pos_j > 1 && pos_j < 6) {
