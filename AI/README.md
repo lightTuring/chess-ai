@@ -99,6 +99,56 @@ public ArrayList<Coordinate> indexOfPiece(char b);
 ```
 - Retorna um _ArrayList_ das coordenadas das peças passada no argumento.
 
+
+
+### Controller
+
+Contêm métodos que retorna um _ArrayList_ de _Coordinate_ apresentando as possiveis posições finais que cada peça pode jogar. São exemplos dessa classe os métodos:
+
+```java
+public ArrayList<Coordinate> getPawnMoves(byte i, byte j);
+```
+- Para a peça: Peão.
+
+```java
+public ArrayList<Coordinate> getTowerMoves(byte i, byte j);
+```
+- Para a peça: Torre.
+
+```java
+public ArrayList<Coordinate> getKnightMoves(byte i, byte j);
+```
+- Para a peça: Cavalo.
+
+```java
+public ArrayList<Coordinate> getBishopMoves(byte i, byte j);
+```
+- Para a peça: Bispo.
+
+```java
+public ArrayList<Coordinate> getKingMoves(byte i, byte j);
+```
+- Para a peça: Rei.
+
+### Coordinate
+
+Objeto que apresenta a posição inicial e final de determinada peça. 
+
+```java
+public Coordinate(int initial_i, int initial_j, int final_i, int final_j);
+```
+- Construtor.
+
+```java
+public void printCoordinate();
+```
+- Imprime no terminal as coordenadas inicias e finais.
+
+### BoardOutOfBoundsException
+
+### UnexpectedPieceException
+
+
 ## Server
 
 Neste pacote está contido o arquivo 'Server.java', que faz o Server da nossa comunicação Socket com a placa que faz a ponte com o hardware. Em Server.java está disposto os seguintes métodos:
