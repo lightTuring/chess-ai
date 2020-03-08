@@ -119,7 +119,7 @@ public class Board {
     }
     public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException, BoardOutOfBoundsException {
         char piece = getPiece(pos_i, pos_j);
-        if (piece != 'p' || piece != 'P') {
+        if (piece != 'p' && piece != 'P') {
             throw new UnexpectedPieceException("Board.hasPawnMoved foi chamado em uma casa que não contém um peão");
         }
         else if (piece == 'p' && pos_i == 1) {
