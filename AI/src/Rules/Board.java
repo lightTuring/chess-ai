@@ -42,6 +42,20 @@ public class Board {
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
         setChange(begin_x, begin_y, final_x, final_y);
     }
+// Método de roque para as pretas. Pede um y para definir qual das duas possiblidades de roque vai ser feita.
+    public void doBlacksCastling(int y) throws IllegalCastlingException {
+        if (y == 2 && getPiece(0, 2) == 'o' && !(getHasLeftBlackRookMoved()) && !(getHasBlackKingMoved())) {
+            setChange(0, 4, 0, 2);
+            setChange(0, 0, 0, 3);
+        }
+        else if (y == 6 && getPiece(0, 6) == 'o' && !(getHasRightBlackRookMoved()) && !(getHasBlackKingMoved())) {
+            setChange(0, 4, 0, 6);
+            setChange(0, 7, 0, 5);
+        }
+        else {
+            throw new IllegalCastlingException("doBlacksCastling chamado ilegamente");
+        }
+    }
     private void setChange(int begin_x, int begin_y, int final_x, int final_y){
         if((getHasWhiteKingMoved() == false && getHasWhiteRookMoved() == false) || (getHasBlackKingMoved() == false && getHasBlackRookMoved() == false)&&
          (((chessBoard[begin_x][begin_y] == 'k' && chessBoard[final_x][final_y] == 't')||(chessBoard[begin_x][begin_y] == 't' && chessBoard[final_x][final_y] == 'k')) ^
