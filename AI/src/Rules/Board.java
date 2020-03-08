@@ -45,7 +45,7 @@ public class Board {
         setChange(begin_x, begin_y, final_x, final_y);
     }
 // Método de roque para as pretas. Pede um y para definir qual das duas possiblidades de roque vai ser feita.
-    public void doBlacksCastling(int y) throws IllegalCastlingException {
+    public void doBlacksCastling(int y) throws IllegalCastlingException, BoardOutOfBoundsException {
         if (y == 2 && getPiece(0, 2) == 'o' && !(getHasLeftBlackRookMoved()) && !(getHasBlackKingMoved())) {
             setChange(0, 4, 0, 2);
             setChange(0, 0, 0, 3);
