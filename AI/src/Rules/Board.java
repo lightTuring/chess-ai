@@ -42,7 +42,6 @@ public class Board {
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
         setChange(begin_x, begin_y, final_x, final_y);
     }
-
     private void setChange(int begin_x, int begin_y, int final_x, int final_y){
         if((getHasWhiteKingMoved() == false && getHasWhiteRookMoved() == false) || (getHasBlackKingMoved() == false && getHasBlackRookMoved() == false)&&
          (((chessBoard[begin_x][begin_y] == 'k' && chessBoard[final_x][final_y] == 't')||(chessBoard[begin_x][begin_y] == 't' && chessBoard[final_x][final_y] == 'k')) ^
@@ -144,18 +143,5 @@ public class Board {
             }
         }
         return list;
-    }
-    // checa se é válido realizar roque para as brancas:
-    public boolean isWhiteCastlingPossible() {
-        if (getHasWhiteKingMoved() || getHasWhiteRookMoved()) {
-            return false;
-        }
-        return true;
-    }
-    public boolean isBlackCastlingPossible() {
-        if (getHasBlackKingMoved() || getHasBlackRookMoved()) {
-            return false;
-        }
-        return true;
     }
 }
