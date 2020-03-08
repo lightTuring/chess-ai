@@ -46,6 +46,11 @@ public void doBlacksCastling(int y);
 - Método de roque para as pretas. Pede um y para definir qual das duas possiblidades de roque vai ser feita.
 
 ```java
+public void doWhitesCastling(int y);
+```
+- Método de roque para as brancas. Pede um y para definir qual das duas possiblidades de roque vai ser feita.
+
+```java
 public char getPiece(int pos_x, int pos_y);
 ```
 - Retorna a peça presente na posição passada pelo argumento.
