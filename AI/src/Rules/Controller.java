@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Controller {
 
-  private Board b = new Board();
+  Board b = new Board();
 
 /*
   public ArrayList<Coordinate> getAllMoves(char[][] b) {
@@ -66,13 +66,11 @@ public class Controller {
      return movesP;
     }
 
-    public ArrayList<Coordinate> getTowerMoves(byte i, byte j) throws UnexpectedPieceException, BoardOutOfBoundsException {
+    public ArrayList<Coordinate> getRookMoves(byte i, byte j) throws UnexpectedPieceException, BoardOutOfBoundsException {
 	ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
 	Coordinate x;
-	// Checa se (i, j) é realmente uma torre:
-	if (b.getPiece(i, j) != 't' && b.getPiece(i, j) != 'T') {
-	    throw new UnexpectedPieceException("Argumentos dados a Controller.getTowerMoves não correspondem a uma Torre");
-	}
+	// A checagem de peça vai ser feito no getAllMoves
+	
 	// Checa se a torre não está à beira de baixo do mapa (de cima para baixo).
 	if (i < 7) {
 	    // Para cada casa a baixo na coluna.
@@ -203,6 +201,7 @@ public class Controller {
     public ArrayList <Coordinate> getBishopMoves(byte pos_i, byte pos_j) throws BoardOutOfBoundsException {
       ArrayList<Coordinate> movesB = new ArrayList<Coordinate>();
       Coordinate x;
+      
 
       for (byte i = 1; (pos_i + i) < 8; i++) {
         if (pos_j + i < 8 && b.getPiece(pos_i + i, pos_j + i) == 'o') {
@@ -239,7 +238,7 @@ public class Controller {
         else {
           break;
         }
-    }
+      }
 	return movesB;
   }
 
@@ -256,5 +255,134 @@ public class Controller {
 	}
 	
 	return moves;
+  }
+  //Fiquei com preguiça entao a rainha virou Ctrl c Ctrl v do bispo. A nomenclatura das variaveis da torre me fudeu então achei mais facil reescrever
+  //Lembrar de não deixar isso no codigo final
+  public ArrayList<Coordinate> getQueenMoves(byte pos_i, byte pos_j) throws BoardOutOfBoundsException {
+    ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
+    Coordinate x;
+    boolean pathBlocked = false;
+    byte t = 0;
+    //Parte "Bispo"
+    for (byte i = 1; (pos_i + i) < 8; i++) {
+      if (pos_j + i < 8 && b.getPiece(pos_i + i, pos_j + i) == 'o') {
+        x = new Coordinate(pos_i, pos_j, pos_i + i, pos_j + i);
+        moves.add(x);
+      }
+      else {
+        break;
+      }
+    }
+    for (byte i = 1; (pos_i + i) < 8; i++) {
+      if (pos_j - i >= 0 && b.getPiece(pos_i + i, pos_j - i) == 'o') {
+        x = new Coordinate(pos_i, pos_j, pos_i + i, pos_j - i);
+        moves.add(x);
+        }
+      else {
+        break;
+        }
+    }
+    for (byte i = 1; (pos_i - i) >= 0; i++) {
+      if (pos_j + i < 8 && b.getPiece(pos_i - i, pos_j + i) == 'o') {
+        x = new Coordinate(pos_i, pos_j, pos_i - i, pos_j + i);
+        moves.add(x);
+      }
+      else {
+        break;
+      }
+    }
+    for (byte i = 1; (pos_i - i) >= 0; i++) {
+      if ((pos_j - i) >= 0 && b.getPiece(pos_i - i, pos_j - i) == 'o') {
+        x = new Coordinate(pos_i, pos_j, pos_i - i, pos_j - i);
+        moves.add(x);
+      }
+      else {
+        break;
+      }
+    }
+
+    //Parte "Torre" sem captura
+    
+    //Para uma fileira (Versão 1 do algoritmo)
+    for (byte j = 0; j < pos_j; j++) {
+      if(b.getPiece(pos_i, j) != 'o') {
+        pathBlocked = true;
+        int q = j;
+          while (q - pos_j < -1) {
+            x = new Coordinate(pos_i, pos_j, pos_i, ++q);
+            moves.add(x);
+          }
+        }
+      }
+    if (pathBlocked = false) {
+      for (byte j = 0; j < pos_i; j++) {
+        x = new Coordinate(pos_i, pos_j, pos_i, j);
+        moves.add(x);
+      }
+    }
+    else {
+      pathBlocked = false;
+    }
+    for (byte j = (byte) (pos_j + 1); j<8; j++) {
+      if (b.getPiece(pos_i, j) == 'o') {
+        x = new Coordinate(pos_i, pos_j, pos_i, j);
+        moves.add(x);
+      }
+      else {
+        break;
+      }
+    }
+    //Para uma coluna (Versão 2 do algoritmo)
+    for (byte i = 0; i<pos_i; i++) {
+      if(b.getPiece(i, pos_j) != 'o') {
+        pathBlocked = true;
+        t = i;
+        }
+    }
+    if (pathBlocked = true) {
+      for (byte i = (byte)(t+1); i < pos_i; i++) {
+        x = new Coordinate(pos_i, pos_j, i, pos_j);
+        moves.add(x);
+      }
+    }
+    else {
+      pathBlocked = false;
+    }
+    for (byte i = (byte) (pos_i + 1); i<8; i++) {
+      if (b.getPiece(i, pos_j) == 'o') {
+        x = new Coordinate(pos_i, pos_j, i, pos_j);
+        moves.add(x);
+      }
+      else {
+        break;
+      }
+    }
+
+    //Versão anterior
+    /*for (byte i = 0; i < 8; i++) {
+      if (i != pos_i) {
+        
+        if (b.getPiece(i, pos_j) != 'o' && i - pos_i < -1) {
+          int q = i;
+          while (q - pos_i < -1) {
+            x = new Coordinate(pos_i, pos_j, ++q, pos_j);
+            moves.add(x);
+          }
+        }
+        else if (b.getPiece(i, pos_j) != 'o' && (i - pos_i) > 1){
+          int w = i;
+          while ((w- pos_i) > 1) {
+            x = new Coordinate(pos_i, pos_j, --w, pos_j);
+            moves.add(x);
+          }
+          break;
+        }
+        else {
+
+        }
+      }
+    }
+*/
+    return moves;
   }
 }
