@@ -26,7 +26,7 @@ public boolean isBlack(int pos_i, int pos_j);
 - Retorna um boolean dizendo se a peça na posição _pos_i_ e _pos_j_ é preta ou não.
 
 ```java
-public boolean ItsMyColor(int me_i, int me_j, int that_piece_i, int that_piece_j);
+public boolean hasSameColor(int me_i, int me_j, int that_piece_i, int that_piece_j);
 ```
 - Retorna se duas peças apresentam a mesma cor.
 
@@ -61,12 +61,12 @@ public boolean setHasWhiteKingMovedAsTrue();
 - Declara que o rei branco deu o seu primeiro movimento.
 
 ```java
-public boolean getHasWhiteTowerMoved();
+public boolean getHasWhiteRookMoved();
 ```
 - Retorna se a torre branca deu o seu primeiro movimento.
 
 ```java
-public boolean setHasWhiteTowerMovedAsTrue();
+public boolean setHasWhiteRookMovedAsTrue();
 ```
 - Declara que a torre branca deu o seu primeiro movimento.
 
@@ -81,12 +81,12 @@ public boolean setHasBlackKingMovedAsTrue();
 - Declara que o rei preto deu o seu primeiro movimento.
 
 ```java
-public boolean getHasBlackTowerMoved();
+public boolean getHasBlackRookMoved();
 ```
 - Retorna se a torre preta deu o seu primeiro movimento.
 
 ```java
-public boolean setHasBlackTowerMovedAsTrue();
+public boolean setHasBlackRookMovedAsTrue();
 ```
 - Declara que a torre preta deu o seu primeiro movimento.
 
@@ -111,7 +111,7 @@ public ArrayList<Coordinate> getPawnMoves(byte i, byte j);
 - Para a peça: Peão.
 
 ```java
-public ArrayList<Coordinate> getTowerMoves(byte i, byte j);
+public ArrayList<Coordinate> getRookMoves(byte i, byte j);
 ```
 - Para a peça: Torre.
 
@@ -130,6 +130,11 @@ public ArrayList<Coordinate> getKingMoves(byte i, byte j);
 ```
 - Para a peça: Rei.
 
+```java
+public ArrayList<Coordinate> getQueenMoves(byte i, byte j);
+```
+- Para a peça: Rainha.
+
 ### Coordinate
 
 Objeto que apresenta a posição inicial e final de determinada peça. 
@@ -147,7 +152,6 @@ public void printCoordinate();
 ### BoardOutOfBoundsException
 
 ### UnexpectedPieceException
-
 
 ## Server
 
