@@ -199,48 +199,9 @@ public class Controller {
 	}
 
     public ArrayList <Coordinate> getBishopMoves(byte pos_i, byte pos_j) throws BoardOutOfBoundsException {
-      ArrayList<Coordinate> movesB = new ArrayList<Coordinate>();
-      Coordinate x;
       
-
-      for (byte i = 1; (pos_i + i) < 8; i++) {
-        if (pos_j + i < 8 && b.getPiece(pos_i + i, pos_j + i) == 'o') {
-          x = new Coordinate(pos_i, pos_j, pos_i + i, pos_j + i);
-          movesB.add(x);
-        }
-        else {
-          break;
-        }
-      }
-      for (byte i = 1; (pos_i + i) < 8; i++) {
-        if (pos_j - i >= 0 && b.getPiece(pos_i + i, pos_j - i) == 'o') {
-          x = new Coordinate(pos_i, pos_j, pos_i + i, pos_j - i);
-          movesB.add(x);
-          }
-        else {
-          break;
-          }
-      }
-      for (byte i = 1; (pos_i - i) >= 0; i++) {
-        if (pos_j + i < 8 && b.getPiece(pos_i - i, pos_j + i) == 'o') {
-          x = new Coordinate(pos_i, pos_j, pos_i - i, pos_j + i);
-          movesB.add(x);
-        }
-        else {
-          break;
-        }
-      }
-      for (byte i = 1; (pos_i - i) >= 0; i++) {
-        if ((pos_j - i) >= 0 && b.getPiece(pos_i - i, pos_j - i) == 'o') {
-          x = new Coordinate(pos_i, pos_j, pos_i - i, pos_j - i);
-          movesB.add(x);
-        }
-        else {
-          break;
-        }
-      }
-	return movesB;
-  }
+      return GenericMove.bishopGen(pos_i, pos_j, b);
+    }
 
   public ArrayList<Coordinate> getKingMoves(byte i, byte j) {
 	ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
