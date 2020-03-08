@@ -193,7 +193,21 @@ public void printCoordinate();
 
 ### BoardOutOfBoundsException
 
+Exceçao a ser implementada onde ArrayOutOfBounds seria lançada para Board.chessBoard.
+
+```java
+public BoardOutOfBoundsException(String message);
+```
+- Construtor.
+
 ### UnexpectedPieceException
+
+Exceção a ser lançada quando os argumentos dados a um método controle se referem a uma peça diferente à esperada pelo código do método.
+
+```java
+public UnexpectedPieceException(String message);
+```
+- Construtor.
 
 ## Server
 
