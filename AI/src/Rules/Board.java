@@ -9,9 +9,11 @@ public class Board {
     private char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
 
     private boolean hasWhiteKingMoved = false;
-    private boolean hasWhiteRookMoved = false;
+    private boolean hasRightWhiteRookMoved = false;
+    private boolean hasLeftWhiteRookMoved = false;
     private boolean hasBlackKingMoved = false;
-    private boolean hasBlackRookMoved = false;
+    private boolean hasRightBlackRookMoved = false;
+    private boolean hasLeftBlackRookMoved = false;
 
     public Board() {
         for (int i = 0; i < chessBoard.length; i++) {
@@ -42,27 +44,23 @@ public class Board {
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
         setChange(begin_x, begin_y, final_x, final_y);
     }
-
-    private void setChange(int begin_x, int begin_y, int final_x, int final_y){
-        if((getHasWhiteKingMoved() == false && getHasWhiteRookMoved() == false) || (getHasBlackKingMoved() == false && getHasBlackRookMoved() == false)&&
-         (((chessBoard[begin_x][begin_y] == 'k' && chessBoard[final_x][final_y] == 't')||(chessBoard[begin_x][begin_y] == 't' && chessBoard[final_x][final_y] == 'k')) ^
-         ((chessBoard[begin_x][begin_y] == 'K' && chessBoard[final_x][final_y] == 'T')||(chessBoard[begin_x][begin_y] == 'T' && chessBoard[final_x][final_y] == 'K')))){
-            //estou usando este algoritmo pq não sei de fato qual é a peça final e inicial e tbm nn sei a cor das duas
-            char a = chessBoard[begin_x][begin_y];
-            char b = chessBoard[final_x][final_y];
-
-            chessBoard[begin_x][begin_y] = b;
-            chessBoard[final_x][final_y] = a;
-            if (a == 'k') {
-                setHasBlackKingMovedAsTrue();
-            }
-            else if (a == 'K') {
-                setHasWhiteKingMovedAsTrue();
-            }
+// Método de roque para as pretas. Pede um y para definir qual das duas possiblidades de roque vai ser feita.
+    public void doBlacksCastling(int y) throws IllegalCastlingException, BoardOutOfBoundsException {
+        if (y == 2 && getPiece(0, 2) == 'o' && !(getHasLeftBlackRookMoved()) && !(getHasBlackKingMoved())) {
+            setChange(0, 4, 0, 2);
+            setChange(0, 0, 0, 3);
         }
-
+        else if (y == 6 && getPiece(0, 6) == 'o' && !(getHasRightBlackRookMoved()) && !(getHasBlackKingMoved())) {
+            setChange(0, 4, 0, 6);
+            setChange(0, 7, 0, 5);
+        }
+        else {
+            throw new IllegalCastlingException("doBlacksCastling chamado ilegamente");
+        }
+    }
+    private void setChange(int begin_x, int begin_y, int final_x, int final_y){
         // a verificação é com a peça final? está peça de comparação é o rei?
-        else if(chessBoard[final_x][final_y] != 'K' && chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8){
+       if(chessBoard[final_x][final_y] != 'K' && chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8){
             chessBoard[final_x][final_y] = chessBoard[begin_x][begin_y];
             chessBoard[begin_x][begin_y] = 'o';
         }
@@ -99,11 +97,17 @@ public class Board {
     private void setHasWhiteKingMovedAsTrue(){
         this.hasWhiteKingMoved = true;
     }
-    public boolean getHasWhiteRookMoved(){
-        return this.hasWhiteRookMoved;
+    public boolean getHasRightWhiteRookMoved(){
+        return this.hasRightWhiteRookMoved;
     }
-    public void setHasRookMovedAsTrue(){
-        this.hasWhiteRookMoved = true;
+    public boolean getHasLeftWhiteRookMoved(){
+        return this.hasLeftWhiteRookMoved;
+    }
+    public void setHasRightWhiteRookMovedAsTrue(){
+        this.hasRightWhiteRookMoved = true;
+    }
+    public void setHasLeftWhiteRookMovedAsTrue(){
+        this.hasLeftWhiteRookMoved = true;
     }
     public boolean getHasBlackKingMoved(){
         return this.hasBlackKingMoved;
@@ -111,11 +115,17 @@ public class Board {
     private void setHasBlackKingMovedAsTrue(){
         this.hasBlackKingMoved = true;
     }
-    public boolean getHasBlackRookMoved(){
-        return this.hasBlackRookMoved;
+    public boolean getHasRightBlackRookMoved(){
+        return this.hasRightBlackRookMoved;
     }
-    public void setHasBlackRookMovedAsTrue(){
-        this.hasBlackRookMoved = true;
+    public boolean getHasLeftBlackRookMoved(){
+        return this.hasLeftBlackRookMoved;
+    }
+    public void setHasRightBlackRookMovedAsTrue(){
+        this.hasRightBlackRookMoved = true;
+    }
+    public void setHasLeftBlackRookMovedAsTrue(){
+        this.hasLeftBlackRookMoved = true;
     }
 
     public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException, BoardOutOfBoundsException {
@@ -144,18 +154,5 @@ public class Board {
             }
         }
         return list;
-    }
-    // checa se é válido realizar roque para as brancas:
-    public boolean isWhiteCastlingPossible() {
-        if (getHasWhiteKingMoved() || getHasWhiteRookMoved()) {
-            return false;
-        }
-        return true;
-    }
-    public boolean isBlackCastlingPossible() {
-        if (getHasBlackKingMoved() || getHasBlackRookMoved()) {
-            return false;
-        }
-        return true;
     }
 }
