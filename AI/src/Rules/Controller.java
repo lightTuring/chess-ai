@@ -263,6 +263,7 @@ public class Controller {
     Coordinate x;
     boolean pathBlocked = false;
     byte t = 0;
+    
     //Parte "Bispo"
     for (byte i = 1; (pos_i + i) < 8; i++) {
       if (pos_j + i < 8 && b.getPiece(pos_i + i, pos_j + i) == 'o') {
