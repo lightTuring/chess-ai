@@ -308,22 +308,16 @@ public class Controller {
     for (byte j = 0; j < pos_j; j++) {
       if(b.getPiece(pos_i, j) != 'o') {
         pathBlocked = true;
-        int q = j;
-          while (q - pos_j < -1) {
-            x = new Coordinate(pos_i, pos_j, pos_i, ++q);
-            moves.add(x);
-          }
+        t = j;
         }
       }
-    if (pathBlocked = false) {
-      for (byte j = 0; j < pos_i; j++) {
+    if (pathBlocked == true) {
+      for (byte j = (byte)(t+1); j < pos_j; j++) {
         x = new Coordinate(pos_i, pos_j, pos_i, j);
         moves.add(x);
       }
     }
-    else {
-      pathBlocked = false;
-    }
+    pathBlocked = false;
     for (byte j = (byte) (pos_j + 1); j<8; j++) {
       if (b.getPiece(pos_i, j) == 'o') {
         x = new Coordinate(pos_i, pos_j, pos_i, j);
@@ -340,14 +334,11 @@ public class Controller {
         t = i;
         }
     }
-    if (pathBlocked = true) {
+    if (pathBlocked == true) {
       for (byte i = (byte)(t+1); i < pos_i; i++) {
         x = new Coordinate(pos_i, pos_j, i, pos_j);
         moves.add(x);
       }
-    }
-    else {
-      pathBlocked = false;
     }
     for (byte i = (byte) (pos_i + 1); i<8; i++) {
       if (b.getPiece(i, pos_j) == 'o') {
