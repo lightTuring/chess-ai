@@ -58,6 +58,19 @@ public class Board {
             throw new IllegalCastlingException("doBlacksCastling chamado ilegamente");
         }
     }
+    public void doWhitesCastling(int y) throws IllegalCastlingException, BoardOutOfBoundsException {
+        if (y == 2 && getPiece(7, 2) == 'o' && !(getHasLeftBlackRookMoved()) && !(getHasBlackKingMoved())) {
+            setChange(7, 4, 7, 2);
+            setChange(7, 0, 7, 3);
+        }
+        else if (y == 6 && getPiece(7, 6) == 'o' && !(getHasRightBlackRookMoved()) && !(getHasBlackKingMoved())) {
+            setChange(7, 4, 7, 6);
+            setChange(7, 7, 7, 5);
+        }
+        else {
+            throw new IllegalCastlingException("doBlacksCastling chamado ilegamente");
+        }
+    }
     private void setChange(int begin_x, int begin_y, int final_x, int final_y){
         // a verificação é com a peça final? está peça de comparação é o rei?
        if(chessBoard[final_x][final_y] != 'K' && chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8){
