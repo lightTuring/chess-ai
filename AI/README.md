@@ -177,6 +177,10 @@ public void printCoordinate();
 
 ### UnexpectedPieceException
 
+### IllegalCastlingException
+
+### GenericMove
+
 ## Server
 
 Neste pacote está contido o arquivo 'Server.java', que faz o Server da nossa comunicação Socket com a placa que faz a ponte com o hardware. Em Server.java está disposto os seguintes métodos:
