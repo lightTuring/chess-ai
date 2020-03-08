@@ -21,13 +21,13 @@ public class Board {
                 chessBoard[i][j] = 'o';
             }
         }
-        for (int i = 0; i < chessBoard.lenght; i++)
+        for (int i = 0; i < chessBoard.length; i++)
             chessBoard[1][i] = 'p';
-        for (int i = 0; i < chessBoard.lenght; i++)
+        for (int i = 0; i < chessBoard.length; i++)
             chessBoard[6][i] = 'P';
-        for (int i = 0; i < chessBoard.lenght; i++)
+        for (int i = 0; i < chessBoard.length; i++)
             chessBoard[0][i] = initPosBlack[i];
-        for (int i = 0; i < chessBoard.lenght; i++)
+        for (int i = 0; i < chessBoard.length; i++)
             chessBoard[7][i] = initPosWhite[i];
     }
     //comparação por tabela ASCII
