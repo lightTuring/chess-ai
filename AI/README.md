@@ -209,6 +209,15 @@ public UnexpectedPieceException(String message);
 ```
 - Construtor.
 
+## IllegalCastlingException
+
+Exceção a ser lançada quando doWhitesCastling ou doBlacksCastling são chamadas mas as condições para o roque de uma dada cor não são atendidas.
+
+```java
+public IllegalCastlingException(String message);
+```
+- Construtor.
+
 ## Server
 
 Neste pacote está contido o arquivo 'Server.java', que faz o Server da nossa comunicação Socket com a placa que faz a ponte com o hardware. Em Server.java está disposto os seguintes métodos:
