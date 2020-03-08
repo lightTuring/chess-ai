@@ -47,5 +47,6 @@ public class GenericMove {
         return list;
     }
 
-    protected static ArrayList<Coordinate> rookGen ()
+    protected static ArrayList<Coordinate> rookGen (){
+		return null;}
 }
