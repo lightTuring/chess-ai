@@ -61,14 +61,24 @@ public boolean setHasWhiteKingMovedAsTrue();
 - Declara que o rei branco deu o seu primeiro movimento.
 
 ```java
-public boolean getHasWhiteRookMoved();
+public boolean getHasRightWhiteRookMoved();
 ```
-- Retorna se a torre branca deu o seu primeiro movimento.
+- Retorna se a torre branca da direita deu o seu primeiro movimento.
 
 ```java
-public boolean setHasWhiteRookMovedAsTrue();
+public boolean getHasLeftWhiteRookMoved();
 ```
-- Declara que a torre branca deu o seu primeiro movimento.
+- Retorna se a torre branca da esquerda deu o seu primeiro movimento.
+
+```java
+public boolean setHasRightWhiteRookMovedAsTrue();
+```
+- Declara que a torre branca da direita deu o seu primeiro movimento.
+
+```java
+public boolean setHasLeftWhiteRookMovedAsTrue();
+```
+- Declara que a torre branca da esquerda deu o seu primeiro movimento.
 
 ```java
 public boolean getHasBlackKingMoved();
@@ -81,15 +91,24 @@ public boolean setHasBlackKingMovedAsTrue();
 - Declara que o rei preto deu o seu primeiro movimento.
 
 ```java
-public boolean getHasBlackRookMoved();
+public boolean getHasRightBlackRookMoved();
 ```
-- Retorna se a torre preta deu o seu primeiro movimento.
+- Retorna se a torre preta da direita deu o seu primeiro movimento.
 
 ```java
-public boolean setHasBlackRookMovedAsTrue();
+public boolean getHasLeftBlackRookMoved();
 ```
-- Declara que a torre preta deu o seu primeiro movimento.
+- Retorna se a torre preta da esquerda deu o seu primeiro movimento.
 
+```java
+public boolean setHasRightBlackRookMovedAsTrue();
+```
+- Declara que a torre preta da direita deu o seu primeiro movimento.
+
+```java
+public boolean setHasLeftBlackRookMovedAsTrue();
+```
+- Declara que a torre preta da esquerda deu o seu primeiro movimento.
 
 ```java
 public boolean hasPawnMoved(int pos_i, int pos_j);
