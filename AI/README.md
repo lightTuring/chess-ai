@@ -38,7 +38,12 @@ public void changePos(int begin_x, int begin_y, int final_x, int final_y);
 ```java
 private void setChange(int begin_x, int begin_y, int final_x, int final_y);
 ```
-- Realiza a operação de troca de posição entre duas peças.
+- Realiza a operação de troca genérica de posição entre duas peças.
+
+```java
+public void doBlacksCastling(int y);
+```
+- Método de roque para as pretas. Pede um y para definir qual das duas possiblidades de roque vai ser feita.
 
 ```java
 public char getPiece(int pos_x, int pos_y);
