@@ -94,7 +94,7 @@ public class Board {
     public boolean getHasWhiteKingMoved(){
         return this.hasWhiteKingMoved;
     }
-    private void setHasWhiteKingMovedAsTrue(){
+    public void setHasWhiteKingMovedAsTrue(){
         this.hasWhiteKingMoved = true;
     }
     public boolean getHasRightWhiteRookMoved(){
@@ -112,7 +112,7 @@ public class Board {
     public boolean getHasBlackKingMoved(){
         return this.hasBlackKingMoved;
     }
-    private void setHasBlackKingMovedAsTrue(){
+    public void setHasBlackKingMovedAsTrue(){
         this.hasBlackKingMoved = true;
     }
     public boolean getHasRightBlackRookMoved(){
