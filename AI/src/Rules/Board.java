@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Board {
 
     private char[][] chessBoard = new char[8][8];
-    private final char[] posInitBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
-    private final char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
+    private final char[] initPosBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
+    private final char[] initPosWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
 
     private boolean hasWhiteKingMoved = false;
     private boolean hasRightWhiteRookMoved = false;
@@ -21,14 +21,14 @@ public class Board {
                 chessBoard[i][j] = 'o';
             }
         }
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < chessBoard.lenght; i++)
             chessBoard[1][i] = 'p';
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < chessBoard.lenght; i++)
             chessBoard[6][i] = 'P';
-        for (int i = 0; i < 8; i++)
-            chessBoard[0][i] = posInitBlack[i];
-        for (int i = 0; i < 8; i++)
-            chessBoard[7][i] = posInitWhite[i];
+        for (int i = 0; i < chessBoard.lenght; i++)
+            chessBoard[0][i] = initPosBlack[i];
+        for (int i = 0; i < chessBoard.lenght; i++)
+            chessBoard[7][i] = initPosWhite[i];
     }
     //comparação por tabela ASCII
     public boolean isWhite(int pos_i, int pos_j) throws BoardOutOfBoundsException {
