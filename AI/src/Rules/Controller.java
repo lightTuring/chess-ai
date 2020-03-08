@@ -1,6 +1,7 @@
 package Rules;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Controller {
 
@@ -66,117 +67,9 @@ public class Controller {
      return movesP;
     }
 
-    public ArrayList<Coordinate> getRookMoves(byte i, byte j) throws UnexpectedPieceException, BoardOutOfBoundsException {
-	ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
-	Coordinate x;
-	// A checagem de peça vai ser feito no getAllMoves
-	
-	// Checa se a torre não está à beira de baixo do mapa (de cima para baixo).
-	if (i < 7) {
-	    // Para cada casa a baixo na coluna.
-	    for (int ii = i + 1; ii < 8; ii++) {
-		if (b.getPiece(ii, j) == 'o') {
-		    x = new Coordinate(i, j, ii, j);
-		    movesP.add(x);
-		}
-		else if (b.isWhite(i, j) && b.isWhite(ii, j)) {
-		    // Interrompe o for-loop:
-		    ii = 8;
-		}
-		else if (b.isBlack(i, j) && b.isBlack(ii, j)) {
-		    // Interrompe o for-loop:
-		    ii = 8;
-		}
-		else if (b.isWhite(i, j) && b.isBlack(ii, j)) {
-			x = new Coordinate(i, j, ii, j);
-			movesP.add(x);
-		}
-		// Se a torre é preta e a peça é branca.
-                else {
-                    x = new Coordinate(i, j, ii, j);
-                    movesP.add(x);
-                }
-	    }
-        }
-	// Checa se a torre não está à beira de cima do mapa (de cima para baixo).
-	if (i > 0) {
-	    // Para cada casa de cima na coluna.
-	    for (int ii = i - 1; ii > 0; ii--) {
-		if (b.getPiece(ii, j) == 'o') {
-		    x = new Coordinate(i, j, ii, j);
-		    movesP.add(x);
-		}
-                else if (b.isWhite(i, j) && b.isWhite(ii, j)) {
-                    // Interrompe o for-loop:
-                    ii = 0;
-                }
-                else if (b.isBlack(i, j) && b.isBlack(ii, j)) {
-                    // Interrompe o for-loop:
-                    ii = 0;
-                }
-                else if (b.isWhite(i, j) && b.isBlack(ii, j)) {
-                        x = new Coordinate(i, j, ii, j);
-                        movesP.add(x);
-                }
-                // Se a torre é preta e a peça é branca.
-                else {
-                    x = new Coordinate(i, j, ii, j);
-                    movesP.add(x);
-                }
-	    }
-	}
-	//
-	if (j < 7) {
-            for (int jj = j + 1; jj < 7; jj++) {
-                if (b.getPiece(i, jj) == 'o') {
-                    x = new Coordinate(i, j, i, jj);
-                    movesP.add(x);
-                }
-                else if (b.isWhite(i, j) && b.isWhite(i, jj)) {
-                    // Interrompe o for-loop:
-                    jj = 8;
-                }
-                else if (b.isBlack(i, j) && b.isBlack(i, jj)) {
-                    // Interrompe o for-loop:
-                    jj = 8;
-                }
-                else if (b.isWhite(i, j) && b.isBlack(i, jj)) {
-                        x = new Coordinate(i, j, i, jj);
-                        movesP.add(x);
-                }
-                // Se a torre é preta e a peça é branca.
-                else {
-                    x = new Coordinate(i, j, i, jj);
-                    movesP.add(x);
-                }
-            }
-	}
-	if (j > 0) {
-            for (int jj = j - 1; jj < 0; jj--) {
-                if (b.getPiece(i, jj) == 'o') {
-                    x = new Coordinate(i, j, i, jj);
-                    movesP.add(x);
-                }
-                else if (b.isWhite(i, j) && b.isWhite(i, jj)) {
-                    // Interrompe o for-loop:
-                    jj = 0;
-                }
-                else if (b.isBlack(i, j) && b.isBlack(i, jj)) {
-                    // Interrompe o for-loop:
-                    jj = 0;
-                }
-                else if (b.isWhite(i, j) && b.isBlack(i, jj)) {
-                        x = new Coordinate(i, j, i, jj);
-                        movesP.add(x);
-                }
-                // Se a torre é preta e a peça é branca.
-                else {
-                    x = new Coordinate(i, j, i, jj);
-                    movesP.add(x);
-                }
-            }
-	}
-	return movesP;
+    public ArrayList<Coordinate> getRookMoves(byte i, byte j) throws BoardOutOfBoundsException {
+	    ArrayList<Coordinate> movesP = GenericMove.rookGen(i, j, b);
+	    return movesP;
     }
 
   public ArrayList<Coordinate> getKnightMoves(byte pos_i, byte pos_j) throws Exception{
@@ -217,98 +110,14 @@ public class Controller {
 	
 	return moves;
   }
-  //Fiquei com preguiça entao a rainha virou Ctrl c Ctrl v do bispo. A nomenclatura das variaveis da torre me fudeu então achei mais facil reescrever
-  //Lembrar de não deixar isso no codigo final
-  public ArrayList<Coordinate> getQueenMoves(byte pos_i, byte pos_j) throws BoardOutOfBoundsException {
-    ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
-    Coordinate x;
-    boolean pathBlocked = false;
-    byte t = 0;
-    
-    //Parte "Bispo"
-    for (byte i = 1; (pos_i + i) < 8; i++) {
-      if (pos_j + i < 8 && b.getPiece(pos_i + i, pos_j + i) == 'o') {
-        x = new Coordinate(pos_i, pos_j, pos_i + i, pos_j + i);
-        moves.add(x);
-      }
-      else {
-        break;
-      }
-    }
-    for (byte i = 1; (pos_i + i) < 8; i++) {
-      if (pos_j - i >= 0 && b.getPiece(pos_i + i, pos_j - i) == 'o') {
-        x = new Coordinate(pos_i, pos_j, pos_i + i, pos_j - i);
-        moves.add(x);
-        }
-      else {
-        break;
-        }
-    }
-    for (byte i = 1; (pos_i - i) >= 0; i++) {
-      if (pos_j + i < 8 && b.getPiece(pos_i - i, pos_j + i) == 'o') {
-        x = new Coordinate(pos_i, pos_j, pos_i - i, pos_j + i);
-        moves.add(x);
-      }
-      else {
-        break;
-      }
-    }
-    for (byte i = 1; (pos_i - i) >= 0; i++) {
-      if ((pos_j - i) >= 0 && b.getPiece(pos_i - i, pos_j - i) == 'o') {
-        x = new Coordinate(pos_i, pos_j, pos_i - i, pos_j - i);
-        moves.add(x);
-      }
-      else {
-        break;
-      }
-    }
 
-    //Parte "Torre" sem captura
-    
-    //Para uma fileira (Versão 1 do algoritmo)
-    for (byte j = 0; j < pos_j; j++) {
-      if(b.getPiece(pos_i, j) != 'o') {
-        pathBlocked = true;
-        t = j;
-        }
-      }
-    if (pathBlocked == true) {
-      for (byte j = (byte)(t+1); j < pos_j; j++) {
-        x = new Coordinate(pos_i, pos_j, pos_i, j);
-        moves.add(x);
-      }
-    }
-    pathBlocked = false;
-    for (byte j = (byte) (pos_j + 1); j<8; j++) {
-      if (b.getPiece(pos_i, j) == 'o') {
-        x = new Coordinate(pos_i, pos_j, pos_i, j);
-        moves.add(x);
-      }
-      else {
-        break;
-      }
-    }
-    //Para uma coluna (Versão 2 do algoritmo)
-    for (byte i = 0; i<pos_i; i++) {
-      if(b.getPiece(i, pos_j) != 'o') {
-        pathBlocked = true;
-        t = i;
-        }
-    }
-    if (pathBlocked == true) {
-      for (byte i = (byte)(t+1); i < pos_i; i++) {
-        x = new Coordinate(pos_i, pos_j, i, pos_j);
-        moves.add(x);
-      }
-    }
-    for (byte i = (byte) (pos_i + 1); i<8; i++) {
-      if (b.getPiece(i, pos_j) == 'o') {
-        x = new Coordinate(pos_i, pos_j, i, pos_j);
-        moves.add(x);
-      }
-      else {
-        break;
-      }
+  public ArrayList<Coordinate> getQueenMoves(byte pos_i, byte pos_j) throws BoardOutOfBoundsException {
+    ArrayList<Coordinate> moves = GenericMove.bishopGen(pos_i, pos_j, b);
+    ArrayList<Coordinate> list = GenericMove.rookGen(pos_i, pos_j, b);
+    Iterator<Coordinate> i = list.iterator();
+
+    while (i.hasNext()){
+      moves.add(i.next());
     }
     return moves;
   }

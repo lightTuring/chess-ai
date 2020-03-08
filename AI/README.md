@@ -125,6 +125,19 @@ public ArrayList<Coordinate> indexOfPiece(char b);
 ```
 - Retorna um _ArrayList_ das coordenadas das peças passada no argumento.
 
+### GenericMove
+Possui métodos estáticos que implementam os algoritmos para a movimentação do bispo e da torre (e consequentemente da rainha), sendo usada na classe controller
+
+```java
+protected static ArrayList<Coordinate> rookGen (byte pos_i, byte pos_j, Board b);
+```
+- Implementa o algoritmo da Torre
+
+```java
+protected static ArrayList<Coordinate> bishopGen (byte pos_i, byte pos_j, Board b);
+```
+- Implementa o algoritmo do Bispo
+
 ### Controller
 
 Contêm métodos que retorna um _ArrayList_ de _Coordinate_ apresentando as possiveis posições finais que cada peça pode jogar. São exemplos dessa classe os métodos:
@@ -200,7 +213,6 @@ public void setMoviment(int xo, int yo, int xf, int yf);
 public void finalizeCommunication();
 ```
 - Finaliza a comunicação.
-
 
 ## Teste
 
