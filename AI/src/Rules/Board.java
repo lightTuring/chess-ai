@@ -53,6 +53,12 @@ public class Board {
 
             chessBoard[begin_x][begin_y] = b;
             chessBoard[final_x][final_y] = a;
+            if (a == 'k') {
+                setHasBlackKingMovedAsTrue();
+            }
+            else if (a == 'K') {
+                setHasWhiteKingMovedAsTrue();
+            }
         }
 
         // a verificação é com a peça final? está peça de comparação é o rei?
@@ -90,7 +96,7 @@ public class Board {
     public boolean getHasWhiteKingMoved(){
         return this.hasWhiteKingMoved;
     }
-    private void setHasKingWhiteMovedAsTrue(){
+    private void setHasWhiteKingMovedAsTrue(){
         this.hasWhiteKingMoved = true;
     }
     public boolean getHasWhiteTowerMoved(){
