@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Board {
 
     private char[][] chessBoard = new char[8][8];
-    private char[] posInitBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
-    private char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
+    private final char[] posInitBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
+    private final char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
 
     private boolean hasWhiteKingMoved = false;
     private boolean hasRightWhiteRookMoved = false;
