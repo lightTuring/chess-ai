@@ -1,4 +1,5 @@
 package Rules;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -6,7 +7,7 @@ public class Board {
     private char[][] chessBoard = new char[8][8];
     private char[] posInitBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
     private char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
-    
+
     private boolean hasWhiteKingMoved = false;
     private boolean hasWhiteRookMoved = false;
     private boolean hasBlackKingMoved = false;
@@ -35,7 +36,7 @@ public class Board {
     public boolean isBlack(int pos_i, int pos_j) throws BoardOutOfBoundsException {
     	return ((int)getPiece(pos_i, pos_j) > 97);
     }
-    public boolean ItsMyColor(int me_i, int me_j, int that_piece_i, int that_piece_j) throws BoardOutOfBoundsException {
+    public boolean hasSameColor(int me_i, int me_j, int that_piece_i, int that_piece_j) throws BoardOutOfBoundsException {
     	return ((isBlack(me_i, me_j) && isBlack(that_piece_i, that_piece_j))||(isWhite(me_i, me_j)&& isWhite(that_piece_i, that_piece_j)));
     }
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
@@ -52,6 +53,12 @@ public class Board {
 
             chessBoard[begin_x][begin_y] = b;
             chessBoard[final_x][final_y] = a;
+            if (a == 'k') {
+                setHasBlackKingMovedAsTrue();
+            }
+            else if (a == 'K') {
+                setHasWhiteKingMovedAsTrue();
+            }
         }
 
         // a verificação é com a peça final? está peça de comparação é o rei?
@@ -81,7 +88,7 @@ public class Board {
     public void printImage(){
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[i].length; j++) {
-                System.out.print(chessBoard[i][j]+' ');
+                System.out.print(chessBoard[i][j]);
             }
             System.out.println();
         }
@@ -89,7 +96,7 @@ public class Board {
     public boolean getHasWhiteKingMoved(){
         return this.hasWhiteKingMoved;
     }
-    public void setHasKingWhiteMovedAsTrue(){
+    private void setHasWhiteKingMovedAsTrue(){
         this.hasWhiteKingMoved = true;
     }
     public boolean getHasWhiteRookMoved(){
@@ -101,7 +108,7 @@ public class Board {
     public boolean getHasBlackKingMoved(){
         return this.hasBlackKingMoved;
     }
-    public void setHasBlackKingMovedAsTrue(){
+    private void setHasBlackKingMovedAsTrue(){
         this.hasBlackKingMoved = true;
     }
     public boolean getHasBlackRookMoved(){
@@ -110,9 +117,10 @@ public class Board {
     public void setHasBlackRookMovedAsTrue(){
         this.hasBlackRookMoved = true;
     }
+
     public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException, BoardOutOfBoundsException {
         char piece = getPiece(pos_i, pos_j);
-        if (piece != 'p' || piece != 'P') {
+        if (piece != 'p' && piece != 'P') {
             throw new UnexpectedPieceException("Board.hasPawnMoved foi chamado em uma casa que não contém um peão");
         }
         else if (piece == 'p' && pos_i == 1) {

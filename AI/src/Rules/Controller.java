@@ -357,32 +357,9 @@ public class Controller {
         break;
       }
     }
-
-    //Versão anterior
-    /*for (byte i = 0; i < 8; i++) {
-      if (i != pos_i) {
-        
-        if (b.getPiece(i, pos_j) != 'o' && i - pos_i < -1) {
-          int q = i;
-          while (q - pos_i < -1) {
-            x = new Coordinate(pos_i, pos_j, ++q, pos_j);
-            moves.add(x);
-          }
-        }
-        else if (b.getPiece(i, pos_j) != 'o' && (i - pos_i) > 1){
-          int w = i;
-          while ((w- pos_i) > 1) {
-            x = new Coordinate(pos_i, pos_j, --w, pos_j);
-            moves.add(x);
-          }
-          break;
-        }
-        else {
-
-        }
-      }
-    }
-*/
     return moves;
   }
+    
+    
+  
 }
