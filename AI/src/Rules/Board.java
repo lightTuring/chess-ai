@@ -145,4 +145,17 @@ public class Board {
         }
         return list;
     }
+    // checa se é válido realizar roque para as brancas:
+    public boolean isWhiteCastlingPossible() {
+        if (getHasWhiteKingMoved() || getHasWhiteRookMoved()) {
+            return false;
+        }
+        return true;
+    }
+    public boolean isBlackCastlingPossible() {
+        if (getHasBlackKingMoved() || getHasBlackRookMoved()) {
+            return false;
+        }
+        return true;
+    }
 }
