@@ -9,9 +9,11 @@ public class Board {
     private char[] posInitWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
 
     private boolean hasWhiteKingMoved = false;
-    private boolean hasWhiteRookMoved = false;
+    private boolean hasRightWhiteRookMoved = false;
+    private boolean hasLeftWhiteRookMoved = false;
     private boolean hasBlackKingMoved = false;
-    private boolean hasBlackRookMoved = false;
+    private boolean hasRightBlackRookMoved = false;
+    private boolean hasLeftBlackRookMoved = false;
 
     public Board() {
         for (int i = 0; i < chessBoard.length; i++) {
@@ -112,11 +114,17 @@ public class Board {
     private void setHasWhiteKingMovedAsTrue(){
         this.hasWhiteKingMoved = true;
     }
-    public boolean getHasWhiteRookMoved(){
-        return this.hasWhiteRookMoved;
+    public boolean getHasRightWhiteRookMoved(){
+        return this.hasRightWhiteRookMoved;
     }
-    public void setHasRookMovedAsTrue(){
-        this.hasWhiteRookMoved = true;
+    public boolean getHasLeftWhiteRookMoved(){
+        return this.hasLeftWhiteRookMoved;
+    }
+    public void setHasRightWhiteRookMovedAsTrue(){
+        this.hasRightWhiteRookMoved = true;
+    }
+    public void setHasLeftWhiteRookMovedAsTrue(){
+        this.hasLeftWhiteRookMoved = true;
     }
     public boolean getHasBlackKingMoved(){
         return this.hasBlackKingMoved;
@@ -124,11 +132,17 @@ public class Board {
     private void setHasBlackKingMovedAsTrue(){
         this.hasBlackKingMoved = true;
     }
-    public boolean getHasBlackRookMoved(){
-        return this.hasBlackRookMoved;
+    public boolean getHasRightBlackRookMoved(){
+        return this.hasRightBlackRookMoved;
     }
-    public void setHasBlackRookMovedAsTrue(){
-        this.hasBlackRookMoved = true;
+    public boolean getHasLeftBlackRookMoved(){
+        return this.hasLeftBlackRookMoved;
+    }
+    public void setHasRightBlackRookMovedAsTrue(){
+        this.hasRightBlackRookMoved = true;
+    }
+    public void setHasLeftBlackRookMovedAsTrue(){
+        this.hasLeftBlackRookMoved = true;
     }
 
     public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException, BoardOutOfBoundsException {
