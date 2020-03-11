@@ -15,7 +15,10 @@ public class Translator {
 		
 	}
 	public static String NotationComputerToChess(byte pos_i, byte pos_j) {
-		return null;
+		
+		String OrderedPair = letters[pos_i] + String.valueOf(numbers[pos_j]);
+		
+		return OrderedPair;
 		
 	}
 }
