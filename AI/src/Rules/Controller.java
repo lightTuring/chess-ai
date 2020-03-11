@@ -14,7 +14,7 @@ public class Controller {
   }
 */
 
-  public ArrayList<Coordinate> getPawnMoves(byte i, byte j) throws UnexpectedPieceException, BoardOutOfBoundsException {
+  public ArrayList<Coordinate> getPawnMoves(int i, int j) throws UnexpectedPieceException, BoardOutOfBoundsException {
     ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
     Coordinate x;
     // Se o peão for Branco:
@@ -67,12 +67,12 @@ public class Controller {
      return movesP;
     }
 
-    public ArrayList<Coordinate> getRookMoves(byte i, byte j) throws BoardOutOfBoundsException {
+    public ArrayList<Coordinate> getRookMoves(int i, int j) throws BoardOutOfBoundsException {
 	    ArrayList<Coordinate> movesP = GenericMove.rookGen(i, j, b);
 	    return movesP;
     }
 
-  public ArrayList<Coordinate> getKnightMoves(byte pos_i, byte pos_j) throws Exception{
+  public ArrayList<Coordinate> getKnightMoves(int pos_i, int pos_j) throws Exception{
 		ArrayList<Coordinate> movesK = new ArrayList<Coordinate>();
 	  Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
@@ -91,12 +91,12 @@ public class Controller {
 
 	}
 
-    public ArrayList <Coordinate> getBishopMoves(byte pos_i, byte pos_j) throws BoardOutOfBoundsException {
+    public ArrayList <Coordinate> getBishopMoves(int pos_i, int pos_j) throws BoardOutOfBoundsException {
       
       return GenericMove.bishopGen(pos_i, pos_j, b);
     }
 
-  public ArrayList<Coordinate> getKingMoves(byte i, byte j) {
+  public ArrayList<Coordinate> getKingMoves(int i, int j) {
 	ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
 	Coordinate c;
 	for (int x = -1; x<=1 && x>=-1; x++) {
@@ -111,7 +111,7 @@ public class Controller {
 	return moves;
   }
 
-  public ArrayList<Coordinate> getQueenMoves(byte pos_i, byte pos_j) throws BoardOutOfBoundsException {
+  public ArrayList<Coordinate> getQueenMoves(int pos_i, int pos_j) throws BoardOutOfBoundsException {
     ArrayList<Coordinate> moves = GenericMove.bishopGen(pos_i, pos_j, b);
     ArrayList<Coordinate> list = GenericMove.rookGen(pos_i, pos_j, b);
     Iterator<Coordinate> i = list.iterator();
