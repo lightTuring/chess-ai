@@ -218,6 +218,18 @@ public IllegalCastlingException(String message);
 ```
 - Construtor.
 
+## Algorithm
+Neste pacote está disposto a implementação de alguns algoritmos que ajudam na construção da I.A(Inteligência Artificial).
+
+### DFS
+
+Está classe está a implementação do [algoritmo de busca por profundidade](https://pt.wikipedia.org/wiki/Busca_em_profundidade)(DFS) e para a construção/manipulação do Grafo encontramos os seguintes métodos:
+
+```java
+public DFS(ArrayList<Integer>[] graph, int nodes, boolean[] visited);
+```
+- Método construtor. Recebe três argumentos; um array de ArrayList representando o Grafo, a primeira dimensão refere-se ao nó e a segunda à um elemento(outro nó) adjacente; a quantidade de nós totais; uma lista dos nós visitados.
+
 ## Server
 
 Neste pacote está contido o arquivo 'Server.java', que faz o Server da nossa comunicação Socket com a placa que faz a ponte com o hardware. Em Server.java está disposto os seguintes métodos:
