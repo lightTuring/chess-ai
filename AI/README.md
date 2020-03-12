@@ -228,7 +228,7 @@ Está classe está a implementação do [algoritmo de busca por profundidade](ht
 ```java
 public DFS(ArrayList<Integer>[] graph, int nodes, boolean[] visited);
 ```
-- Método construtor. Recebe três argumentos; um array de ArrayList representando o Grafo, a primeira dimensão refere-se ao nó e a segunda à um elemento(outro nó) adjacente; a quantidade de nós totais; uma lista dos nós visitados.
+- Método construtor. Recebe três argumentos; um array de _ArrayList_ representando o Grafo, a primeira dimensão refere-se ao nó e a segunda à um elemento(outro nó) adjacente; a quantidade de nós totais; uma lista dos nós visitados.
 
 ```java
 public void print();
@@ -238,14 +238,17 @@ public void print();
 ```java
 public Integer Search(int node, int elementForSearch);
 ```
-- Realiza a busca em profundidade. É passado como argumento o nó e o elemento de busca.
+- Realiza a busca em profundidade. É passado como argumento o nó e o elemento de busca e retornado o próprio nó de busca, entretando, sendo o elemento do _ArrayList_ bi-dimensional.
 
 ```java
 public Set<Integer> getPath();
 ```
-- Retorna uma lista do tipo Set representando o caminho liquido do início até o fim do nó de busca.
+- Retorna uma lista do tipo _Set_ representando o caminho liquido do início até o fim do nó de busca.
 
-
+```java
+public ArrayList<Integer> getPathProcess();
+```
+- Retorna uma lista do tipo _ArrayList_ representando o caminho bruto do início até o fim do nó de busca, ou seja, este método retorna com precisão por todos os nós que o algoritmo de busca passou e por quantas vezes.
 
 ## Server
 
