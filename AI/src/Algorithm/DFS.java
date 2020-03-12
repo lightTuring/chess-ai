@@ -6,14 +6,15 @@ public class DFS {
 
 	private int nodes;
 	
-	private ArrayList<Integer>[] graph = new ArrayList[nodes];
+	private ArrayList<Integer>[] graph = new ArrayList[nodes]; // -> [nó][conexões]
+	private boolean[] visited = new boolean[nodes];
+	private ArrayList<Integer> path = new ArrayList<Integer>();
 	
-	//private int[][] graph = new int[nodes][branches];
-	private int[] visited = new int[graph.length];
-	
-	public DFS(ArrayList<Integer>[] graph, int nodes) {
+	public DFS(ArrayList<Integer>[] graph, int nodes, boolean[] visited) {
 		this.nodes = nodes;
 		this.graph = graph;
+		this.visited = visited;
+		
 	}
 	
 	public void print() {
@@ -24,22 +25,50 @@ public class DFS {
 			System.out.println();
 		}
 	}
-	public static void main(String[] args) {
-		int nodes = 2;
-		ArrayList<Integer>[] graph = new ArrayList[nodes];
+	
+	public Integer Search(int node, int elementForSearch) {
+		visited[node] = true;
+		path.add(node);
 		
+		for (int i = 0; i < graph[node].size(); i++) {
+			if(graph[node].get(i) ==  elementForSearch) {
+				return graph[node].get(i);
+			}
+			else if(visited[graph[node].get(i)] == false) {
+				return Search(graph[node].get(i), elementForSearch);
+			}
+			else if(visited[graph[node].get(i)] == true && i == graph[node].size() - 1) {
+				path.remove(path.get(path.size() - 1));	
+				return Search(path.get(path.size() - 1), elementForSearch);
+			}
+			else {
+				continue;
+			}
+		}
+		return null;
+		
+	}
+	public ArrayList<Integer> getPath() {
+		return path;
+	}
+	
+	public static void main(String[] args) {
+		int nodes = 3;
+		ArrayList<Integer>[] graph = new ArrayList[nodes];
+		boolean[] v = {false,false,false};
 		for (int i = 0; i < graph.length; i++) {
 			graph[i] = new ArrayList<>();
 		}
-		
+		//graph = [[1, 2],[0],[0]] -> [nó][conexões]
 		graph[0].add(1);
-		graph[1].add(2);
-		graph[1].add(2);
+		graph[0].add(2);
+		graph[1].add(0);
+		graph[2].add(0);
 		
 		
-		DFS dfs = new DFS(graph, nodes);
-		
+		DFS dfs = new DFS(graph, nodes,v);
 		dfs.print();
+		System.out.println(dfs.Search(0, 2));
 	}
 	
 }
