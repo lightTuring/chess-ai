@@ -238,7 +238,12 @@ public void print();
 ```java
 public Integer Search(int node, int elementForSearch);
 ```
-- Realiza a busca em profundidade.
+- Realiza a busca em profundidade. É passado como argumento o nó e o elemento de busca.
+
+```java
+public Set<Integer> getPath();
+```
+- Retorna uma lista do tipo Set representando o caminho liquido do início até o fim do nó de busca.
 
 
 
