@@ -230,6 +230,18 @@ public DFS(ArrayList<Integer>[] graph, int nodes, boolean[] visited);
 ```
 - Método construtor. Recebe três argumentos; um array de ArrayList representando o Grafo, a primeira dimensão refere-se ao nó e a segunda à um elemento(outro nó) adjacente; a quantidade de nós totais; uma lista dos nós visitados.
 
+```java
+public void print();
+```
+- Imprime o Grafo no terminal.
+
+```java
+public Integer Search(int node, int elementForSearch);
+```
+- Realiza a busca em profundidade.
+
+
+
 ## Server
 
 Neste pacote está contido o arquivo 'Server.java', que faz o Server da nossa comunicação Socket com a placa que faz a ponte com o hardware. Em Server.java está disposto os seguintes métodos:
