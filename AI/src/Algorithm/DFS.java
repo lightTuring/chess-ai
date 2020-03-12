@@ -1,6 +1,6 @@
 package Algorithm;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class DFS {
 
@@ -32,6 +32,7 @@ public class DFS {
 		
 		for (int i = 0; i < graph[node].size(); i++) {
 			if(graph[node].get(i) ==  elementForSearch) {
+				path.add(graph[node].get(i));
 				return graph[node].get(i);
 			}
 			else if(visited[graph[node].get(i)] == false) {
@@ -48,7 +49,14 @@ public class DFS {
 		return null;
 		
 	}
-	public ArrayList<Integer> getPath() {
+	public Set<Integer> getPath(){
+		Set<Integer> set = new HashSet<Integer>();
+		for (int i = 0; i < graph.length; i++) 
+			set.add(path.get(i));
+		
+		return set;
+	}
+	public ArrayList<Integer> getPathProcess() {
 		return path;
 	}
 	
@@ -56,6 +64,7 @@ public class DFS {
 		int nodes = 3;
 		ArrayList<Integer>[] graph = new ArrayList[nodes];
 		boolean[] v = {false,false,false};
+		
 		for (int i = 0; i < graph.length; i++) {
 			graph[i] = new ArrayList<>();
 		}
@@ -69,6 +78,8 @@ public class DFS {
 		DFS dfs = new DFS(graph, nodes,v);
 		dfs.print();
 		System.out.println(dfs.Search(0, 2));
+		System.out.println(dfs.getPath());
+		System.out.println(dfs.getPathProcess());
 	}
 	
 }
