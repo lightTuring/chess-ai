@@ -238,7 +238,7 @@ public void print();
 ```java
 public Integer Search(int node, int elementForSearch);
 ```
-- Realiza a busca em profundidade. É passado como argumento o nó e o elemento de busca e retornado o próprio nó de busca, entretando, sendo o elemento do _ArrayList_ bi-dimensional.
+- Realiza a busca em profundidade. É passado como argumento o nó e o elemento de busca e retornado o próprio nó de busca, entretando, o retorno corresponde ao elemento do _ArrayList_ bi-dimensional.
 
 ```java
 public Set<Integer> getPath();
