@@ -1,7 +1,7 @@
 import Client as client
 import communication_serial as little_board
 
-#it's just an example. Change please the name
+#it's just an example. Change please the name mainly for job with SO Windown and Linux
 name_board = '/dev/ttyUSB0'
 value_of_baudRate= 9600
 
