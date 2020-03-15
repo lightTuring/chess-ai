@@ -11,8 +11,10 @@ def read_socket():
 
     s.close()
 
+'''
 return_socket = read_socket()
 
 print(return_socket)
 print(type(return_socket)) 
 
+'''
