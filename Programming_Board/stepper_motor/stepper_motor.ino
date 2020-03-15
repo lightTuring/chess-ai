@@ -19,4 +19,5 @@ void setup(){
 void loop(){
   void rotate(int motor, char sense);
   void axis_xy(int step_x, int step_y);
+  int metricToRotation(int distance_cm);
 }

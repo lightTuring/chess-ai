@@ -1,3 +1,5 @@
+#define CM 600
+
 //distância fixa.
 void rotate(int motor, char sense){
   //frente
@@ -14,4 +16,8 @@ void rotate(int motor, char sense){
 void axis_xy(int step_x, int step_y){
   motors[0].step(step_x);
   motors[1].step(step_y);
+}
+
+int metricToRotation(int distance_cm){
+  return distance_cm * CM;
 }
