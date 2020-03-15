@@ -182,7 +182,7 @@ public ArrayList<Coordinate> getQueenMoves(byte i, byte j);
 Objeto que apresenta a posição inicial e final de determinada peça. 
 
 ```java
-public Coordinate(int initial_i, int initial_j, int final_i, int final_j);
+public Coordinate(int final_i, int final_j);
 ```
 - Construtor.
 
