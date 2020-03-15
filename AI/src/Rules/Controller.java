@@ -21,21 +21,13 @@ public class Controller {
     if (b.getPiece(i, j) == 'P') {
 	// Se a casa na diagonal esquerda tiver alguma peça:
 	if (b.getPiece(i-1, j-1) != 'o') {
-<<<<<<< HEAD
-  	    x = new Coordinate(i, j, i-1, j-1);
-=======
-  	    x = new Coordinate(i+1, j-1);
->>>>>>> 659c2b440e9e1fd3b0bbf834e5f4f846038cac3b
-  	    movesP.add(x);
+		 x = new Coordinate(i-1, j-1);
+		movesP.add(x);
   	}
         // Se a casa na diagonal direita tiver alguma peça:
   	if (b.getPiece(i-1, j+1) != 'o') {
-<<<<<<< HEAD
- 	    x = new Coordinate(i, j, (i-1), (j+1));
-=======
- 	    x = new Coordinate((i+1), (j+1));
->>>>>>> 659c2b440e9e1fd3b0bbf834e5f4f846038cac3b
-  	    movesP.add(x);
+		x = new Coordinate((i-1), (j+1));
+		movesP.add(x);
  	}
 	// Se a casa a frente estiver vazia:
   	if (b.getPiece(i-1, j) == 'o') {
