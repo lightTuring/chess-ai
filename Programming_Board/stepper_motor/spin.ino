@@ -1,4 +1,4 @@
-void spinh(int motor, char sense){
+void rotate(int motor, char sense){
   //frente
   if(sense == 'F' || sense == 'f'){
     motores[motor].step(-600);
