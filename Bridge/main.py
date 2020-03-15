@@ -5,7 +5,7 @@ import communication_serial as little_board
 name_board = '/dev/ttyUSB0'
 value_of_baudRate= 9600
 
-b = Board(name_board, value_of_baudRate)
+b = little_board.Board(name_board, value_of_baudRate)
 
 b.begin()
 
