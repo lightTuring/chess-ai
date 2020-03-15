@@ -1,7 +1,7 @@
 import Client as client
 import communication_serial as little_board
 
-#it's just an example
+#it's just an example. Change please the name
 name_board = '/dev/ttyUSB0'
 value_of_baudRate= 9600
 
@@ -21,4 +21,6 @@ while True:
     #another kind of byte from send
     elif b.read() == b'\x01\r\n':
         break
+
+client.finalize()
 b.finalize()
