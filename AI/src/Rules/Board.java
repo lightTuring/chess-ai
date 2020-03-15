@@ -161,7 +161,7 @@ public class Board {
         for (int i = 0; i<8; i++) {
             for (int j = 0; j<8; j++) {
                 if (chessBoard[i][j] == b) {
-                    x = new Coordinate (-1,-1, i, j);
+                    x = new Coordinate (i, j);
                     list.add(x);
                 }
             }

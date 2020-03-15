@@ -21,43 +21,43 @@ public class Controller {
     if (b.getPiece(i, j) == 'P') {
 	// Se a casa na diagonal esquerda tiver alguma peça:
 	if (b.getPiece(i-1, j-1) != 'o') {
-  	    x = new Coordinate(i, j, i+1, j-1);
+  	    x = new Coordinate(i+1, j-1);
   	    movesP.add(x);
   	}
         // Se a casa na diagonal direita tiver alguma peça:
   	if (b.getPiece(i-1, j+1) != 'o') {
- 	    x = new Coordinate(i, j, (i+1), (j+1));
+ 	    x = new Coordinate((i+1), (j+1));
   	    movesP.add(x);
  	}
 	// Se a casa a frente estiver vazia:
   	if (b.getPiece(i-1, j) == 'o') {
-  	    x = new Coordinate(i, j, (i-1), (j));
+  	    x = new Coordinate((i-1), (j));
   	    movesP.add(x);
  	}
 	// Se no primeiro movimento do peão, a casa na frente da frente estiver vazia:
   	if (b.hasPawnMoved(i, j) == false && b.getPiece(i-2, j) == 'o') {
-  	    x = new Coordinate(i, j, (i-2), (j));
+  	    x = new Coordinate((i-2), (j));
   	    movesP.add(x);
   	}
      }
      if (b.getPiece(i, j) == 'p') {
 
 	if (b.getPiece(i+1, j+1) != 'o') {
-	    x = new Coordinate(i, j, (i+1), (j+1));
+	    x = new Coordinate((i+1), (j+1));
   	    movesP.add(x);
 	}
 
   	if (b.getPiece(i+1, j-1) != 'o' ) {
-  	    x = new Coordinate(i, j, (i+1), (j-1));
+  	    x = new Coordinate((i+1), (j-1));
   	    movesP.add(x);
   	}
 
 	if (b.getPiece(i+1, j) == 'o') {
-  	    x = new Coordinate(i, j, (i+1), (j));
+  	    x = new Coordinate((i+1), (j));
   	    movesP.add(x);
   	}
   	if (b.hasPawnMoved(i, j) == false && b.getPiece(i+2, j) == 'o') {
-  	    x = new Coordinate(i, j, (i+2), (j));
+  	    x = new Coordinate((i+2), (j));
   	    movesP.add(x);
         }
      }
@@ -79,7 +79,7 @@ public class Controller {
 	    if(b.getPiece(pos_i, pos_j) == 'C' || b.getPiece(pos_i, pos_j) == 'c') {//if serve como uma segurança de que a peça é um cavalo
 	    	for(byte i = 0; i < addingGeneralCoordinate.length; i+=2) {
     			if(((pos_i + addingGeneralCoordinate[i]) >= 0 && (pos_i + addingGeneralCoordinate[i]) <= 7) && ((pos_j + addingGeneralCoordinate[i+1]) >= 0 && (pos_j + addingGeneralCoordinate[i+1] <= 7))) {
-    				x = new Coordinate(pos_i, pos_j, (pos_i + addingGeneralCoordinate[i]), (pos_j + addingGeneralCoordinate[i+1]));
+    				x = new Coordinate((pos_i + addingGeneralCoordinate[i]), (pos_j + addingGeneralCoordinate[i+1]));
         			movesK.add(x);
     			}
     		}
@@ -102,7 +102,7 @@ public class Controller {
 	for (int x = -1; x<=1 && x>=-1; x++) {
 		for (int y = -1; y<=1 && y>=-1; y++) {
 			if (y != 0 || x!=0) {
-				c = new Coordinate(i, j, i + x, j+y);
+				c = new Coordinate(i + x, j+y);
 				moves.add(c);
 			}
 		}
