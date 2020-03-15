@@ -6,7 +6,7 @@ class Board:
         self.baud_rate = baud_rate
 
     def begin(self):
-        self.arduino = serial.Serial(port_arduino, baud_rate)
+        self.arduino = serial.Serial(self.port_arduino, self.baud_rate)
     def read(self):
         return self.arduino.readline()
     def send(self, command):
