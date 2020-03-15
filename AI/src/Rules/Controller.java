@@ -21,12 +21,12 @@ public class Controller {
     if (b.getPiece(i, j) == 'P') {
 	// Se a casa na diagonal esquerda tiver alguma peça:
 	if (b.getPiece(i-1, j-1) != 'o') {
-  	    x = new Coordinate(i, j, i+1, j-1);
+  	    x = new Coordinate(i, j, i-1, j-1);
   	    movesP.add(x);
   	}
         // Se a casa na diagonal direita tiver alguma peça:
   	if (b.getPiece(i-1, j+1) != 'o') {
- 	    x = new Coordinate(i, j, (i+1), (j+1));
+ 	    x = new Coordinate(i, j, (i-1), (j+1));
   	    movesP.add(x);
  	}
 	// Se a casa a frente estiver vazia:
@@ -61,9 +61,7 @@ public class Controller {
   	    movesP.add(x);
         }
      }
-     else {
-         throw new UnexpectedPieceException("Argumentos dados a Controller.getPawnMoves não correspondem a um Peão.");
-     }
+     
      return movesP;
     }
 
