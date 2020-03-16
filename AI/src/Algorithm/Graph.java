@@ -9,7 +9,7 @@ public class Graph {
 	
 	public Graph(int depth) {
 		this.depth = depth;
-		this.graph = new ArrayList[depth];
+		this.graph = new ArrayList[this.depth];
 		for (int i = 0; i < graph.length; i++) {
 			this.graph[i] = new ArrayList<Integer>();
 		}
