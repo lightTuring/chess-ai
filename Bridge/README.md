@@ -15,7 +15,21 @@ def finalize()
 ```
 - Finaliza a comunicação.
 
-
 ## communication_serial
+O arquivo remete a comunicação _Serial_ entre o Python e a microcontroladora. Aqui há uma classe chamada Board, apresentando métodos para a manipulação do objeto.
+
+```py
+class Board:
+    def __init__(self, port_arduino, baud_rate)
+```
+- Método construtor da classe. É passado como argumento o nome da porta e o _baud rate_ da comunicação _Serial_.
+
+```py
+def begin(self)
+```
+
+- Inicia a comunicação.
+
+
 
 ## main
