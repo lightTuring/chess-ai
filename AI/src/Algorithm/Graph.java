@@ -23,6 +23,19 @@ public class Graph {
 	
 	public ArrayList<Integer>[] graph(){
 		return this.graph;
-		
 	}
+	/*
+	public static void main(String[] args) {
+		Graph g = new Graph(2);
+		g.addElements(0, 1,2,2,3,4,5);
+		g.addElements(1, 2,3,4,5);
+		
+		ArrayList<Integer>[] graph = g.graph();
+		for (int i = 0; i < graph.length; i++) {
+			for (int j = 0; j < graph[i].size(); j++) {
+				System.out.print(graph[i].get(j));
+			}
+			System.out.println();
+		}
+	}*/
 }
