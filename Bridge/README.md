@@ -45,3 +45,4 @@ def finalize(self)
 - Finaliza a comunicação.
 
 ## main
+Realiza a comunicação entre o servidor _Socket_ e a _Serial_.
