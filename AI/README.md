@@ -174,7 +174,7 @@ private static ArrayList<Coordinate> bishopGen (byte pos_i, byte pos_j, Board b)
 ```
 - Implementa o algoritmo do Bispo.
 
-#### OBS.: Os dois últimos métodos são estáticos que implementam os algoritmos para a movimentação do bispo e da torre (e consequentemente da rainha)
+#### OBS.: Os dois últimos métodos são estáticos que implementam os algoritmos para a movimentação do bispo e da torre (e consequentemente da rainha).
 
 ### Coordinate
 
@@ -272,6 +272,19 @@ public void setMoviment(int xo, int yo, int xf, int yf);
 public void finalizeCommunication();
 ```
 - Finaliza a comunicação.
+
+## Notation
+Pacote de notações do Xadrez. Contém uma classe que realiza a tradução de notações.
+
+### Translator
+Realiza a tradução da notação do Xadrez para a do computador, e a recíproca é válida.
+
+```java
+public static int[] NotationChessToComputer(char pos_w, int pos_h)
+```
+- Realiza a tradução da notação do Xadrez para a do computador, passando dois argumentos e retorna um _array_ de _int_ com dois elementos correspondentes às dimensões dos elementos da matriz análoga ao tabuleiro.
+
+
 
 ## Teste
 
