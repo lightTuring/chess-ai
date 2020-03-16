@@ -208,7 +208,7 @@ public UnexpectedPieceException(String message);
 ```
 - Construtor.
 
-## IllegalCastlingException
+### IllegalCastlingException
 
 Exceção a ser lançada quando doWhitesCastling ou doBlacksCastling são chamadas mas as condições para o roque de uma dada cor não são atendidas.
 
