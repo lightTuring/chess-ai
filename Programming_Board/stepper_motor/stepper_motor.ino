@@ -20,4 +20,9 @@ void loop(){
   void rotate(int motor, char sense);
   void axis_xy(int step_x, int step_y);
   int metricToRotation(int distance_cm);
+
+  if(Serial.available() > 0){
+    String input_movement = Serial.readString();
+  }
+  Serial.write('0');//this value is like a finalize...
 }
