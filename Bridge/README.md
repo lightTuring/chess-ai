@@ -27,9 +27,21 @@ class Board:
 ```py
 def begin(self)
 ```
-
 - Inicia a comunicação.
 
+```py
+def read(self)
+```
+- Faz a leitura de um _byte_, enviado pela microcontroladora.
 
+```py
+def send(self, command)
+```
+- Envia um _byte_.
+
+```py
+def finalize(self)
+```
+- Finaliza a comunicação.
 
 ## main
