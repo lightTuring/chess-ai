@@ -37,7 +37,7 @@ def read(self)
 ```py
 def send(self, command)
 ```
-- Envia um _byte_.
+- Envia o _byte_ passado como argumento.
 
 ```py
 def finalize(self)
