@@ -21,4 +21,4 @@ void axis_xy(int step_x, int step_y);
 ```cpp
 int metricToRotation(int distance_cm);
 ```
-- Método que retorna um _int_ referente ao valor convertido de rotação para o sistema métrico.
+- Método que retorna um _int_ referente ao valor convertido do sistema métrico para o valor de rotações do motor.
