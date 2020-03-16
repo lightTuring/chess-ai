@@ -220,6 +220,24 @@ public IllegalCastlingException(String message);
 ## Algorithm
 Neste pacote está disposto a implementação de alguns algoritmos que ajudam na construção da I.A(Inteligência Artificial).
 
+### Graph
+Esta classe cria o grafo das implementações dos algoritmos.
+
+```java
+public Graph(int depth);
+```
+- Método construtor, é passado como argumento a profundidade do grafo.
+
+```java
+public void addElements(int node, int ... elements);
+```
+- Método de adição de elementos em determinado nó. O primeiro parâmetro é o nó a ser atribuido, o segundo é um _VarArgs_ que correspondem aos elementos que estão em conexão ao nó.
+
+```java
+public ArrayList<Integer>[] graph();
+```
+- Retorna o grafo.
+
 ### DFS
 
 Está classe está a implementação do [algoritmo de busca por profundidade](https://pt.wikipedia.org/wiki/Busca_em_profundidade)(DFS) e para a construção/manipulação do Grafo encontramos os seguintes métodos:
