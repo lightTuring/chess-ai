@@ -7,8 +7,6 @@ import java.net.Socket;
 
 public class Server {
     
-    //TALVEZ MUDAR O TIPO DO ENVIO(STRING -> BYTE(?))...
-
     ServerSocket server;
     private String moviment;
 
@@ -16,10 +14,10 @@ public class Server {
         server = new ServerSocket(channel);        
     }
 
-    public void sendMoviment() throws Exception{
+	public void sendMoviment() throws Exception{
         Socket socket = server.accept();
         try(PrintWriter w = new PrintWriter(socket.getOutputStream())){
-            w.println(this.moviment);
+            w.println(Byte.valueOf(this.moviment));
         }
     }
     public void setMoviment(int xo, int yo, int xf, int yf){
