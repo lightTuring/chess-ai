@@ -287,7 +287,7 @@ public static int[] NotationChessToComputer(char pos_w, int pos_h);
 ```java
 public static String NotationComputerToChess(int i, int j);
 ```
-- Realiza a tradução da notação do computador para a do Xadrez, passando dois _int_ referentes às dimensões da matriz e retorna uma _String_ análoga a casa do tabuleiro;
+- Realiza a tradução da notação do computador para a do Xadrez, passando dois _int_ referentes às dimensões da matriz e retorna uma _String_ análoga a casa do tabuleiro.
 
 ## Teste
 
