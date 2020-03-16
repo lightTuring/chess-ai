@@ -9,6 +9,9 @@ public class Translator {
 	
 	public static int[] NotationChessToComputer(char pos_w, int pos_h) {
 		
+		if((int)pos_w > 90)
+			pos_w = (char)((int)pos_w - ((int)'a' - (int)'A'));
+		
 		int[] OrderedPair = {Arrays.binarySearch(letters, pos_w), numbers.length + 1 + Arrays.binarySearch(numbers, pos_h)};
 				
 		return OrderedPair;
