@@ -280,11 +280,14 @@ Pacote de notações do Xadrez. Contém uma classe que realiza a tradução de n
 Realiza a tradução da notação do Xadrez para a do computador, e a recíproca é válida.
 
 ```java
-public static int[] NotationChessToComputer(char pos_w, int pos_h)
+public static int[] NotationChessToComputer(char pos_w, int pos_h);
 ```
-- Realiza a tradução da notação do Xadrez para a do computador, passando dois argumentos e retorna um _array_ de _int_ com dois elementos correspondentes às dimensões dos elementos da matriz análoga ao tabuleiro.
+- Realiza a tradução da notação do Xadrez para a do computador, passando dois argumentos referentes à casa e retorna um _array_ de _int_ com dois elementos correspondentes às dimensões dos elementos da matriz análoga ao tabuleiro.
 
-
+```java
+public static String NotationComputerToChess(int i, int j);
+```
+- Realiza a tradução da notação do computador para a do Xadrez, passando dois _int_ referentes às dimensões da matriz e retorna uma _String_ análoga a casa do tabuleiro;
 
 ## Teste
 
