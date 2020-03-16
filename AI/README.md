@@ -221,7 +221,7 @@ public IllegalCastlingException(String message);
 Neste pacote está disposto a implementação de alguns algoritmos que ajudam na construção da I.A(Inteligência Artificial).
 
 ### Graph
-Esta classe cria o grafo das implementações dos algoritmos.
+Esta classe cria o [Grafo](https://pt.wikipedia.org/wiki/Teoria_dos_grafos) das implementações dos algoritmos.
 
 ```java
 public Graph(int depth);
