@@ -5,8 +5,11 @@ import java.util.Iterator;
 
 public class Controller {
 
-  Board b = new Board();
+  Board b;
 
+  Controller (Board b) {
+	this.b = b;
+  }
 /*
   public ArrayList<Coordinate> getAllMoves(char[][] b) {
 	return null;
