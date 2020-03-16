@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 public class Graph {
 
-	private int depth;
 	private ArrayList<Integer>[] graph;
 	
 	public Graph(int depth) {
-		this.depth = depth;
-		this.graph = new ArrayList[this.depth];
+		this.graph = new ArrayList[depth];
 		for (int i = 0; i < graph.length; i++) {
 			this.graph[i] = new ArrayList<Integer>();
 		}
