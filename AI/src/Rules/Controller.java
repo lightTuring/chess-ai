@@ -7,7 +7,7 @@ public class Controller {
 
   Board b;
 
-  Controller (Board b) {
+  public Controller (Board b) {
 	this.b = b;
   }
 /*
