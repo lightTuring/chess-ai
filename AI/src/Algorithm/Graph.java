@@ -7,12 +7,18 @@ import Rules.Coordinate;
 public class Graph {
 
 	private ArrayList<Integer>[] graphConnections;
+	private ArrayList<Integer>[] graphWeights;
 	private ArrayList<Coordinate>[] graphAttributes;
+	
+	@SuppressWarnings("unchecked")
 	public Graph(int nodes) {
 		this.graphConnections = new ArrayList[nodes];
+		this.graphWeights = new ArrayList[nodes];
 		this.graphAttributes = new ArrayList[nodes];
+		
 		for (int i = 0; i < graphConnections.length; i++) {
 			this.graphConnections[i] = new ArrayList<Integer>();
+			this.graphWeights[i] = new ArrayList<Integer>();
 			this.graphAttributes[i] = new ArrayList<Coordinate>();
 		}
 	}
