@@ -51,6 +51,9 @@ public class Graph {
 		return this.graphAttributes[node];
 	}
 	
+	public long getDepth() {
+		return 0;
+	}
 	/*
 	public static void main(String[] args) {
 		Graph g = new Graph(2);
