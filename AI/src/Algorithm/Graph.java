@@ -51,7 +51,7 @@ public class Graph {
 		return this.graphAttributes[node];
 	}
 	
-	public int getDepth() {
+	public int getAllDepth() {
 		
 		boolean[] visited = new boolean[this.graphConnections.length];
 		
@@ -60,6 +60,18 @@ public class Graph {
 		
 		DFS dfs = new DFS(this.graphConnections, this.graphConnections.length, visited);
 		dfs.Search(0, this.graphConnections.length - 1);
+		
+		return dfs.getPath().size();
+	}
+	public int getDepth(int node) {
+		
+		boolean[] visited = new boolean[this.graphConnections.length];
+		
+		for (int i = 0; i < visited.length; i++) 
+			visited[i] = false;
+		
+		DFS dfs = new DFS(this.graphConnections, this.graphConnections.length, visited);
+		dfs.Search(0, node);
 		
 		return dfs.getPath().size();
 	}
