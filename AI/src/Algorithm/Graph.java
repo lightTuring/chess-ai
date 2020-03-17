@@ -6,8 +6,8 @@ public class Graph {
 
 	private ArrayList<Integer>[] graph;
 	
-	public Graph(int depth) {
-		this.graph = new ArrayList[depth];
+	public Graph(int nodes) {
+		this.graph = new ArrayList[nodes];
 		for (int i = 0; i < graph.length; i++) {
 			this.graph[i] = new ArrayList<Integer>();
 		}
