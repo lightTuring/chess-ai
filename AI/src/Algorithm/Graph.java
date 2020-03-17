@@ -4,23 +4,23 @@ import java.util.ArrayList;
 
 public class Graph {
 
-	private ArrayList<Integer>[] graph;
+	private ArrayList<Integer>[] graphConnections;
 	
 	public Graph(int nodes) {
-		this.graph = new ArrayList[nodes];
-		for (int i = 0; i < graph.length; i++) {
-			this.graph[i] = new ArrayList<Integer>();
+		this.graphConnections = new ArrayList[nodes];
+		for (int i = 0; i < graphConnections.length; i++) {
+			this.graphConnections[i] = new ArrayList<Integer>();
 		}
 	}
 	
 	public void addElements(int node, int ... elements) {
 		for (int i : elements) {
-			this.graph[node].add(i);
+			this.graphConnections[node].add(i);
 		}
 	}
 	
-	public ArrayList<Integer>[] graph(){
-		return this.graph;
+	public ArrayList<Integer>[] graphConnections(){
+		return this.graphConnections;
 	}
 	/*
 	public static void main(String[] args) {
