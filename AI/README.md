@@ -226,7 +226,7 @@ Esta classe cria o [Grafo](https://pt.wikipedia.org/wiki/Teoria_dos_grafos) das 
 ```java
 public Graph(int depth);
 ```
-- Método construtor, é passado como argumento a profundidade do grafo.
+- Método construtor, é passado como argumento a quantidade de nós presentes no grafo.
 
 ```java
 public void addElements(int node, int ... elements);
