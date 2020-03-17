@@ -224,7 +224,7 @@ Neste pacote está disposto a implementação de alguns algoritmos que ajudam na
 Esta classe cria o [Grafo](https://pt.wikipedia.org/wiki/Teoria_dos_grafos) das implementações dos algoritmos.
 
 ```java
-public Graph(int depth);
+public Graph(int nodes);
 ```
 - Método construtor, é passado como argumento a quantidade de nós presentes no grafo.
 
@@ -234,9 +234,15 @@ public void addElements(int node, int ... elements);
 - Método de adição de elementos em determinado nó. O primeiro parâmetro é o nó a ser atribuido, o segundo é um _VarArgs_ que correspondem aos elementos que estão em conexão ao nó.
 
 ```java
-public ArrayList<Integer>[] graph();
+public ArrayList<Integer>[] getGraphConnections();
 ```
 - Retorna o grafo.
+
+```java
+public void putWeight(int node, int weight);
+```
+- Coloca os pesos no Grafo. É passado como argumento o nó e os pesos.
+
 
 ### DFS
 

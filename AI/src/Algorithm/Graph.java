@@ -27,7 +27,7 @@ public class Graph {
 		}
 	}
 	
-	public ArrayList<Integer>[] graphConnections(){
+	public ArrayList<Integer>[] getGraphConnections(){
 		return this.graphConnections;
 	}
 	
