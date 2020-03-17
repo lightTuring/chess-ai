@@ -8,17 +8,16 @@ public class Graph {
 
 	private ArrayList<Integer>[] graphConnections;
 	private int[] graphWeights;
-	private ArrayList<Coordinate>[] graphAttributes;
+	private Coordinate[] graphAttributes;
 	
 	@SuppressWarnings("unchecked")
 	public Graph(int nodes) {
 		this.graphConnections = new ArrayList[nodes];
 		this.graphWeights = new int[nodes];
-		this.graphAttributes = new ArrayList[nodes];
+		this.graphAttributes = new Coordinate[nodes];
 		
 		for (int i = 0; i < graphConnections.length; i++) {
 			this.graphConnections[i] = new ArrayList<Integer>();
-			this.graphAttributes[i] = new ArrayList<Coordinate>();
 		}
 	}
 	
@@ -31,15 +30,27 @@ public class Graph {
 	public ArrayList<Integer>[] graphConnections(){
 		return this.graphConnections;
 	}
+	
 	public void putWeight(int node, int weight) {
 		this.graphWeights[node] = weight;
 	}
+	
 	public int getWeight(int node) {
 		return this.graphWeights[node];
 	}
+	
 	public int[] getAllWeights() {
 		return this.graphWeights;
 	}
+	
+	public void putMoviment(int node, Coordinate c) {
+		this.graphAttributes[node] = c;
+	}
+	
+	public Coordinate getMoviment(int node) {
+		return this.graphAttributes[node];
+	}
+	
 	/*
 	public static void main(String[] args) {
 		Graph g = new Graph(2);
