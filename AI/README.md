@@ -243,6 +243,16 @@ public void putWeight(int node, int weight);
 ```
 - Coloca os pesos no Grafo. É passado como argumento o nó e os pesos.
 
+```java
+public int getWeight(int node);
+```
+- Retorna o peso do nó passado pelo argumento.
+
+```java
+public int[] getAllWeights();
+```
+- Retorna todos os pesos apresentado em cada nó.
+
 
 ### DFS
 
