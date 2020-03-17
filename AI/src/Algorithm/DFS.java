@@ -59,7 +59,7 @@ public class DFS {
 	public ArrayList<Integer> getPathProcess() {
 		return path;
 	}
-	
+	/*
 	public static void main(String[] args) {
 		int nodes = 3;
 		ArrayList<Integer>[] graph = new ArrayList[nodes];
@@ -80,6 +80,6 @@ public class DFS {
 		System.out.println(dfs.Search(0, 2));
 		System.out.println(dfs.getPath());
 		System.out.println(dfs.getPathProcess());
-	}
+	}*/
 	
 }
