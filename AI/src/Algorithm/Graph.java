@@ -2,14 +2,18 @@ package Algorithm;
 
 import java.util.ArrayList;
 
+import Rules.Coordinate;
+
 public class Graph {
 
 	private ArrayList<Integer>[] graphConnections;
-	
+	private ArrayList<Coordinate>[] graphAttributes;
 	public Graph(int nodes) {
 		this.graphConnections = new ArrayList[nodes];
+		this.graphAttributes = new ArrayList[nodes];
 		for (int i = 0; i < graphConnections.length; i++) {
 			this.graphConnections[i] = new ArrayList<Integer>();
+			this.graphAttributes[i] = new ArrayList<Coordinate>();
 		}
 	}
 	
