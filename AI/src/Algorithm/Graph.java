@@ -37,6 +37,9 @@ public class Graph {
 	public int getWeight(int node) {
 		return this.graphWeights[node];
 	}
+	public int[] getAllWeights() {
+		return this.graphWeights;
+	}
 	/*
 	public static void main(String[] args) {
 		Graph g = new Graph(2);
