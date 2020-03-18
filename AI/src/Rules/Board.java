@@ -190,13 +190,23 @@ public class Board {
 		return attacks;
     	
     }
-    public boolean WillOccurAttacks(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
+    public boolean WillOccurCapture(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
     	int sum = 0;
     	for (byte element : HowManyKindOfAttacks(movements)) {
 			sum+=element;
 		}
     	
     	return (sum > 0);
+    }
+    public boolean WillOccurCheck(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
+    	boolean r = false;
+    	for (byte element : HowManyKindOfAttacks(movements)) {
+			if(element == 2)
+				r = true;
+				break;
+		}
+    	
+    	return r;
     }
     /*
     public boolean isCheckInKingBlack() {
