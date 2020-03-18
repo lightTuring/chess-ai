@@ -191,17 +191,19 @@ public class Board {
     	
     }
     public boolean WillOccurCapture(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
-    	int sum = 0;
+    	boolean r = false;
     	for (byte element : HowManyKindOfAttacks(movements)) {
-			sum+=element;
+			if(element == (byte)1)
+				r = true;
+				break;
 		}
     	
-    	return (sum > 0);
+    	return r;
     }
     public boolean WillOccurCheck(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
     	boolean r = false;
     	for (byte element : HowManyKindOfAttacks(movements)) {
-			if(element == 2)
+			if(element == (byte)2)
 				r = true;
 				break;
 		}
