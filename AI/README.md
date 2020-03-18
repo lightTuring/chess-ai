@@ -141,6 +141,18 @@ public boolean isAPiece(int pos_i, int  pos_j);
 - Retorna um _boolean_ informando se nas posições passadas no argumento, há ou não uma peça.
 
 ```java
+public byte[] HowManyKindOfAttacks(ArrayList<Coordinate> movements);
+```
+- Retorna um array de _byte_ informando em qual jogada pode ocorrer algum tipo de ataque. É passado como argumento um _ArrayList_ de _Coordinate_ dos possíveis movimentos que uma peça pode realizar. Cada elemento do array pode apresentar os seguintes valores:
+
+|Valor do Retorno|   Significado  | 
+|------|--------|
+|  0   |Movimentação normal, troca de casa|
+|  1   |Captura de uma peça|
+|  2   |Xeque|
+
+
+```java
 public boolean WillOccurCapture(ArrayList<Coordinate> movements);
 ```
 - Retorna um _boolean_ informando se pode ocorrer uma captura de peça ou não. É passado como argumento um _ArrayList_ de _Coordinate_ dos possíveis movimentos que uma peça pode realizar.
@@ -148,7 +160,7 @@ public boolean WillOccurCapture(ArrayList<Coordinate> movements);
 ```java
 public boolean WillOccurCheck(ArrayList<Coordinate> movements);
 ```
-- Retorna um _boolean_ informando se pode ocorrer uma captura de peça ou não. É passado como argumento um _ArrayList_ de _Coordinate_ dos possíveis movimentos que uma peça pode realizar.
+- Retorna um _boolean_ informando se pode ocorrer xeque ou não. É passado como argumento um _ArrayList_ de _Coordinate_ dos possíveis movimentos que uma peça pode realizar.
 
 ### Position
 
