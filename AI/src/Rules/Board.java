@@ -188,10 +188,17 @@ public class Board {
 		return isTrue;
     	
     }
-    public boolean isCheck() {
+    public boolean isCheckInKingBlack() {
+    	
     	return false;
     }
-    public boolean isCheckMate() {
+    public boolean isCheckMateInKingBlack() {
+    	return false;
+    }
+    public boolean isCheckInKingWhite() {
+    	return false;
+    }
+    public boolean isCheckMateInKingWhite() {
     	return false;
     }
 }
