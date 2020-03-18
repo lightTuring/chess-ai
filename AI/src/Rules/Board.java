@@ -188,4 +188,10 @@ public class Board {
 		return isTrue;
     	
     }
+    public boolean isCheck() {
+    	return false;
+    }
+    public boolean isCheckMate() {
+    	return false;
+    }
 }
