@@ -176,11 +176,11 @@ public class Board {
     public boolean isAPiece(int pos_i, int  pos_j) throws BoardOutOfBoundsException {
     	return (getPiece(pos_i, pos_j) != 'o');
     }
-    public byte[] WillOccurAttack(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {	
+    public byte[] HowManyKindOfAttacks(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {	
     	byte[] attacks = new byte[movements.size()/2];
     	for (int i = 0; i < movements.size(); i++) {
     		if(getPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == 'k' || getPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == 'K') {
-    			attacks[i] = -1;
+    			attacks[i] = 2;
     		}
     		else {
     			attacks[i] = isAPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) ? (byte)1 : (byte)0;
@@ -189,6 +189,14 @@ public class Board {
     	
 		return attacks;
     	
+    }
+    public boolean WillOccurAttacks(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
+    	int sum = 0;
+    	for (byte element : HowManyKindOfAttacks(movements)) {
+			sum+=element;
+		}
+    	
+    	return (sum > 0);
     }
     /*
     public boolean isCheckInKingBlack() {
