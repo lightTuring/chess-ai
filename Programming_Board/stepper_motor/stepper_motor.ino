@@ -7,7 +7,7 @@ int lengthOfHouse = 3;// valor em CM
 
 Stepper motors[2] = {
   Stepper(stepsPerRevolution, 4,6,5,7),
-  Stepper(stepsPerRevolution, 8,10,9,11),
+  Stepper(stepsPerRevolution, 8,10,9,11)
 };
 
 void setup(){
