@@ -135,6 +135,16 @@ public ArrayList<Coordinate> indexOfPiece(char b);
 ```
 - Retorna um _ArrayList_ das coordenadas das peças passada no argumento.
 
+```java
+public boolean isAPiece(int pos_i, int  pos_j);
+```
+- Retorna um _boolean_ informando se nas posições passadas no argumento, há ou não uma peça.
+
+```java
+public boolean WillOccurCapture(ArrayList<Coordinate> movements);
+```
+- Retorna um _boolean_ informando se pode ocorrer uma captura de peça ou não. É passado como argumento um _ArrayList_ de _Coordinate_ dos possíveis movimentos que uma peça pode realizar.
+
 ### Position
 
 - Por enquanto não faz nada de mais;
