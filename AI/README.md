@@ -304,7 +304,9 @@ public ArrayList<Integer> getPathProcess();
 
 ## Server
 
-Neste pacote está contido o arquivo 'Server.java', que faz o Server da nossa comunicação Socket com a placa que faz a ponte com o hardware. Em Server.java está disposto os seguintes métodos:
+Neste pacote está contido o arquivo _'Server.java'_, que faz o Server da nossa comunicação Socket com a placa que faz a ponte com o hardware. Em Server.java está disposto os seguintes métodos:
+
+### Server
 
 ```java
 public Server(int channel);
