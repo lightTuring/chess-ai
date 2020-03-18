@@ -135,42 +135,42 @@ public ArrayList<Coordinate> indexOfPiece(char b);
 Contêm métodos que retorna um _ArrayList_ de _Coordinate_ apresentando as possiveis posições finais que cada peça pode jogar. São exemplos dessa classe os métodos:
 
 ```java
-public ArrayList<Coordinate> getPawnMoves(byte i, byte j);
+public ArrayList<Coordinate> getPawnMoves(int i, int j);
 ```
 - Para a peça: Peão.
 
 ```java
-public ArrayList<Coordinate> getRookMoves(byte i, byte j);
+public ArrayList<Coordinate> getRookMoves(int i, int j);
 ```
 - Para a peça: Torre.
 
 ```java
-public ArrayList<Coordinate> getKnightMoves(byte i, byte j);
+public ArrayList<Coordinate> getKnightMoves(int i, int j);
 ```
 - Para a peça: Cavalo.
 
 ```java
-public ArrayList<Coordinate> getBishopMoves(byte i, byte j);
+public ArrayList<Coordinate> getBishopMoves(int i, int j);
 ```
 - Para a peça: Bispo.
 
 ```java
-public ArrayList<Coordinate> getKingMoves(byte i, byte j);
+public ArrayList<Coordinate> getKingMoves(int i, int j);
 ```
 - Para a peça: Rei.
 
 ```java
-public ArrayList<Coordinate> getQueenMoves(byte i, byte j);
+public ArrayList<Coordinate> getQueenMoves(int i, int j);
 ```
 - Para a peça: Rainha.
 
 ```java
-private static ArrayList<Coordinate> rookGen (byte pos_i, byte pos_j, Board b);
+private static ArrayList<Coordinate> rookGen (int pos_i, int pos_j, Board b);
 ```
 - Implementa o algoritmo da Torre.
 
 ```java
-private static ArrayList<Coordinate> bishopGen (byte pos_i, byte pos_j, Board b);
+private static ArrayList<Coordinate> bishopGen (int pos_i, int pos_j, Board b);
 ```
 - Implementa o algoritmo do Bispo.
 
