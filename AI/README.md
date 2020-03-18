@@ -263,7 +263,15 @@ public Coordinate getMoviment(int node);
 ```
 - Retorna um objeto _Coordinate_ presente no nó passado como argumento.
 
+```java
+public int getAllDepth();
+```
+- Retorna a profundidade máxima do Grafo.
 
+```java
+public int getDepth(int node);
+```
+- Retorna a profundidade do nó passado no argumento.
 
 ### DFS
 
