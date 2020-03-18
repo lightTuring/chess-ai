@@ -176,10 +176,13 @@ public class Board {
     public boolean isAPiece(int pos_i, int  pos_j) throws BoardOutOfBoundsException {
     	return (getPiece(pos_i, pos_j) == 'o');
     }
-    public boolean WillOccurCapture(ArrayList<Coordinate> movements) {	
+    public boolean WillOccurCapture(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {	
     	boolean isTrue = false;
     	for (int i = 0; i < movements.size(); i++) {
-    		
+    		if(isAPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == true) {
+    			isTrue = true;
+    			break;
+    		}
 		}
     	
 		return isTrue;
