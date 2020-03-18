@@ -173,4 +173,13 @@ public class Board {
         }
         return list;
     }
+    public boolean WillOccurCapture(ArrayList<Coordinate> movements) {	
+    	boolean isTrue = false;
+    	for (int i = 0; i < movements.size(); i++) {
+    		
+		}
+    	
+		return isTrue;
+    	
+    }
 }

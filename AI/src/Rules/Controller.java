@@ -10,12 +10,6 @@ public class Controller {
   public Controller (Board b) {
 	this.b = b;
   }
-/*
-  public ArrayList<Coordinate> getAllMoves(char[][] b) {
-	return null;
-
-  }
-*/
 
   public ArrayList<Coordinate> getPawnMoves(int i, int j) throws UnexpectedPieceException, BoardOutOfBoundsException {
     ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();

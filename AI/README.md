@@ -16,6 +16,11 @@ public Board();
 - Método construtor da classe.
 
 ```java
+public char[][] getBoard();
+```
+- Retorna o array char da posição atual
+
+```java
 public boolean isWhite(int pos_i, int pos_j);
 ```
 - Retorna um boolean dizendo se a peça na posição _pos_i_ e _pos_j_ é branca ou não.
@@ -129,6 +134,10 @@ public boolean hasPawnMoved(int pos_i, int pos_j);
 public ArrayList<Coordinate> indexOfPiece(char b);
 ```
 - Retorna um _ArrayList_ das coordenadas das peças passada no argumento.
+
+### Position
+
+- Por enquanto não faz nada de mais;
 
 ### Controller
 
