@@ -26,8 +26,7 @@ void loop(){
 
   if(Serial.available() > 0){
     String input_movement = Serial.readString();
-    ((int)input_movement[0] - (int)'0') - lastHouse_x;
-
+   
     axis_xy(metricToRotation(lengthOfHouse * (((int)input_movement[0] - (int)'0') - lastHouse_x)), metricToRotation(lengthOfHouse * (((int)input_movement[1] - (int)'0') - lastHouse_y)));
 
     lastHouse_x = ((int)input_movement[0] - (int)'0');
