@@ -2,8 +2,8 @@ package Rules;
 
 public class Coordinate {
 
-  protected int final_i;
-  protected int final_j;
+  private int final_i;
+  private int final_j;
 
   public Coordinate( int final_i, int final_j){
     this.final_i = final_i;
