@@ -155,6 +155,11 @@ public class Board {
             return true;
         }
     }
+
+    public char[][] getBoard() {
+        return chessBoard;
+    }
+
     public ArrayList<Coordinate> indexOfPiece(char b) {
         ArrayList<Coordinate> list = new ArrayList <Coordinate> ();
         Coordinate x;
