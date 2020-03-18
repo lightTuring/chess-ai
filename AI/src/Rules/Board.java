@@ -179,10 +179,10 @@ public class Board {
     public boolean WillOccurCapture(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {	
     	boolean isTrue = false;
     	for (int i = 0; i < movements.size(); i++) {
-    		if(isAPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == true) {
-    			isTrue = true;
-    			break;
-    		}
+			if(isAPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == true) {
+				isTrue = true;
+				break;
+			}
 		}
     	
 		return isTrue;
