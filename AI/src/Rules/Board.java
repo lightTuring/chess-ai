@@ -174,21 +174,27 @@ public class Board {
         return list;
     }
     public boolean isAPiece(int pos_i, int  pos_j) throws BoardOutOfBoundsException {
-    	return (getPiece(pos_i, pos_j) == 'o');
+    	return (getPiece(pos_i, pos_j) != 'o');
     }
-    public boolean WillOccurCapture(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {	
-    	boolean isTrue = false;
+    public byte[] WillOccurAttack(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {	
+    	byte[] attacks = new byte[movements.size()/2];
     	for (int i = 0; i < movements.size(); i++) {
-			if(isAPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == true) {
-				isTrue = true;
-				break;
-			}
+    		if(getPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == 'k' || getPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == 'K') {
+    			attacks[i] = -1;
+    		}
+    		else {
+    			attacks[i] = isAPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) ? (byte)1 : (byte)0;
+    		}
 		}
     	
-		return isTrue;
+		return attacks;
     	
     }
+    /*
     public boolean isCheckInKingBlack() {
+    	if(indexOfPiece('k').get(0).getPos_i() == 1) {
+    		
+    	}
     	
     	return false;
     }
@@ -200,5 +206,5 @@ public class Board {
     }
     public boolean isCheckMateInKingWhite() {
     	return false;
-    }
+    }*/
 }
