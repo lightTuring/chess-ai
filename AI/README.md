@@ -253,6 +253,17 @@ public int[] getAllWeights();
 ```
 - Retorna todos os pesos apresentado em cada nó.
 
+```java
+public void putMoviment(int node, Coordinate c);
+```
+- Atribui um objeto _Coordinate_ no nó passado como argumento.
+
+```java
+public Coordinate getMoviment(int node);
+```
+- Retorna um objeto _Coordinate_ presente no nó passado como argumento.
+
+
 
 ### DFS
 
