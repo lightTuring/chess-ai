@@ -165,7 +165,7 @@ public boolean WillOccurCheck(ArrayList<Coordinate> movements);
 ```java
 public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements);
 ```
-
+- Retorna um objeto _Coordinate_ da jogada do xeque.
 
 ### Position
 
