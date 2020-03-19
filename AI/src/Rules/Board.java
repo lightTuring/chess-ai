@@ -210,14 +210,14 @@ public class Board {
     	
     	return r;
     }
+    //obs.: só chamar quando tiver certeza que pode ocorrer um xeque.
     public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
-    	if(WillOccurCheck(movements)) {
-    		for (int i = 0; i < HowManyKindOfAttacks(movements).length; i++) {
-				if(HowManyKindOfAttacks(movements)[i] == 2) {
-					return movements.get(i);
-				}
+		for (int i = 0; i < HowManyKindOfAttacks(movements).length; i++) {
+			if(HowManyKindOfAttacks(movements)[i] == 2) {
+				return movements.get(i);
 			}
-    	}
+		}
+	
 		return null;
     	
     }
