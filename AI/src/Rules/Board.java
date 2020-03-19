@@ -210,6 +210,17 @@ public class Board {
     	
     	return r;
     }
+    public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
+    	if(WillOccurCheck(movements)) {
+    		for (int i = 0; i < HowManyKindOfAttacks(movements).length; i++) {
+				if(HowManyKindOfAttacks(movements)[i] == 2) {
+					return movements.get(i);
+				}
+			}
+    	}
+		return null;
+    	
+    }
     /*
     public boolean isCheckInKingBlack() {
     	if(indexOfPiece('k').get(0).getPos_i() == 1) {

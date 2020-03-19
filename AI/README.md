@@ -162,6 +162,11 @@ public boolean WillOccurCheck(ArrayList<Coordinate> movements);
 ```
 - Retorna um _boolean_ informando se pode ocorrer xeque ou não. É passado como argumento um _ArrayList_ de _Coordinate_ dos possíveis movimentos que uma peça pode realizar.
 
+```java
+public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements);
+```
+
+
 ### Position
 
 - Por enquanto não faz nada de mais;
