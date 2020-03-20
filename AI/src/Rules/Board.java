@@ -2,6 +2,8 @@ package Rules;
 
 import java.util.ArrayList;
 
+import Notation.Annotation;
+
 public class Board {
 
     private char[][] chessBoard = new char[8][8];
@@ -43,6 +45,7 @@ public class Board {
     }
     public void changePos(int begin_x, int begin_y, int final_x, int final_y){
         setChange(begin_x, begin_y, final_x, final_y);
+        Annotation.putMovement(final_x, final_y);
     }
 // Método de roque para as pretas. Pede um y para definir qual das duas possiblidades de roque vai ser feita.
     public void doBlacksCastling(int y) throws IllegalCastlingException, BoardOutOfBoundsException {
