@@ -97,12 +97,18 @@ public class Board {
         return chessBoard[pos_x][pos_y];
     }
     public void printImage(){
+    	char[] letters = {'A','B','C','D','E', 'F', 'G', 'H'};
+    	int[] numbers = {8,7,6,5,4,3,2,1}; 
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[i].length; j++) {
                 System.out.print(chessBoard[i][j]);
             }
-            System.out.println();
+            System.out.print(" ");
+            System.out.println(numbers[i]);
         }
+        System.out.println();
+        for (int i = 0; i < letters.length; i++)
+			System.out.print(letters[i]);
     }
     public boolean getHasWhiteKingMoved(){
         return this.hasWhiteKingMoved;
