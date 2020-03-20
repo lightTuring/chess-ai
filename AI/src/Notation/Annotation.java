@@ -11,6 +11,9 @@ public class Annotation {
 	
 	public static void putMovement(String movement) {
 		movementsChess.add(movement);
+		Coordinate c = new Coordinate(Translator.NotationChessToComputer(movement.charAt(0),Character.getNumericValue(movement.charAt(1)))[0], Translator.NotationChessToComputer(movement.charAt(0),Character.getNumericValue(movement.charAt(1)))[1]);
+		movementsComputer.add(c);
+	
 	}
 	public static void putMovement(int pos_i, int pos_j) {
 		
