@@ -16,7 +16,9 @@ public class Annotation {
 	
 	}
 	public static void putMovement(int pos_i, int pos_j) {
-		
+		Coordinate c = new Coordinate(pos_i, pos_j);
+		movementsComputer.add(c);
+		movementsChess.add(c.getPos_i() + "" + c.getPos_j());
 	}
 	public static ArrayList<String> getMovements(){
 		return movementsChess;
