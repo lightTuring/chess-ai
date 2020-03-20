@@ -6,9 +6,7 @@ public class Translator {
 	
 	private static char[] letters = {'A','B','C','D','E', 'F', 'G', 'H'};
 	private static int[] numbers = {8,7,6,5,4,3,2,1}; 
-	//private static char[] letters = {'H','G','F','E','D','C','B','A'};
-	//private static int[] numbers = {1,2,3,4,5,6,7,8}; 
-	
+		
 	public static int[] NotationChessToComputer(char pos_w, int pos_h) {
 		
 		if((int)pos_w > 90)
@@ -34,11 +32,12 @@ public class Translator {
 		}
 		return element;
 	}
+	/*
 	public static void main(String[] args) {
 		System.out.println(NotationComputerToChess(0, 0));
 		int[] retorno = NotationChessToComputer('H', 2);
 		System.out.println(retorno[0]+" "+retorno[1]);
 		System.out.println(retorno[1]);
-	}
+	}*/
 	
 }
