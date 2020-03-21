@@ -47,7 +47,7 @@ public class DFS {
 	}
 	public Set<Integer> getPath(){
 		Set<Integer> set = new HashSet<Integer>();
-		for (int i = 0; i < graph.length; i++) 
+		for (int i = 0; i < this.path.size(); i++) 
 			set.add(path.get(i));
 		
 		return set;
@@ -55,7 +55,7 @@ public class DFS {
 	public ArrayList<Integer> getPathProcess() {
 		return path;
 	}
-	/*
+	
 	public static void main(String[] args) {
 		int nodes = 3;
 		ArrayList<Integer>[] graph = new ArrayList[nodes];
@@ -76,6 +76,6 @@ public class DFS {
 		System.out.println(dfs.Search(0, 2));
 		System.out.println(dfs.getPath());
 		System.out.println(dfs.getPathProcess());
-	}*/
+	}
 	
 }
