@@ -29,21 +29,17 @@ public class DFS {
 	public Integer Search(int node, int elementForSearch) {
 		visited[node] = true;
 		path.add(node);
-		
-		for (int i = 0; i < graph[node].size(); i++) {
-			if(graph[node].get(i) ==  elementForSearch) {
-				path.add(graph[node].get(i));
-				return graph[node].get(i);
-			}
-			else if(visited[graph[node].get(i)] == false) {
-				return Search(graph[node].get(i), elementForSearch);
-			}
-			else if(visited[graph[node].get(i)] == true && i == graph[node].size() - 1) {
-				path.remove(path.get(path.size() - 1));	
-				return Search(path.get(path.size() - 1), elementForSearch);
-			}
-			else {
-				continue;
+		if(node == elementForSearch) {
+			return node;
+		}else {
+			for (int i = 0; i < graph[node].size(); i++) {
+				if(visited[graph[node].get(i)] == false) {
+					return Search(graph[node].get(i), elementForSearch);
+				}
+				else if(visited[graph[node].get(i)] == true && i == graph[node].size() - 1) {
+					path.remove(path.get(path.size() - 1));	
+					return Search(path.get(path.size() - 1), elementForSearch);
+				}
 			}
 		}
 		return null;
