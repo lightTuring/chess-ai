@@ -321,7 +321,7 @@ Está classe está a implementação do [algoritmo de busca por profundidade](ht
 ```java
 public DFS(ArrayList<Integer>[] graph, int nodes, boolean[] visited);
 ```
-- Método construtor. Recebe três argumentos; um array de _ArrayList_ representando o Grafo, a primeira dimensão refere-se ao nó e a segunda à um elemento(outro nó) adjacente; a quantidade de nós totais; uma lista dos nós visitados.
+- Método construtor. Recebe três argumentos; um array de _ArrayList_ representando o Grafo, a primeira dimensão refere-se ao nó e a segunda à um elemento adjacente(nó conectivo); a quantidade de nós totais; uma lista dos nós visitados.
 
 ```java
 public void print();
