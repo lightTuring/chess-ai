@@ -5,13 +5,7 @@ import java.util.Iterator;
 
 public class Controller {
 
-  Board b;
-
-  public Controller (Board b) {
-	this.b = b;
-  }
-
-  public ArrayList<Coordinate> getPawnMoves(int i, int j) throws UnexpectedPieceException, BoardOutOfBoundsException {
+  public static ArrayList<Coordinate> getPawnMoves(int i, int j, Board b) throws UnexpectedPieceException, BoardOutOfBoundsException {
     ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
     Coordinate x;
     // Se o peão for Branco:
@@ -62,12 +56,12 @@ public class Controller {
      return movesP;
     }
 
-    public ArrayList<Coordinate> getRookMoves(int i, int j) throws BoardOutOfBoundsException {
+    public static ArrayList<Coordinate> getRookMoves(int i, int j, Board b) throws BoardOutOfBoundsException {
 	    ArrayList<Coordinate> movesP = rookGen(i, j, b);
 	    return movesP;
     }
 
-  public ArrayList<Coordinate> getKnightMoves(int pos_i, int pos_j) throws Exception{
+  public ArrayList<Coordinate> getKnightMoves(int pos_i, int pos_j, Board b) throws Exception{
 		ArrayList<Coordinate> movesK = new ArrayList<Coordinate>();
 	  Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
@@ -86,12 +80,12 @@ public class Controller {
 
 	}
 
-    public ArrayList <Coordinate> getBishopMoves(int pos_i, int pos_j) throws BoardOutOfBoundsException {
+    public ArrayList <Coordinate> getBishopMoves(int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException {
       
       return bishopGen(pos_i, pos_j, b);
     }
 
-  public ArrayList<Coordinate> getKingMoves(int i, int j) {
+  public static ArrayList<Coordinate> getKingMoves(int i, int j, Board b) {
 	ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
 	Coordinate c;
 	for (int x = -1; x<=1 && x>=-1; x++) {
@@ -106,7 +100,7 @@ public class Controller {
 	return moves;
   }
 
-  public ArrayList<Coordinate> getQueenMoves(int pos_i, int pos_j) throws BoardOutOfBoundsException {
+  public static ArrayList<Coordinate> getQueenMoves(int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException {
     ArrayList<Coordinate> moves = bishopGen(pos_i, pos_j, b);
     ArrayList<Coordinate> list = rookGen(pos_i, pos_j, b);
     Iterator<Coordinate> i = list.iterator();
