@@ -10,46 +10,45 @@ public class Controller {
 		Coordinate x;
 		// Se o peão for Branco:
 		if (b.getPiece(i, j) == 'P') {
-		// Se a casa na diagonal esquerda tiver alguma peça:
-		if (b.getPiece(i-1, j-1) != 'o') {
-			x = new Coordinate(i-1, j-1);
-			movesP.add(x);
-		}
-			// Se a casa na diagonal direita tiver alguma peça:
-		if (b.getPiece(i-1, j+1) != 'o') {
-			x = new Coordinate((i-1), (j+1));
-			movesP.add(x);
-		}
-		// Se a casa a frente estiver vazia:
-		if (b.getPiece(i-1, j) == 'o') {
-			x = new Coordinate((i-1), (j));
-			movesP.add(x);
-		}
-		// Se no primeiro movimento do peão, a casa na frente da frente estiver vazia:
-		if (b.hasPawnMoved(i, j) == false && b.getPiece(i-2, j) == 'o') {
-			x = new Coordinate((i-2), (j));
-			movesP.add(x);
-		}
+			// Se a casa na diagonal esquerda tiver alguma peça:
+			if (b.getPiece(i-1, j-1) != 'o') {
+				x = new Coordinate(i-1, j-1);
+				movesP.add(x);
+			}
+				// Se a casa na diagonal direita tiver alguma peça:
+			if (b.getPiece(i-1, j+1) != 'o') {
+				x = new Coordinate((i-1), (j+1));
+				movesP.add(x);
+			}
+			// Se a casa a frente estiver vazia:
+			if (b.getPiece(i-1, j) == 'o') {
+				x = new Coordinate((i-1), (j));
+				movesP.add(x);
+			}
+			// Se no primeiro movimento do peão, a casa na frente da frente estiver vazia:
+			if (b.hasPawnMoved(i, j) == false && b.getPiece(i-2, j) == 'o') {
+				x = new Coordinate((i-2), (j));
+				movesP.add(x);
+			}
 		}
 		if (b.getPiece(i, j) == 'p') {
-
-		if (b.getPiece(i+1, j+1) != 'o') {
-			x = new Coordinate((i+1), (j+1));
-			movesP.add(x);
-		}
-
-		if (b.getPiece(i+1, j-1) != 'o' ) {
-			x = new Coordinate((i+1), (j-1));
-			movesP.add(x);
-		}
-
-		if (b.getPiece(i+1, j) == 'o') {
-			x = new Coordinate((i+1), (j));
-			movesP.add(x);
-		}
-		if (b.hasPawnMoved(i, j) == false && b.getPiece(i+2, j) == 'o') {
-			x = new Coordinate((i+2), (j));
-			movesP.add(x);
+			if (b.getPiece(i+1, j+1) != 'o') {
+				x = new Coordinate((i+1), (j+1));
+				movesP.add(x);
+			}
+	
+			if (b.getPiece(i+1, j-1) != 'o' ) {
+				x = new Coordinate((i+1), (j-1));
+				movesP.add(x);
+			}
+	
+			if (b.getPiece(i+1, j) == 'o') {
+				x = new Coordinate((i+1), (j));
+				movesP.add(x);
+			}
+			if (b.hasPawnMoved(i, j) == false && b.getPiece(i+2, j) == 'o') {
+				x = new Coordinate((i+2), (j));
+				movesP.add(x);
 			}
 		}
 		
@@ -163,8 +162,8 @@ public class Controller {
 			if(b.getPiece(pos_i, j) != 'o') {
 				pathBlocked = true;
 				t = j;
-				}
 			}
+		}
 		if (pathBlocked == true) {
 			if (!(b.hasSameColor(pos_i, pos_j, pos_i, t))) {
 				x = new Coordinate(pos_i, t);
@@ -179,8 +178,8 @@ public class Controller {
 			for (int j = 0; j < pos_j; j++) {
 				x = new Coordinate(pos_i, j);
 				moves.add(x);
-				}
 			}
+		}
 		
 		for (int j = (pos_j + 1); j < 8; j++) {
 			if (b.getPiece(pos_i, j) == 'o') {
@@ -202,7 +201,7 @@ public class Controller {
 				t = i;
 			}
 		}
-		if (pathBlocked2 == true) {
+		if(pathBlocked2 == true) {
 			if (!(b.hasSameColor(pos_i, pos_j, t, pos_j))) {
 				x = new Coordinate(t, pos_j);
 				moves.add(x);
@@ -218,7 +217,7 @@ public class Controller {
 				moves.add(x);
 			}
 		}
-		for (int i = (pos_i + 1); i<8; i++) {
+		for(int i = (pos_i + 1); i<8; i++) {
 			if (b.getPiece(i, pos_j) == 'o') {
 				x = new Coordinate(i, pos_j);
 				moves.add(x);
