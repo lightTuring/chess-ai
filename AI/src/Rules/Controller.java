@@ -61,9 +61,9 @@ public class Controller {
 	    return movesP;
     }
 
-  public ArrayList<Coordinate> getKnightMoves(int pos_i, int pos_j, Board b) throws Exception{
+  public static ArrayList<Coordinate> getKnightMoves(int pos_i, int pos_j, Board b) throws Exception{
 		ArrayList<Coordinate> movesK = new ArrayList<Coordinate>();
-	  Coordinate x;
+		Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
 	    if(b.getPiece(pos_i, pos_j) == 'C' || b.getPiece(pos_i, pos_j) == 'c') {//if serve como uma segurança de que a peça é um cavalo
 	    	for(byte i = 0; i < addingGeneralCoordinate.length; i+=2) {
@@ -80,7 +80,7 @@ public class Controller {
 
 	}
 
-    public ArrayList <Coordinate> getBishopMoves(int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException {
+    public static ArrayList<Coordinate> getBishopMoves(int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException {
       
       return bishopGen(pos_i, pos_j, b);
     }

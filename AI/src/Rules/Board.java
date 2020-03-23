@@ -168,34 +168,7 @@ public class Board {
     public char[][] getBoard() {
         return chessBoard;
     }
-    /*
-    public ArrayList<Coordinate> getAllMoves() throws Exception {
-        for (int i = 0; i<8; i++) {
-            for (int j = 0; j<8; j++) {
-                if (getPiece(i, j) == 'o') {
-
-                }
-            }
-        }
-        
-        return null;
-    }
-*/
-
-    public boolean isCheckInKingBlack(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
-        boolean b = false;
-        for (int i = 0; i < movements.size(); i++) {
-    		if(getPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == 'k') {
-                b = true;
-                break;
-    		}
-    		else {
-    			continue;
-    		}
-        }
-        return b;
-    }
-
+    
     public ArrayList<Coordinate> indexOfPiece(char b) {
         ArrayList<Coordinate> list = new ArrayList <Coordinate> ();
         Coordinate x;
@@ -257,6 +230,7 @@ public class Board {
 		return null;
     	
     }
+    
     /*
     public boolean isCheckMateInKingBlack() {
     	return false;
