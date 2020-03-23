@@ -61,7 +61,7 @@ public class Controller {
 	    return movesP;
     }
 
-  	public static ArrayList<Coordinate> getKnightMoves(int pos_i, int pos_j, Board b) throws Exception{
+  	public static ArrayList<Coordinate> getKnightMoves(Board b, int pos_i, int pos_j) throws Exception{
 		ArrayList<Coordinate> movesK = new ArrayList<Coordinate>();
 		Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
@@ -80,11 +80,11 @@ public class Controller {
 
 	}
 
-    public static ArrayList<Coordinate> getBishopMoves(int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException {
+    public static ArrayList<Coordinate> getBishopMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
     	return bishopGen(pos_i, pos_j, b);
     }
 
-    public static ArrayList<Coordinate> getKingMoves(int i, int j, Board b) {
+    public static ArrayList<Coordinate> getKingMoves(Board b, int i, int j) {
     	ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
     	Coordinate c;
 		for (int x = -1; x<=1 && x>=-1; x++) {
@@ -99,7 +99,7 @@ public class Controller {
 		return moves;
     }
 
-	public static ArrayList<Coordinate> getQueenMoves(int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException {
+	public static ArrayList<Coordinate> getQueenMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
 		ArrayList<Coordinate> moves = bishopGen(pos_i, pos_j, b);
 		ArrayList<Coordinate> list = rookGen(pos_i, pos_j, b);
 		Iterator<Coordinate> i = list.iterator();
@@ -110,7 +110,7 @@ public class Controller {
 		return moves;
 	}
 		
-	private static ArrayList<Coordinate> bishopGen (int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException{
+	private static ArrayList<Coordinate> bishopGen (Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException{
 		Coordinate x;
 		ArrayList<Coordinate> list = new ArrayList<Coordinate>();
 		for (int i = 1; (pos_i + i) < 8; i++) {
@@ -152,7 +152,7 @@ public class Controller {
 		return list;
 	}
 
-	private static ArrayList<Coordinate> rookGen (int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException{
+	private static ArrayList<Coordinate> rookGen (Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException{
 		ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
 		Coordinate x; 
 		boolean pathBlocked = false;
