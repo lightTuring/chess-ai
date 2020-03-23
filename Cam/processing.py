@@ -1,7 +1,7 @@
 import cv2
 import numpy as np 
 
-img = cv2.imread("tab.jpeg")
+img = cv2.imread("tab.png")
 
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -13,7 +13,7 @@ cv2.drawChessboardCorners(img, (7, 7), corners, ret)
 cv2.drawChessboardCorners(edges, (7, 7), corners_c, ret_c)
 
 print(ret)
-print(float(corners[0][0][0]))
+#print(float(corners[0][0][0]))
 
 cv2.imshow("Board", img)
 cv2.imshow("canny", edges)
