@@ -5,63 +5,63 @@ import java.util.Iterator;
 
 public class Controller {
 
-  public static ArrayList<Coordinate> getPawnMoves(int i, int j, Board b) throws UnexpectedPieceException, BoardOutOfBoundsException {
-    ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
-    Coordinate x;
-    // Se o peão for Branco:
-    if (b.getPiece(i, j) == 'P') {
-	// Se a casa na diagonal esquerda tiver alguma peça:
-	if (b.getPiece(i-1, j-1) != 'o') {
-		 x = new Coordinate(i-1, j-1);
-		movesP.add(x);
-  	}
-        // Se a casa na diagonal direita tiver alguma peça:
-  	if (b.getPiece(i-1, j+1) != 'o') {
-		x = new Coordinate((i-1), (j+1));
-		movesP.add(x);
- 	}
-	// Se a casa a frente estiver vazia:
-  	if (b.getPiece(i-1, j) == 'o') {
-  	    x = new Coordinate((i-1), (j));
-  	    movesP.add(x);
- 	}
-	// Se no primeiro movimento do peão, a casa na frente da frente estiver vazia:
-  	if (b.hasPawnMoved(i, j) == false && b.getPiece(i-2, j) == 'o') {
-  	    x = new Coordinate((i-2), (j));
-  	    movesP.add(x);
-  	}
-     }
-     if (b.getPiece(i, j) == 'p') {
+  	public static ArrayList<Coordinate> getPawnMoves(Board b, int i, int j) throws UnexpectedPieceException, BoardOutOfBoundsException {
+		ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
+		Coordinate x;
+		// Se o peão for Branco:
+		if (b.getPiece(i, j) == 'P') {
+		// Se a casa na diagonal esquerda tiver alguma peça:
+		if (b.getPiece(i-1, j-1) != 'o') {
+			x = new Coordinate(i-1, j-1);
+			movesP.add(x);
+		}
+			// Se a casa na diagonal direita tiver alguma peça:
+		if (b.getPiece(i-1, j+1) != 'o') {
+			x = new Coordinate((i-1), (j+1));
+			movesP.add(x);
+		}
+		// Se a casa a frente estiver vazia:
+		if (b.getPiece(i-1, j) == 'o') {
+			x = new Coordinate((i-1), (j));
+			movesP.add(x);
+		}
+		// Se no primeiro movimento do peão, a casa na frente da frente estiver vazia:
+		if (b.hasPawnMoved(i, j) == false && b.getPiece(i-2, j) == 'o') {
+			x = new Coordinate((i-2), (j));
+			movesP.add(x);
+		}
+		}
+		if (b.getPiece(i, j) == 'p') {
 
-	if (b.getPiece(i+1, j+1) != 'o') {
-	    x = new Coordinate((i+1), (j+1));
-  	    movesP.add(x);
-	}
+		if (b.getPiece(i+1, j+1) != 'o') {
+			x = new Coordinate((i+1), (j+1));
+			movesP.add(x);
+		}
 
-  	if (b.getPiece(i+1, j-1) != 'o' ) {
-  	    x = new Coordinate((i+1), (j-1));
-  	    movesP.add(x);
-  	}
+		if (b.getPiece(i+1, j-1) != 'o' ) {
+			x = new Coordinate((i+1), (j-1));
+			movesP.add(x);
+		}
 
-	if (b.getPiece(i+1, j) == 'o') {
-  	    x = new Coordinate((i+1), (j));
-  	    movesP.add(x);
-  	}
-  	if (b.hasPawnMoved(i, j) == false && b.getPiece(i+2, j) == 'o') {
-  	    x = new Coordinate((i+2), (j));
-  	    movesP.add(x);
-        }
-     }
-     
-     return movesP;
+		if (b.getPiece(i+1, j) == 'o') {
+			x = new Coordinate((i+1), (j));
+			movesP.add(x);
+		}
+		if (b.hasPawnMoved(i, j) == false && b.getPiece(i+2, j) == 'o') {
+			x = new Coordinate((i+2), (j));
+			movesP.add(x);
+			}
+		}
+		
+		return movesP;
     }
 
-    public static ArrayList<Coordinate> getRookMoves(int i, int j, Board b) throws BoardOutOfBoundsException {
+    public static ArrayList<Coordinate> getRookMoves(Board b, int i, int j) throws BoardOutOfBoundsException {
 	    ArrayList<Coordinate> movesP = rookGen(i, j, b);
 	    return movesP;
     }
 
-  public static ArrayList<Coordinate> getKnightMoves(int pos_i, int pos_j, Board b) throws Exception{
+  	public static ArrayList<Coordinate> getKnightMoves(int pos_i, int pos_j, Board b) throws Exception{
 		ArrayList<Coordinate> movesK = new ArrayList<Coordinate>();
 		Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
@@ -73,7 +73,7 @@ public class Controller {
     			}
     		}
 	    }else {
-	    	 throw new UnexpectedPieceException("Argumentos dados a Controller.getKnightMoves não correspondem a um Cavalo");
+	    	throw new UnexpectedPieceException("Argumentos dados a Controller.getKnightMoves não correspondem a um Cavalo");
 	    }
 
 		return movesK;
@@ -81,160 +81,157 @@ public class Controller {
 	}
 
     public static ArrayList<Coordinate> getBishopMoves(int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException {
-      
-      return bishopGen(pos_i, pos_j, b);
+    	return bishopGen(pos_i, pos_j, b);
     }
 
-  public static ArrayList<Coordinate> getKingMoves(int i, int j, Board b) {
-	ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
-	Coordinate c;
-	for (int x = -1; x<=1 && x>=-1; x++) {
-		for (int y = -1; y<=1 && y>=-1; y++) {
-			if (y != 0 || x!=0) {
-				c = new Coordinate(i + x, j+y);
-				moves.add(c);
+    public static ArrayList<Coordinate> getKingMoves(int i, int j, Board b) {
+    	ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
+    	Coordinate c;
+		for (int x = -1; x<=1 && x>=-1; x++) {
+			for (int y = -1; y<=1 && y>=-1; y++) {
+				if (y != 0 || x!=0) {
+					c = new Coordinate(i + x, j+y);
+					moves.add(c);
+				}
 			}
 		}
-	}
 	
-	return moves;
-  }
-
-  public static ArrayList<Coordinate> getQueenMoves(int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException {
-    ArrayList<Coordinate> moves = bishopGen(pos_i, pos_j, b);
-    ArrayList<Coordinate> list = rookGen(pos_i, pos_j, b);
-    Iterator<Coordinate> i = list.iterator();
-
-    while (i.hasNext()){
-      moves.add(i.next());
+		return moves;
     }
-    return moves;
-  }
-    
-  private static ArrayList<Coordinate> bishopGen (int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException{
-	Coordinate x;
-	ArrayList<Coordinate> list = new ArrayList<Coordinate>();
-	for (int i = 1; (pos_i + i) < 8; i++) {
-		if (pos_j + i < 8 && b.getPiece(pos_i + i, pos_j + i) == 'o') {
-		  x = new Coordinate(pos_i + i, pos_j + i);
-		  list.add(x);
-		}
-		else {
-		  break;
-		}
-	  }
-	for (int i = 1; (pos_i + i) < 8; i++) {
-		if (pos_j - i >= 0 && b.getPiece(pos_i + i, pos_j - i) == 'o') {
-		  x = new Coordinate(pos_i + i, pos_j - i);
-		  list.add(x);
-		  }
-		else {
-		  break;
-		  }
-	  }
-	for (int i = 1; (pos_i - i) >= 0; i++) {
-		if (pos_j + i < 8 && b.getPiece(pos_i - i, pos_j + i) == 'o') {
-		  x = new Coordinate(pos_i - i, pos_j + i);
-		  list.add(x);
-		}
-		else {
-		  break;
-		}
-	  }
-	for (int i = 1; (pos_i - i) >= 0; i++) {
-		if ((pos_j - i) >= 0 && b.getPiece(pos_i - i, pos_j - i) == 'o') {
-		  x = new Coordinate(pos_i - i, pos_j - i);
-		  list.add(x);
-		}
-		else {
-		  break;
-		}
-	  }
-	return list;
-}
 
-private static ArrayList<Coordinate> rookGen (int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException{
-	ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
-	Coordinate x; 
-	boolean pathBlocked = false;
-	boolean pathBlocked2 = false;
-	int t = 0;
+	public static ArrayList<Coordinate> getQueenMoves(int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException {
+		ArrayList<Coordinate> moves = bishopGen(pos_i, pos_j, b);
+		ArrayList<Coordinate> list = rookGen(pos_i, pos_j, b);
+		Iterator<Coordinate> i = list.iterator();
 
-
-	//Para uma fileira
-	for (int j = 0; j < pos_j; j++) {
-	  if(b.getPiece(pos_i, j) != 'o') {
-		  pathBlocked = true;
-		  t = j;
-		  }
-	  }
-	if (pathBlocked == true) {
-	  if (!(b.hasSameColor(pos_i, pos_j, pos_i, t))) {
-		x = new Coordinate(pos_i, t);
-		moves.add(x);
-	  }
-	  for (int j = (t+1); j < pos_j; j++) {
-		x = new Coordinate(pos_i, j);
-		moves.add(x);
-	   }
-	  }
-	else {
-	  for (int j = 0; j < pos_j; j++) {
-		x = new Coordinate(pos_i, j);
-		moves.add(x);
+		while (i.hasNext()){
+			moves.add(i.next());
 		}
-	  }
-	
-	for (int j = (pos_j + 1); j < 8; j++) {
-		if (b.getPiece(pos_i, j) == 'o') {
-		  x = new Coordinate(pos_i, j);
-		  moves.add(x);
+		return moves;
+	}
+		
+	private static ArrayList<Coordinate> bishopGen (int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException{
+		Coordinate x;
+		ArrayList<Coordinate> list = new ArrayList<Coordinate>();
+		for (int i = 1; (pos_i + i) < 8; i++) {
+			if (pos_j + i < 8 && b.getPiece(pos_i + i, pos_j + i) == 'o') {
+				x = new Coordinate(pos_i + i, pos_j + i);
+				list.add(x);
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 1; (pos_i + i) < 8; i++) {
+			if (pos_j - i >= 0 && b.getPiece(pos_i + i, pos_j - i) == 'o') {
+				x = new Coordinate(pos_i + i, pos_j - i);
+				list.add(x);
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 1; (pos_i - i) >= 0; i++) {
+			if (pos_j + i < 8 && b.getPiece(pos_i - i, pos_j + i) == 'o') {
+				x = new Coordinate(pos_i - i, pos_j + i);
+				list.add(x);
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = 1; (pos_i - i) >= 0; i++) {
+			if ((pos_j - i) >= 0 && b.getPiece(pos_i - i, pos_j - i) == 'o') {
+				x = new Coordinate(pos_i - i, pos_j - i);
+				list.add(x);
+			}
+			else {
+				break;
+			}
+		}
+		return list;
+	}
+
+	private static ArrayList<Coordinate> rookGen (int pos_i, int pos_j, Board b) throws BoardOutOfBoundsException{
+		ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
+		Coordinate x; 
+		boolean pathBlocked = false;
+		boolean pathBlocked2 = false;
+		int t = 0;
+		//Para uma fileira
+		for (int j = 0; j < pos_j; j++) {
+			if(b.getPiece(pos_i, j) != 'o') {
+				pathBlocked = true;
+				t = j;
+				}
+			}
+		if (pathBlocked == true) {
+			if (!(b.hasSameColor(pos_i, pos_j, pos_i, t))) {
+				x = new Coordinate(pos_i, t);
+				moves.add(x);
+			}
+			for (int j = (t+1); j < pos_j; j++) {
+				x = new Coordinate(pos_i, j);
+				moves.add(x);
+			}
 		}
 		else {
-		  if (b.hasSameColor(pos_i, pos_j, pos_i, j) == false) {
-			x = new Coordinate(pos_i, j);
-			moves.add(x);
-		  }
-		  break;
+			for (int j = 0; j < pos_j; j++) {
+				x = new Coordinate(pos_i, j);
+				moves.add(x);
+				}
+			}
+		
+		for (int j = (pos_j + 1); j < 8; j++) {
+			if (b.getPiece(pos_i, j) == 'o') {
+				x = new Coordinate(pos_i, j);
+				moves.add(x);
+			}
+			else {
+				if (b.hasSameColor(pos_i, pos_j, pos_i, j) == false) {
+					x = new Coordinate(pos_i, j);
+					moves.add(x);
+				}
+				break;
+			}
 		}
-	  }
-	  //Para uma coluna 
-	  for (int i = 0; i<pos_i; i++) {
-		if(b.getPiece(i, pos_j) != 'o') {
-		  pathBlocked2 = true;
-		  t = i;
-		  }
-	  }
-	  if (pathBlocked2 == true) {
-		if (!(b.hasSameColor(pos_i, pos_j, t, pos_j))) {
-		  x = new Coordinate(t, pos_j);
-		  moves.add(x);
+		//Para uma coluna 
+		for (int i = 0; i<pos_i; i++) {
+			if(b.getPiece(i, pos_j) != 'o') {
+				pathBlocked2 = true;
+				t = i;
+			}
 		}
-		for (int i = (t+1); i < pos_i; i++) {
-		  x = new Coordinate(i, pos_j);
-		  moves.add(x);
-		}
-	  }
-	  else {
-		for (int i = 0; i < pos_i; i++) {
-		  x = new Coordinate(i, pos_j);
-		  moves.add(x);
-		  }
-		}
-	  for (int i = (pos_i + 1); i<8; i++) {
-		if (b.getPiece(i, pos_j) == 'o') {
-		  x = new Coordinate(i, pos_j);
-		  moves.add(x);
+		if (pathBlocked2 == true) {
+			if (!(b.hasSameColor(pos_i, pos_j, t, pos_j))) {
+				x = new Coordinate(t, pos_j);
+				moves.add(x);
+			}
+			for (int i = (t+1); i < pos_i; i++) {
+				x = new Coordinate(i, pos_j);
+				moves.add(x);
+			}
 		}
 		else {
-		  if(!(b.hasSameColor(pos_i, pos_j, i, pos_j))) {
-			x = new Coordinate(i, pos_j);
-			moves.add(x);
-		  }
-		  break;
+			for (int i = 0; i < pos_i; i++) {
+				x = new Coordinate(i, pos_j);
+				moves.add(x);
+			}
 		}
-	  }
-	  return moves;
-}  
+		for (int i = (pos_i + 1); i<8; i++) {
+			if (b.getPiece(i, pos_j) == 'o') {
+				x = new Coordinate(i, pos_j);
+				moves.add(x);
+			}
+			else {
+				if(!(b.hasSameColor(pos_i, pos_j, i, pos_j))) {
+					x = new Coordinate(i, pos_j);
+					moves.add(x);
+				}
+				break;
+			}
+		}
+		return moves;
+	}  
   
 }
