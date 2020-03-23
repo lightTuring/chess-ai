@@ -1,6 +1,7 @@
 package Rules;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Notation.Annotation;
 
@@ -169,18 +170,20 @@ public class Board {
         return chessBoard;
     }
     
-    public ArrayList<Coordinate> indexOfPiece(char b) {
-        ArrayList<Coordinate> list = new ArrayList <Coordinate> ();
-        Coordinate x;
+
+    public Coordinate[] indexOfPiece(char b) {
+        Coordinate[] positions = new Coordinate[10];
+        int p = 0;
+
         for (int i = 0; i<8; i++) {
             for (int j = 0; j<8; j++) {
                 if (chessBoard[i][j] == b) {
-                    x = new Coordinate (i, j);
-                    list.add(x);
+                    positions[p] = new Coordinate (i, j);
+                    p++;
                 }
             }
         }
-        return list;
+        return positions;
     }
     public boolean isAPiece(int pos_i, int  pos_j) throws BoardOutOfBoundsException {
     	return (getPiece(pos_i, pos_j) != 'o');
@@ -230,15 +233,6 @@ public class Board {
 		return null;
     	
     }
+
     
-    /*
-    public boolean isCheckMateInKingBlack() {
-    	return false;
-    }
-    public boolean isCheckInKingWhite() {
-    	return false;
-    }
-    public boolean isCheckMateInKingWhite() {
-    	return false;
-    }*/
 }
