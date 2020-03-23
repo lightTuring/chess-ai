@@ -57,7 +57,7 @@ public class Controller {
     }
 
     public static ArrayList<Coordinate> getRookMoves(Board b, int i, int j) throws BoardOutOfBoundsException {
-	    ArrayList<Coordinate> movesP = rookGen(i, j, b);
+	    ArrayList<Coordinate> movesP = rookGen(b, i, j);
 	    return movesP;
     }
 
@@ -81,7 +81,7 @@ public class Controller {
 	}
 
     public static ArrayList<Coordinate> getBishopMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
-    	return bishopGen(pos_i, pos_j, b);
+    	return bishopGen(b, pos_i, pos_j);
     }
 
     public static ArrayList<Coordinate> getKingMoves(Board b, int i, int j) {
@@ -100,8 +100,8 @@ public class Controller {
     }
 
 	public static ArrayList<Coordinate> getQueenMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
-		ArrayList<Coordinate> moves = bishopGen(pos_i, pos_j, b);
-		ArrayList<Coordinate> list = rookGen(pos_i, pos_j, b);
+		ArrayList<Coordinate> moves = bishopGen(b, pos_i, pos_j);
+		ArrayList<Coordinate> list = rookGen(b, pos_i, pos_j);
 		Iterator<Coordinate> i = list.iterator();
 
 		while (i.hasNext()){
