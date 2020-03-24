@@ -8,11 +8,6 @@ def ThereIsAnObject(img):
             sum+=img[i][j]
     return (sum != 0)
 
-def salveSubImg(x, y, xw, yh, image):
-    return image[y:yh, x:xw]
-
-
-
 img = cv2.imread("board.png")
 
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -31,7 +26,7 @@ print(ret)
 print(corners)
 print(int(corners[8][0][0]))
 #print(ThereIsAnObject(salveSubImg(edges, int(corners[0][0][0]), int(corners[0][0][1]), int(corners[8][0][0]), int(corners[8][0][1]))))
-house = edges[int(corners[0][0][0]):int(corners[8][0][0])-1, int(corners[0][0][1])+3:int(corners[8][0][1])]
+house = edges[int(corners[0][0][0])+3:int(corners[8][0][0])-3, int(corners[0][0][1])+3:int(corners[8][0][1])-3]
 print(ThereIsAnObject(house))
 
 cv2.imshow("House", house)
