@@ -25,7 +25,6 @@ print(ret)
 #print(r)
 print(corners)
 print(int(corners[8][0][0]))
-#print(ThereIsAnObject(salveSubImg(edges, int(corners[0][0][0]), int(corners[0][0][1]), int(corners[8][0][0]), int(corners[8][0][1]))))
 house = edges[int(corners[0][0][0])+3:int(corners[8][0][0])-3, int(corners[0][0][1])+3:int(corners[8][0][1])-3]
 print(ThereIsAnObject(house))
 
