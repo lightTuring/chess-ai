@@ -160,7 +160,12 @@ public boolean WillOccurCapture(ArrayList<Coordinate> movements);
 ```java
 public boolean WillOccurCheck(ArrayList<Coordinate> movements);
 ```
-- Retorna um _boolean_ informando se pode ocorrer xeque ou não. É passado como argumento um _ArrayList_ de _Coordinate_ dos possíveis movimentos que uma peça pode realizar.
+- Retorna um _boolean_ informando se pode ocorrer xeque ou não. É passado como argumento um _ArrayList_ de _Coordinate_ dos possíveis movimentos que uma peça atacante pode realizar.
+
+```java
+public boolean WillOccurCheckMate(ArrayList<Coordinate> ... movements);
+```
+- Retorna um _boolean_ informando se pode ocorrer um xeque mate ou não. É passado como argumento um _var args_ de _ArrayList_ de _Coordinate_ dos possíveis movimentos que um conjunto de peças atacantes podem realizar.
 
 ```java
 public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements);
