@@ -222,6 +222,31 @@ public class Board {
     	
     	return r;
     }
+ 
+	public boolean WillOccurCheckMate(ArrayList<Coordinate> ... movements) throws BoardOutOfBoundsException {
+    	boolean[] answers = new boolean[movements.length + 1];//todas as peças do cenário mais o rei.
+    	for (int i = 0; i < movements.length; i++) {
+    		for (byte element : HowManyKindOfAttacks(movements[i])) {
+    			if(element == (byte)2)
+    				answers[i] = true;
+    				break;
+    		}
+    		if(answers[i] != true)
+    			return false;
+		}
+    	char b;
+    	//se a jogada forem das pretas... senão...
+    	if(isBlack(movements[0].get(0).getPos_i(), movements[0].get(0).getPos_j())) 
+    		b = 'K';
+    	else
+    		b = 'k';
+    	
+    	answers[answers.length - 1] = (Controller.getKingMoves(this, indexOfPiece(b)[0].getPos_i(), indexOfPiece(b)[0].getPos_j()) == null);
+    	
+		return answers[answers.length - 1];
+    	
+    	
+    }
     //obs.: só chamar quando tiver certeza que pode ocorrer um xeque.
     public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
 		for (int i = 0; i < HowManyKindOfAttacks(movements).length; i++) {
