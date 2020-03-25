@@ -309,5 +309,20 @@ public class Board {
     	
     	return 0;
     }
-    
+    private byte pathRightKing(char b) throws BoardOutOfBoundsException {
+    	
+    	Coordinate coordinate = indexOfPiece(b)[0];
+    	
+    	for (int j = 0; j < coordinate.getPos_j() ; j++) {
+			if(getPiece(coordinate.getPos_i(), j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
+					(getPiece(coordinate.getPos_i(), j) == 'T'||getPiece(coordinate.getPos_i(), j) == 't'
+					||getPiece(coordinate.getPos_i(), j) == 'q'||getPiece(coordinate.getPos_i(), j) == 'Q')) {
+				return 2;
+			}else if(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
+				return 1;
+			}
+		}
+    	
+    	return 0;
+    }
 }
