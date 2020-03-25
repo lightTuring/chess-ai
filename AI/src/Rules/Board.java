@@ -259,10 +259,10 @@ public class Board {
     	
     }
     
-    public boolean IsCheckMateInBlackKing() {
+    public boolean IsCheckMateInBlackKing() throws BoardOutOfBoundsException {
     	return IsCheckMate('k');
     }
-    public boolean IsCheckMateInWhiteKing() {
+    public boolean IsCheckMateInWhiteKing() throws BoardOutOfBoundsException {
     	return IsCheckMate('K');
     }
     
