@@ -293,11 +293,27 @@ public class Board {
     
     // 0 -> borda; 1 -> tem uma peça da mesma cor; 2 -> tem uma peça oponente  
     
-    private byte pathFrontKing(char b) throws BoardOutOfBoundsException {
+    private byte pathForwardKing(char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
+			if(getPiece(i, coordinate.getPos_j()) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
+					(getPiece(i, coordinate.getPos_j()) == 'T'||getPiece(i, coordinate.getPos_j()) == 't'
+					||getPiece(i, coordinate.getPos_j()) == 'q'||getPiece(i, coordinate.getPos_j()) == 'Q')) {
+				return 2;
+			}else if(getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())) {
+				return 1;
+			}
+		}
+    	
+    	return 0;
+    }
+    private byte pathBackwardKing(char b) throws BoardOutOfBoundsException {
+    	
+    	Coordinate coordinate = indexOfPiece(b)[0];
+    	
+    	for (int i = coordinate.getPos_i(); i < 8 ; i++) {
 			if(getPiece(i, coordinate.getPos_j()) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
 					(getPiece(i, coordinate.getPos_j()) == 'T'||getPiece(i, coordinate.getPos_j()) == 't'
 					||getPiece(i, coordinate.getPos_j()) == 'q'||getPiece(i, coordinate.getPos_j()) == 'Q')) {
