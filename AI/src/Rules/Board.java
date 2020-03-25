@@ -258,9 +258,45 @@ public class Board {
 		return null;
     	
     }
+    
+    public boolean IsCheckMateInBlackKing() {
+    	return IsCheckMate('k');
+    }
+    public boolean IsCheckMateInWhiteKing() {
+    	return IsCheckMate('K');
+    }
+    
     //algoritmo bruto
-    public boolean IsCheckMate() {
+    private boolean IsCheckMate(char b) {
+    	
+    	/* * POSIÇÕES *
+    	 * 
+    	 * FRENTE
+    	 * ATRÁS
+    	 * ESQUERDA
+    	 * DIREITA
+    	 * DIAGONAL ESQUERDA SUPERIOR
+    	 * DIAGONAL DIREITA SUPERIOR
+    	 * DIAGONAL ESQUERDA INFERIOR
+    	 * DIAGONAL DIREITA INFERIOR
+    	 * 
+    	 * */
+    	
+    	byte[] cases = new byte[8];
+    	
+    	for (int i = 0; i < cases.length; i++) {
+			
+		}
+    	
     	return false;
+    }
+    private byte pathLeftKing(char b) {
+    	
+    	for (int j = indexOfPiece(b)[0].getPos_j(); j >=0 ; j--) {
+			
+		}
+    	
+    	return 0;
     }
     
 }
