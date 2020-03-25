@@ -294,10 +294,12 @@ public class Board {
     	cases[7] = pathBottomRightDiagonal(b);
     	
     	for (int i = 0; i < cases.length; i++) {
-			
+			if(cases[i] == (byte)1) {
+				return false;
+			}
 		}
     	
-    	return false;
+    	return true;
     }
     
     // 0 -> borda; 1 -> tem uma peça da mesma cor; 2 -> tem uma peça oponente  
