@@ -172,6 +172,16 @@ public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements);
 ```
 - Retorna um objeto _Coordinate_ da jogada do xeque.
 
+```java
+public boolean IsCheckMateInBlackKing(ArrayList<Coordinate> movements);
+```
+- Retorna se está se está ocorrendo um xeque-mate no Rei preto. É passado como argumento um _ArrayList_ de _Coordinate_ das posições de algum dos cavalos(de preferência o que está na posição de ataque).
+
+```java
+public boolean IsCheckMateInWhiteKing(ArrayList<Coordinate> movements);
+```
+- Retorna se está se está ocorrendo um xeque-mate no Rei branco. É passado como argumento um _ArrayList_ de _Coordinate_ das posições de algum dos cavalos(de preferência o que está na posição de ataque).
+
 ### Position
 
 - Por enquanto não faz nada de mais;
