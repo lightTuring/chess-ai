@@ -330,7 +330,7 @@ public class Board {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
-    	for (int j = 0; j < coordinate.getPos_j() ; j++) {
+    	for (int j = coordinate.getPos_j(); j < 8 ; j++) {
 			if(getPiece(coordinate.getPos_i(), j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
 					(getPiece(coordinate.getPos_i(), j) == 'T'||getPiece(coordinate.getPos_i(), j) == 't'
 					||getPiece(coordinate.getPos_i(), j) == 'q'||getPiece(coordinate.getPos_i(), j) == 'Q')) {
