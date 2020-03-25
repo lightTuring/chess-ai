@@ -298,11 +298,11 @@ public class Board {
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
-			if(getPiece(i, coordinate.getPos_j()) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
+			if(getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
 					(getPiece(i, coordinate.getPos_j()) == 'T'||getPiece(i, coordinate.getPos_j()) == 't'
 					||getPiece(i, coordinate.getPos_j()) == 'q'||getPiece(i, coordinate.getPos_j()) == 'Q')) {
 				return 2;
-			}else if(getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())) {
+			}else if(getPiece(i, coordinate.getPos_j()) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())) {
 				return 1;
 			}
 		}
@@ -314,11 +314,11 @@ public class Board {
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int i = coordinate.getPos_i(); i < 8 ; i++) {
-			if(getPiece(i, coordinate.getPos_j()) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
+			if(getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
 					(getPiece(i, coordinate.getPos_j()) == 'T'||getPiece(i, coordinate.getPos_j()) == 't'
 					||getPiece(i, coordinate.getPos_j()) == 'q'||getPiece(i, coordinate.getPos_j()) == 'Q')) {
 				return 2;
-			}else if(getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())) {
+			}else if(getPiece(i, coordinate.getPos_j()) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())) {
 				return 1;
 			}
 		}
@@ -331,11 +331,11 @@ public class Board {
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int j = coordinate.getPos_j(); j >=0 ; j--) {
-			if(getPiece(coordinate.getPos_i(), j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
+			if(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
 					(getPiece(coordinate.getPos_i(), j) == 'T'||getPiece(coordinate.getPos_i(), j) == 't'
 					||getPiece(coordinate.getPos_i(), j) == 'q'||getPiece(coordinate.getPos_i(), j) == 'Q')) {
 				return 2;
-			}else if(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
+			}else if(getPiece(coordinate.getPos_i(), j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
 				return 1;
 			}
 		}
@@ -347,13 +347,31 @@ public class Board {
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int j = coordinate.getPos_j(); j < 8 ; j++) {
-			if(getPiece(coordinate.getPos_i(), j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
+			if(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
 					(getPiece(coordinate.getPos_i(), j) == 'T'||getPiece(coordinate.getPos_i(), j) == 't'
 					||getPiece(coordinate.getPos_i(), j) == 'q'||getPiece(coordinate.getPos_i(), j) == 'Q')) {
 				return 2;
-			}else if(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
+			}else if(getPiece(coordinate.getPos_i(), j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
 				return 1;
 			}
+		}
+    	
+    	return 0;
+    }
+    private byte pathTopRightDiagonal(char b) throws BoardOutOfBoundsException {
+    	
+    	Coordinate coordinate = indexOfPiece(b)[0];
+    	
+    	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
+    		for (int j = coordinate.getPos_j(); j < 8 ; j++) {
+    			if(getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
+    					(getPiece(i, j) == 'B'||getPiece(i, j) == 'b'
+    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p')) {
+    				return 2;
+    			}else if(getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
+    				return 1;
+    			}
+    		}
 		}
     	
     	return 0;
