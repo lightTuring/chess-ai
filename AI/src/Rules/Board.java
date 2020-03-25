@@ -267,7 +267,7 @@ public class Board {
     }
     
     //algoritmo bruto
-    private boolean IsCheckMate(char b) {
+    private boolean IsCheckMate(char b) throws BoardOutOfBoundsException {
     	
     	/* * POSIÇÕES *
     	 * 
@@ -283,6 +283,15 @@ public class Board {
     	 * */
     	
     	byte[] cases = new byte[8];
+    	
+    	cases[0] = pathForwardKing(b);
+    	cases[1] = pathBackwardKing(b);
+    	cases[2] = pathLeftKing(b);
+    	cases[3] = pathRightKing(b);
+    	cases[4] = pathTopLeftDiagonal(b);
+    	cases[5] = pathTopRightDiagonal(b);
+    	cases[6] = pathBottomLeftDiagonal(b);
+    	cases[7] = pathBottomRightDiagonal(b);
     	
     	for (int i = 0; i < cases.length; i++) {
 			
