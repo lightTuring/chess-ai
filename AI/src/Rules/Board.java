@@ -290,10 +290,21 @@ public class Board {
     	
     	return false;
     }
-    private byte pathLeftKing(char b) {
+    
+    // 0 -> borda; 1 -> tem uma peça da mesma cor; 2 -> tem uma peça oponente  
+    
+    private byte pathLeftKing(char b) throws BoardOutOfBoundsException {
     	
-    	for (int j = indexOfPiece(b)[0].getPos_j(); j >=0 ; j--) {
-			
+    	Coordinate coordinate = indexOfPiece(b)[0];
+    	
+    	for (int j = coordinate.getPos_j(); j >=0 ; j--) {
+			if(getPiece(coordinate.getPos_i(), j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
+					(getPiece(coordinate.getPos_i(), j) == 'T'||getPiece(coordinate.getPos_i(), j) == 't'
+					||getPiece(coordinate.getPos_i(), j) == 'q'||getPiece(coordinate.getPos_i(), j) == 'Q')) {
+				return 2;
+			}else if(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
+				return 1;
+			}
 		}
     	
     	return 0;
