@@ -258,6 +258,9 @@ public class Board {
 		return null;
     	
     }
-
+    //algoritmo bruto
+    public boolean IsCheckMate() {
+    	return false;
+    }
     
 }
