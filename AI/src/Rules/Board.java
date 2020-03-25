@@ -358,6 +358,24 @@ public class Board {
     	
     	return 0;
     }
+    private byte pathTopLeftDiagonal(char b) throws BoardOutOfBoundsException {
+    	
+    	Coordinate coordinate = indexOfPiece(b)[0];
+    	
+    	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
+    		for (int j = coordinate.getPos_j(); j >= 0 ; j--) {
+    			if(getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
+    					(getPiece(i, j) == 'B'||getPiece(i, j) == 'b'
+    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p')) {
+    				return 2;
+    			}else if(getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
+    				return 1;
+    			}
+    		}
+		}
+    	
+    	return 0;
+    }    
     private byte pathTopRightDiagonal(char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
@@ -376,4 +394,5 @@ public class Board {
     	
     	return 0;
     }
+    
 }
