@@ -259,15 +259,15 @@ public class Board {
     	
     }
     
-    public boolean IsCheckMateInBlackKing() throws BoardOutOfBoundsException {
-    	return IsCheckMate('k');
+    public boolean IsCheckMateInBlackKing(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
+    	return IsCheckMate(movements, 'k');
     }
-    public boolean IsCheckMateInWhiteKing() throws BoardOutOfBoundsException {
-    	return IsCheckMate('K');
+    public boolean IsCheckMateInWhiteKing(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
+    	return IsCheckMate(movements, 'K');
     }
     
     //algoritmo bruto
-    private boolean IsCheckMate(char b) throws BoardOutOfBoundsException {
+    private boolean IsCheckMate(ArrayList<Coordinate> movements, char b) throws BoardOutOfBoundsException {
     	
     	/* * POSIÇÕES *
     	 * 
@@ -284,14 +284,14 @@ public class Board {
     	
     	byte[] cases = new byte[8];
     	
-    	cases[0] = pathForwardKing(b);
-    	cases[1] = pathBackwardKing(b);
-    	cases[2] = pathLeftKing(b);
-    	cases[3] = pathRightKing(b);
-    	cases[4] = pathTopLeftDiagonal(b);
-    	cases[5] = pathTopRightDiagonal(b);
-    	cases[6] = pathBottomLeftDiagonal(b);
-    	cases[7] = pathBottomRightDiagonal(b);
+    	cases[0] = pathForwardKing(movements, b);
+    	cases[1] = pathBackwardKing(movements, b);
+    	cases[2] = pathLeftKing(movements, b);
+    	cases[3] = pathRightKing(movements, b);
+    	cases[4] = pathTopLeftDiagonal(movements, b);
+    	cases[5] = pathTopRightDiagonal(movements, b);
+    	cases[6] = pathBottomLeftDiagonal(movements, b);
+    	cases[7] = pathBottomRightDiagonal(movements, b);
     	
     	for (int i = 0; i < cases.length; i++) {
 			if(cases[i] == (byte)1) {
@@ -304,14 +304,14 @@ public class Board {
     
     // 0 -> borda; 1 -> tem uma peça da mesma cor; 2 -> tem uma peça oponente  
     
-    private byte pathForwardKing(char b) throws BoardOutOfBoundsException {
+    private byte pathForwardKing(ArrayList<Coordinate> movements, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
-			if(getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
+			if(WillOccurCheck(movements) || (getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
 					(getPiece(i, coordinate.getPos_j()) == 'T'||getPiece(i, coordinate.getPos_j()) == 't'
-					||getPiece(i, coordinate.getPos_j()) == 'q'||getPiece(i, coordinate.getPos_j()) == 'Q')) {
+					||getPiece(i, coordinate.getPos_j()) == 'q'||getPiece(i, coordinate.getPos_j()) == 'Q'))) {
 				return 2;
 			}else if(getPiece(i, coordinate.getPos_j()) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())) {
 				return 1;
@@ -320,14 +320,14 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathBackwardKing(char b) throws BoardOutOfBoundsException {
+    private byte pathBackwardKing(ArrayList<Coordinate> movements, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int i = coordinate.getPos_i(); i < 8 ; i++) {
-			if(getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
+			if(WillOccurCheck(movements) || (getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
 					(getPiece(i, coordinate.getPos_j()) == 'T'||getPiece(i, coordinate.getPos_j()) == 't'
-					||getPiece(i, coordinate.getPos_j()) == 'q'||getPiece(i, coordinate.getPos_j()) == 'Q')) {
+					||getPiece(i, coordinate.getPos_j()) == 'q'||getPiece(i, coordinate.getPos_j()) == 'Q'))) {
 				return 2;
 			}else if(getPiece(i, coordinate.getPos_j()) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())) {
 				return 1;
@@ -337,14 +337,14 @@ public class Board {
     	return 0;
     }
     
-    private byte pathLeftKing(char b) throws BoardOutOfBoundsException {
+    private byte pathLeftKing(ArrayList<Coordinate> movements, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int j = coordinate.getPos_j(); j >=0 ; j--) {
-			if(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
+			if(WillOccurCheck(movements) || (getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
 					(getPiece(coordinate.getPos_i(), j) == 'T'||getPiece(coordinate.getPos_i(), j) == 't'
-					||getPiece(coordinate.getPos_i(), j) == 'q'||getPiece(coordinate.getPos_i(), j) == 'Q')) {
+					||getPiece(coordinate.getPos_i(), j) == 'q'||getPiece(coordinate.getPos_i(), j) == 'Q'))) {
 				return 2;
 			}else if(getPiece(coordinate.getPos_i(), j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
 				return 1;
@@ -353,14 +353,14 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathRightKing(char b) throws BoardOutOfBoundsException {
+    private byte pathRightKing(ArrayList<Coordinate> movements, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int j = coordinate.getPos_j(); j < 8 ; j++) {
-			if(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
+			if(WillOccurCheck(movements) || (getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
 					(getPiece(coordinate.getPos_i(), j) == 'T'||getPiece(coordinate.getPos_i(), j) == 't'
-					||getPiece(coordinate.getPos_i(), j) == 'q'||getPiece(coordinate.getPos_i(), j) == 'Q')) {
+					||getPiece(coordinate.getPos_i(), j) == 'q'||getPiece(coordinate.getPos_i(), j) == 'Q'))) {
 				return 2;
 			}else if(getPiece(coordinate.getPos_i(), j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
 				return 1;
@@ -369,15 +369,15 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathTopLeftDiagonal(char b) throws BoardOutOfBoundsException {
+    private byte pathTopLeftDiagonal(ArrayList<Coordinate> movements, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
     		for (int j = coordinate.getPos_j(); j >= 0 ; j--) {
-    			if(getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
+    			if(WillOccurCheck(movements) || (getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
     					(getPiece(i, j) == 'B'||getPiece(i, j) == 'b'
-    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p')) {
+    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p'))) {
     				return 2;
     			}else if(getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
     				return 1;
@@ -387,15 +387,15 @@ public class Board {
     	
     	return 0;
     }    
-    private byte pathTopRightDiagonal(char b) throws BoardOutOfBoundsException {
+    private byte pathTopRightDiagonal(ArrayList<Coordinate> movements, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
     		for (int j = coordinate.getPos_j(); j < 8 ; j++) {
-    			if(getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
+    			if(WillOccurCheck(movements) || (getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
     					(getPiece(i, j) == 'B'||getPiece(i, j) == 'b'
-    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p')) {
+    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p'))) {
     				return 2;
     			}else if(getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
     				return 1;
@@ -405,15 +405,15 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathBottomLeftDiagonal(char b) throws BoardOutOfBoundsException {
+    private byte pathBottomLeftDiagonal(ArrayList<Coordinate> movements, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int i = coordinate.getPos_i(); i < 8 ; i++) {
     		for (int j = coordinate.getPos_j(); j >= 0 ; j--) {
-    			if(getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
+    			if(WillOccurCheck(movements) || (getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
     					(getPiece(i, j) == 'B'||getPiece(i, j) == 'b'
-    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p')) {
+    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p'))) {
     				return 2;
     			}else if(getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
     				return 1;
@@ -423,15 +423,15 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathBottomRightDiagonal(char b) throws BoardOutOfBoundsException {
+    private byte pathBottomRightDiagonal(ArrayList<Coordinate> movements, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
     	for (int i = coordinate.getPos_i(); i < 8 ; i++) {
     		for (int j = coordinate.getPos_j(); j < 8 ; j++) {
-    			if(getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
+    			if(WillOccurCheck(movements) || (getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(),i, j) && 
     					(getPiece(i, j) == 'B'||getPiece(i, j) == 'b'
-    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p')) {
+    					||getPiece(i, j) == 'q'||getPiece(i, j) == 'Q'||getPiece(i, j) == 'P'||getPiece(i, j) == 'p'))) {
     				return 2;
     			}else if(getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
     				return 1;
