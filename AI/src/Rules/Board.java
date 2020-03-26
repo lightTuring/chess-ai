@@ -204,6 +204,8 @@ public class Board {
     }
     public boolean WillOccurCapture(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
     	boolean r = false;
+    	if(movements == null)
+    		return false;
     	for (byte element : HowManyKindOfAttacks(movements)) {
 			if(element == (byte)1)
 				r = true;
@@ -214,6 +216,8 @@ public class Board {
     }
     public boolean WillOccurCheck(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
     	boolean r = false;
+    	if(movements == null)
+    		return false;
     	for (byte element : HowManyKindOfAttacks(movements)) {
 			if(element == (byte)2)
 				r = true;
