@@ -173,21 +173,33 @@ public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements);
 - Retorna um objeto _Coordinate_ da jogada do xeque.
 
 ```java
-public boolean IsCheckMateInBlackKing(ArrayList<Coordinate> movements);
+public boolean IsCheckMateInBlackKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1);
 ```
 - Retorna se está se está ocorrendo um xeque-mate no Rei preto. É passado como argumento dois _ArrayList_ de _Coordinate_ das posições dos cavalos(de preferência o que está na posição de ataque), ou um valor _null_ caso não há ataque dos cavalos.
 
 ```java
-public boolean IsCheckMateInWhiteKing(ArrayList<Coordinate> movements);
+public boolean IsCheckMateInWhiteKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1);
 ```
 - Retorna se está se está ocorrendo um xeque-mate no Rei branco. É passado como argumento dois _ArrayList_ de _Coordinate_ das posições de dos cavalos(de preferência o que está na posição de ataque), ou um valor _null_ caso não há ataque dos cavalos.
 
+#### obs: Os próximos 9 métodos fazem parte da construção do algoritmo e são chamados nos métodos públicos do xeque-mate.
+
 ```java
-private boolean IsCheckMate(ArrayList<Coordinate> movements, char b);
+private boolean IsCheckMate(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
 ```
 - Algoritmo geral para a verificação se há xeque-mate no Rei. É passado como argumento os mesmos _ArrayList_ de _Coordinate_ das posições dos cavalos, ou um valor _null_ caso não há ataque dos cavalos e um _char_ representando o rei. 
 
-#### obs: os últimos 9 métodos são chamados nos métodos públicos do xeque-mate
+#### obs.: Os próximos 8 métodos servem para fazer a verificação das peças que estão alinhadas com o Rei. Retornam um byte informando o seguinte:
+
+|Valor do Retorno|Significado| 
+|------|--------|
+|  0   |Caminho livre até um dos lados das bordas do tabuleiro|
+|  1   |Peça da mesma cor|
+|  2   |Peça adversária que está dando xeque no Rei|
+
+![Screenshot](king_adj.png)
+#### Todas as direções "adjacantes" ao Rei.
+
 
 ### Position
 
