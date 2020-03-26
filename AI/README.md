@@ -288,7 +288,7 @@ private static ArrayList<Coordinate> bishopGen (int pos_i, int pos_j, Board b);
 ```
 - Implementa o algoritmo do Bispo.
 
-#### OBS.: Os dois últimos métodos são estáticos que implementam os algoritmos para a movimentação do bispo e da torre (e consequentemente da rainha).
+#### Obs.: Os dois últimos métodos são estáticos que implementam os algoritmos para a movimentação do bispo e da torre (e consequentemente da rainha).
 
 ### Coordinate
 
@@ -302,7 +302,17 @@ public Coordinate(int final_i, int final_j);
 ```java
 public void printCoordinate();
 ```
-- Imprime no terminal as coordenadas inicias e finais.
+- Imprime no terminal as coordenadas passadas no construtor.
+
+```java
+public int getPos_i();
+```
+- Retorna a coordenada _i_.
+
+```java
+public int getPos_j();
+```
+- Retorna a coordenada _j_.
 
 ### BoardOutOfBoundsException
 
