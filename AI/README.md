@@ -182,14 +182,14 @@ public boolean IsCheckMateInWhiteKing(ArrayList<Coordinate> movements, ArrayList
 ```
 - Retorna se está se está ocorrendo um xeque-mate no Rei branco. É passado como argumento dois _ArrayList_ de _Coordinate_ das posições de dos cavalos(de preferência o que está na posição de ataque), ou um valor _null_ caso não há ataque dos cavalos.
 
-#### obs: Os próximos 9 métodos fazem parte da construção do algoritmo e são chamados nos métodos públicos do xeque-mate.
+#### Obs: Os próximos 9 métodos fazem parte da construção do algoritmo e são chamados nos métodos públicos do xeque-mate.
 
 ```java
 private boolean IsCheckMate(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
 ```
 - Algoritmo geral para a verificação se há xeque-mate no Rei. É passado como argumento os mesmos _ArrayList_ de _Coordinate_ das posições dos cavalos, ou um valor _null_ caso não há ataque dos cavalos e um _char_ representando o rei. 
 
-#### obs.: Os próximos 8 métodos servem para fazer a verificação das peças que estão alinhadas com o Rei. Retornam um byte informando o seguinte:
+#### Obs.: Os próximos 8 métodos servem para fazer a verificação das peças que estão alinhadas com o Rei. Retornam um byte informando o seguinte:
 
 |Valor do Retorno|Significado| 
 |------|--------|
@@ -198,8 +198,47 @@ private boolean IsCheckMate(ArrayList<Coordinate> movements, ArrayList<Coordinat
 |  2   |Peça adversária que está dando xeque no Rei|
 
 ![Screenshot](king_adj.png)
-#### Todas as direções "adjacantes" ao Rei.
+#### Figura 1: Todas as direções "_adjacantes_" ao Rei.
 
+```java
+private byte pathForwardKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
+```
+- Verificação do caminho a frente do Rei.
+
+```java
+private byte pathBackwardKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
+```
+- Verificação do caminho de trás do Rei.
+
+```java
+private byte pathLeftKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
+```
+- Verificação do caminho esquerdo do Rei.
+
+```java
+private byte pathRightKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
+```
+- Verificação do caminho direito do Rei.
+
+```java
+private byte pathTopLeftDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
+```
+- Verificação do caminho da diagonal superior esquerda do Rei.
+
+```java
+private byte pathTopRightDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
+```
+- Verificação do caminho da diagonal superior direita do Rei.
+
+```java
+    private byte pathBottomLeftDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
+```
+- Verificação do caminho da diagonal inferior esquerda do Rei.
+
+```java
+private byte pathBottomRightDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b);
+```
+- Verificação do caminho da diagonal inferior direita do Rei.
 
 ### Position
 
