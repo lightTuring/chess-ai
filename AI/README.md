@@ -175,12 +175,19 @@ public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements);
 ```java
 public boolean IsCheckMateInBlackKing(ArrayList<Coordinate> movements);
 ```
-- Retorna se está se está ocorrendo um xeque-mate no Rei preto. É passado como argumento um _ArrayList_ de _Coordinate_ das posições de algum dos cavalos(de preferência o que está na posição de ataque).
+- Retorna se está se está ocorrendo um xeque-mate no Rei preto. É passado como argumento um _ArrayList_ de _Coordinate_ das posições de algum dos cavalos(de preferência o que está na posição de ataque), ou um valor _null_ caso não há ataque dos cavalos.
 
 ```java
 public boolean IsCheckMateInWhiteKing(ArrayList<Coordinate> movements);
 ```
-- Retorna se está se está ocorrendo um xeque-mate no Rei branco. É passado como argumento um _ArrayList_ de _Coordinate_ das posições de algum dos cavalos(de preferência o que está na posição de ataque).
+- Retorna se está se está ocorrendo um xeque-mate no Rei branco. É passado como argumento um _ArrayList_ de _Coordinate_ das posições de algum dos cavalos(de preferência o que está na posição de ataque), ou um valor _null_ caso não há ataque dos cavalos.
+
+```java
+private boolean IsCheckMate(ArrayList<Coordinate> movements, char b);
+```
+- Algoritmo geral para a verificação se há xeque-mate no Rei. É passado como argumento os mesmos _ArrayList_ de _Coordinate_ das posições dos cavalos, ou um valor _null_ caso não há ataque dos cavalos e um _char_ representando o rei. 
+
+#### obs: os últimos 9 métodos são chamados nos métodos públicos do xeque-mate
 
 ### Position
 
