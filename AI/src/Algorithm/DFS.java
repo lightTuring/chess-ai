@@ -56,6 +56,7 @@ public class DFS {
 		return path;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		int nodes = 3;
 		ArrayList<Integer>[] graph = new ArrayList[nodes];
