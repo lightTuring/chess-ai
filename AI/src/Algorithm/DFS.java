@@ -6,7 +6,7 @@ public class DFS {
 
 	private int nodes;
 	
-	private ArrayList<Integer>[] graph = new ArrayList[nodes]; // -> [nó][conexões]
+	private ArrayList<Integer>[] graph; // -> [nó][conexões]
 	private boolean[] visited = new boolean[nodes];
 	private ArrayList<Integer> path = new ArrayList<Integer>();
 	
@@ -56,7 +56,7 @@ public class DFS {
 		return path;
 	}
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		int nodes = 3;
 		ArrayList<Integer>[] graph = new ArrayList[nodes];
 		boolean[] v = {false,false,false};
@@ -76,6 +76,6 @@ public class DFS {
 		System.out.println(dfs.Search(0, 2));
 		System.out.println(dfs.getPath());
 		System.out.println(dfs.getPathProcess());
-	}*/
+	}
 	
 }
