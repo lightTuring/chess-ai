@@ -3,20 +3,17 @@ package Algorithm;
 import java.util.*;
 
 public class DFS {
-
-	private int nodes;
 	
 	private ArrayList<Integer>[] graph; // -> [nó][conexões]
 	private boolean[] visited;
 	private ArrayList<Integer> path = new ArrayList<Integer>();
 	
 	public DFS(ArrayList<Integer>[] graph, int nodes) {
-		this.nodes = nodes;
 		this.graph = graph;
 		this.visited = new boolean[nodes];
         // O valor inicial de visited vai ser sempre uma array de false.
         for(int i = 0; i < nodes; i++) {
-                this.visited[i] = false;
+        	this.visited[i] = false;
         }
 	}
 	

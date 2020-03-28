@@ -58,7 +58,7 @@ public class Graph {
 		for (int i = 0; i < visited.length; i++) 
 			visited[i] = false;
 		
-		DFS dfs = new DFS(this.graphConnections, this.graphConnections.length, visited);
+		DFS dfs = new DFS(this.graphConnections, this.graphConnections.length);
 		dfs.Search(0, this.graphConnections.length - 1);
 		
 		return dfs.getPath().size();
@@ -70,7 +70,7 @@ public class Graph {
 		for (int i = 0; i < visited.length; i++) 
 			visited[i] = false;
 		
-		DFS dfs = new DFS(this.graphConnections, this.graphConnections.length, visited);
+		DFS dfs = new DFS(this.graphConnections, this.graphConnections.length);
 		dfs.Search(0, node);
 		
 		return dfs.getPath().size();
