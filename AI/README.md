@@ -31,6 +31,16 @@ public boolean isBlack(int pos_i, int pos_j);
 - Retorna um boolean dizendo se a peça na posição _pos_i_ e _pos_j_ é preta ou não.
 
 ```java
+public boolean isWhite(char piece);
+```
+- Retorna um boolean dizendo se a peça é branca ou não.
+
+```java
+public boolean isBlack(char piece);
+```
+- Retorna um boolean dizendo se a peça é preta ou não.
+
+```java
 public boolean hasSameColor(int me_i, int me_j, int that_piece_i, int that_piece_j);
 ```
 - Retorna se duas peças apresentam a mesma cor.
