@@ -436,6 +436,19 @@ public ArrayList<Integer> getPathProcess();
 ```
 - Retorna uma lista do tipo _ArrayList_ representando o caminho bruto do início até o fim do nó de busca, ou seja, este método retorna com precisão por todos os nós que o algoritmo de busca passou e por quantas vezes.
 
+### RandomPlay
+Está classe com métodos estáticos realiza um sorteio das peças e das posições para uma jogada.
+
+```java
+public static char choosePiece(int color);
+```
+- Retorna uma peça sorteada para ser jogada. Recebe um argumento informando a cor da peça; 0 para uma peça preta e 1 para uma peça branca. 
+
+```java
+public static Coordinate chooseMovement(ArrayList<Coordinate> movements);
+```
+- Retorna um objeto _Coordinate_, correspondendo a coordenada da próxima jogada a ser feita. Recebe como argumento um _ArrayList_ de _Coordinate_. 
+
 ## Server
 
 Neste pacote está contido o arquivo _'Server.java'_, que faz o Server da nossa comunicação Socket com a placa que faz a ponte com o hardware. Em Server.java está disposto os seguintes métodos:
