@@ -1,20 +1,22 @@
 package Algorithm;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import Rules.Coordinate;
 
 public class RandomPlay {
 
-	private final char[] PIECES = {'p', 't', 'c', 'b', 'k', 'q'};
+	private final static char[] PIECES = {'p', 't', 'c', 'b', 'k', 'q'};
 	
-	private static char choosePiece() {
-		return 0;	
+	//0-> preto ; 1-> branco
+	public static char choosePiece(int color) {
+		char c = PIECES[(int)(Math.random()*(PIECES.length))];
+		if(color == 1)
+			c = (char)((int)c - ((int)'a' - (int)'A'));
+		return c;	
 	}
-	private static Coordinate chooseMovement() {
-		return null;	
+	public static Coordinate chooseMovement(ArrayList<Coordinate> movements) {	
+		return movements.get((int)Math.random()*(movements.size()));	
 	}
-	public static void doMovement() {
-		
-	}
+
 }
