@@ -1,8 +1,6 @@
 package Rules;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import Notation.Annotation;
 
 public class Board {
@@ -233,6 +231,7 @@ public class Board {
     	return r;
     }
  
+	@SuppressWarnings("unchecked")
 	public boolean WillOccurCheckMate(ArrayList<Coordinate> ... movements) throws BoardOutOfBoundsException {
     	boolean[] answers = new boolean[movements.length + 1];//todas as peças do cenário mais o rei.
     	for (int i = 0; i < movements.length; i++) {
