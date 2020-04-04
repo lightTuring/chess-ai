@@ -175,21 +175,16 @@ public class Board {
     public char[][] getBoard() {
         return chessBoard;
     }
-    
-
-    public Coordinate[] indexOfPiece(char b) {
-        Coordinate[] positions = new Coordinate[10];
-        int p = 0;
-
-        for (int i = 0; i<8; i++) {
-            for (int j = 0; j<8; j++) {
-                if (chessBoard[i][j] == b) {
-                    positions[p] = new Coordinate (i, j);
-                    p++;
-                }
+    //voltando para a antiga implementação. Dessa maneira é melhor, pois há uma quantidade indefinida de movimentos para cada peça, podendo superar 10 movimentos(antigo valor do array simples) 
+    public ArrayList<Coordinate> indexOfPiece(char b) {
+    	ArrayList<Coordinate> list = new ArrayList <Coordinate> ();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (chessBoard[i][j] == b) 
+                    list.add(new Coordinate (i, j));   
             }
         }
-        return positions;
+        return list;
     }
     public boolean isAPiece(int pos_i, int  pos_j) throws BoardOutOfBoundsException {
     	return (getPiece(pos_i, pos_j) != 'o');
@@ -251,7 +246,7 @@ public class Board {
     	else
     		b = 'k';
     	
-    	answers[answers.length - 1] = (Controller.getKingMoves(this, indexOfPiece(b)[0].getPos_i(), indexOfPiece(b)[0].getPos_j()) == null);
+    	answers[answers.length - 1] = (Controller.getKingMoves(this, indexOfPiece(b).get(0).getPos_i(), indexOfPiece(b).get(0).getPos_j()) == null);
     	
 		return answers[answers.length - 1];
     	
@@ -316,7 +311,7 @@ public class Board {
     
     private byte pathForwardKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
-    	Coordinate coordinate = indexOfPiece(b)[0];
+    	Coordinate coordinate = indexOfPiece(b).get(0);
     	
     	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
 			if(WillOccurCheck(movements) || WillOccurCheck(movements1) ||(getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
@@ -332,7 +327,7 @@ public class Board {
     }
     private byte pathBackwardKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
-    	Coordinate coordinate = indexOfPiece(b)[0];
+    	Coordinate coordinate = indexOfPiece(b).get(0);
     	
     	for (int i = coordinate.getPos_i(); i < 8 ; i++) {
 			if(WillOccurCheck(movements) || WillOccurCheck(movements1) ||(getPiece(i, coordinate.getPos_j()) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j()) && 
@@ -349,7 +344,7 @@ public class Board {
     
     private byte pathLeftKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
-    	Coordinate coordinate = indexOfPiece(b)[0];
+    	Coordinate coordinate = indexOfPiece(b).get(0);
     	
     	for (int j = coordinate.getPos_j(); j >=0 ; j--) {
 			if(WillOccurCheck(movements) || WillOccurCheck(movements1) ||(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
@@ -365,7 +360,7 @@ public class Board {
     }
     private byte pathRightKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
-    	Coordinate coordinate = indexOfPiece(b)[0];
+    	Coordinate coordinate = indexOfPiece(b).get(0);
     	
     	for (int j = coordinate.getPos_j(); j < 8 ; j++) {
 			if(WillOccurCheck(movements) || WillOccurCheck(movements1) ||(getPiece(coordinate.getPos_i(), j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j) && 
@@ -381,7 +376,7 @@ public class Board {
     }
     private byte pathTopLeftDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
-    	Coordinate coordinate = indexOfPiece(b)[0];
+    	Coordinate coordinate = indexOfPiece(b).get(0);
     	
     	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
     		for (int j = coordinate.getPos_j(); j >= 0 ; j--) {
@@ -399,7 +394,7 @@ public class Board {
     }    
     private byte pathTopRightDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
-    	Coordinate coordinate = indexOfPiece(b)[0];
+    	Coordinate coordinate = indexOfPiece(b).get(0);
     	
     	for (int i = coordinate.getPos_i(); i >=0 ; i--) {
     		for (int j = coordinate.getPos_j(); j < 8 ; j++) {
@@ -417,7 +412,7 @@ public class Board {
     }
     private byte pathBottomLeftDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
-    	Coordinate coordinate = indexOfPiece(b)[0];
+    	Coordinate coordinate = indexOfPiece(b).get(0);
     	
     	for (int i = coordinate.getPos_i(); i < 8 ; i++) {
     		for (int j = coordinate.getPos_j(); j >= 0 ; j--) {
@@ -435,7 +430,7 @@ public class Board {
     }
     private byte pathBottomRightDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
-    	Coordinate coordinate = indexOfPiece(b)[0];
+    	Coordinate coordinate = indexOfPiece(b).get(0);
     	
     	for (int i = coordinate.getPos_i(); i < 8 ; i++) {
     		for (int j = coordinate.getPos_j(); j < 8 ; j++) {
