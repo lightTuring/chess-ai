@@ -491,6 +491,30 @@ public static String NotationComputerToChess(int i, int j);
 ```
 - Realiza a tradução da notação do computador para a do Xadrez, passando dois _int_ referentes às dimensões da matriz e retorna uma _String_ análoga a casa do tabuleiro.
 
+### Annotation
+
+Classe com métodos estáticos. Tem como objetivo anotar todas as jogadas feitas por um ou pelos dois jogadores.
+
+```java
+public static void putMovement(String movement);
+```
+- Anota a jogada na notação do Tabuleiro de Xadrez.
+
+```java
+public static void putMovement(int pos_i, int pos_j);
+```
+- Anota a jogada na notação de Matriz.
+
+```java
+public static ArrayList<String> getMovements();
+```
+- Retorna uma lista de todos os movimentos realizados no jogo na notação do Tabuleiro de Xadrez.
+
+```java
+public static ArrayList<Coordinate> getMovementsMatrixCoordinate();
+```
+- Retorna uma lista de todos os movimentos realizados no jogo na notação de Matriz.
+
 ## Teste
 
 Este pacote apresenta código apenas para fins de teste.
