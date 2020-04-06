@@ -515,6 +515,16 @@ public static ArrayList<Coordinate> getMovementsMatrixCoordinate();
 ```
 - Retorna uma lista de todos os movimentos realizados no jogo na notação de Matriz.
 
+```java
+public static String getLastMovement();
+```
+- Retorna o último movimento realizado no jogo na notação de Matriz.
+
+```java
+public static Coordinate getLastMovementMatrixCoordinate();
+```
+- Retorna o último movimento movimento realizado no jogo na notação de Matriz.
+
 ## Teste
 
 Este pacote apresenta código apenas para fins de teste.
