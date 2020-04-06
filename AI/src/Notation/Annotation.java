@@ -22,11 +22,15 @@ public class Annotation {
 	}
 	public static ArrayList<String> getMovements(){
 		return movementsChess;
-		
 	}
 	public static ArrayList<Coordinate> getMovementsMatrixCoordinate(){
-		return movementsComputer;
-		
+		return movementsComputer;	
+	}
+	public static String getLastMovement(){
+		return movementsChess.get(movementsChess.size()-1);
+	}
+	public static Coordinate getLastMovementMatrixCoordinate(){
+		return movementsComputer.get(movementsComputer.size()-1);
 	}
 	
 }
