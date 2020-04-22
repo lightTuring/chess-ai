@@ -1,6 +1,6 @@
 package Rules;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import Notation.Annotation;
 
 public class Board {
@@ -192,7 +192,7 @@ public class Board {
     public boolean isAPiece(int pos_i, int  pos_j) throws BoardOutOfBoundsException {
     	return (getPiece(pos_i, pos_j) != 'o');
     }
-    public byte[] HowManyKindOfAttacks(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {	
+    public byte[] HowManyKindOfAttacks(LinkedList<Coordinate> movements) throws BoardOutOfBoundsException {	
     	byte[] attacks = new byte[movements.size()/2];
     	for (int i = 0; i < movements.size(); i++) {
     		if(getPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == 'k' || getPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == 'K') {
@@ -206,7 +206,7 @@ public class Board {
 		return attacks;
     	
     }
-    public boolean WillOccurCapture(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
+    public boolean WillOccurCapture(LinkedList<Coordinate> movements) throws BoardOutOfBoundsException {
     	boolean r = false;
     	if(movements.equals(null))
     		return false;
@@ -218,7 +218,7 @@ public class Board {
     	
     	return r;
     }
-    public boolean WillOccurCheck(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
+    public boolean WillOccurCheck(LinkedList<Coordinate> movements) throws BoardOutOfBoundsException {
     	boolean r = false;
     	if(movements.equals(null))
     		return false;
@@ -232,7 +232,7 @@ public class Board {
     }
  
 	@SuppressWarnings("unchecked")
-	public boolean WillOccurCheckMate(ArrayList<Coordinate> ... movements) throws BoardOutOfBoundsException {
+	public boolean WillOccurCheckMate(LinkedList<Coordinate> ... movements) throws BoardOutOfBoundsException {
     	boolean[] answers = new boolean[movements.length + 1];//todas as peças do cenário mais o rei.
     	for (int i = 0; i < movements.length; i++) {
     		for (byte element : HowManyKindOfAttacks(movements[i])) {
@@ -257,7 +257,7 @@ public class Board {
     	
     }
     //obs.: só chamar quando tiver certeza que pode ocorrer um xeque.
-    public Coordinate WherePlayToCheck(ArrayList<Coordinate> movements) throws BoardOutOfBoundsException {
+    public Coordinate WherePlayToCheck(LinkedList<Coordinate> movements) throws BoardOutOfBoundsException {
 		for (int i = 0; i < HowManyKindOfAttacks(movements).length; i++) {
 			if(HowManyKindOfAttacks(movements)[i] == 2) {
 				return movements.get(i);
@@ -268,15 +268,15 @@ public class Board {
     	
     }
     
-    public boolean IsCheckMateInBlackKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1) throws BoardOutOfBoundsException {
+    public boolean IsCheckMateInBlackKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1) throws BoardOutOfBoundsException {
     	return IsCheckMate(movements, movements1, 'k');
     }
-    public boolean IsCheckMateInWhiteKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1) throws BoardOutOfBoundsException {
+    public boolean IsCheckMateInWhiteKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1) throws BoardOutOfBoundsException {
     	return IsCheckMate(movements, movements1,'K');
     }
     
     //algoritmo bruto
-    private boolean IsCheckMate(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
+    private boolean IsCheckMate(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	/* * POSIÇÕES *
     	 * 
@@ -313,7 +313,7 @@ public class Board {
     
     // 0 -> borda; 1 -> tem uma peça da mesma cor; 2 -> tem uma peça oponente  
     
-    private byte pathForwardKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
+    private byte pathForwardKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
@@ -329,7 +329,7 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathBackwardKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
+    private byte pathBackwardKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
@@ -346,7 +346,7 @@ public class Board {
     	return 0;
     }
     
-    private byte pathLeftKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
+    private byte pathLeftKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
@@ -362,7 +362,7 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathRightKing(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
+    private byte pathRightKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
@@ -378,7 +378,7 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathTopLeftDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
+    private byte pathTopLeftDiagonal(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
@@ -396,7 +396,7 @@ public class Board {
     	
     	return 0;
     }    
-    private byte pathTopRightDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
+    private byte pathTopRightDiagonal(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
@@ -414,7 +414,7 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathBottomLeftDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
+    private byte pathBottomLeftDiagonal(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	
@@ -432,7 +432,7 @@ public class Board {
     	
     	return 0;
     }
-    private byte pathBottomRightDiagonal(ArrayList<Coordinate> movements, ArrayList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
+    private byte pathBottomRightDiagonal(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
     	

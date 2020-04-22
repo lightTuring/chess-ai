@@ -1,12 +1,12 @@
 package Rules;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Iterator;
 
 public class Controller {
 
-  	public static ArrayList<Coordinate> getPawnMoves(Board b, int i, int j) throws UnexpectedPieceException, BoardOutOfBoundsException {
-		ArrayList<Coordinate> movesP = new ArrayList<Coordinate>();
+  	public static LinkedList<Coordinate> getPawnMoves(Board b, int i, int j) throws UnexpectedPieceException, BoardOutOfBoundsException {
+		LinkedList<Coordinate> movesP = new LinkedList<Coordinate>();
 		Coordinate x;
 		// Se o peão for Branco:
 		if (b.getPiece(i, j) == 'P') {
@@ -55,13 +55,13 @@ public class Controller {
 		return movesP;
     }
 
-    public static ArrayList<Coordinate> getRookMoves(Board b, int i, int j) throws BoardOutOfBoundsException {
-	    ArrayList<Coordinate> movesP = rookGen(b, i, j);
+    public static LinkedList<Coordinate> getRookMoves(Board b, int i, int j) throws BoardOutOfBoundsException {
+	    LinkedList<Coordinate> movesP = rookGen(b, i, j);
 	    return movesP;
     }
 
-  	public static ArrayList<Coordinate> getKnightMoves(Board b, int pos_i, int pos_j) throws Exception{
-		ArrayList<Coordinate> movesK = new ArrayList<Coordinate>();
+  	public static LinkedList<Coordinate> getKnightMoves(Board b, int pos_i, int pos_j) throws Exception{
+		LinkedList<Coordinate> movesK = new LinkedList<Coordinate>();
 		Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
 	    if(b.getPiece(pos_i, pos_j) == 'C' || b.getPiece(pos_i, pos_j) == 'c') {//if serve como uma segurança de que a peça é um cavalo
@@ -79,12 +79,12 @@ public class Controller {
 
 	}
 
-    public static ArrayList<Coordinate> getBishopMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
+    public static LinkedList<Coordinate> getBishopMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
     	return bishopGen(b, pos_i, pos_j);
     }
 
-    public static ArrayList<Coordinate> getKingMoves(Board b, int i, int j) {
-    	ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
+    public static LinkedList<Coordinate> getKingMoves(Board b, int i, int j) {
+    	LinkedList<Coordinate> moves = new LinkedList<Coordinate>();
     	Coordinate c;
 		for (int x = -1; x<=1 && x>=-1; x++) {
 			for (int y = -1; y<=1 && y>=-1; y++) {
@@ -98,9 +98,9 @@ public class Controller {
 		return moves;
     }
 
-	public static ArrayList<Coordinate> getQueenMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
-		ArrayList<Coordinate> moves = bishopGen(b, pos_i, pos_j);
-		ArrayList<Coordinate> list = rookGen(b, pos_i, pos_j);
+	public static LinkedList<Coordinate> getQueenMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
+		LinkedList<Coordinate> moves = bishopGen(b, pos_i, pos_j);
+		LinkedList<Coordinate> list = rookGen(b, pos_i, pos_j);
 		Iterator<Coordinate> i = list.iterator();
 
 		while (i.hasNext()){
@@ -109,9 +109,9 @@ public class Controller {
 		return moves;
 	}
 		
-	private static ArrayList<Coordinate> bishopGen (Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException{
+	private static LinkedList<Coordinate> bishopGen (Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException{
 		Coordinate x;
-		ArrayList<Coordinate> list = new ArrayList<Coordinate>();
+		LinkedList<Coordinate> list = new LinkedList<Coordinate>();
 		for (int i = 1; (pos_i + i) < 8; i++) {
 			if (pos_j + i < 8 && b.getPiece(pos_i + i, pos_j + i) == 'o') {
 				x = new Coordinate(pos_i + i, pos_j + i);
@@ -151,8 +151,8 @@ public class Controller {
 		return list;
 	}
 
-	private static ArrayList<Coordinate> rookGen (Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException{
-		ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
+	private static LinkedList<Coordinate> rookGen (Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException{
+		LinkedList<Coordinate> moves = new LinkedList<Coordinate>();
 		Coordinate x; 
 		boolean pathBlocked = false;
 		boolean pathBlocked2 = false;
@@ -232,5 +232,20 @@ public class Controller {
 		}
 		return moves;
 	}  
-  
+	/*
+	private static LinkedList<Coordinate>[] provisionalMoves(Board b) throws Exception {
+		LinkedList<Coordinate>[] Moves = new LinkedList[2];
+        for (int i = 0; i<8; i++) {
+			for (int j = 0; j<8; j++) {
+				if (b.getPiece(i, j) == 'c' || b.getPiece(i, j) == 'C') {
+					LinkedList<Coordinate> x = Controller.getKnightMoves(b, i, j);
+					Moves[1].addAll(x);
+				}
+				if () {
+
+				}
+			}
+		}
+        
+    }*/
 }
