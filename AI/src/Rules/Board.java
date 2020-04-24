@@ -8,6 +8,7 @@ public class Board {
     private char[][] chessBoard = new char[8][8];
     private final char[] initPosBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
     private final char[] initPosWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
+    private LinkedList<Coordinate>[][] stateBoard = new LinkedList[8][8];
 
     private boolean hasWhiteKingMoved = false;
     private boolean hasRightWhiteRookMoved = false;
@@ -104,6 +105,15 @@ public class Board {
         }
         return chessBoard[pos_x][pos_y];
     }
+
+    public LinkedList<Coordinate>[][] getStateBoard() {
+        return stateBoard;
+    }
+
+    public void setStateBoard(LinkedList<Coordinate> moves, int i, int j) {
+        stateBoard[i][j] = moves;
+    }
+
     public void printImage(){
     	char[] letters = {'A','B','C','D','E', 'F', 'G', 'H'};
     	int[] numbers = {8,7,6,5,4,3,2,1}; 
@@ -450,5 +460,5 @@ public class Board {
     	
     	return 0;
     }
-    
+
 }

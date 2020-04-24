@@ -233,29 +233,78 @@ public class Controller {
 		}
 		return moves;
 	}  
-	/*
-	private static LinkedList<Coordinate[]> provisionalMovesWhite(Board b) throws Exception {
-		LinkedList<Coordinate[]> moves = new LinkedList<Coordinate[]>();
-		LinkedList<Coordinate> x;
+	
+	private static void uncheckedMovesWhite(Board b) throws Exception {
         for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
 				if (b.getPiece(i, j) != 'o') {
-					if (b.getPiece(i, j) == 'C') {
-						x = Controller.getKnightMoves(b, i, j);
-						moves.addAll(x);
+					if (b.getPiece(i, j) == 'P') {
+						b.setStateBoard(Controller.getPawnMoves(b, i, j), i, j);
 					}
-					if (b.getPiece(i, j) == 'B') {
 
+					if (b.getPiece(i, j) == 'C') {
+						b.setStateBoard(Controller.getKnightMoves(b, i, j), i, j);
 					}
-					
+
+					if (b.getPiece(i, j) == 'B') {
+						b.setStateBoard(Controller.getBishopMoves(b, i, j), i, j);
+					}
+
+					if (b.getPiece(i, j) == 'R') {
+						b.setStateBoard(Controller.getRookMoves(b, i, j), i, j);
+					}
+
+					if (b.getPiece(i, j) == 'Q') {
+						b.setStateBoard(Controller.getQueenMoves(b, i, j), i, j);
+					}
+
+					if (b.getPiece(i, j) == 'K') {
+						b.setStateBoard(Controller.getKingMoves(b, i, j), i, j);
+					}
 				}
 				else {
 					continue;
 				}
 			}
 		}
-		return moves;
+		
 	}
-		*/
+
+	private static void uncheckedMovesBlack(Board b) throws Exception {
+        for (int i = 0; i<8; i++) {
+			for (int j = 0; j<8; j++) {
+				if (b.getPiece(i, j) != 'o') {
+					if (b.getPiece(i, j) == 'p') {
+						b.setStateBoard(Controller.getPawnMoves(b, i, j), i, j);
+					}
+
+					if (b.getPiece(i, j) == 'c') {
+						b.setStateBoard(Controller.getKnightMoves(b, i, j), i, j);
+					}
+
+					if (b.getPiece(i, j) == 'b') {
+						b.setStateBoard(Controller.getBishopMoves(b, i, j), i, j);
+					}
+
+					if (b.getPiece(i, j) == 'r') {
+						b.setStateBoard(Controller.getRookMoves(b, i, j), i, j);
+					}
+
+					if (b.getPiece(i, j) == 'q') {
+						b.setStateBoard(Controller.getQueenMoves(b, i, j), i, j);
+					}
+
+					if (b.getPiece(i, j) == 'k') {
+						b.setStateBoard(Controller.getKingMoves(b, i, j), i, j);
+					}
+				}
+				else {
+					continue;
+				}
+			}
+		}
+		
+	}
+		
 }
 
