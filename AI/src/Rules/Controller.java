@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 public class Controller {
 
+
   	public static LinkedList<Coordinate> getPawnMoves(Board b, int i, int j) throws UnexpectedPieceException, BoardOutOfBoundsException {
 		LinkedList<Coordinate> movesP = new LinkedList<Coordinate>();
 		Coordinate x;
@@ -233,19 +234,28 @@ public class Controller {
 		return moves;
 	}  
 	/*
-	private static LinkedList<Coordinate>[] provisionalMoves(Board b) throws Exception {
-		LinkedList<Coordinate>[] Moves = new LinkedList[2];
+	private static LinkedList<Coordinate[]> provisionalMovesWhite(Board b) throws Exception {
+		LinkedList<Coordinate[]> moves = new LinkedList<Coordinate[]>();
+		LinkedList<Coordinate> x;
         for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
-				if (b.getPiece(i, j) == 'c' || b.getPiece(i, j) == 'C') {
-					LinkedList<Coordinate> x = Controller.getKnightMoves(b, i, j);
-					Moves[1].addAll(x);
-				}
-				if () {
+				if (b.getPiece(i, j) != 'o') {
+					if (b.getPiece(i, j) == 'C') {
+						x = Controller.getKnightMoves(b, i, j);
+						moves.addAll(x);
+					}
+					if (b.getPiece(i, j) == 'B') {
 
+					}
+					
+				}
+				else {
+					continue;
 				}
 			}
 		}
-        
-    }*/
+		return moves;
+	}
+		*/
 }
+
