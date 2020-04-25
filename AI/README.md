@@ -83,7 +83,7 @@ public LinkedList<Coordinate>[][] getStateBoard();
 ```java
 public void setStateBoard(LinkedList<Coordinate> moves, int i, int j);
 ```
-- Coloca a lista _moves_ na posição do array _stateBoard[i][j]_.
+- Coloca a lista _moves_ na posição do array `<stateBoard[i][j]>`
 
 ```java
 public boolean getHasWhiteKingMoved();
