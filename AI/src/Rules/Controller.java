@@ -234,7 +234,7 @@ public class Controller {
 		return moves;
 	}  
 	
-	private static void uncheckedMovesWhite(Board b) throws Exception {
+	public static void uncheckedMovesWhite(Board b) throws Exception {
         for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
 				if (b.getPiece(i, j) != 'o') {
@@ -270,7 +270,7 @@ public class Controller {
 		
 	}
 
-	private static void uncheckedMovesBlack(Board b) throws Exception {
+	public static void uncheckedMovesBlack(Board b) throws Exception {
         for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
 				if (b.getPiece(i, j) != 'o') {
