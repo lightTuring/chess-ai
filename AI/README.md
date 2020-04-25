@@ -78,12 +78,12 @@ public void printImage();
 ```java
 public LinkedList<Coordinate>[][] getStateBoard();
 ```
-- Retorna o array _StateBoard[][]_ do tipo _LinkedList<Coordinate>_.
+- Retorna o array `stateBoard[][]` do tipo `LinkedList<Coordinate>`.
 
 ```java
 public void setStateBoard(LinkedList<Coordinate> moves, int i, int j);
 ```
-- Coloca a lista _moves_ na posição do array `<stateBoard[i][j]>`
+- Coloca a lista _moves_ na posição do array `stateBoard[i][j]`
 
 ```java
 public boolean getHasWhiteKingMoved();
@@ -301,7 +301,7 @@ public ArrayList<Coordinate> getQueenMoves(int i, int j);
 ```java
 public static void uncheckedMovesBlack(Board b) throws Exception
 ```
-- Lista todos os movimentos possíveis das pretas e salva na variável _stateBoard[][]_ da _Board b_. Por enquanto não detecta cravada.
+- Lista todos os movimentos possíveis das pretas e salva na variável `stateBoard[][]` da `Board b`. Por enquanto não detecta cravada.
 
 ```java
 public static void uncheckedMovesWhite(Board b) throws Exception
