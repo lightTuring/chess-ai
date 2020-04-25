@@ -9,7 +9,6 @@ public class Board {
     private final char[] initPosBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
     private final char[] initPosWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
     private LinkedList<Coordinate>[][] stateBoard = new LinkedList[8][8];
-    private boolean blackList[][] = new boolean[8][8];
 
     private boolean hasWhiteKingMoved = false;
     private boolean hasRightWhiteRookMoved = false;

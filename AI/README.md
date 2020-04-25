@@ -76,6 +76,16 @@ public void printImage();
 - Imprime uma imagem do tabuleiro no terminal.
 
 ```java
+public LinkedList<Coordinate>[][] getStateBoard();
+```
+- Retorna o array _StateBoard[][]_ do tipo _LinkedList<Coordinate>_.
+
+```java
+public void setStateBoard(LinkedList<Coordinate> moves, int i, int j);
+```
+- Coloca a lista _moves_ na posição do array _stateBoard[i][j]_.
+
+```java
 public boolean getHasWhiteKingMoved();
 ```
 - Retorna se o rei branco deu o seu primeiro movimento.
@@ -287,6 +297,16 @@ public ArrayList<Coordinate> getKingMoves(int i, int j);
 public ArrayList<Coordinate> getQueenMoves(int i, int j);
 ```
 - Para a peça: Rainha.
+
+```java
+public static void uncheckedMovesBlack(Board b) throws Exception
+```
+- Lista todos os movimentos possíveis das pretas e salva na variável _stateBoard[][]_ da _Board b_. Por enquanto não detecta cravada.
+
+```java
+public static void uncheckedMovesWhite(Board b) throws Exception
+```
+- Idem para as brancas.
 
 ```java
 private static ArrayList<Coordinate> rookGen (int pos_i, int pos_j, Board b);
