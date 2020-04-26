@@ -8,6 +8,7 @@ public class Board {
     private char[][] chessBoard = new char[8][8];
     private final char[] initPosBlack = {'t', 'c', 'b', 'q', 'k', 'b', 'c', 't'};
     private final char[] initPosWhite = {'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T'};
+    @SuppressWarnings("unchecked")
     private LinkedList<Coordinate>[][] stateBoard = new LinkedList[8][8];
 
     private boolean hasWhiteKingMoved = false;
@@ -34,17 +35,17 @@ public class Board {
     }
     //comparação por tabela ASCII
     public boolean isWhite(int pos_i, int pos_j) throws BoardOutOfBoundsException {
-    	return ((int)getPiece(pos_i, pos_j) < 90);
+    	return (Character.isUpperCase(getPiece(pos_i, pos_j)));
     }
     //comparação por tabela ASCII
     public boolean isBlack(int pos_i, int pos_j) throws BoardOutOfBoundsException {
-    	return ((int)getPiece(pos_i, pos_j) > 97);
+    	return (Character.isLowerCase(getPiece(pos_i, pos_j)) && getPiece(pos_i, pos_j) != 'o');
     }
     public boolean isWhite(char piece) throws BoardOutOfBoundsException {
-    	return ((int)piece < 90);
+    	return (Character.isUpperCase(piece));
     }
     public boolean isBlack(char piece) throws BoardOutOfBoundsException {
-    	return ((int)piece > 97);
+    	return (Character.isUpperCase(piece) && piece != 'o');
     }
     public boolean hasSameColor(int me_i, int me_j, int that_piece_i, int that_piece_j) throws BoardOutOfBoundsException {
     	return ((isBlack(me_i, me_j) && isBlack(that_piece_i, that_piece_j))||(isWhite(me_i, me_j)&& isWhite(that_piece_i, that_piece_j)));
@@ -461,13 +462,37 @@ public class Board {
     	return 0;
     }
     /*
-    public void isPiecePinned(int i, int j) {
-        if (getPiece(i, j) != 'o') {
+    public boolean isPiecePinned(int i, int j) throws BoardOutOfBoundsException, UnexpectedPieceException {
+        if (getPiece(i, j) != 'o' && isWhite(i, j) == true) {
+            boolean kingPath = false;
+            LinkedList<Coordinate> queen = Controller.getQueenMoves(this, i, j);
+            Iterator<Coordinate> it = queen.iterator();
+            Coordinate x;
 
+            while (it.hasNext()) {
+                x = it.next();
+                
+                 if (getPiece(x.getPos_i(), x.getPos_j()) == 'K') {
+
+                 }
+
+                 else {
+                    continue;
+                 }
+            }
+            
+            
+        }
+
+        if (getPiece(i, j) != 'o' && isBlack(i, j) == true) {
+            
+            
+            return true;
         }
 
         else {
-            blackList[i][j] = false;
+            
+            throw new UnexpectedPieceException("Casa Vazia");
         }
     }*/
 }
