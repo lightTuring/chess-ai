@@ -12,5 +12,9 @@ public class Position {
         return position;
     }
 
+    public void changePosition (Board b) {
+        b.setBoard(position);
+    }
+
 }
 

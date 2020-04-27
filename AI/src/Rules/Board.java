@@ -81,6 +81,7 @@ public class Board {
             throw new IllegalCastlingException("doBlacksCastling chamado ilegamente");
         }
     }
+
     private void setChange(int begin_x, int begin_y, int final_x, int final_y){
         // a verificação é com a peça final? está peça de comparação é o rei?
        if(chessBoard[final_x][final_y] != 'K' && chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8){
@@ -179,6 +180,10 @@ public class Board {
         } else {
             return true;
         }
+    }
+
+    public void setBoard(char[][] board) {
+        chessBoard = board;
     }
 
     public char[][] getBoard() {
