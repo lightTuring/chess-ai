@@ -1,5 +1,6 @@
 package Rules;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Game {
@@ -28,6 +29,15 @@ public class Game {
 
     public boolean isLegalMove(int i, int j, int final_i, int final_j) {
         Coordinate c = new Coordinate(final_i, final_j);
-        LinkedList<Coordinate> 
+        LinkedList<Coordinate>[][] list = legalMoves();
+        Iterator<Coordinate> iterator = list[i][j].iterator();
+        boolean legal = false;
+
+        while (iterator.hasNext()) {
+            if(iterator.next().equals(c)) {
+                legal = true;
+            }
+        }
+        return legal;
     }
 }
