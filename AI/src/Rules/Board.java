@@ -1,5 +1,6 @@
 package Rules;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import Notation.Annotation;
 
@@ -182,6 +183,42 @@ public class Board {
         }
     }
 
+    public boolean isCheckInBlackKing() throws Exception {
+        Controller.uncheckedMovesWhite(this);
+        Coordinate[] king = indexOfPiece('k');
+        boolean isCheck = false;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Iterator<Coordinate> iter = stateBoard[i][j].iterator();
+                while(iter.hasNext()) {
+                    if(iter.next().equals(king[0])) {
+                        isCheck = true;
+                    }
+                }
+            }
+        }
+        return isCheck;
+        
+    }
+
+    public boolean isCheckInWhiteKing() throws Exception {
+        Controller.uncheckedMovesBlack(this);
+        Coordinate[] king = indexOfPiece('K');
+        boolean isCheck = false;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Iterator<Coordinate> iter = stateBoard[i][j].iterator();
+                while(iter.hasNext()) {
+                    if(iter.next().equals(king[0])) {
+                        isCheck = true;
+                    }
+                }
+            }
+        }
+        return isCheck;
+        
+    }
+
     public void setBoard(char[][] board) {
         chessBoard = board;
     }
@@ -189,7 +226,7 @@ public class Board {
     public char[][] getBoard() {
         return chessBoard;
     }
-    
+
     public Coordinate[] indexOfPiece(char b) {
     	Coordinate[] positions = new Coordinate[8];
     	int p = 0;
