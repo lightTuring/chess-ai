@@ -18,4 +18,13 @@ public class Coordinate {
   public void printCoordinate() {
     System.out.println(this.final_i + ", " + this.final_j);
   } 
+
+  public boolean equals(Coordinate c) {
+      if (c.getPos_i() == final_i && c.getPos_j() == final_j) {
+        return true;
+    }
+      else {
+        return false;
+      }
+  }
 }

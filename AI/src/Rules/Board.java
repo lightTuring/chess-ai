@@ -189,6 +189,7 @@ public class Board {
     public char[][] getBoard() {
         return chessBoard;
     }
+    
     public Coordinate[] indexOfPiece(char b) {
     	Coordinate[] positions = new Coordinate[8];
     	int p = 0;
