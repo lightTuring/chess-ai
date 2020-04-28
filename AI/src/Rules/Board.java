@@ -186,12 +186,14 @@ public class Board {
     public boolean isCheckInBlackKing() throws Exception {
         Controller.uncheckedMovesWhite(this);
         Coordinate[] king = indexOfPiece('k');
+        Coordinate x;
         boolean isCheck = false;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Iterator<Coordinate> iter = stateBoard[i][j].iterator();
                 while(iter.hasNext()) {
-                    if(iter.next().equals(king[0])) {
+                    x = iter.next(); 
+                    if(x.equals(king[0]) && getPiece(x.getPos_i(), x.getPos_j()) != 'K') {
                         isCheck = true;
                     }
                 }
@@ -204,12 +206,14 @@ public class Board {
     public boolean isCheckInWhiteKing() throws Exception {
         Controller.uncheckedMovesBlack(this);
         Coordinate[] king = indexOfPiece('K');
+        Coordinate x;
         boolean isCheck = false;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Iterator<Coordinate> iter = stateBoard[i][j].iterator();
                 while(iter.hasNext()) {
-                    if(iter.next().equals(king[0])) {
+                    x = iter.next(); 
+                    if(x.equals(king[0]) && getPiece(x.getPos_i(), x.getPos_j()) != 'k') {
                         isCheck = true;
                     }
                 }
