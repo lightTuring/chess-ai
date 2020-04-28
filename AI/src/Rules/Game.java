@@ -27,13 +27,13 @@ public class Game {
         return (turn);
     }
 
-    public LinkedList<Coordinate>[][] legalMoves() {
+    private LinkedList<Coordinate>[][] pseudoLegalMoves() {
         return (board.getStateBoard());
     }
     
-    private boolean isPseudoLegal(int i, int j, int final_i, int final_j) throws Exception {
+    private boolean isPseudoLegal(int i, int j, int final_i, int final_j) throws BoardOutOfBoundsException {
         Coordinate c = new Coordinate(final_i, final_j);
-        LinkedList<Coordinate>[][] list = legalMoves();
+        LinkedList<Coordinate>[][] list = pseudoLegalMoves();
         boolean legal = false;
 
         if (list[i][j] != null) {
@@ -60,7 +60,7 @@ public class Game {
         }
         return legal;
     }
-    public void move(int i, int j, int final_i, int final_j) throws Exception, IllegalMoveException {
+    public void move(int i, int j, int final_i, int final_j) throws  IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         Board copy = board;
         
         if (isPseudoLegal(i, j, final_i, final_j) == false) {
@@ -76,4 +76,39 @@ public class Game {
             }
         }
     }
+
+    public boolean isLegal(int i, int j, int final_i, int final_j) throws BoardOutOfBoundsException, UnexpectedPieceException  {
+        Board copy = board;
+        boolean x = true;
+
+        try{
+            move(i, j, final_i, final_j);
+        }
+        catch (IllegalMoveException illegal) {
+            x = false;
+        }
+        board = copy;
+        return x;
+    }
+    /*
+    public boolean isCheckMateWhite() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
+        LinkedList<Coordinate>[][] list = pseudoLegalMoves();
+        int ilegal = 0;
+
+        if(board.isCheckInWhiteKing() == true) {
+            for (int i = 0; i<8; i++) {
+                for (int j = 0; j<8; j++) {
+                    Board copy = board;
+                    Iterator x = list[i][j].iterator();
+                }
+            }
+        }
+
+        else {
+            return false;
+        }
+        
+        
+        return false;
+    }*/
 }

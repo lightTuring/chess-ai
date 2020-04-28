@@ -61,23 +61,20 @@ public class Controller {
 	    return movesP;
     }
 
-  	public static LinkedList<Coordinate> getKnightMoves(Board b, int pos_i, int pos_j) throws Exception{
+  	public static LinkedList<Coordinate> getKnightMoves(Board b, int pos_i, int pos_j){
 		LinkedList<Coordinate> movesK = new LinkedList<Coordinate>();
 		Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
-	    if(b.getPiece(pos_i, pos_j) == 'C' || b.getPiece(pos_i, pos_j) == 'c') {//if serve como uma segurança de que a peça é um cavalo
+	    
 	    	for(byte i = 0; i < addingGeneralCoordinate.length; i+=2) {
     			if(((pos_i + addingGeneralCoordinate[i]) >= 0 && (pos_i + addingGeneralCoordinate[i]) <= 7) && ((pos_j + addingGeneralCoordinate[i+1]) >= 0 && (pos_j + addingGeneralCoordinate[i+1] <= 7))) {
     				x = new Coordinate((pos_i + addingGeneralCoordinate[i]), (pos_j + addingGeneralCoordinate[i+1]));
         			movesK.add(x);
     			}
     		}
-	    }else {
-	    	throw new UnexpectedPieceException("Argumentos dados a Controller.getKnightMoves não correspondem a um Cavalo");
-	    }
-
+		
+		
 		return movesK;
-
 	}
 
     public static LinkedList<Coordinate> getBishopMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
@@ -234,7 +231,7 @@ public class Controller {
 		return moves;
 	}  
 	
-	public static void uncheckedMovesWhite(Board b) throws Exception {
+	public static void uncheckedMovesWhite(Board b) throws UnexpectedPieceException, BoardOutOfBoundsException {
         for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
 				if (b.getPiece(i, j) != 'o') {
@@ -270,7 +267,7 @@ public class Controller {
 		
 	}
 
-	public static void uncheckedMovesBlack(Board b) throws Exception {
+	public static void uncheckedMovesBlack(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException {
         for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
 				if (b.getPiece(i, j) != 'o') {
