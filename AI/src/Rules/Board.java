@@ -55,6 +55,10 @@ public class Board {
         setChange(begin_x, begin_y, final_x, final_y);
         Annotation.putMovement(final_x, final_y);
     }
+    public void changePos(int begin_x, int begin_y, Coordinate c){
+        setChange(begin_x, begin_y, c.getPos_i(), c.getPos_j());
+        Annotation.putMovement(c.getPos_i(), c.getPos_j());
+    }
 // Método de roque para as pretas. Pede um y para definir qual das duas possiblidades de roque vai ser feita.
     public void doBlacksCastling(int y) throws IllegalCastlingException, BoardOutOfBoundsException {
         if (y == 2 && getPiece(0, 2) == 'o' && !(getHasLeftBlackRookMoved()) && !(getHasBlackKingMoved())) {

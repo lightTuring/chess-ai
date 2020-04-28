@@ -7,6 +7,7 @@ public class Game {
     private Board board;
     //true = brancas; false = pretas. 
     private boolean turn;
+    private boolean endOfGame = false;
     private int moves = 0;
 
     public Game(Board board) {  
@@ -77,12 +78,12 @@ public class Game {
         }
     }
 
-    public boolean isLegal(int i, int j, int final_i, int final_j) throws BoardOutOfBoundsException, UnexpectedPieceException  {
+    private boolean isLegal(int i, int j, Coordinate coordinate) throws BoardOutOfBoundsException, UnexpectedPieceException  {
         Board copy = board;
         boolean x = true;
 
         try{
-            move(i, j, final_i, final_j);
+            move(i, j, coordinate.getPos_i(), coordinate.getPos_j());
         }
         catch (IllegalMoveException illegal) {
             x = false;
@@ -90,25 +91,40 @@ public class Game {
         board = copy;
         return x;
     }
-    /*
-    public boolean isCheckMateWhite() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
+    
+    public void isCheckMateWhite() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         LinkedList<Coordinate>[][] list = pseudoLegalMoves();
-        int ilegal = 0;
+        int legal = 0;
 
         if(board.isCheckInWhiteKing() == true) {
             for (int i = 0; i<8; i++) {
                 for (int j = 0; j<8; j++) {
                     Board copy = board;
-                    Iterator x = list[i][j].iterator();
+                    Iterator<Coordinate> x = list[i][j].iterator();
+                    while (x.hasNext() && legal == 0) {
+                        Coordinate c = x.next();
+                        if (isLegal(i, j, c)) {
+                            copy.changePos(i, j, c);
+                            if (!copy.isCheckInWhiteKing()) {
+                                legal++;
+                            }
+                        }
+                    }
+
+                    if (legal != 0) {
+                        break;
+                    }
+                }
+
+                if (legal != 0) {
+                    break;
                 }
             }
-        }
 
-        else {
-            return false;
+            if (legal == 0) {
+                endOfGame = true;
+            }
         }
-        
-        
-        return false;
-    }*/
+    }
+    
 }
