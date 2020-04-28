@@ -19,23 +19,42 @@ public class Game {
         this.turn = turn;
     }
 
-    public String getTurn() {
+    public String getTurnString() {
         return (turn ? "Brancas" : "Pretas");
+    }
+
+    public boolean getTurn() {
+        return (turn);
     }
 
     public LinkedList<Coordinate>[][] legalMoves() {
         return (board.getStateBoard());
     }
-
-    public boolean isLegalMove(int i, int j, int final_i, int final_j) {
+    
+    private boolean isLegalMove(int i, int j, int final_i, int final_j) throws Exception {
         Coordinate c = new Coordinate(final_i, final_j);
         LinkedList<Coordinate>[][] list = legalMoves();
-        Iterator<Coordinate> iterator = list[i][j].iterator();
         boolean legal = false;
-
-        while (iterator.hasNext()) {
-            if(iterator.next().equals(c)) {
-                legal = true;
+        if (list[i][j] != null) {
+            Iterator<Coordinate> iterator = list[i][j].iterator();
+        
+            if (turn == true) {
+                if (!board.isCheckInWhiteKing()){
+                    while (iterator.hasNext()) {
+                        if(iterator.next().equals(c)) {
+                            legal = true;
+                        }
+                    }
+                }   
+            }
+            else {
+                if (!board.isCheckInBlackKing()){
+                    while (iterator.hasNext()) {
+                        if(iterator.next().equals(c)) {
+                            legal = true;
+                        }
+                    }
+                } 
             }
         }
         return legal;

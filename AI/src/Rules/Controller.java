@@ -263,7 +263,7 @@ public class Controller {
 					}
 				}
 				else {
-					continue;
+					b.setStateBoard(null, i, j);
 				}
 			}
 		}
@@ -299,7 +299,7 @@ public class Controller {
 					}
 				}
 				else {
-					continue;
+					b.setStateBoard(null, i, j);
 				}
 			}
 		}
