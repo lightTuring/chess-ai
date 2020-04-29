@@ -13,5 +13,11 @@ public class MinMax {
 		 * 
 		 */
 	}
+	public int min() {
+		return 0;
+	}
+	public int max() {
+		return 0;
+	}
 	
 }
