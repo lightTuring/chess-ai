@@ -126,5 +126,40 @@ public class Game {
             }
         }
     }
-    
+
+    public void isCheckMateBlack() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
+        LinkedList<Coordinate>[][] list = pseudoLegalMoves();
+        int legal = 0;
+
+        if(board.isCheckInBlackKing() == true) {
+            for (int i = 0; i<8; i++) {
+                for (int j = 0; j<8; j++) {
+                    Board copy = board;
+                    Iterator<Coordinate> x = list[i][j].iterator();
+                    while (x.hasNext() && legal == 0) {
+                        Coordinate c = x.next();
+                        if (isLegal(i, j, c)) {
+                            copy.changePos(i, j, c);
+                            if (!copy.isCheckInBlackKing()) {
+                                legal++;
+                            }
+                        }
+                    }
+
+                    if (legal != 0) {
+                        break;
+                    }
+                }
+
+                if (legal != 0) {
+                    break;
+                }
+            }
+
+            if (legal == 0) {
+                endOfGame = true;
+            }
+        }
+    }
+
 }
