@@ -466,6 +466,35 @@ public ArrayList<Integer> getPathProcess();
 ```
 - Retorna uma lista do tipo _ArrayList_ representando o caminho bruto do início até o fim do nó de busca, ou seja, este método retorna com precisão por todos os nós que o algoritmo de busca passou e por quantas vezes.
 
+### Min Max
+Aplica o algoritmo principal do jogo, atuando na tomada de decisão.
+
+```cpp
+const int inf = 1e9+7;
+
+int value;
+
+int min_max(int *node, int depth, bool isMaximizing){
+
+	if(depth == 0 || (final_node)) return *node;
+	
+	if((isMaximizing)){
+		value = -inf;
+		for(int child : node){
+			value = max(value, min_max(child, (depth-1), false));	
+		}
+	}
+	else{
+		value = inf;
+		for(int child : node){
+			value = min(value, min_max(child, (depth-1), true));
+		}
+	}
+	return value;
+
+}
+``` 
+- Pseudo-código do algoritmo [Min Max](https://en.wikipedia.org/wiki/Minimax)
 ### RandomPlay
 Está classe com métodos estáticos realiza um sorteio das peças e das posições para uma jogada.
 
