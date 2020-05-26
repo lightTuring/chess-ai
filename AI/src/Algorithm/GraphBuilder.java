@@ -1,6 +1,5 @@
 package Algorithm;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -8,7 +7,7 @@ import Rules.Coordinate;
 
 public class GraphBuilder {
 
-	private int depth = 0;
+	private int depth = 1;
 	private LinkedList<LinkedList<Coordinate>> graph = new LinkedList<LinkedList<Coordinate>>();
 	private static Coordinate lastMovement = null;
 	
@@ -19,26 +18,55 @@ public class GraphBuilder {
 	 * 
 	 */
 	
-	public GraphBuilder() {
-		
-	}
 	public void createGraph(int node, Coordinate currentPiece, LinkedList<Coordinate> plays) {
 		graph.add(node, plays);
-		if(lastMovement != null) graph.get(node).add(0, lastMovement);
+		if(lastMovement != null && !hasThisElement(lastMovement, node)) graph.get(node).add(0, lastMovement);
 		else lastMovement = currentPiece;;
 		depth++;
 	}
 	public int getDepth() {
 		return depth;
 	}
-	/*
-	public void addElements(int node, int ... elements) {
-		for (int i : elements) {
-			this.graphConnections[node].add(i);
+	public LinkedList<LinkedList<Coordinate>> getSkeleton(){
+		return graph;
+	}
+	public void printGraph() {
+		for (int i = 0; i < graph.size(); i++) {
+			for (int j = 0; j < graph.get(i).size(); j++) {
+				System.out.print("("+graph.get(i).get(j).getPos_i()+", "+graph.get(i).get(j).getPos_j()+") ");
+			}
+			System.out.println();
 		}
-	}*/
+	}
+	private boolean hasThisElement(Coordinate c, int node) {
+		
+		for (int i = 0; i < graph.get(node).size(); i++) {
+			if(c.equals(graph.get(node).get(i))) {
+				return true;
+			}
+		}
+		
+		return false;
+		
+	}
 		
 	public static void main(String[] args) {
+		GraphBuilder g = new GraphBuilder();
+		
+		LinkedList<Coordinate> ali = new LinkedList<Coordinate>();
+		ali.add(new Coordinate(1, 0));
+		ali.add(new Coordinate(1,1));
+		
+		g.createGraph(0, new Coordinate(0, 0), ali);
+		
+		LinkedList<Coordinate> aqui = new LinkedList<Coordinate>();
+		aqui.add(new Coordinate(4, 4));
+		for (int i = 1; i <= 2; i++) {
+			
+			g.createGraph(i, ali.get(i-1), aqui);
+		}
+		
+		g.printGraph();
 		
 	}
 }
