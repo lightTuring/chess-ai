@@ -61,11 +61,7 @@ public class GraphBuilder {
 	}
 	
 	public int HowManyNodes() {
-		int count = 0;
-		
-		for (int i = 0; i < graph.size(); i++) count += graph.get(i).size();
-		
-		return graph.size() * count;
+		return graph.size() + graph.get(graph.size()-1).size();
 	}
 	
 	private boolean hasThisElement(Coordinate c, int node) {
