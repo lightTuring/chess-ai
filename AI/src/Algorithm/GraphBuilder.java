@@ -51,7 +51,7 @@ public class GraphBuilder {
 	}
 		
 	public static void main(String[] args) {
-							/*TESTE*/
+				/*TESTE*/
 		GraphBuilder g = new GraphBuilder();
 		
 		LinkedList<Coordinate> ali = new LinkedList<Coordinate>();
