@@ -1,22 +1,23 @@
 package Algorithm;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 import Rules.Coordinate;
+
+/*
+ * ESCOLHE A PEÇA, ADICIONA NO GRAFO E CONTA A PROFUNDIDADE 
+ * PERCORRE UM FOR PARA TODAS AS PEÇAS JOGAREM
+ * REPETE
+ * 
+ * Grafo do tipo Árvore
+ * 
+ */
 
 public class GraphBuilder {
 
 	private int depth = 1;
 	private LinkedList<LinkedList<Coordinate>> graph = new LinkedList<LinkedList<Coordinate>>();
 	private static Coordinate lastMovement = null;
-	
-	/*
-	 * ESCOLHE A PEÇA, ADICIONA NO GRAFO E CONTA A PROFUNDIDADE 
-	 * PERCORRE UM FOR PARA TODAS AS PEÇAS JOGAREM
-	 * REPETE
-	 * 
-	 */
 	
 	public void createGraph(int node, Coordinate currentPiece, LinkedList<Coordinate> plays) {
 		graph.add(node, plays);
@@ -30,8 +31,10 @@ public class GraphBuilder {
 	public LinkedList<LinkedList<Coordinate>> getSkeleton(){
 		return graph;
 	}
+
 	public void printGraph() {
 		for (int i = 0; i < graph.size(); i++) {
+			System.out.print("The node:" + i + " has connections with this coordinates-> ");
 			for (int j = 0; j < graph.get(i).size(); j++) {
 				System.out.print("("+graph.get(i).get(j).getPos_i()+", "+graph.get(i).get(j).getPos_j()+") ");
 			}
@@ -39,18 +42,16 @@ public class GraphBuilder {
 		}
 	}
 	private boolean hasThisElement(Coordinate c, int node) {
-		
 		for (int i = 0; i < graph.get(node).size(); i++) {
 			if(c.equals(graph.get(node).get(i))) {
 				return true;
 			}
 		}
-		
 		return false;
-		
 	}
 		
 	public static void main(String[] args) {
+							/*TESTE*/
 		GraphBuilder g = new GraphBuilder();
 		
 		LinkedList<Coordinate> ali = new LinkedList<Coordinate>();
@@ -65,7 +66,7 @@ public class GraphBuilder {
 			
 			g.createGraph(i, ali.get(i-1), aqui);
 		}
-		
+		System.out.println(g.getDepth());
 		g.printGraph();
 		
 	}
