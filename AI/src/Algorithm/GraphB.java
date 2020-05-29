@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import Rules.Coordinate;
 
 
-public class GraphBuilder {
+public class GraphB {
     
     private final int maxn = 1000007;
     private static int depth = 0;
@@ -14,7 +14,7 @@ public class GraphBuilder {
     private LinkedList<Integer>[] graph = new LinkedList[maxn]; 
     private LinkedList<Coordinate> nodesPos = new LinkedList<>();
 
-    public GraphBuilder(){
+    public GraphB(){
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new LinkedList<>();
         }
@@ -62,7 +62,7 @@ public class GraphBuilder {
 
     public static void main(String[] args) {
         
-        GraphBuilder g = new GraphBuilder();
+        GraphB g = new GraphB();
         g.createGraph(new Coordinate(0, 0));
 
         LinkedList<Coordinate> ali = new LinkedList<Coordinate>();
