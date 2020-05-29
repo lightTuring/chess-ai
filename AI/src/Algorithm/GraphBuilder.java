@@ -11,8 +11,8 @@ public class GraphBuilder {
     private static int countNodes = 1; 
 
     @SuppressWarnings("unchecked")
-    private LinkedList<Integer>[] graph = new LinkedList[maxn]; 
-    private LinkedList<Coordinate> nodesPos = new LinkedList<>();
+    private LinkedList<Integer>[] graph = new LinkedList[maxn];//Grafo NÓSxARESTA
+    private LinkedList<Coordinate> nodesPos = new LinkedList<>();//Lista com as coordenadas dos nós
 
     public GraphBuilder(){
         for (int i = 0; i < graph.length; i++) {
@@ -44,11 +44,14 @@ public class GraphBuilder {
         for (int i = 0; i < countNodes; i++) {
             System.out.print("The node:" + i + " has connections with this coordinates-> ");
             for (int j = 0; j < graph[i].size(); j++) {
-                System.out.print("("+graph[i].get(j)+", "+graph[i].get(j)+") ");
+                System.out.print(graph[i].get(j) + " ");
             }
             System.out.println();
         }
-    }
+	}
+	public Coordinate getCoordinate(int node){
+		return nodesPos.get(node); 
+	}
     private int BrutalSearch(Coordinate c){
         
         for (int i = 0; i < nodesPos.size(); i++) {
