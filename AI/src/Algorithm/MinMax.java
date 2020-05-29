@@ -1,18 +1,18 @@
 package Algorithm;
 
 import java.util.LinkedList;
-
 import Rules.Coordinate;
 
-public class MinMax {
+public class MinMax extends GraphBuilder{
 
-	private boolean[] visited = new boolean[1000];
-	public LinkedList<Integer>[] graph = new LinkedList[10];
+	private final int maxn = 1000007;
+	private boolean[] visited = new boolean[maxn];
+	public LinkedList<Integer>[] graph;	
 
-	public MinMax() {
-		// TODO Auto-generated constructor stub
-		for (int i = 0; i < graph.length; i++) {
-			graph[i] = new LinkedList<>();
+	public MinMax(LinkedList<Integer>[] graph) {
+		this.graph = graph;
+		for (int i = 0; i < visited.length; i++) {
+			visited[i] = false;
 		}
 	}
 	public void algorithm() {

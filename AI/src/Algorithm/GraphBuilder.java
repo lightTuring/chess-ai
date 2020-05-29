@@ -37,10 +37,20 @@ public class GraphBuilder {
         depth++;
     }
 
+	public LinkedList<Integer>[] getGraph(){
+		return graph; 
+	}
     public int getDepth(){
         return depth;
     }
-    public void printGraph(){
+	public Coordinate getCoordinate(int node){
+		return nodesPos.get(node); 
+	}
+	public int getNode(Coordinate c){
+		return BrutalSearch(c);
+	}
+
+	public void printGraph(){
         for (int i = 0; i < countNodes; i++) {
             System.out.print("The node:" + i + " has connections with this coordinates-> ");
             for (int j = 0; j < graph[i].size(); j++) {
@@ -48,9 +58,6 @@ public class GraphBuilder {
             }
             System.out.println();
         }
-	}
-	public Coordinate getCoordinate(int node){
-		return nodesPos.get(node); 
 	}
     private int BrutalSearch(Coordinate c){
         
