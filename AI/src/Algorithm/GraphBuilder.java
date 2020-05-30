@@ -12,7 +12,9 @@ public class GraphBuilder {
 
     @SuppressWarnings("unchecked")
     private LinkedList<Integer>[] graph = new LinkedList[maxn];//Grafo NÓSxARESTA
-    private LinkedList<Coordinate> nodesPos = new LinkedList<>();//Lista com as coordenadas dos nós
+	private LinkedList<Coordinate> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
+	private int[] nodeWeights = new int[maxn];
+	private int[] depthNode = new int[maxn];//profundidades dos nós
 
     public GraphBuilder(){
         for (int i = 0; i < graph.length; i++) {
@@ -23,7 +25,7 @@ public class GraphBuilder {
 
         graph[0].add(0);
         nodesPos.add(c);
-
+		depthNode[0] = depth;
         depth++;
     }
     public void createGraph(Coordinate father, LinkedList<Coordinate> u){
@@ -33,16 +35,27 @@ public class GraphBuilder {
             graph[countNodes].add(nodeFather);
             graph[countNodes].add(countNodes);
             countNodes++;
-        }
+		}
+		depthNode[nodeFather] = depth;
         depth++;
     }
+
+	public void setWeight(int u, int weight){
+		nodeWeights[u] = weight;
+	}
+	public int getWeight(int u){
+		return nodeWeights[u];
+	}
 
 	public LinkedList<Integer>[] getGraph(){
 		return graph; 
 	}
     public int getDepth(){
         return depth;
-    }
+	}
+	public int getDepthFromNode(int u){
+		return depthNode[u];
+	}
 	public Coordinate getCoordinate(int node){
 		return nodesPos.get(node); 
 	}
