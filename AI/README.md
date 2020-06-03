@@ -502,7 +502,7 @@ public MinMax(GraphBuilder gb);
 public int algorithm(int node, int depth, boolean isMaximizing);
 ```
 
-- Aplica o Algoritmo Min_Max, atribuindo a todos os nós os pesos. Recebe três argumentos: Nó, a profundidade e se é momento de maximização.
+- Aplica o Algoritmo Min_Max, atribuindo a todos os nós os pesos. Recebe três argumentos: Nó, a profundidade e se é momento de maximização(Na primeira chamada passar este valor sendo verdadeiro).
 
 ```java
 private void dfs(int u, int dpt, int dm);
