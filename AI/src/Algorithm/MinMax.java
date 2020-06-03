@@ -1,46 +1,34 @@
 package Algorithm;
 
-import java.util.LinkedList;
-import Rules.Coordinate;
+import java.util.*;
 
 public class MinMax extends GraphBuilder{
 
-	private final int maxn = 1000007;
-	private boolean[] visited = new boolean[maxn];
+	//Variáveis de Min Max
 	public LinkedList<Integer>[] graph;	
+	private GraphBuilder gb;
+	private final int inf = 1000000007;
+	int lim = 5;//aleatório 
+	private int value;
 
-	public MinMax(LinkedList<Integer>[] graph) {
-		this.graph = graph;
-		for (int i = 0; i < visited.length; i++) {
-			visited[i] = false;
-		}
+	public MinMax(GraphBuilder gb) {
+		this.gb = gb;
+		graph = gb.getGraph();		
 	}
-	public void algorithm() {
-		/*
-		 * 1o -> Busca o último nó por DFS 
-		 * 2o -> Seta os pesos fazendo o caminho contrário(ou seja, retira cada elemento da Stack)
-		 * 3o -> Aplica DFS nos nós de profundidade e realiza as somatórias e retorna o melhor caminho 
-		 * 
-		 */
-	}
-	private void dfs(int u){
-
-		visited[u] = true;
-
-		if(!visited[u]){
-			for (Integer v : graph[u]) {
-				if(!visited[v]){
-					dfs(v);
-				}
+	public int algorithm(int node, int depth, boolean isMaximizing) {
+		if(depth == gb.getDepth()){return gb.getWeight(node);}
+		if(isMaximizing){
+			value = -inf;
+			for (Integer child : graph[node]) {
+				value = Math.max(value, algorithm(child, (depth+1), false));	
+			}
+		}else{
+			value = -inf;
+			for (Integer child : graph[node]) {
+				value = Math.max(value, algorithm(child, (depth+1), false));	
 			}
 		}
-
-	}
-	public int min() {
-		return -1;
-	}
-	public int max() {
-		return 1;
+		return value;
 	}
 	
 }
