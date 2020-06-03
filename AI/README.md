@@ -384,117 +384,34 @@ public IllegalCastlingException(String message);
 ## Algorithm
 Neste pacote está disposto a implementação de alguns algoritmos que ajudam na construção da I.A(Inteligência Artificial).
 
-### Graph
-Esta classe cria o [Grafo](https://pt.wikipedia.org/wiki/Teoria_dos_grafos) das implementações dos algoritmos.
-
-```java
-public Graph(int nodes);
-```
-- Método construtor, é passado como argumento a quantidade de nós presentes no grafo.
-
-```java
-public void addElements(int node, int ... elements);
-```
-- Método de adição de elementos em determinado nó. O primeiro parâmetro é o nó a ser atribuido, o segundo é um _VarArgs_ que correspondem aos elementos que estão em conexão ao nó.
-
-```java
-public ArrayList<Integer>[] getGraphConnections();
-```
-- Retorna o grafo.
-
-```java
-public void putWeight(int node, int weight);
-```
-- Coloca os pesos no Grafo. É passado como argumento o nó e os pesos.
-
-```java
-public int getWeight(int node);
-```
-- Retorna o peso do nó passado pelo argumento.
-
-```java
-public int[] getAllWeights();
-```
-- Retorna todos os pesos apresentado em cada nó.
-
-```java
-public void putMoviment(int node, Coordinate c);
-```
-- Atribui um objeto _Coordinate_ no nó passado como argumento.
-
-```java
-public Coordinate getMoviment(int node);
-```
-- Retorna um objeto _Coordinate_ presente no nó passado como argumento.
-
-```java
-public int getAllDepth();
-```
-- Retorna a profundidade máxima do Grafo.
-
-```java
-public int getDepth(int node);
-```
-- Retorna a profundidade do nó passado no argumento.
-
-### DFS
-
-Está classe está a implementação do [algoritmo de busca por profundidade](https://pt.wikipedia.org/wiki/Busca_em_profundidade)(DFS) e para a construção/manipulação do Grafo encontramos os seguintes métodos:
-
-```java
-public DFS(ArrayList<Integer>[] graph, int nodes, boolean[] visited);
-```
-- Método construtor. Recebe três argumentos; um array de _ArrayList_ representando o Grafo, a primeira dimensão refere-se ao nó e a segunda à um elemento adjacente(nó conectivo); a quantidade de nós totais; uma lista dos nós visitados.
-
-```java
-public void print();
-```
-- Imprime o Grafo no terminal.
-
-```java
-public Integer Search(int node, int elementForSearch);
-```
-- Realiza a busca em profundidade. É passado como argumento o nó e o elemento de busca e retornado o próprio nó de busca, entretando, o retorno corresponde ao elemento do _ArrayList_ bi-dimensional.
-
-```java
-public Set<Integer> getPath();
-```
-- Retorna uma lista do tipo _Set_ representando o caminho liquido do início até o fim do nó de busca.
-
-```java
-public ArrayList<Integer> getPathProcess();
-```
-- Retorna uma lista do tipo _ArrayList_ representando o caminho bruto do início até o fim do nó de busca, ou seja, este método retorna com precisão por todos os nós que o algoritmo de busca passou e por quantas vezes.
-
-### Min Max
+### [Min Max](https://en.wikipedia.org/wiki/Minimax)
 Aplica o algoritmo principal do jogo, atuando na tomada de decisão.
 
-```cpp
-const int inf = 1e9+7;
+```
+inf = 1e9+7;
 
-int value;
+min_max(nó, profundidade, éMaximização){
 
-int min_max(int *node, int depth, bool isMaximizing){
+	SE(profundidade == final) retorna peso do nó
 
-	if(depth == 0 || (final_node)) return *node;
-	
-	if((isMaximizing)){
-		value = -inf;
-		for(int child : node){
-			value = max(value, min_max(child, (depth-1), false));	
+	SE(éMaximização){
+		value = -inf
+		for_each(child : conexões do nó){
+			value = max(value, min_max(child, (profundidade-1), false))	
 		}
 	}
-	else{
-		value = inf;
-		for(int child : node){
-			value = min(value, min_max(child, (depth-1), true));
+	SENÃO{
+		value = inf
+		for_each(child : conexões do nó){
+			value = min(value, min_max(child, (profundidade-1), true))
 		}
 	}
-	return value;
+	retorna value
 
 }
 ``` 
-- Pseudo-código do algoritmo [Min Max](https://en.wikipedia.org/wiki/Minimax)
+- Pseudo-código do algoritmo.
+
 ### RandomPlay
 Está classe com métodos estáticos realiza um sorteio das peças e das posições para uma jogada.
 
