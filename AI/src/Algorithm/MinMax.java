@@ -23,9 +23,9 @@ public class MinMax extends GraphBuilder{
 				value = Math.max(value, algorithm(child, (depth+1), false));	
 			}
 		}else{
-			value = -inf;
+			value = inf;
 			for (Integer child : graph[node]) {
-				value = Math.max(value, algorithm(child, (depth+1), false));	
+				value = Math.min(value, algorithm(child, (depth+1), false));	
 			}
 		}
 		return value;
