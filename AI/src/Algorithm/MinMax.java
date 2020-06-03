@@ -8,11 +8,18 @@ public class MinMax extends GraphBuilder{
 	public LinkedList<Integer>[] graph;	
 	private GraphBuilder gb;
 	private final int inf = 1000000007;
+	private final int maxn = 100000010;
 	private int value;
+	private boolean[] mark;
+	LinkedList<Integer>[] path;
 
 	public MinMax(GraphBuilder gb) {
 		this.gb = gb;
-		graph = gb.getGraph();		
+		graph = gb.getGraph();	
+		mark = new boolean[maxn];
+		path = new LinkedList[maxn];
+		for(int i = 0; i < maxn; i++) path[i] = new LinkedList<>();
+
 	}
 	public int algorithm(int node, int depth, boolean isMaximizing) {
 		if(depth == gb.getDepth()){return gb.getWeight(node);}
@@ -29,6 +36,18 @@ public class MinMax extends GraphBuilder{
 		}
 		gb.setWeight(node, value);
 		return value;
+	}
+
+	private void dfs(int u, int dpt, int dm){
+		mark[u] = true;
+		graph[dm].add(gb.getWeight(u)); /*atribui o peso de u numa list set de set. Quando dpt = depth, atualiza a dimensão do array*/
+		if(dpt == gb.getDepth()) dm++;
+
+		for (Integer v : graph[u]) {
+			if(!mark[v]){
+				dfs(v, ++dpt, dm);
+			}
+		}
 	}
 	
 }
