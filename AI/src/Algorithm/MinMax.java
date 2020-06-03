@@ -8,7 +8,6 @@ public class MinMax extends GraphBuilder{
 	public LinkedList<Integer>[] graph;	
 	private GraphBuilder gb;
 	private final int inf = 1000000007;
-	int lim = 5;//aleatório 
 	private int value;
 
 	public MinMax(GraphBuilder gb) {
