@@ -57,10 +57,37 @@ public class MinMax extends GraphBuilder{
 			}
 		}
 	}
-	
+
 	public LinkedList<Coordinate> betterPath(){
+		dfs(0, 0, 0);
 		LinkedList<Coordinate> better_path = new LinkedList<>();
 		//Soma os pesos, busca o melhor caminho e retorna.
+
+		//Soma os pesos e busca a melhor resposta
+		int max = -inf;
+		for (int i = 0; i < pathWeight.length; i++) {
+			int sum = 0;
+			for (int j = 0; j < pathWeight[i].size(); j++) {
+				sum+=pathWeight[i].get(j);
+			}
+			max = Math.max(max, sum);
+		}
+		//Busca o índice da melhor resposta
+		int ii = maxn - 1;
+		for (int i = 0; i < pathWeight.length; i++) {
+			int sum = 0;
+			for (int j = 0; j < pathWeight[i].size(); j++) {
+				sum+=pathWeight[i].get(j);
+			}
+			if(sum == max){
+				ii = i;
+				break;
+			}
+		}
+		//Converte para uma lista com as coordenadas dos movimentos.
+		for (int i = 0; i < path[ii].size(); i++) {
+			better_path.add(gb.getCoordinate(path[ii].get(i)));
+		}
 		return better_path;
 	}
 }
