@@ -384,6 +384,83 @@ public IllegalCastlingException(String message);
 ## Algorithm
 Neste pacote está disposto a implementação de alguns algoritmos que ajudam na construção da I.A(Inteligência Artificial).
 
+### GraphBuilder
+Esta classe cria o [Grafo](https://pt.wikipedia.org/wiki/Teoria_dos_grafos) das implementações dos algoritmos.
+
+```java
+public GraphBuilder();
+```
+
+- Método construtor da classe.
+
+
+```java
+public void createGraph(Coordinate c);
+```
+
+- Método sobrecarregado da construção do grafo. Recebe como argumentos um _Coordinate_ representando o primeiro nó.
+
+```java
+public void createGraph(Coordinate father, LinkedList<Coordinate> u);
+```
+
+- Método sobrecarregado da construção do grafo. Recebe como argumentos um _Coordinate_ representando o nó (pai) que gera a lista de possiveis movimentos(segundo argumento) que a peça pode jogar.
+
+```java
+public void setWeight(int u, int weight);
+```
+
+- Método que define o peso de um nó. Argumentos: nó e seu peso.
+
+
+```java
+public int getWeight(int u);
+```
+
+- Método que retorna o peso de um nó. Argumento: Peso.
+
+```java
+public LinkedList<Integer>[] getGraph();
+```
+
+- Método que retorna o Grafo.
+
+```java
+public int getDepth();
+```
+
+- Método que retorna a profundidade máxima do Grafo.
+
+```java
+public int getDepthFromNode(int u);
+```
+
+- Método que retorna a profundidade de um nó do Grafo. Argumento: nó.
+
+```java
+public Coordinate getCoordinate(int node);
+```
+
+- Método que retorna a coordenada de um nó. Argumento: nó.
+
+```java
+public int getNode(Coordinate c);
+```
+
+- Método que retorna o nó de determinada coordenada. Argumento : Object _Coordinate_.
+
+```java
+public void printGraph();
+```
+
+- Método que imprime a imagem do Grafo no Terminal.
+
+```java
+private int BrutalSearch(Coordinate c);
+```
+
+- Método que faz uma busca em O(n). Serve para a construção do Grafo. É passado como argumento um _Coordinate_.
+
 ### [Min Max](https://en.wikipedia.org/wiki/Minimax)
 
 Aplica o algoritmo principal do jogo, atuando na tomada de decisão.
@@ -419,7 +496,7 @@ minimax(origin, depth, TRUE)
 public MinMax(GraphBuilder gb);
 ```
 
-- Método construtor da classe. Recebe um _GraphBuilder_ para realizar as operações;
+- Método construtor da classe. Recebe um _GraphBuilder_ para realizar as operações.
 
 ```java
 public int algorithm(int node, int depth, boolean isMaximizing);
