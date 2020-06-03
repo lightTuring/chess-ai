@@ -335,7 +335,7 @@ private static ArrayList<Coordinate> bishopGen (int pos_i, int pos_j, Board b);
 Objeto que apresenta a posição inicial e final de determinada peça. 
 
 ```java
-public Coordinate(int final_i, int final_j);
+public Coordinate(int pos_i, int pos_j);
 ```
 - Construtor.
 

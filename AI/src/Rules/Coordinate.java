@@ -2,29 +2,28 @@ package Rules;
 
 public class Coordinate {
 
-  private int final_i;
-  private int final_j;
+    private int pos_i;
+    private int pos_j;
 
-  public Coordinate(int final_i, int final_j){
-    this.final_i = final_i;
-    this.final_j = final_j;
-  }
-  public int getPos_i() {
-	  return final_i;
-  }
-  public int getPos_j() {
-	  return final_j;
-  }
-  public void printCoordinate() {
-    System.out.println(this.final_i + ", " + this.final_j);
-  } 
-
-  public boolean equals(Coordinate c) {
-      if (c.getPos_i() == final_i && c.getPos_j() == final_j) {
-        return true;
+    public Coordinate(int pos_i, int pos_j){
+        this.pos_i = pos_i;
+        this.pos_j = pos_j;
     }
-      else {
-        return false;
-      }
-  }
+    public int getPos_i() {
+        return pos_i;
+    }
+    public int getPos_j() {
+        return pos_j;
+    }
+    public void printCoordinate() {
+        System.out.println(this.pos_i + ", " + this.pos_j);
+    } 
+
+    public boolean equals(Coordinate c) {
+        if (c.getPos_i() == pos_i && c.getPos_j() == pos_j) {
+          return true;
+        }else {
+          return false;
+        }
+    }
 }
