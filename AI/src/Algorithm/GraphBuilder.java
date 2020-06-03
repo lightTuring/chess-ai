@@ -19,6 +19,7 @@ public class GraphBuilder {
     public GraphBuilder(){
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new LinkedList<>();
+            nodeWeights[i] = 0;
         }
     }
     public void createGraph(Coordinate c){
