@@ -1,6 +1,7 @@
 package Algorithm;
 
 import java.util.*;
+import Rules.*;
 
 public class MinMax extends GraphBuilder{
 
@@ -12,15 +13,21 @@ public class MinMax extends GraphBuilder{
 	private int value;
 	private boolean[] mark;
 	LinkedList<Integer>[] path;
+	LinkedList<Integer>[] pathWeight;
 
+	@SuppressWarnings("unchecked")
 	public MinMax(GraphBuilder gb) {
 		this.gb = gb;
 		graph = gb.getGraph();	
 		mark = new boolean[maxn];
 		path = new LinkedList[maxn];
-		for(int i = 0; i < maxn; i++) path[i] = new LinkedList<>();
+		pathWeight = new LinkedList[maxn];
 
-	}
+		for(int i = 0; i < maxn; i++) {
+			path[i] = new LinkedList<>();
+			pathWeight[i] = new LinkedList<>();
+		}
+	}	
 	public int algorithm(int node, int depth, boolean isMaximizing) {
 		if(depth == gb.getDepth()){return gb.getWeight(node);}
 		if(isMaximizing){
@@ -36,11 +43,12 @@ public class MinMax extends GraphBuilder{
 		}
 		gb.setWeight(node, value);
 		return value;
-	}
+	
 
 	private void dfs(int u, int dpt, int dm){
 		mark[u] = true;
-		graph[dm].add(gb.getWeight(u)); /*atribui o peso de u numa list set de set. Quando dpt = depth, atualiza a dimensão do array*/
+		path[dm].add(u);
+		pathWeight[dm].add(gb.getWeight(u)); //atribui o peso de u numa list set de set. Quando dpt = depth, atualiza a dimensão do array
 		if(dpt == gb.getDepth()) dm++;
 
 		for (Integer v : graph[u]) {
@@ -50,4 +58,9 @@ public class MinMax extends GraphBuilder{
 		}
 	}
 	
+	public LinkedList<Coordinate> betterPath(){
+		LinkedList<Coordinate> better_path = new LinkedList<>();
+		//Soma os pesos, busca o melhor caminho e retorna.
+		return better_path;
+	}
 }
