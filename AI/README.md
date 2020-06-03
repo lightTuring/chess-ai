@@ -385,39 +385,68 @@ public IllegalCastlingException(String message);
 Neste pacote está disposto a implementação de alguns algoritmos que ajudam na construção da I.A(Inteligência Artificial).
 
 ### [Min Max](https://en.wikipedia.org/wiki/Minimax)
+
 Aplica o algoritmo principal do jogo, atuando na tomada de decisão.
 
 ```
-inf = 1e9+7;
+function minimax(node, depth, maximizingPlayer) is
+    if depth = 0 or node is a terminal node then
+        return the heuristic value of node
+    if maximizingPlayer then
+        value := −∞
+        for each child of node do
+            value := max(value, minimax(child, depth − 1, FALSE))
+        return value
+    else (* minimizing player *)
+        value := +∞
+        for each child of node do
+            value := min(value, minimax(child, depth − 1, TRUE))
+        return value
 
-min_max(nó, profundidade, éMaximização){
-
-	SE(profundidade == final) retorna peso do nó
-
-	SE(éMaximização){
-		value = -inf
-		for_each(child : conexões do nó){
-			value = max(value, min_max(child, (profundidade-1), false))	
-		}
-	}
-	SENÃO{
-		value = inf
-		for_each(child : conexões do nó){
-			value = min(value, min_max(child, (profundidade-1), true))
-		}
-	}
-	retorna value
-
-}
 ``` 
+
 - Pseudo-código do algoritmo.
 
+
+```
+(* Initial call *)
+minimax(origin, depth, TRUE)
+```
+
+- Chamada da função MinMax.
+
+```java
+public MinMax(GraphBuilder gb);
+```
+
+- Método construtor da classe. Recebe um _GraphBuilder_ para realizar as operações;
+
+```java
+public int algorithm(int node, int depth, boolean isMaximizing);
+```
+
+- Aplica o Algoritmo Min_Max, atribuindo a todos os nós os pesos. Recebe três argumentos: Nó, a profundidade e se é momento de maximização.
+
+```java
+private void dfs(int u, int dpt, int dm);
+```
+
+- Aplica uma busca em profundidade capturando os caminhos possiveis. Recebe três argumentos: O nó, a profundidade atual e a dimensão do _LinkedList_ dos caminhos. É chamado no método _betterPath_.
+
+```java
+public LinkedList<Coordinate> betterPath();
+```
+
+- Método que retorna a lista com as melhores jogadas.
+
 ### RandomPlay
+
 Está classe com métodos estáticos realiza um sorteio das peças e das posições para uma jogada.
 
 ```java
 public static char choosePiece(int color);
 ```
+
 - Retorna uma peça sorteada para ser jogada. Recebe um argumento informando a cor da peça; 0 para uma peça preta e 1 para uma peça branca. 
 
 ```java
