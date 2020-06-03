@@ -24,9 +24,10 @@ public class MinMax extends GraphBuilder{
 		}else{
 			value = inf;
 			for (Integer child : graph[node]) {
-				value = Math.min(value, algorithm(child, (depth+1), false));	
+				value = Math.min(value, algorithm(child, (depth+1), true));	
 			}
 		}
+		gb.setWeight(node, value);
 		return value;
 	}
 	
