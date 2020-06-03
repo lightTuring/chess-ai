@@ -43,7 +43,7 @@ public class MinMax extends GraphBuilder{
 		}
 		gb.setWeight(node, value);
 		return value;
-	
+	}
 
 	private void dfs(int u, int dpt, int dm){
 		mark[u] = true;
