@@ -1,5 +1,6 @@
 package Run;
 
+//rodar em um while
 public class Main {
     public static void main(String[] args) {
         /*
