@@ -34,13 +34,17 @@ public class Board {
         for (int i = 0; i < chessBoard.length; i++)
             chessBoard[7][i] = initPosWhite[i];
     }
-    //comparação por tabela ASCII
     public boolean isWhite(int pos_i, int pos_j) throws BoardOutOfBoundsException {
     	return (Character.isUpperCase(getPiece(pos_i, pos_j)));
     }
-    //comparação por tabela ASCII
+    public boolean isWhite(Coordinate c) throws BoardOutOfBoundsException {
+    	return (Character.isUpperCase(getPiece(c)));
+    }
     public boolean isBlack(int pos_i, int pos_j) throws BoardOutOfBoundsException {
     	return (Character.isLowerCase(getPiece(pos_i, pos_j)) && getPiece(pos_i, pos_j) != 'o');
+    }
+    public boolean isBlack(Coordinate c) throws BoardOutOfBoundsException {
+    	return (Character.isLowerCase(getPiece(c)) && getPiece(c) != 'o');
     }
     public boolean isWhite(char piece) throws BoardOutOfBoundsException {
     	return (Character.isUpperCase(piece));
@@ -111,6 +115,12 @@ public class Board {
             throw new BoardOutOfBoundsException("Board.getPiece tentou acessa uma casa além dos limites do tabuleiro.");
         }
         return chessBoard[pos_x][pos_y];
+    }
+    public char getPiece(Coordinate c) throws BoardOutOfBoundsException {
+        if (c.getPos_i() >= 8 || c.getPos_j() >= 8) {
+            throw new BoardOutOfBoundsException("Board.getPiece tentou acessa uma casa além dos limites do tabuleiro.");
+        }
+        return chessBoard[c.getPos_i()][c.getPos_j()];
     }
 
     public LinkedList<Coordinate>[][] getStateBoard() {
@@ -494,6 +504,7 @@ public class Board {
     	
     	return 0;
     }
+
     private byte pathBottomRightDiagonal(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b) throws BoardOutOfBoundsException {
     	
     	Coordinate coordinate = indexOfPiece(b)[0];
@@ -512,6 +523,28 @@ public class Board {
     	
     	return 0;
     }
+
+    protected boolean isSquareAttacked(Coordinate c, boolean turn) throws BoardOutOfBoundsException {
+        
+        if (turn = false) {
+            for (Coordinate a : stateBoard[c.getPos_i()][c.getPos_j()]) {
+                if (a.equals(c)) {
+                    return true;
+                }
+                
+            }
+        }
+        if (turn == true) {
+            for (Coordinate a : stateBoard[c.getPos_i()][c.getPos_j()]) {
+                if (a.equals(c)) {
+                    return true;
+                }
+                
+            }
+        }
+        return false;
+    }
+
     /*
     public boolean isPiecePinned(int i, int j) throws BoardOutOfBoundsException, UnexpectedPieceException {
         if (getPiece(i, j) != 'o' && isWhite(i, j) == true) {
