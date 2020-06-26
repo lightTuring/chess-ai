@@ -456,6 +456,12 @@ public void printGraph();
 - Método que imprime a imagem do Grafo no Terminal.
 
 ```java
+public void printWeightGraph();
+```
+
+- Método que imprime os pesos que são atribuídos à todos os nós.
+
+```java
 private int BrutalSearch(Coordinate c);
 ```
 
