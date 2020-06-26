@@ -504,6 +504,9 @@ public int algorithm(int node, int depth, boolean isMaximizing);
 
 - Aplica o Algoritmo Min_Max, atribuindo a todos os nós os pesos. Recebe três argumentos: Nó, a profundidade e se é momento de maximização(Na primeira chamada passar este valor sendo verdadeiro).
 
+![Screenshot](minmax.png)
+- Imagem da aplicação do algoritmo.
+
 ```java
 private void dfs(int u, int dpt, int dm);
 ```
