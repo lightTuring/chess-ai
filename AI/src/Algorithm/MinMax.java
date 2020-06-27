@@ -10,7 +10,6 @@ public class MinMax extends GraphBuilder{
 	private GraphBuilder gb;
 	private final int inf = 1000000007;
 	private final int maxn = 100000010;
-	private int value;
 	private boolean[] mark;
 	LinkedList<Integer>[] path;
 	LinkedList<Integer>[] pathWeight;
@@ -31,18 +30,21 @@ public class MinMax extends GraphBuilder{
 	public int algorithm(int node, int depth, boolean isMaximizing) {
 		if(depth == 0 || depth == gb.getDepth()){return gb.getWeight(node);}
 		if(isMaximizing){
-			value = -inf;
+			int value = -inf;
 			for (Integer child : graph[node]) {
 				value = Math.max(value, algorithm(child, (--depth), false));	
 			}
+			gb.setWeight(node, value);
+			return value;
 		}else{
-			value = inf;
+			int value = inf;
 			for (Integer child : graph[node]) {
 				value = Math.min(value, algorithm(child, (--depth), true));	
 			}
+			gb.setWeight(node, value);
+			return value;
 		}
-		gb.setWeight(node, value);
-		return value;
+		
 	}
 
 	private void dfs(int u, int dpt, int dm){
