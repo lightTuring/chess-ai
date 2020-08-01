@@ -72,7 +72,14 @@ public class GraphBuilder {
             }
             System.out.println();
         }
+    }
+    public void printWeightGraph(){
+        for (int i = 0; i < countNodes; i++) {
+            System.out.print("The node:" + i + " has this weight-> ");
+            System.out.println(nodeWeights[i]);
+        }
 	}
+
     private int BrutalSearch(Coordinate c){
         
         for (int i = 0; i < nodesPos.size(); i++) {
