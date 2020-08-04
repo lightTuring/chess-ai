@@ -86,4 +86,22 @@ public class Evaluate {
         } 
         return (white - black);
     }
+
+    public double kingMobility() throws BoardOutOfBoundsException {
+        double white = 0;
+        double black = 0;
+        Coordinate[] whiteKing = board.indexOfPiece('K');
+        Coordinate[] blackKing = board.indexOfPiece('k');
+        LinkedList<Coordinate> listWhite = Controller.getKingMoves(board, whiteKing[0].getPos_i(), whiteKing[0].getPos_j());
+        LinkedList<Coordinate> listBlack = Controller.getKingMoves(board, blackKing[0].getPos_i(), blackKing[0].getPos_j());
+        white = Math.sqrt((double) listWhite.size());
+        black = Math.sqrt((double) listBlack.size());
+        return(white-black);
+    }
+
+    //Não terminado
+    public double total () throws Exception {
+        return (kingMobility() + pieceSafety() + piece() + kingSafety());
+    }
+
 }
