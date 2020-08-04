@@ -212,7 +212,7 @@ public class Board {
         }
     }
 
-    public boolean isCheckInBlackKing() throws BoardOutOfBoundsException, UnexpectedPieceException {
+    public boolean isBlackKingInCheck() throws BoardOutOfBoundsException, UnexpectedPieceException {
         Controller.uncheckedMovesWhite(this);
         Coordinate[] king = indexOfPiece('k');
         Coordinate x;
@@ -232,7 +232,7 @@ public class Board {
 
     }
 
-    public boolean isCheckInWhiteKing() throws BoardOutOfBoundsException, UnexpectedPieceException {
+    public boolean isWhiteKingInCheck() throws BoardOutOfBoundsException, UnexpectedPieceException {
         Controller.uncheckedMovesBlack(this);
         Coordinate[] king = indexOfPiece('K');
         Coordinate x;

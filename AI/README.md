@@ -95,13 +95,13 @@ public LinkedList<Coordinate>[][] getStateBoard();
 - Retorna o array `stateBoard[][]` do tipo `LinkedList<Coordinate>`.
 
 ```java
-public boolean isCheckInBlackKing() throws Exception
+public boolean isBlackKingInCheck() throws Exception
 ```
 
 - Verifica se o rei preto está em xeque usando o `stateBoard[][]`
 
 ```java
-public boolean isCheckInWhiteKing() throws Exception
+public boolean isWhiteKingInCheck() throws Exception
 ```
 
 - Verifica se o rei branco está em xeque usando o `stateBoard[][]`
