@@ -271,7 +271,7 @@ public class Board {
     }
 
     public Coordinate[] indexOfPiece(char b) {
-        Coordinate[] positions = new Coordinate[8];
+        Coordinate[] positions = new Coordinate[10];
         int p = 0;
 
         for (int i = 0; i < positions.length; i++)

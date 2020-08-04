@@ -76,10 +76,16 @@ public class Evaluate {
                     if ((board.getPiece(i, j) == 'b') || (board.getPiece(i, j) == 't') || (board.getPiece(i, j) == 'c')) {
                         black++;
                     }
+                    if((board.getPiece(i, j) == 'p')) {
+                        black =+ 0.1;
+                    }
                 }
                 if (board.isWhite(i, j) && board.isSquareAttacked(new Coordinate(i, j), true)) {
                     if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T') || (board.getPiece(i, j) == 'V')) {
                         white++;
+                    }
+                    if((board.getPiece(i, j) == 'P')) {
+                        white =+ 0.1;
                     }
                 }
             }
@@ -99,9 +105,26 @@ public class Evaluate {
         return(white-black);
     }
 
+    public double pawnAdvancement() {
+        double white = 0;
+        double black = 0;
+        Coordinate[] listWhite = board.indexOfPiece('P');
+        Coordinate[] listBlack = board.indexOfPiece('p');
+        for (Coordinate c : listWhite) {
+            int i = c.getPos_i();
+            white =+ (i-1)*0.2;
+        }
+        for (Coordinate c : listBlack) {
+            int i = c.getPos_i();
+            black =+ (i-1)*0.2;
+        }
+        return (white - black);
+
+    }
+
     //Não terminado
     public double total () throws Exception {
-        return (kingMobility() + pieceSafety() + piece() + kingSafety());
+        return (kingMobility() + pieceSafety() + piece() + kingSafety() + pawnAdvancement());
     }
 
 }
