@@ -523,23 +523,26 @@ public class Board {
     	
     	return 0;
     }
-
-    protected boolean isSquareAttacked(Coordinate c, boolean turn) throws BoardOutOfBoundsException {
+    //true = Brancas atacam, false = Pretas atacam
+    public boolean isSquareAttacked(Coordinate c, boolean turn) throws BoardOutOfBoundsException {
         
         if (turn = false) {
             for (Coordinate a : stateBoard[c.getPos_i()][c.getPos_j()]) {
-                if (a.equals(c)) {
-                    return true;
+                if (this.isWhite(a)) {
+                    if (a.equals(c)) {
+                        return true;
+                    }
                 }
                 
             }
         }
         if (turn == true) {
             for (Coordinate a : stateBoard[c.getPos_i()][c.getPos_j()]) {
-                if (a.equals(c)) {
-                    return true;
+                if (this.isBlack(a)) {
+                    if (a.equals(c)) {
+                        return true;
+                    }
                 }
-                
             }
         }
         return false;

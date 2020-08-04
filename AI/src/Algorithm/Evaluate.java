@@ -66,4 +66,23 @@ public class Evaluate {
         }
         return (white - black);
     }
+
+    public double pieceSafety() throws Exception {
+        double white = 0;
+        double black = 0;
+        for (int i=0; i<8; i++) {
+            for (int j=0; j<8; j++) {
+                if (board.isBlack(i, j) && board.isSquareAttacked(new Coordinate(i, j), false)) {
+                    if ((board.getPiece(i, j) == 'b') || (board.getPiece(i, j) == 't') || (board.getPiece(i, j) == 'c')) {
+                        black++;
+                    }
+                }
+                if (board.isWhite(i, j) && board.isSquareAttacked(new Coordinate(i, j), true)) {
+                    if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T') || (board.getPiece(i, j) == 'V')) {
+                        white++;
+                    }
+                }
+            }
+        } 
+    }
 }
