@@ -5,13 +5,13 @@ import java.util.LinkedList;
 
 public class Game {
     private Board board;
-    //true = brancas; false = pretas. 
+    // true = brancas; false = pretas.
     private boolean turn;
     private boolean endOfGame = false;
     private int moves = 0;
 
-    public Game(Board board) {  
-        this.board = board; 
+    public Game(Board board) {
+        this.board = board;
         turn = true;
     }
 
@@ -31,7 +31,7 @@ public class Game {
     private LinkedList<Coordinate>[][] pseudoLegalMoves() {
         return (board.getStateBoard());
     }
-    
+
     private boolean isPseudoLegal(int i, int j, int final_i, int final_j) throws BoardOutOfBoundsException {
         Coordinate c = new Coordinate(final_i, final_j);
         LinkedList<Coordinate>[][] list = pseudoLegalMoves();
@@ -39,73 +39,72 @@ public class Game {
 
         if (list[i][j] != null) {
             Iterator<Coordinate> iterator = list[i][j].iterator();
-        
+
             if (turn == true && board.isWhite(i, j)) {
-                
+
                 while (iterator.hasNext()) {
-                    if(iterator.next().equals(c)) {
-                    legal = true;
-                    }
-                }
-                   
-            }
-            else if (board.isBlack(i, j)) {
-                
-                while (iterator.hasNext()) {
-                    if(iterator.next().equals(c)) {
+                    if (iterator.next().equals(c)) {
                         legal = true;
                     }
                 }
-                 
+
+            } else if (board.isBlack(i, j)) {
+
+                while (iterator.hasNext()) {
+                    if (iterator.next().equals(c)) {
+                        legal = true;
+                    }
+                }
+
             }
         }
         return legal;
     }
-    public void move(int i, int j, int final_i, int final_j) throws  IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
+
+    public void move(int i, int j, int final_i, int final_j)
+            throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         Board copy = board;
-        
+
         if (isPseudoLegal(i, j, final_i, final_j) == false) {
             throw new IllegalMoveException("Movimento ilegal");
-        }
-        else {
+        } else {
             copy.changePos(i, j, final_i, final_j);
-            if (copy.isCheckInBlackKing() || copy.isCheckInWhiteKing()) {
+            if (copy.isBlackKingInCheck() || copy.isWhiteKingInCheck()) {
                 throw new IllegalMoveException("Movimento ilegal");
-            }
-            else {
+            } else {
                 board = copy;
             }
         }
     }
 
-    private boolean isLegal(int i, int j, Coordinate coordinate) throws BoardOutOfBoundsException, UnexpectedPieceException  {
+    private boolean isLegal(int i, int j, Coordinate coordinate)
+            throws BoardOutOfBoundsException, UnexpectedPieceException {
         Board copy = board;
         boolean x = true;
 
-        try{
+        try {
             move(i, j, coordinate.getPos_i(), coordinate.getPos_j());
-        }
-        catch (IllegalMoveException illegal) {
+        } catch (IllegalMoveException illegal) {
             x = false;
         }
         board = copy;
         return x;
     }
-    
+
     public void isCheckMateWhite() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         LinkedList<Coordinate>[][] list = pseudoLegalMoves();
         int legal = 0;
 
-        if(board.isCheckInWhiteKing() == true) {
-            for (int i = 0; i<8; i++) {
-                for (int j = 0; j<8; j++) {
+        if (board.isWhiteKingInCheck() == true) {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
                     Board copy = board;
                     Iterator<Coordinate> x = list[i][j].iterator();
                     while (x.hasNext() && legal == 0) {
                         Coordinate c = x.next();
                         if (isLegal(i, j, c)) {
                             copy.changePos(i, j, c);
-                            if (!copy.isCheckInWhiteKing()) {
+                            if (!copy.isWhiteKingInCheck()) {
                                 legal++;
                             }
                         }
@@ -131,16 +130,16 @@ public class Game {
         LinkedList<Coordinate>[][] list = pseudoLegalMoves();
         int legal = 0;
 
-        if(board.isCheckInBlackKing() == true) {
-            for (int i = 0; i<8; i++) {
-                for (int j = 0; j<8; j++) {
+        if (board.isBlackKingInCheck() == true) {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
                     Board copy = board;
                     Iterator<Coordinate> x = list[i][j].iterator();
                     while (x.hasNext() && legal == 0) {
                         Coordinate c = x.next();
                         if (isLegal(i, j, c)) {
                             copy.changePos(i, j, c);
-                            if (!copy.isCheckInBlackKing()) {
+                            if (!copy.isBlackKingInCheck()) {
                                 legal++;
                             }
                         }
