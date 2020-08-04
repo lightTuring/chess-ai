@@ -84,5 +84,6 @@ public class Evaluate {
                 }
             }
         } 
+        return (white - black);
     }
 }
