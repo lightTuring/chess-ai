@@ -8,10 +8,11 @@ import Rules.BoardOutOfBoundsException;
 import Rules.Coordinate;
 import Rules.Game;
 import Rules.IllegalMoveException;
+import Rules.UnexpectedPieceException;
 
 //rodar em um while
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnexpectedPieceException {
         /*
         CLASSE PRINCIPAL DE EXECUÇÃO        
 
