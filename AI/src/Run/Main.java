@@ -4,7 +4,10 @@ import java.util.Scanner;
 
 import Notation.Annotation;
 import Rules.Board;
+import Rules.BoardOutOfBoundsException;
+import Rules.Coordinate;
 import Rules.Game;
+import Rules.IllegalMoveException;
 
 //rodar em um while
 public class Main {
@@ -58,10 +61,19 @@ public class Main {
         while (!game.hasEnded()) {
             String initial = s.nextLine();
             String destiny = s.nextLine();
-            Annotation a = new Annotation();
-            a.putMovement(initial);
-            a.putMovement(destiny);
-            
+            Annotation.putMovement(initial);
+            Coordinate i = Annotation.getLastMovementMatrixCoordinate();
+            Annotation.putMovement(destiny);
+            Coordinate f = Annotation.getLastMovementMatrixCoordinate();
+            try {
+                game.move(i.getPos_i(), i.getPos_j(), f.getPos_i(), f.getPos_j());
+            }
+            catch (BoardOutOfBoundsException board) {
+                System.out.println("Fora do tabuleiro");
+            }
+            catch (IllegalMoveException illegal) {
+                System.out.println("Movimento ilegal");
+            }
 
         }
         s.close();
