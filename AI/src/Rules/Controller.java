@@ -251,7 +251,7 @@ public class Controller {
 						b.setStateBoard(Controller.getBishopMoves(b, i, j), i, j);
 					}
 
-					if (b.getPiece(i, j) == 'R') {
+					if (b.getPiece(i, j) == 'T') {
 						b.setStateBoard(Controller.getRookMoves(b, i, j), i, j);
 					}
 
@@ -288,7 +288,7 @@ public class Controller {
 						b.setStateBoard(Controller.getBishopMoves(b, i, j), i, j);
 					}
 
-					if (b.getPiece(i, j) == 'r') {
+					if (b.getPiece(i, j) == 't') {
 						b.setStateBoard(Controller.getRookMoves(b, i, j), i, j);
 					}
 
