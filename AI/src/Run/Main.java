@@ -69,10 +69,11 @@ public class Main {
             Annotation.putMovement(destiny);
             Coordinate f = Annotation.getLastMovementMatrixCoordinate();
             try {
+                game.setMoves();
                 game.move(i.getPos_i(), i.getPos_j(), f.getPos_i(), f.getPos_j());
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
-                
+
             }
             catch (BoardOutOfBoundsException board) {
                 System.out.println("Fora do tabuleiro");

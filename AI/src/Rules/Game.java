@@ -46,6 +46,12 @@ public class Game {
         return moves;
     } 
 
+    public void setMoves() throws BoardOutOfBoundsException, UnexpectedPieceException,
+    IllegalMoveException {
+        Controller.uncheckedMovesBlack(board);
+        Controller.uncheckedMovesWhite(board);
+    }
+
     private LinkedList<Coordinate>[][] pseudoLegalMoves() {
         return (board.getStateBoard());
     }
