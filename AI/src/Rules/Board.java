@@ -152,7 +152,7 @@ public class Board {
         }
 
         for(Coordinate c : tmp) {
-            moves.remove(moves.indexOf(c));
+            if(!new Game(this).isLegal(i, j, c)) moves.remove(moves.indexOf(c));
         }
 
         stateBoard[i][j] = moves;

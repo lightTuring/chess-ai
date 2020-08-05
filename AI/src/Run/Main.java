@@ -12,7 +12,7 @@ import Rules.UnexpectedPieceException;
 
 //rodar em um while
 public class Main {
-    public static void main(String[] args) throws UnexpectedPieceException {
+    public static void main(String[] args) throws UnexpectedPieceException, IllegalMoveException {
         /*
         CLASSE PRINCIPAL DE EXECUÇÃO        
 
@@ -78,9 +78,7 @@ public class Main {
             catch (BoardOutOfBoundsException board) {
                 System.out.println("Fora do tabuleiro");
             }
-            catch (IllegalMoveException illegal) {
-                System.out.println("Movimento ilegal");
-            }
+            
             catch (UnexpectedPieceException board) {
                 System.out.println("Não é peça");
             }
