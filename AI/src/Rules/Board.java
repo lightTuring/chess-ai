@@ -142,7 +142,11 @@ public class Board {
         return stateBoard;
     }
 
-    public void setStateBoard(LinkedList<Coordinate> moves, int i, int j) {
+    public void setStateBoard(LinkedList<Coordinate> moves, int i, int j)
+            throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
+        for(Coordinate c : moves) {
+            if(!new Game(this).isLegal(i, j, c)) moves.remove(moves.indexOf(c));
+        }
         stateBoard[i][j] = moves;
     }
 
