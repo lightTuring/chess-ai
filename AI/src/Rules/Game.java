@@ -26,6 +26,10 @@ public class Game {
         this.turn = turn;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
     public String getTurnString() {
         return (turn ? "Brancas" : "Pretas");
     }

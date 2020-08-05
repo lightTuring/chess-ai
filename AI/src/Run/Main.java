@@ -60,6 +60,8 @@ public class Main {
         Game game = new Game(new Board());
 
         while (!game.hasEnded()) {
+            game.getBoard().printImage();
+            System.out.println("");
             String initial = s.nextLine();
             String destiny = s.nextLine();
             Annotation.putMovement(initial);
