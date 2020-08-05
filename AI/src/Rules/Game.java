@@ -1,7 +1,13 @@
 package Rules;
 
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.LinkedList; 
+
+/*
+OBSERVAÇÃO!!!: Talvez seja necessário considerar mover os metodos de legalidade e cheque-mate para 
+a classe Controller, de forma que essa classe seja usada apenas como execução do jogo em si.
+Estou com preguiça de mudar tudo agora.
+*/
 
 public class Game {
     private Board board;
@@ -28,10 +34,18 @@ public class Game {
         return (turn);
     }
 
+    public boolean hasEnded() {
+        return endOfGame;
+    }
+
+    public int moveNumber() {
+        return moves;
+    } 
+
     private LinkedList<Coordinate>[][] pseudoLegalMoves() {
         return (board.getStateBoard());
     }
-
+    
     private boolean isPseudoLegal(int i, int j, int final_i, int final_j) throws BoardOutOfBoundsException {
         Coordinate c = new Coordinate(final_i, final_j);
         LinkedList<Coordinate>[][] list = pseudoLegalMoves();
@@ -60,7 +74,7 @@ public class Game {
         }
         return legal;
     }
-
+    
     public void move(int i, int j, int final_i, int final_j)
             throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         Board copy = board;
@@ -72,23 +86,31 @@ public class Game {
             if (copy.isBlackKingInCheck() || copy.isWhiteKingInCheck()) {
                 throw new IllegalMoveException("Movimento ilegal");
             } else {
-                board = copy;
+                //Checagem de quem é a vez.
+                if ((!board.isBlack(i, j) == turn) || (board.isWhite(i, j) == turn) ) {
+                    board = copy;
+                }
             }
         }
     }
 
-    private boolean isLegal(int i, int j, Coordinate coordinate)
-            throws BoardOutOfBoundsException, UnexpectedPieceException {
+    public boolean isLegal(int i, int j, Coordinate c)
+            throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         Board copy = board;
-        boolean x = true;
 
-        try {
-            move(i, j, coordinate.getPos_i(), coordinate.getPos_j());
-        } catch (IllegalMoveException illegal) {
-            x = false;
+        if (isPseudoLegal(i, j, c.getPos_i(), c.getPos_j()) == false) {
+            return false;
+        } else {
+            copy.changePos(i, j, c.getPos_i(), c.getPos_j());
+            if (copy.isBlackKingInCheck() || copy.isWhiteKingInCheck()) {
+                return false;
+            } else {
+                if ((!board.isBlack(i, j) == turn) || (board.isWhite(i, j) == turn) ) {
+                    return true;
+                }
+                return false;
+            }
         }
-        board = copy;
-        return x;
     }
 
     public void isCheckMateWhite() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
