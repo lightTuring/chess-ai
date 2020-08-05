@@ -89,6 +89,8 @@ public class Game {
                 //Checagem de quem é a vez.
                 if ((!board.isBlack(i, j) == turn) || (board.isWhite(i, j) == turn) ) {
                     board = copy;
+                    turn = !turn;
+                    moves++;
                 }
             }
         }
