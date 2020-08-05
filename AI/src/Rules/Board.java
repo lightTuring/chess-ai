@@ -144,9 +144,17 @@ public class Board {
 
     public void setStateBoard(LinkedList<Coordinate> moves, int i, int j)
             throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
+        
+        LinkedList<Coordinate> tmp = new LinkedList<>();
+        
         for(Coordinate c : moves) {
+            if(!new Game(this).isLegal(i, j, c)) tmp.add(c);
+        }
+
+        for(Coordinate c : tmp) {
             if(!new Game(this).isLegal(i, j, c)) moves.remove(moves.indexOf(c));
         }
+
         stateBoard[i][j] = moves;
     }
 
