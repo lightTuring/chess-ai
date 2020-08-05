@@ -70,6 +70,9 @@ public class Main {
             Coordinate f = Annotation.getLastMovementMatrixCoordinate();
             try {
                 game.move(i.getPos_i(), i.getPos_j(), f.getPos_i(), f.getPos_j());
+                game.isCheckMateBlack();
+                game.isCheckMateWhite();
+                
             }
             catch (BoardOutOfBoundsException board) {
                 System.out.println("Fora do tabuleiro");
@@ -82,6 +85,7 @@ public class Main {
             }
 
         }
+        System.out.println("Jogo Acabou");
         s.close();
     }
 }
