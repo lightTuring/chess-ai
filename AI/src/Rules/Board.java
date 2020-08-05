@@ -37,6 +37,11 @@ public class Board {
             chessBoard[0][i] = initPosBlack[i];
         for (int i = 0; i < chessBoard.length; i++)
             chessBoard[7][i] = initPosWhite[i];
+        for (int i = 0; i<8; i++) {
+            for (int j = 0; j<8; j++) {
+                stateBoard[i][j] = new LinkedList<>();
+            }
+        }
     }
 
     public boolean isWhite(int pos_i, int pos_j) throws BoardOutOfBoundsException {
