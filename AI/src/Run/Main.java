@@ -1,5 +1,10 @@
 package Run;
 
+import java.util.Scanner;
+
+import Rules.Board;
+import Rules.Game;
+
 //rodar em um while
 public class Main {
     public static void main(String[] args) {
@@ -45,5 +50,10 @@ public class Main {
                 ...
         
         */
+
+        Scanner s = new Scanner(System.in);
+        Game game = new Game(new Board());
+        
+        s.close();
     }
 }
