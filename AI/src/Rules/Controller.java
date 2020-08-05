@@ -231,7 +231,8 @@ public class Controller {
 		return moves;
 	}  
 	
-	public static void uncheckedMovesWhite(Board b) throws UnexpectedPieceException, BoardOutOfBoundsException {
+	public static void uncheckedMovesWhite(Board b) throws UnexpectedPieceException, BoardOutOfBoundsException,
+			IllegalMoveException {
         for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
 				if (b.getPiece(i, j) != 'o') {
@@ -267,7 +268,8 @@ public class Controller {
 		
 	}
 
-	public static void uncheckedMovesBlack(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException {
+	public static void uncheckedMovesBlack(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException,
+			IllegalMoveException {
         for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
 				if (b.getPiece(i, j) != 'o') {

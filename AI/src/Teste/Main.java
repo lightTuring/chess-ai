@@ -1,8 +1,8 @@
 package Teste;
 
-import java.util.Scanner;
+///import java.util.Scanner;
 
-import Notation.Translator;
+//import Notation.Translator;
 import Rules.Board;
 
 public class Main {
