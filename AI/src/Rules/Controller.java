@@ -97,12 +97,15 @@ public class Controller {
     }
 
 	public static LinkedList<Coordinate> getQueenMoves(Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException {
-		LinkedList<Coordinate> moves = bishopGen(b, pos_i, pos_j);
+		LinkedList<Coordinate> moves = new LinkedList<>();
+		moves.add(new Coordinate(-1,-1));
+		moves = bishopGen(b, pos_i, pos_j);
 		LinkedList<Coordinate> list = rookGen(b, pos_i, pos_j);
-		Iterator<Coordinate> i = list.iterator();
 
-		while (i.hasNext()){
-			moves.add(i.next());
+		for (Coordinate c : list) {
+			if(c.getPos_i() != -1) {
+			moves.add(c);
+			}
 		}
 		return moves;
 	}
