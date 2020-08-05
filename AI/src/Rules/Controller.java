@@ -33,7 +33,7 @@ public class Controller {
 			}
 		}
 		if (b.getPiece(i, j) == 'p') {
-			if (!(j+1 < 8  || i+1>=8) && b.getPiece(i+1, j+1) != 'o') {
+			if (!(j+1 >= 8  || i+1>=8) && b.getPiece(i+1, j+1) != 'o') {
 				x = new Coordinate((i+1), (j+1));
 				movesP.add(x);
 			}
