@@ -75,6 +75,9 @@ public class Main {
             catch (IllegalMoveException illegal) {
                 System.out.println("Movimento ilegal");
             }
+            catch (UnexpectedPieceException board) {
+                System.out.println("Não é peça");
+            }
 
         }
         s.close();
