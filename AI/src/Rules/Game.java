@@ -61,7 +61,7 @@ public class Game {
         LinkedList<Coordinate>[][] list = pseudoLegalMoves();
         boolean legal = false;
 
-        if (list[i][j] != null) {
+        if (list[i][j].size() != 0) {
             Iterator<Coordinate> iterator = list[i][j].iterator();
 
             if (turn == true && board.isWhite(i, j)) {
