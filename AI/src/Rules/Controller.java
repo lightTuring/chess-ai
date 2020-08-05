@@ -261,7 +261,7 @@ public class Controller {
 					}
 				}
 				else {
-					b.setStateBoard(null, i, j);
+					b.setStateBoard(new LinkedList<>(), i, j);
 				}
 			}
 		}
@@ -298,7 +298,7 @@ public class Controller {
 					}
 				}
 				else {
-					b.setStateBoard(null, i, j);
+					b.setStateBoard(new LinkedList<>(), i, j);
 				}
 			}
 		}
