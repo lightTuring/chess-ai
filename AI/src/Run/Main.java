@@ -2,6 +2,7 @@ package Run;
 
 import java.util.Scanner;
 
+import Notation.Annotation;
 import Rules.Board;
 import Rules.Game;
 
@@ -53,7 +54,16 @@ public class Main {
 
         Scanner s = new Scanner(System.in);
         Game game = new Game(new Board());
-        
+
+        while (!game.hasEnded()) {
+            String initial = s.nextLine();
+            String destiny = s.nextLine();
+            Annotation a = new Annotation();
+            a.putMovement(initial);
+            a.putMovement(destiny);
+            
+
+        }
         s.close();
     }
 }
