@@ -1,8 +1,7 @@
 package Rules;
 
 import java.util.LinkedList;
-import java.util.Iterator;
-
+@SuppressWarnings("unchecked")
 public class Controller {
 
 
@@ -233,79 +232,86 @@ public class Controller {
 		}
 		return moves;
 	}  
-	
-	public static void uncheckedMovesWhite(Board b) throws UnexpectedPieceException, BoardOutOfBoundsException,
+
+	public static LinkedList<Coordinate>[][] uncheckedMoves(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException,
 			IllegalMoveException {
+		LinkedList<Coordinate>[][] list = new LinkedList[8][8];
         for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
 				if (b.getPiece(i, j) != 'o') {
 					if (b.getPiece(i, j) == 'P') {
-						b.setStateBoard(Controller.getPawnMoves(b, i, j), i, j);
+						list[i][j] = Controller.getPawnMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 'C') {
-						b.setStateBoard(Controller.getKnightMoves(b, i, j), i, j);
+						list[i][j] = Controller.getKnightMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 'B') {
-						b.setStateBoard(Controller.getBishopMoves(b, i, j), i, j);
+						list[i][j] = Controller.getBishopMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 'T') {
-						b.setStateBoard(Controller.getRookMoves(b, i, j), i, j);
+						list[i][j] = Controller.getRookMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 'Q') {
-						b.setStateBoard(Controller.getQueenMoves(b, i, j), i, j);
+						list[i][j] = Controller.getQueenMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 'K') {
-						b.setStateBoard(Controller.getKingMoves(b, i, j), i, j);
+						list[i][j] = Controller.getKingMoves(b, i, j);
 					}
-				}
-				else {
-					b.setStateBoard(new LinkedList<>(), i, j);
-				}
-			}
-		}
-		
-	}
-
-	public static void uncheckedMovesBlack(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException,
-			IllegalMoveException {
-        for (int i = 0; i<8; i++) {
-			for (int j = 0; j<8; j++) {
-				if (b.getPiece(i, j) != 'o') {
 					if (b.getPiece(i, j) == 'p') {
-						b.setStateBoard(Controller.getPawnMoves(b, i, j), i, j);
+						list[i][j] = Controller.getPawnMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 'c') {
-						b.setStateBoard(Controller.getKnightMoves(b, i, j), i, j);
+						list[i][j] = Controller.getKnightMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 'b') {
-						b.setStateBoard(Controller.getBishopMoves(b, i, j), i, j);
+						list[i][j] = Controller.getBishopMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 't') {
-						b.setStateBoard(Controller.getRookMoves(b, i, j), i, j);
+						list[i][j] = Controller.getRookMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 'q') {
-						b.setStateBoard(Controller.getQueenMoves(b, i, j), i, j);
+						list[i][j] = Controller.getQueenMoves(b, i, j);
 					}
 
 					if (b.getPiece(i, j) == 'k') {
-						b.setStateBoard(Controller.getKingMoves(b, i, j), i, j);
+						list[i][j] = Controller.getKingMoves(b, i, j);
 					}
+				
 				}
 				else {
-					b.setStateBoard(new LinkedList<>(), i, j);
+					list[i][j] = new LinkedList<>();
 				}
 			}
 		}
+		return list;
 		
+	}
+
+	public static void allLegal(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException, IllegalMoveException {
+		LinkedList<Coordinate>[][] list = uncheckedMoves(b);
+		for (int i = 0; i<8; i++) {
+			for (int j = 0; j<8; j++){
+				LinkedList<Coordinate> teste = list[i][j];
+				for (Coordinate c : teste) {
+					Board copy = b;
+					copy.changePos(i, j, c);
+					if (copy.isBlackKingInCheck() || copy.isWhiteKingInCheck()) {
+						teste.remove(c);
+					}
+				}
+				list[i][j] = teste;
+			}
+		}
+		b.setStateBoard(list);
 	}
 		
 }

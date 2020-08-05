@@ -74,12 +74,10 @@ public class Board {
 
     public void changePos(int begin_x, int begin_y, int final_x, int final_y) {
         setChange(begin_x, begin_y, final_x, final_y);
-        Annotation.putMovement(final_x, final_y);
     }
 
     public void changePos(int begin_x, int begin_y, Coordinate c) {
         setChange(begin_x, begin_y, c.getPos_i(), c.getPos_j());
-        Annotation.putMovement(c.getPos_i(), c.getPos_j());
     }
 
     // Método de roque para as pretas. Pede um y para definir qual das duas
@@ -163,6 +161,10 @@ public class Board {
         stateBoard[i][j] = moves;
     }
 
+    public void setStateBoard(LinkedList<Coordinate>[][] moves) {
+        stateBoard = moves;
+    }
+
     public void printImage() {
         char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
         int[] numbers = { 8, 7, 6, 5, 4, 3, 2, 1 };
@@ -241,16 +243,13 @@ public class Board {
 
     public boolean isBlackKingInCheck() throws BoardOutOfBoundsException, UnexpectedPieceException,
             IllegalMoveException {
-        Controller.uncheckedMovesWhite(this);
+        LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(this);
         Coordinate[] king = indexOfPiece('k');
-        Coordinate x;
         boolean isCheck = false;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                Iterator<Coordinate> iter = stateBoard[i][j].iterator();
-                while (iter.hasNext()) {
-                    x = iter.next();
-                    if (x.equals(king[0]) && getPiece(x.getPos_i(), x.getPos_j()) != 'K') {
+                for (Coordinate c : list[i][j]) {
+                    if (c.equals(king[0]) && getPiece(c.getPos_i(), c.getPos_j()) != 'K' && isWhite(i,j)) {
                         isCheck = true;
                     }
                 }
@@ -262,16 +261,13 @@ public class Board {
 
     public boolean isWhiteKingInCheck() throws BoardOutOfBoundsException, UnexpectedPieceException,
             IllegalMoveException {
-        Controller.uncheckedMovesBlack(this);
+        LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(this);
         Coordinate[] king = indexOfPiece('K');
-        Coordinate x;
         boolean isCheck = false;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                Iterator<Coordinate> iter = stateBoard[i][j].iterator();
-                while (iter.hasNext()) {
-                    x = iter.next();
-                    if (x.equals(king[0]) && getPiece(x.getPos_i(), x.getPos_j()) != 'k') {
+                for (Coordinate c : list[i][j]) {
+                    if (c.equals(king[0]) && getPiece(c.getPos_i(), c.getPos_j()) != 'k' && isBlack(i,j)) {
                         isCheck = true;
                     }
                 }
