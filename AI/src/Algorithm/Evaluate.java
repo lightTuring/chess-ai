@@ -122,7 +122,6 @@ public class Evaluate {
 
     }
 
-    //Não terminado
     public double total () throws Exception {
         return (kingMobility() + pieceSafety() + piece() + kingSafety() + pawnAdvancement());
     }

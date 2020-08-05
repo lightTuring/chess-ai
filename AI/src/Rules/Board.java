@@ -270,6 +270,7 @@ public class Board {
         return chessBoard;
     }
 
+    //10 é o número maximo de peças de um tipo (2 peças iniciais + 8 peões promovidos)
     public Coordinate[] indexOfPiece(char b) {
         Coordinate[] positions = new Coordinate[10];
         int p = 0;
@@ -368,6 +369,26 @@ public class Board {
 
         return null;
 
+    }
+
+    public Coordinate promotionWhite() throws BoardOutOfBoundsException{
+        for (int j = 0; j<8; j++) {
+            if (getPiece(7, j) == 'P') {
+                return new Coordinate(7, j);
+            }
+        }
+        // Caso não tenha peões brancos que possam promover.
+        return new Coordinate(-1,-1);
+    }
+
+    public Coordinate promotionBlack() throws BoardOutOfBoundsException{
+        for (int j = 0; j<8; j++) {
+            if (getPiece(0, j) == 'P') {
+                return new Coordinate(0, j);
+            }
+        }
+        // Caso não tenha peões pretos que possam promover.
+        return new Coordinate(-1,-1);
     }
 
     public boolean IsCheckMateInBlackKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1)
