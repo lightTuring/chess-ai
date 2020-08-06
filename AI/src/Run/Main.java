@@ -72,9 +72,9 @@ public class Main {
             
             try {
                 game.setMoves();
-                game.move(ii[0], ii[1], jj[0], jj[1]);
+                game.move(ii[0], ii[1], jj[0], jj[1]);/*
                 board1.buildMark();
-                if(board1.isCheckBlackDFS(new Coordinate(0, 4), new Coordinate(0, 4))) System.out.println("DEU CHEQUE KCT!");
+                if(board1.isCheckBlackDFS(new Coordinate(0, 4), new Coordinate(0, 4))) System.out.println("DEU CHEQUE KCT!");*/
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
                 

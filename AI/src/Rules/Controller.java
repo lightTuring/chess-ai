@@ -118,6 +118,10 @@ public class Controller {
 				list.add(x);
 			}
 			else {
+				if (pos_j + i < 8) {
+					x = new Coordinate(pos_i + i, pos_j + i);
+					list.add(x);
+				}
 				break;
 			}
 		}
@@ -127,6 +131,10 @@ public class Controller {
 				list.add(x);
 			}
 			else {
+				if (pos_j - i >= 0) {
+					x = new Coordinate(pos_i + i, pos_j - i);
+					list.add(x);
+				}
 				break;
 			}
 		}
@@ -136,6 +144,10 @@ public class Controller {
 				list.add(x);
 			}
 			else {
+				if (pos_j + i < 8) {
+					x = new Coordinate(pos_i - i, pos_j + i);
+					list.add(x);
+				}
 				break;
 			}
 		}
@@ -145,6 +157,10 @@ public class Controller {
 				list.add(x);
 			}
 			else {
+				if ((pos_j - i) >= 0) {
+					x = new Coordinate(pos_i - i, pos_j - i);
+					list.add(x);
+				}
 				break;
 			}
 		}
