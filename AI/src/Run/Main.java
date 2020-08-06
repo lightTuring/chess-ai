@@ -87,6 +87,9 @@ public class Main {
             catch (IllegalMoveException i) {
                 System.err.println("\n*Movimento ilegal*\n");
             }
+            catch(ArrayIndexOutOfBoundsException a){
+                System.err.println("\n*Indice inválido*\n");
+            }
 
         }
         System.out.println("Jogo Acabou");
