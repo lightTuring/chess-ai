@@ -63,7 +63,9 @@ public class GraphBuilder {
 	public int getNode(Coordinate c){
 		return BrutalSearch(c);
 	}
-
+    public LinkedList<Integer> getSon(int u){
+        return graph[u];
+    }
 	public void printGraph(){
         for (int i = 0; i < countNodes; i++) {
             System.out.print("The node:" + i + " has connections with this coordinates-> ");
