@@ -47,7 +47,7 @@ public class Game {
     } 
 
     public void setMoves() throws BoardOutOfBoundsException, UnexpectedPieceException,
-    IllegalMoveException {
+    IllegalMoveException, CloneNotSupportedException{
         Controller.allLegal(this.board);
     }
 

@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import Notation.Annotation;
 
-public class Board {
+public class Board implements Cloneable {
 
     private char[][] chessBoard = new char[8][8];
     private final char[] initPosBlack = { 't', 'c', 'b', 'q', 'k', 'b', 'c', 't' };
@@ -22,6 +22,21 @@ public class Board {
     private enum CastlingSide {
         Kingside, Queenside
     };
+
+    @Override
+    public Board clone() throws CloneNotSupportedException {
+        Board b = new Board();
+        b.chessBoard = this.chessBoard;
+        b.hasWhiteKingMoved = this.hasWhiteKingMoved;
+        b.hasRightWhiteRookMoved = this.hasRightWhiteRookMoved;
+        b.hasLeftWhiteRookMoved = this.hasLeftWhiteRookMoved;
+        b.hasBlackKingMoved = this.hasBlackKingMoved ;
+        b.hasRightBlackRookMoved = this.hasRightBlackRookMoved;
+        b.hasLeftBlackRookMoved = this.hasLeftBlackRookMoved ;
+        b.stateBoard = this.stateBoard;
+        
+        return b;
+    }
 
     public Board() {
         for (int i = 0; i < chessBoard.length; i++) {
