@@ -46,7 +46,7 @@ public class MinMax extends GraphBuilder{
 		}
 		
 	}
-	//algoritmo guloso
+		//algoritmo guloso
 	public Coordinate bestPlaying(int node, int depth, boolean isMaximizing){
 		algorithm(node, depth, isMaximizing);
 
@@ -59,7 +59,7 @@ public class MinMax extends GraphBuilder{
 		int u = maxn;//nó resposta
 
 		for(int i=0; i < son.size(); i++){
-			if(gb.getCoordinate(0).equals(gb.getCoordinate(son.get(i)))) continue; //segurança
+			if(son.get(i) == 0) continue; //segurança
 			ans = Math.max(ans, gb.getWeight(son.get(i)));
 			if(ans != aux){
 				u = son.get(i);
@@ -70,19 +70,6 @@ public class MinMax extends GraphBuilder{
 		return gb.getCoordinate(u);
 	}
 	/*
-	private void dfs(int u, int dpt, int dm){
-		mark[u] = true;
-		path[dm].add(u);
-		pathWeight[dm].add(gb.getWeight(u)); //atribui o peso de u numa list set de set. Quando dpt = depth, atualiza a dimensão do array
-		if(dpt == gb.getDepth()) dm++;
-
-		for (Integer v : graph[u]) {
-			if(!mark[v]){
-				dfs(v, ++dpt, dm);
-			}
-		}
-	}
-
 	public LinkedList<Coordinate> betterPath(){
 		dfs(0, 0, 0);
 		LinkedList<Coordinate> better_path = new LinkedList<>();
