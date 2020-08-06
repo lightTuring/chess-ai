@@ -84,6 +84,9 @@ public class Main {
             catch (CloneNotSupportedException clone) {
                 System.out.println("Clone Errado");
             }
+            catch (IllegalMoveException i) {
+                System.out.println("Movimento ilegal");
+            }
 
         }
         System.out.println("Jogo Acabou");

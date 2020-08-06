@@ -26,15 +26,11 @@ public class Board implements Cloneable {
     @Override
     public Board clone() throws CloneNotSupportedException {
         Board b = new Board();
-        b.chessBoard = this.chessBoard;
-        b.hasWhiteKingMoved = this.hasWhiteKingMoved;
-        b.hasRightWhiteRookMoved = this.hasRightWhiteRookMoved;
-        b.hasLeftWhiteRookMoved = this.hasLeftWhiteRookMoved;
-        b.hasBlackKingMoved = this.hasBlackKingMoved ;
-        b.hasRightBlackRookMoved = this.hasRightBlackRookMoved;
-        b.hasLeftBlackRookMoved = this.hasLeftBlackRookMoved ;
-        b.stateBoard = this.stateBoard;
-        
+        for (int i= 0; i<8; i++) {
+            for (int j= 0; j<8; j++) {
+                b.chessBoard[i][j] = this.chessBoard[i][j];
+            }
+        }
         return b;
     }
 

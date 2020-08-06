@@ -60,8 +60,10 @@ public class Game {
     public void move(int i, int j, int final_i, int final_j)
             throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         Coordinate c = new Coordinate(final_i, final_j);
-        if (isLegal(i, j, c)) {
+        if (isLegal(i, j, c) && (!board.isBlack(c) == turn || board.isWhite(c) == turn)) {
             board.changePos(i, j, c);
+            turn = !turn;
+            moves++;
         }
         else {
             throw new IllegalMoveException("Movimento ilegal");
