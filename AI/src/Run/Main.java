@@ -81,6 +81,9 @@ public class Main {
             catch (UnexpectedPieceException board) {
                 System.out.println("Não é peça");
             }
+            catch (CloneNotSupportedException clone) {
+                System.out.println("Clone Errado");
+            }
 
         }
         System.out.println("Jogo Acabou");
