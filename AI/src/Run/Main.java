@@ -75,17 +75,17 @@ public class Main {
 
             }
             catch (BoardOutOfBoundsException board) {
-                System.out.println("Fora do tabuleiro");
+                System.err.println("\n*Fora do tabuleiro*\n");
             }
             
             catch (UnexpectedPieceException board) {
-                System.out.println("Não é peça");
+                System.err.println("\n*Não é peça*\n");
             }
             catch (CloneNotSupportedException clone) {
-                System.out.println("Clone Errado");
+                System.err.println("\n*Clone Errado*\n");
             }
             catch (IllegalMoveException i) {
-                System.out.println("Movimento ilegal");
+                System.err.println("\n*Movimento ilegal*\n");
             }
 
         }
