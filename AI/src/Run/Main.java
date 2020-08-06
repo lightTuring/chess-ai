@@ -62,15 +62,14 @@ public class Main {
         while (!game.hasEnded()) {
             game.getBoard().printImage();
             System.out.println("");
-            String initial = s.nextLine();
-            String destiny = s.nextLine();
-            Annotation.putMovement(initial);
-            Coordinate i = Annotation.getLastMovementMatrixCoordinate();
-            Annotation.putMovement(destiny);
-            Coordinate f = Annotation.getLastMovementMatrixCoordinate();
+            int ii = s.nextInt();
+            int jj = s.nextInt();
+            int iff = s.nextInt();
+            int jf = s.nextInt();
+            
             try {
                 game.setMoves();
-                game.move(i.getPos_i(), i.getPos_j(), f.getPos_i(), f.getPos_j());
+                game.move(ii, jj, iff, jf);
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
 

@@ -295,9 +295,10 @@ public class Board {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (chessBoard[i][j] == b)
+                if (chessBoard[i][j] == b) {
                     positions[p] = new Coordinate(i, j);
-                p++;
+                    p++;
+                }
             }
         }
         return positions;
