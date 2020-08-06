@@ -59,7 +59,7 @@ public class MinMax extends GraphBuilder{
 		int u = maxn;//nó resposta
 
 		for(int i=0; i < son.size(); i++){
-			if(gb.getCoordinate(0)==gb.getCoordinate(son.get(i))) continue; //segurança
+			if(gb.getCoordinate(0).equals(gb.getCoordinate(son.get(i)))) continue; //segurança
 			ans = Math.max(ans, gb.getWeight(son.get(i)));
 			if(ans != aux){
 				u = son.get(i);
