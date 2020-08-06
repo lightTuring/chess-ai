@@ -296,14 +296,14 @@ public class Controller {
 		
 	}
 
-	public static void allLegal(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException, IllegalMoveException {
+	public static void allLegal(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException, IllegalMoveException, CloneNotSupportedException {
 		LinkedList<Coordinate>[][] list = uncheckedMoves(b);
 		for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++){
 				LinkedList<Coordinate> teste = list[i][j];
 				LinkedList<Coordinate> letra = teste;
 				for (Coordinate c : teste) {
-					Board copy = b;
+					Board copy = b.clone();
 					copy.changePos(i, j, c);
 					if (copy.isBlackKingInCheck() || copy.isWhiteKingInCheck()) {
 						letra.remove(c);
