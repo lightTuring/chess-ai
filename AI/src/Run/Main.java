@@ -2,7 +2,7 @@ package Run;
 
 import java.util.*;
 
-import Notation.Annotation;
+import Notation.*;
 import Rules.Board;
 import Rules.BoardOutOfBoundsException;
 import Rules.Coordinate;
@@ -62,14 +62,18 @@ public class Main {
         while (!game.hasEnded()) {
             game.getBoard().printImage();
             System.out.println();
-            int ii = s.nextInt();
-            int jj = s.nextInt();
-            int iff = s.nextInt();
-            int jf = s.nextInt();
+
+            System.out.print("Peça da posição.: ");
+            String first = s.nextLine();
+            System.out.print("Para.: ");
+            String second = s.nextLine();
+            
+            int[] ii = Translator.NotationChessToComputer(first.charAt(0), Character.getNumericValue(first.charAt(1)));
+            int[] jj = Translator.NotationChessToComputer(second.charAt(0), Character.getNumericValue(second.charAt(1)));
             
             try {
                 game.setMoves();
-                game.move(ii, jj, iff, jf);
+                game.move(ii[0], ii[1], jj[0], jj[1]);
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
 
