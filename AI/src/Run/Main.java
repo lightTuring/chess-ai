@@ -1,6 +1,6 @@
 package Run;
 
-import java.util.Scanner;
+import java.util.*;
 
 import Notation.Annotation;
 import Rules.Board;
@@ -61,7 +61,7 @@ public class Main {
 
         while (!game.hasEnded()) {
             game.getBoard().printImage();
-            System.out.println("");
+            System.out.println();
             int ii = s.nextInt();
             int jj = s.nextInt();
             int iff = s.nextInt();
