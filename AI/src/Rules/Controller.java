@@ -301,14 +301,15 @@ public class Controller {
 		for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++){
 				LinkedList<Coordinate> teste = list[i][j];
+				LinkedList<Coordinate> letra = teste;
 				for (Coordinate c : teste) {
 					Board copy = b;
-					//copy.changePos(i, j, c);
+					copy.changePos(i, j, c);
 					if (copy.isBlackKingInCheck() || copy.isWhiteKingInCheck()) {
-						teste.remove(c);
+						letra.remove(c);
 					}
 				}
-				list[i][j] = teste;
+				list[i][j] = letra;
 			}
 		}
 		b.setStateBoard(list);
