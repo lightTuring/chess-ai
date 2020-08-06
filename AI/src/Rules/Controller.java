@@ -303,7 +303,7 @@ public class Controller {
 				LinkedList<Coordinate> teste = list[i][j];
 				for (Coordinate c : teste) {
 					Board copy = b;
-					copy.changePos(i, j, c);
+					//copy.changePos(i, j, c);
 					if (copy.isBlackKingInCheck() || copy.isWhiteKingInCheck()) {
 						teste.remove(c);
 					}

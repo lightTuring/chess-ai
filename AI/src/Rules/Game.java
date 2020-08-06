@@ -48,7 +48,7 @@ public class Game {
 
     public void setMoves() throws BoardOutOfBoundsException, UnexpectedPieceException,
     IllegalMoveException {
-        Controller.allLegal(board);
+        Controller.allLegal(this.board);
     }
 
     private LinkedList<Coordinate>[][] pseudoLegalMoves() {
