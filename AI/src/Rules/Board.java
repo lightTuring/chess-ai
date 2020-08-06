@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import Notation.Annotation;
 
+
 public class Board implements Cloneable {
 
     private char[][] chessBoard = new char[8][8];
@@ -19,6 +20,9 @@ public class Board implements Cloneable {
     private boolean hasRightBlackRookMoved = false;
     private boolean hasLeftBlackRookMoved = false;
 
+    private int[] linha = {1, -1, 0, 0, -1, 1, -1, 1};
+    private int[] coluna = {0, 0, 1, -1, -1, 1, 1, -1};
+    private boolean[][] mark = new boolean[8][8];
     private enum CastlingSide {
         Kingside, Queenside
     };
@@ -252,6 +256,43 @@ public class Board implements Cloneable {
         }
     }
 
+    public void buildMark(){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                mark[i][j] = false;
+            }
+        }
+    }
+
+    public boolean isCheckBlackDFS(Coordinate c, Coordinate king) throws BoardOutOfBoundsException,
+            UnexpectedPieceException, IllegalMoveException {
+        
+        mark[c.getPos_i()][c.getPos_j()] = true;
+        
+        if(isWhite(c)){
+            LinkedList<Coordinate> ms = Controller.uncheckedMoves(this)[c.getPos_i()][c.getPos_j()];
+            System.out.println("TAM -> " + ms.size());
+            for(Coordinate m : ms){
+                if(m.getPos_i()==king.getPos_i()&&m.getPos_j()==king.getPos_j()){
+                    System.out.println("ENTROU");
+                    return true;
+                }
+                System.out.println("POSIÇÕES -> "+m.getPos_i()+" "+m.getPos_j());
+                
+            }
+        }
+
+        for (int i = 0; i < linha.length; i++) {
+            int a = c.getPos_i() + linha[i];
+            int b = c.getPos_j() + coluna[i];
+
+            if(a<0||a>=8||b<0||b>=8||mark[a][b]||isBlack(new Coordinate(a, b))) continue;
+
+            isCheckBlackDFS(new Coordinate(a, b), king);
+        }
+        
+        return false;
+    }
     public boolean isBlackKingInCheck() throws BoardOutOfBoundsException, UnexpectedPieceException,
             IllegalMoveException {
         LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(this);

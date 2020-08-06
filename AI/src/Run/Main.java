@@ -55,14 +55,13 @@ public class Main {
                 ...
         
         */
-
+        Board board1 = new Board();
         Scanner s = new Scanner(System.in);
-        Game game = new Game(new Board());
+        Game game = new Game(board1);
 
         while (!game.hasEnded()) {
             game.getBoard().printImage();
             System.out.println();
-
             System.out.print("Peça da posição.: ");
             String first = s.nextLine();
             System.out.print("Para.: ");
@@ -74,9 +73,11 @@ public class Main {
             try {
                 game.setMoves();
                 game.move(ii[0], ii[1], jj[0], jj[1]);
+                board1.buildMark();
+                if(board1.isCheckBlackDFS(new Coordinate(0, 4), new Coordinate(0, 4))) System.out.println("DEU CHEQUE KCT!");
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
-
+                
             }
             catch (BoardOutOfBoundsException board) {
                 System.err.println("\n*Fora do tabuleiro*\n");

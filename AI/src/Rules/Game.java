@@ -119,7 +119,7 @@ public class Game {
     public void isCheckMateBlack() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         LinkedList<Coordinate>[][] list = pseudoLegalMoves();
         int legal = 0;
-
+        
         if (board.isBlackKingInCheck() == true) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
