@@ -72,16 +72,10 @@ public class Main {
             
             try {
                 game.setMoves();
-<<<<<<< HEAD
                 game.move(ii[0], ii[1], jj[0], jj[1]);
                 board.buildMark();
                 board.isCheckBlackDFS(new Coordinate(0, 4), new Coordinate(0, 4));//POS DO REI
                 if(board.getIfIsCheckInBlack()) System.out.println("DEU XEQUE KCT!");
-=======
-                game.move(ii[0], ii[1], jj[0], jj[1]);/*
-                board1.buildMark();
-                if(board1.isCheckBlackDFS(new Coordinate(0, 4), new Coordinate(0, 4))) System.out.println("DEU CHEQUE KCT!");*/
->>>>>>> 93a8ba9d0485d25084758c0114cce6fa08eb9117
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
                 
