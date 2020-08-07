@@ -55,9 +55,9 @@ public class Main {
                 ...
         
         */
-        Board board1 = new Board();
+        Board board = new Board();
         Scanner s = new Scanner(System.in);
-        Game game = new Game(board1);
+        Game game = new Game(board);
 
         while (!game.hasEnded()) {
             game.getBoard().printImage();
@@ -73,17 +73,18 @@ public class Main {
             try {
                 game.setMoves();
                 game.move(ii[0], ii[1], jj[0], jj[1]);
-                board1.buildMark();
-                if(board1.isCheckBlackDFS(new Coordinate(0, 4), new Coordinate(0, 4))) System.out.println("DEU CHEQUE KCT!");
+                board.buildMark();
+                board.isCheckBlackDFS(new Coordinate(0, 4), new Coordinate(0, 4));//POS DO REI
+                if(board.getIfIsCheckInBlack()) System.out.println("DEU XEQUE KCT!");
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
                 
             }
-            catch (BoardOutOfBoundsException board) {
+            catch (BoardOutOfBoundsException b) {
                 System.err.println("\n*Fora do tabuleiro*\n");
             }
             
-            catch (UnexpectedPieceException board) {
+            catch (UnexpectedPieceException b) {
                 System.err.println("\n*Não é peça*\n");
             }
             catch (CloneNotSupportedException clone) {

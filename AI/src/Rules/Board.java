@@ -22,7 +22,11 @@ public class Board implements Cloneable {
 
     private int[] linha = {1, -1, 0, 0, -1, 1, -1, 1};
     private int[] coluna = {0, 0, 1, -1, -1, 1, 1, -1};
-    private boolean[][] mark = new boolean[8][8];
+    private boolean[][] mark_black = new boolean[8][8];
+    private boolean[][] mark_white = new boolean[8][8];
+    private boolean isCheckBlack = false;
+    private boolean isCheckWhite = false;
+
     private enum CastlingSide {
         Kingside, Queenside
     };
@@ -259,25 +263,27 @@ public class Board implements Cloneable {
     public void buildMark(){
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                mark[i][j] = false;
+                mark_black[i][j] = false;
+                mark_white[i][j] = false;
             }
         }
     }
 
-    public boolean isCheckBlackDFS(Coordinate c, Coordinate king) throws BoardOutOfBoundsException,
+    public void isCheckBlackDFS(Coordinate c, Coordinate king) throws BoardOutOfBoundsException,
             UnexpectedPieceException, IllegalMoveException {
         
-        mark[c.getPos_i()][c.getPos_j()] = true;
+        mark_black[c.getPos_i()][c.getPos_j()] = true;
         
         if(isWhite(c)){
             LinkedList<Coordinate> ms = Controller.uncheckedMoves(this)[c.getPos_i()][c.getPos_j()];
-            System.out.println("TAM -> " + ms.size());
+            //System.out.println("TAM -> " + ms.size());
             for(Coordinate m : ms){
                 if(m.getPos_i()==king.getPos_i()&&m.getPos_j()==king.getPos_j()){
                     System.out.println("ENTROU");
-                    return true;
+                    isCheckBlack = true;
+                    return;
                 }
-                System.out.println("POSIÇÕES -> "+m.getPos_i()+" "+m.getPos_j());
+                //System.out.println("POSIÇÕES -> "+m.getPos_i()+" "+m.getPos_j());
                 
             }
         }
@@ -286,12 +292,49 @@ public class Board implements Cloneable {
             int a = c.getPos_i() + linha[i];
             int b = c.getPos_j() + coluna[i];
 
-            if(a<0||a>=8||b<0||b>=8||mark[a][b]||isBlack(new Coordinate(a, b))) continue;
+            if(a<0||a>=8||b<0||b>=8||mark_black[a][b]||isBlack(new Coordinate(a, b))) continue;
 
             isCheckBlackDFS(new Coordinate(a, b), king);
         }
         
-        return false;
+        
+    }
+
+    public boolean getIfIsCheckInBlack(){
+        return isCheckBlack;
+    }
+    public void isCheckWhiteDFS(Coordinate c, Coordinate king) throws BoardOutOfBoundsException,
+            UnexpectedPieceException, IllegalMoveException {
+        
+        mark_white[c.getPos_i()][c.getPos_j()] = true;
+        
+        if(isBlack(c)){
+            LinkedList<Coordinate> ms = Controller.uncheckedMoves(this)[c.getPos_i()][c.getPos_j()];
+            //System.out.println("TAM -> " + ms.size());
+            for(Coordinate m : ms){
+                if(m.getPos_i()==king.getPos_i()&&m.getPos_j()==king.getPos_j()){
+                    System.out.println("ENTROU");
+                    isCheckWhite = true;
+                    return;
+                }
+                //System.out.println("POSIÇÕES -> "+m.getPos_i()+" "+m.getPos_j());
+                
+            }
+        }
+
+        for (int i = 0; i < linha.length; i++) {
+            int a = c.getPos_i() + linha[i];
+            int b = c.getPos_j() + coluna[i];
+
+            if(a<0||a>=8||b<0||b>=8||mark_white[a][b]||isWhite(new Coordinate(a, b))) continue;
+
+            isCheckWhiteDFS(new Coordinate(a, b), king);
+        }
+        
+        
+    }
+    public boolean getIfIsCheckInWhite(){
+        return isCheckWhite;
     }
     public boolean isBlackKingInCheck() throws BoardOutOfBoundsException, UnexpectedPieceException,
             IllegalMoveException {
