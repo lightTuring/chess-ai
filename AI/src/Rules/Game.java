@@ -3,12 +3,6 @@ package Rules;
 import java.util.Iterator;
 import java.util.LinkedList; 
 
-/*
-OBSERVAÇÃO!!!: Talvez seja necessário considerar mover os metodos de legalidade e cheque-mate para 
-a classe Controller, de forma que essa classe seja usada apenas como execução do jogo em si.
-Estou com preguiça de mudar tudo agora.
-*/
-
 public class Game {
     private Board board;
     // true = brancas; false = pretas.
