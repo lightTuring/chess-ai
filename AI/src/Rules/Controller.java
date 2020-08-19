@@ -311,7 +311,7 @@ public class Controller {
 		return list;
 		
 	}
-
+	/*
 	public static void allLegal(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException, IllegalMoveException, CloneNotSupportedException {
 		LinkedList<Coordinate>[][] list = uncheckedMoves(b);
 		for (int i = 0; i<8; i++) {
@@ -329,7 +329,7 @@ public class Controller {
 			}
 		}
 		b.setStateBoard(list);
-	}
+	}*/
 		
 }
 

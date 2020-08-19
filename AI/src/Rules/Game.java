@@ -46,11 +46,6 @@ public class Game {
         return moves;
     } 
 
-    public void setMoves() throws BoardOutOfBoundsException, UnexpectedPieceException,
-    IllegalMoveException, CloneNotSupportedException{
-        Controller.allLegal(this.board);
-    }
-
     private LinkedList<Coordinate>[][] pseudoLegalMoves() {
         return (board.getStateBoard());
     }
@@ -69,6 +64,34 @@ public class Game {
             throw new IllegalMoveException("Movimento ilegal");
         }
     }
+
+    public void allLegal() throws BoardOutOfBoundsException, UnexpectedPieceException, IllegalMoveException, CloneNotSupportedException {
+		LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(board);
+		for (int i = 0; i<8; i++) {
+			for (int j = 0; j<8; j++){
+				LinkedList<Coordinate> teste = list[i][j];
+				LinkedList<Coordinate> letra = (LinkedList<Coordinate>)teste.clone();
+				for (Coordinate c : teste) {
+					Board copy = board.clone();
+                    copy.changePos(i, j, c);
+                    if (turn == true) {
+                        if (copy.isWhiteKingInCheck()) {
+                            letra.remove(c);
+                        } 
+                        
+                    }
+                    if (turn == false) {
+                        if (copy.isBlackKingInCheck()) {
+                            letra.remove(c);
+                        } 
+                        
+                    }
+				}
+				list[i][j] = letra;
+			}
+		}
+		board.setStateBoard(list);
+	}
 
     public boolean isLegal(int i, int j, Coordinate c) throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         LinkedList<Coordinate> list = board.getStateBoard()[i][j];

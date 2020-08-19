@@ -71,11 +71,8 @@ public class Main {
             int[] jj = Translator.NotationChessToComputer(second.charAt(0), Character.getNumericValue(second.charAt(1)));
             
             try {
-                game.setMoves();
+                game.allLegal();
                 game.move(ii[0], ii[1], jj[0], jj[1]);
-                board.buildMark();
-                board.isCheckBlackDFS(new Coordinate(0, 4), new Coordinate(0, 4));//POS DO REI
-                if(board.getIfIsCheckInBlack()) System.out.println("DEU XEQUE KCT!");
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
                 
@@ -102,3 +99,6 @@ public class Main {
         s.close();
     }
 }
+/* e2
+
+*/ 
