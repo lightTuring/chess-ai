@@ -102,11 +102,10 @@ public class Game {
         }
         return false;
     }
-    
 
     public void isCheckMateWhite() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException,
             CloneNotSupportedException {
-        LinkedList<Coordinate>[][] list = pseudoLegalMoves();
+        LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(board);
         int legal = 0;
 
         if (board.isWhiteKingInCheck() == true) {
@@ -116,12 +115,11 @@ public class Game {
                     Iterator<Coordinate> x = list[i][j].iterator();
                     while (x.hasNext() && legal == 0) {
                         Coordinate c = x.next();
-                        if (isLegal(i, j, c)) {
-                            copy.changePos(i, j, c);
-                            if (!copy.isWhiteKingInCheck()) {
-                                legal++;
-                            }
+                        copy.changePos(i, j, c);
+                        if (!copy.isWhiteKingInCheck()) {
+                            legal++;
                         }
+                        
                     }
 
                     if (legal != 0) {
@@ -142,9 +140,9 @@ public class Game {
 
     public void isCheckMateBlack() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException,
             CloneNotSupportedException {
-        LinkedList<Coordinate>[][] list = pseudoLegalMoves();
+        LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(board);
         int legal = 0;
-        
+
         if (board.isBlackKingInCheck() == true) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
@@ -152,12 +150,11 @@ public class Game {
                     Iterator<Coordinate> x = list[i][j].iterator();
                     while (x.hasNext() && legal == 0) {
                         Coordinate c = x.next();
-                        if (isLegal(i, j, c)) {
-                            copy.changePos(i, j, c);
-                            if (!copy.isBlackKingInCheck()) {
-                                legal++;
-                            }
+                        copy.changePos(i, j, c);
+                        if (!copy.isBlackKingInCheck()) {
+                            legal++;
                         }
+                        
                     }
 
                     if (legal != 0) {
