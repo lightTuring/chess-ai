@@ -94,6 +94,7 @@ public class Main {
             }
 
         }
+        game.getBoard().printImage();
         System.out.println("Jogo Acabou");
         s.close();
     }
