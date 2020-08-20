@@ -85,7 +85,7 @@ public class Controller {
     	Coordinate c;
 		for (int x = -1; x<=1 && x>=-1; x++) {
 			for (int y = -1; y<=1 && y>=-1; y++) {
-				if ((y != 0 || x!=0) && (i + x)<8 && (j+y)<8 && (i + x)>=0 && (j+y)>=0) {
+				if ((y != 0 || x!=0) && (i + x)<8 && (j+y)<8 && (i + x)>=0 && (j+y)>=0 && (b.getPiece(i+x,j+y) == 'o'||!b.hasSameColor(i, j, i+x, j+y))) {
 					c = new Coordinate(i + x, j+y);
 					moves.add(c);
 				}
