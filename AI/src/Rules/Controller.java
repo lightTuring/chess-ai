@@ -81,7 +81,8 @@ public class Controller {
     }
 
     public static LinkedList<Coordinate> getKingMoves(Board b, int i, int j) throws BoardOutOfBoundsException {
-    	LinkedList<Coordinate> moves = new LinkedList<Coordinate>();
+		/*
+		LinkedList<Coordinate> moves = new LinkedList<Coordinate>();
     	Coordinate c;
 		for (int x = -1; x<=1 && x>=-1; x++) {
 			for (int y = -1; y<=1 && y>=-1; y++) {
@@ -91,7 +92,21 @@ public class Controller {
 				}
 			}
 		}
-	
+		*/
+		LinkedList<Coordinate> moves = new LinkedList<Coordinate>();
+		int[] l = {1, -1, 0, 0, -1, 1, 1, -1};
+		int[] c = {0, 0, 1, -1, -1, 1, -1, 1};
+
+		for(int k = 0; k<l.length; k++){
+			int x = i+l[k];
+			int y = j+c[k];
+
+			if(x<0||x>=8||x<0||x>=8||y<0||y>=8||b.hasSameColor(i, j, x, y)) continue;
+
+			moves.add(new Coordinate(x, y));
+
+		}
+
 		return moves;
     }
 
