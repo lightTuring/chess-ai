@@ -69,7 +69,10 @@ public class Game {
 					Board copy = board.clone();
                     copy.changePos(i, j, c);
                     if (turn == true) {
-                        if (copy.isWhiteKingInCheck()) {
+                        if (board.hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
+                            letra.remove(c);
+                        }
+                        else if (copy.isWhiteKingInCheck()) {
                             letra.remove(c);
                         } 
                         
@@ -99,72 +102,22 @@ public class Game {
 
     public void isCheckMateWhite() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException,
             CloneNotSupportedException {
-        LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(board);
-        int legal = 0;
-
-        if (board.isWhiteKingInCheck() == true) {
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    Iterator<Coordinate> x = list[i][j].iterator();
-                    while (x.hasNext() && legal == 0) {
-                        Board copy = board.clone();
-                        Coordinate c = x.next();
-                        copy.changePos(i, j, c);
-                        if (!copy.isWhiteKingInCheck()) {
-                            legal++;
-                        }
-                        
-                    }
-
-                    if (legal != 0) {
-                        break;
-                    }
-                }
-
-                if (legal != 0) {
-                    break;
-                }
-            }
-
-            if (legal == 0) {
-                endOfGame = true;
-            }
+        Coordinate c = board.indexOfPiece('K')[0];
+        if ((board.getStateBoard()[c.getPos_i()][c.getPos_j()].size() == 0) && board.isWhiteKingInCheck()) {
+            endOfGame = true;
         }
+        
+        
     }
 
     public void isCheckMateBlack() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException,
             CloneNotSupportedException {
-        LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(board);
-        int legal = 0;
-
-        if (board.isBlackKingInCheck() == true) {
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    Iterator<Coordinate> x = list[i][j].iterator();
-                    while (x.hasNext() && legal == 0) {
-                        Board copy = board.clone();
-                        Coordinate c = x.next();
-                        copy.changePos(i, j, c);
-                        if (!copy.isBlackKingInCheck()) {
-                            legal++;
-                        }
-                        
-                    }
-
-                    if (legal != 0) {
-                        break;
-                    }
-                }
-
-                if (legal != 0) {
-                    break;
-                }
-            }
-
-            if (legal == 0) {
-                endOfGame = true;
-            }
+        Coordinate c = board.indexOfPiece('k')[0];
+        if ((board.getStateBoard()[c.getPos_i()][c.getPos_j()].size() == 0) && board.isWhiteKingInCheck()) {
+            endOfGame = true;
         }
+        
+        
     }
 
 }
