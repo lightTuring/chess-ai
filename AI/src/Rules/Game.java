@@ -145,6 +145,7 @@ public class Game {
         Coordinate z = board.indexOfPiece('k')[0];
         if ((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) && board.isBlackKingInCheck()) {
             System.out.println("DEU MERDA AQ TBM");
+            System.out.println((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) + "<- OLHA O GOL");
             endOfGame = true;
         }
         
