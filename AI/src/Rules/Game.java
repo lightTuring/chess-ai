@@ -113,7 +113,7 @@ public class Game {
     public void isCheckMateBlack() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException,
             CloneNotSupportedException {
         Coordinate c = board.indexOfPiece('k')[0];
-        if ((board.getStateBoard()[c.getPos_i()][c.getPos_j()].size() == 0) && board.isWhiteKingInCheck()) {
+        if ((board.getStateBoard()[c.getPos_i()][c.getPos_j()].size() == 0) && board.isBlackKingInCheck()) {
             endOfGame = true;
         }
         
