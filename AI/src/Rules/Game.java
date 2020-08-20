@@ -102,22 +102,78 @@ public class Game {
 
     public void isCheckMateWhite() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException,
             CloneNotSupportedException {
-        Coordinate c = board.indexOfPiece('K')[0];
-        if ((board.getStateBoard()[c.getPos_i()][c.getPos_j()].size() == 0) && board.isWhiteKingInCheck()) {
+        int legal = 0;
+        Coordinate z = board.indexOfPiece('K')[0];
+        if ((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) && board.isWhiteKingInCheck()) {
             endOfGame = true;
         }
         
+        else if (board.isWhiteKingInCheck()) {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    Iterator<Coordinate> x = board.getStateBoard()[i][j].iterator();
+                    while (x.hasNext() && legal == 0) {
+                        Board copy = board.clone();
+                        Coordinate c = x.next();
+                        copy.changePos(i, j, c);
+                        if (!copy.isWhiteKingInCheck()) {
+                            legal++;
+                        }
+                        
+                    }
+
+                    if (legal != 0) {
+                        break;
+                    }
+                }
+
+                if (legal != 0) {
+                    break;
+                }
+            }
+
+            if (legal == 0) {
+                endOfGame = true;
+            }
+        }
         
     }
 
-    public void isCheckMateBlack() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException,
-            CloneNotSupportedException {
-        Coordinate c = board.indexOfPiece('k')[0];
-        if ((board.getStateBoard()[c.getPos_i()][c.getPos_j()].size() == 0) && board.isBlackKingInCheck()) {
+    public void isCheckMateBlack() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException, CloneNotSupportedException {
+        int legal = 0;
+        Coordinate z = board.indexOfPiece('k')[0];
+        if ((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) && board.isBlackKingInCheck()) {
             endOfGame = true;
         }
         
-        
+        else if (board.isBlackKingInCheck()) {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    Iterator<Coordinate> x = board.getStateBoard()[i][j].iterator();
+                    while (x.hasNext() && legal == 0) {
+                        Board copy = board.clone();
+                        Coordinate c = x.next();
+                        copy.changePos(i, j, c);
+                        if (!copy.isBlackKingInCheck()) {
+                            legal++;
+                        }
+                        
+                    }
+
+                    if (legal != 0) {
+                        break;
+                    }
+                }
+
+                if (legal != 0) {
+                    break;
+                }
+            }
+
+            if (legal == 0) {
+                endOfGame = true;
+            }
+        }
     }
 
 }
