@@ -81,7 +81,7 @@ public class Main {
                 System.err.println("\n*Fora do tabuleiro*\n");
             }
             
-            catch (UnexpectedPieceException b) {
+            catch (StringIndexOutOfBoundsException | UnexpectedPieceException b) {
                 System.err.println("\n*Não é peça*\n");
             }
             catch (CloneNotSupportedException clone) {
