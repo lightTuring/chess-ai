@@ -5,7 +5,6 @@ import java.util.*;
 import Notation.*;
 import Rules.Board;
 import Rules.BoardOutOfBoundsException;
-import Rules.Coordinate;
 import Rules.Game;
 import Rules.IllegalMoveException;
 import Rules.UnexpectedPieceException;
