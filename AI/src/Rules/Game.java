@@ -105,9 +105,9 @@ public class Game {
         if (board.isWhiteKingInCheck() == true) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                    Board copy = board.clone();
                     Iterator<Coordinate> x = list[i][j].iterator();
                     while (x.hasNext() && legal == 0) {
+                        Board copy = board.clone();
                         Coordinate c = x.next();
                         copy.changePos(i, j, c);
                         if (!copy.isWhiteKingInCheck()) {
@@ -140,9 +140,9 @@ public class Game {
         if (board.isBlackKingInCheck() == true) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                    Board copy = board.clone();
                     Iterator<Coordinate> x = list[i][j].iterator();
                     while (x.hasNext() && legal == 0) {
+                        Board copy = board.clone();
                         Coordinate c = x.next();
                         copy.changePos(i, j, c);
                         if (!copy.isBlackKingInCheck()) {
