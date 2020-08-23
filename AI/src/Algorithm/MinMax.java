@@ -53,8 +53,8 @@ public class MinMax extends GraphBuilder{
 		//Zero-based
 		LinkedList<Integer> son = gb.getSon(0);
 		
-		int ans = -inf;//resposta gulosa
-		int aux = -inf;
+		double ans = -inf;//resposta gulosa
+		double aux = -inf;
 
 		int u = maxn;//nó resposta
 
