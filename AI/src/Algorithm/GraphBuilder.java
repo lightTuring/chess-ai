@@ -13,7 +13,7 @@ public class GraphBuilder {
     @SuppressWarnings("unchecked")
     private LinkedList<Integer>[] graph = new LinkedList[maxn];//Grafo NÓSxARESTA
 	private LinkedList<Coordinate> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
-	private int[] nodeWeights = new int[maxn];
+	private double[] nodeWeights = new double[maxn];
 	private int[] depthNode = new int[maxn];//profundidades dos nós
 
     public GraphBuilder(){
@@ -41,10 +41,10 @@ public class GraphBuilder {
         depth++;
     }
 
-	public void setWeight(int u, int weight){
+	public void setWeight(int u, double weight){
 		nodeWeights[u] = weight;
 	}
-	public int getWeight(int u){
+	public double getWeight(int u){
 		return nodeWeights[u];
 	}
 

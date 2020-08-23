@@ -27,17 +27,17 @@ public class MinMax extends GraphBuilder{
 			pathWeight[i] = new LinkedList<>();
 		}
 	}	
-	private int algorithm(int node, int depth, boolean isMaximizing) {
+	private double algorithm(int node, int depth, boolean isMaximizing) {
 		if(depth == 0 || depth == gb.getDepth()){return gb.getWeight(node);}
 		if(isMaximizing){
-			int value = -inf;
+			double value = -inf;
 			for (Integer child : graph[node]) {
 				value = Math.max(value, algorithm(child, (--depth), false));	
 			}
 			gb.setWeight(node, value);
 			return value;
 		}else{
-			int value = inf;
+			double value = inf;
 			for (Integer child : graph[node]) {
 				value = Math.min(value, algorithm(child, (--depth), true));	
 			}
