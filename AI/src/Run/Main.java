@@ -72,6 +72,7 @@ public class Main {
             try {
                 game.allLegal();
                 game.move(ii[0], ii[1], jj[0], jj[1]);
+                game.allLegal();
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
                 
@@ -95,6 +96,7 @@ public class Main {
 
         }
         game.getBoard().printImage();
+        System.out.println(" ");
         System.out.println("Jogo Acabou");
         s.close();
     }
