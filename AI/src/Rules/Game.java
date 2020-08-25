@@ -106,7 +106,6 @@ public class Game {
         Coordinate z = board.indexOfPiece('K')[0];
         if ((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) && board.isWhiteKingInCheck()) {
             endOfGame = true;
-            System.out.println("TA TROLLANDO AQUII");
         }
         
         else if (board.isWhiteKingInCheck()) {
@@ -144,7 +143,6 @@ public class Game {
         int legal = 0;
         Coordinate z = board.indexOfPiece('k')[0];
         if ((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) && board.isBlackKingInCheck()) {
-            System.out.println("DEU MERDA AQ TBM");
             System.out.println((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) + "<- OLHA O GOL");
             endOfGame = true;
         }
