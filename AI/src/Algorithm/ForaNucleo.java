@@ -6,20 +6,9 @@ public class ForaNucleo {
     public Game board;
     public GraphBuilder gb;
     
-    public ForaNucleo(Game board, GraphBuilder gb) {
+    public ForaNucleo(Game board) {
         this.board = board;
-        this.gb = gb;
+        this.gb = new GraphBuilder();
     }
 
-    private static void createPlaying(GraphBuilder gb){
-        //chama recursao 
-    }
-
-    public void getGlobalPlaying(){
-        for(todas as peças){
-            if(pode jogar){
-                createPlaying(new GraphBuilder());
-            }
-        }
-    }
 }
