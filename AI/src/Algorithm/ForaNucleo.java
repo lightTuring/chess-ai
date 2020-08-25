@@ -6,7 +6,7 @@ import Rules.BoardOutOfBoundsException;
 import Rules.Coordinate;
 import Rules.Game;
 import Rules.IllegalMoveException;
-import Rules.UnexpectedPieceException;
+import Rules.UnexpectedPieceException; 
 
 public class ForaNucleo {
     public Game board;
