@@ -20,6 +20,12 @@ public class Game {
         this.turn = turn;
     }
 
+    public Game clone() throws CloneNotSupportedException {
+        Board b = this.board.clone();
+        Game game = new Game(b, this.turn);
+        return game;
+    }
+
     public boolean equals (Game g) {
         if (this.board.equals(g.board) && (turn == g.turn)) {
             return true;
