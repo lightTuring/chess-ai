@@ -71,7 +71,7 @@ public class Main {
 
                 MinMax IA = new MinMax(fn.getGraph());
 
-                Game ans = IA.bestPlaying(0, depth, true);
+                game = IA.bestPlaying(0, depth, true);
 
             }else{
                 System.out.print("Peça da posição.: ");
