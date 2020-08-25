@@ -22,7 +22,7 @@ public class ForaNucleo {
         return gb;
     }
 
-    public void createSon(Game g) throws BoardOutOfBoundsException, UnexpectedPieceException,
+    private void createSon(Game g) throws BoardOutOfBoundsException, UnexpectedPieceException,
             IllegalMoveException, CloneNotSupportedException {
         
         g.allLegal();

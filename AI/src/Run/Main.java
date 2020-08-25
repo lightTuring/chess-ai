@@ -68,16 +68,22 @@ public class Main {
             System.out.println();
             if(!game.getTurn()){
                 try {
-                fn.createGraph(game, depth);
-
-                MinMax IA = new MinMax(fn.getGraph());
-
-                game = IA.bestPlaying(0, depth, true);
+                    fn.createGraph(game, depth);
+                    fn.createGraph(game, depth);
+    
+                    MinMax IA = new MinMax(fn.getGraph());
+                    game.allLegal();
+                    game = IA.bestPlaying(0, depth, true);
+                    game.allLegal();
+                    game.isCheckMateBlack();
+                    game.isCheckMateWhite();
+                    
+    
                 }
                 catch (BoardOutOfBoundsException b) {
                     System.err.println("\n*Fora do tabuleiro*\n");
                 }
-                
+
                 catch (StringIndexOutOfBoundsException | UnexpectedPieceException b) {
                     System.err.println("\n*Não é peça*\n");
                 }
