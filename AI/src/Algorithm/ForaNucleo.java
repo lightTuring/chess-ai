@@ -7,7 +7,7 @@ public class ForaNucleo {
     public GraphBuilder gb;
     
     public ForaNucleo(Game board, GraphBuilder gb) {
-        this. board = board;
+        this.board = board;
         this.gb = gb;
     }
 }

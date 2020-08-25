@@ -21,7 +21,7 @@ public class Game {
     }
 
     public boolean equals (Game g) {
-        if (board.equals(g.board) && (turn == g.turn)) {
+        if (this.board.equals(g.board) && (turn == g.turn)) {
             return true;
         }
         return false;
