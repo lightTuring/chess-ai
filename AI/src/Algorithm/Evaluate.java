@@ -15,7 +15,7 @@ public class Evaluate {
         this.board = board;
     }
 
-    public double piece() throws BoardOutOfBoundsException {
+    private double piece() throws BoardOutOfBoundsException {
         double white = 0;
         double black = 0;
         for (int i = 0; i<8; i++) {
@@ -49,7 +49,7 @@ public class Evaluate {
         return (white - black);
     }
 
-    public double kingSafety() throws BoardOutOfBoundsException {
+    private double kingSafety() throws BoardOutOfBoundsException {
         double white = 0;
         double black = 0;
         for (int i = 0; i<8; i++) {
@@ -67,7 +67,7 @@ public class Evaluate {
         return (white - black);
     }
 
-    public double pieceSafety() throws Exception {
+    private double pieceSafety() throws Exception {
         double white = 0;
         double black = 0;
         for (int i=0; i<8; i++) {
@@ -93,7 +93,7 @@ public class Evaluate {
         return (white - black);
     }
 
-    public double kingMobility() throws BoardOutOfBoundsException {
+    private double kingMobility() throws BoardOutOfBoundsException {
         double white = 0;
         double black = 0;
         Coordinate[] whiteKing = board.indexOfPiece('K');
@@ -105,7 +105,7 @@ public class Evaluate {
         return(white-black);
     }
 
-    public double pawnAdvancement() {
+    private double pawnAdvancement() {
         double white = 0;
         double black = 0;
         Coordinate[] listWhite = board.indexOfPiece('P');
@@ -122,7 +122,7 @@ public class Evaluate {
 
     }
 
-    public double total () throws Exception {
+    public double total () throws BoardOutOfBoundsException, Exception {
         return (kingMobility() + pieceSafety() + piece() + kingSafety() + pawnAdvancement());
     }
 

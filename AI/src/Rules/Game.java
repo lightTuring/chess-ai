@@ -8,6 +8,8 @@ public class Game {
     // true = brancas; false = pretas.
     private boolean turn;
     private boolean endOfGame = false;
+    public boolean isCheckMateBlack = false;
+    public boolean isCheckMateWhite = false;
     private int moves = 0;
 
     public Game(Board board) {
@@ -147,6 +149,7 @@ public class Game {
 
             if (legal == 0) {
                 endOfGame = true;
+                isCheckMateWhite = true;
             }
         }
         
@@ -186,6 +189,7 @@ public class Game {
 
             if (legal == 0) {
                 endOfGame = true;
+                isCheckMateBlack = true;
             }
         }
     }
