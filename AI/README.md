@@ -461,16 +461,16 @@ public GraphBuilder();
 - Método construtor da classe.
 
 ```java
-public void createGraph(Coordinate c);
+public void createGraph(Game c);
 ```
 
-- Método sobrecarregado da construção do grafo. Recebe como argumentos um _Coordinate_ representando o primeiro nó.
+- Método sobrecarregado da construção do grafo. Recebe como argumentos um _Game_ representando o primeiro nó.
 
 ```java
-public void createGraph(Coordinate father, LinkedList<Coordinate> u);
+public void createGraph(Game father, LinkedList<Game> u);
 ```
 
-- Método sobrecarregado da construção do grafo. Recebe como argumentos um _Coordinate_ representando o nó (pai) que gera a lista de possiveis movimentos(segundo argumento) que a peça pode jogar.
+- Método sobrecarregado da construção do grafo. Recebe como argumentos um _Game_ representando o nó (pai) que gera a lista de possiveis movimentos(segundo argumento) que a peça pode jogar.
 
 ```java
 public void setWeight(int u, int weight);
@@ -503,16 +503,16 @@ public int getDepthFromNode(int u);
 - Método que retorna a profundidade de um nó do Grafo. Argumento: nó.
 
 ```java
-public Coordinate getCoordinate(int node);
+public Game getGame(int node);
 ```
 
-- Método que retorna a coordenada de um nó. Argumento: nó.
+- Método que retorna um objeto _Game_. Argumento: nó.
 
 ```java
-public int getNode(Coordinate c);
+public int getNode(Game c);
 ```
 
-- Método que retorna o nó de determinada coordenada. Argumento : Object _Coordinate_.
+- Método que retorna o nó de determinado. Argumento : Objeto _Game_.
 
 ```java
 public void printGraph();
@@ -527,10 +527,10 @@ public void printWeightGraph();
 - Método que imprime os pesos que são atribuídos à todos os nós.
 
 ```java
-private int BrutalSearch(Board c);
+private int BrutalSearch(Game c);
 ```
 
-- Método que faz uma busca em O(n). Serve para a construção do Grafo. É passado como argumento um _Coordinate_.
+- Método que faz uma busca em O(n). Serve para a construção do Grafo. É passado como argumento um _Game_.
 
 ### [Min Max](https://en.wikipedia.org/wiki/Minimax)
 
