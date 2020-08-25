@@ -11,4 +11,12 @@ public class ForaNucleo {
         this.gb = new GraphBuilder();
     }
 
+    public GraphBuilder getGraph() {
+        return gb;
+    }
+
+    public void createGraph(int depth) {
+        
+    }
+
 }
