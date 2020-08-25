@@ -67,12 +67,29 @@ public class Main {
             game.getBoard().printImage();
             System.out.println();
             if(!game.getTurn()){
+                try {
                 fn.createGraph(game, depth);
 
                 MinMax IA = new MinMax(fn.getGraph());
 
                 game = IA.bestPlaying(0, depth, true);
-
+                }
+                catch (BoardOutOfBoundsException b) {
+                    System.err.println("\n*Fora do tabuleiro*\n");
+                }
+                
+                catch (StringIndexOutOfBoundsException | UnexpectedPieceException b) {
+                    System.err.println("\n*Não é peça*\n");
+                }
+                catch (CloneNotSupportedException clone) {
+                    System.err.println("\n*Clone Errado*\n");
+                }
+                catch (IllegalMoveException i) {
+                    System.err.println("\n*Movimento ilegal*\n");
+                }
+                catch(ArrayIndexOutOfBoundsException a){
+                    System.err.println("\n*Indice inválido*\n");
+                }
             }else{
                 System.out.print("Peça da posição.: ");
                 String first = s.nextLine();
