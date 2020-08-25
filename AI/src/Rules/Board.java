@@ -39,6 +39,12 @@ public class Board implements Cloneable {
                 b.chessBoard[i][j] = this.chessBoard[i][j];
             }
         }
+        b.hasBlackKingMoved = this.hasBlackKingMoved;
+        b.hasRightWhiteRookMoved = this.hasRightWhiteRookMoved;
+        b.hasLeftWhiteRookMoved = this.hasLeftWhiteRookMoved;
+        b.hasWhiteKingMoved = this.hasWhiteKingMoved;
+        b.hasRightBlackRookMoved = this.hasRightBlackRookMoved;
+        b.hasLeftBlackRookMoved = this.hasLeftBlackRookMoved;
         return b;
     }
 
