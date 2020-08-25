@@ -1,12 +1,12 @@
 package Algorithm;
 
-import Rules.Board;
+import Rules.Game;
 
 public class ForaNucleo {
-    public Board board;
+    public Game board;
     public GraphBuilder gb;
     
-    public ForaNucleo(Board board, GraphBuilder gb) {
+    public ForaNucleo(Game board, GraphBuilder gb) {
         this. board = board;
         this.gb = gb;
     }

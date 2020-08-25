@@ -20,6 +20,13 @@ public class Game {
         this.turn = turn;
     }
 
+    public boolean equals (Game g) {
+        if (board.equals(g.board) && (turn == g.turn)) {
+            return true;
+        }
+        return false;
+    }
+
     public Board getBoard() {
         return board;
     }

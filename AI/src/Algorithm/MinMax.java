@@ -47,7 +47,7 @@ public class MinMax extends GraphBuilder{
 		
 	}
 		//algoritmo guloso
-	public Board bestPlaying(int node, int depth, boolean isMaximizing){
+	public Game bestPlaying(int node, int depth, boolean isMaximizing) {
 		algorithm(node, depth, isMaximizing);
 
 		//Zero-based
@@ -67,7 +67,7 @@ public class MinMax extends GraphBuilder{
 			}
 		}
 
-		return gb.getBoard(u);
+		return gb.getGame(u);
 	}
 	/*
 	public LinkedList<Coordinate> betterPath(){
