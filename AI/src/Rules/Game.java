@@ -24,7 +24,12 @@ public class Game {
 
     public Game clone() throws CloneNotSupportedException {
         Board b = this.board.clone();
-        Game game = new Game(b, this.turn);
+        Game game = new Game(b);
+        game.endOfGame = this.endOfGame;
+        game.turn = this.turn;
+        game.isCheckMateBlack = this.isCheckMateBlack;
+        game.isCheckMateWhite = this.isCheckMateWhite;
+        game.moves = this.moves;
         return game;
     }
 
