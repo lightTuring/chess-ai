@@ -42,6 +42,17 @@ public class Board implements Cloneable {
         return b;
     }
 
+    public boolean equals(Board b) {
+        for (int i= 0; i<8; i++) {
+            for (int j= 0; j<8; j++) {
+                if (b.chessBoard[i][j] != this.chessBoard[i][j]) {
+                    return false;
+                };
+            }
+        }
+        return true;
+    }
+
     public Board() {
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[i].length; j++) {
