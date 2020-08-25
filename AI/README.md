@@ -527,7 +527,7 @@ public void printWeightGraph();
 - Método que imprime os pesos que são atribuídos à todos os nós.
 
 ```java
-private int BrutalSearch(Coordinate c);
+private int BrutalSearch(Board c);
 ```
 
 - Método que faz uma busca em O(n). Serve para a construção do Grafo. É passado como argumento um _Coordinate_.
@@ -569,7 +569,7 @@ public MinMax(GraphBuilder gb);
 - Método construtor da classe. Recebe um _GraphBuilder_ para realizar as operações.
 
 ```java
-public int algorithm(int node, int depth, boolean isMaximizing);
+private int algorithm(int node, int depth, boolean isMaximizing);
 ```
 
 - Aplica o Algoritmo Min_Max, atribuindo a todos os nós os pesos. Recebe três argumentos: Nó, a profundidade e se é momento de maximização(Na primeira chamada passar este valor sendo verdadeiro).
@@ -579,16 +579,10 @@ public int algorithm(int node, int depth, boolean isMaximizing);
 - Imagem da aplicação do algoritmo.
 
 ```java
-private void dfs(int u, int dpt, int dm);
+public Game bestPlaying(int node, int depth, boolean isMaximizing);
 ```
 
-- Aplica uma busca em profundidade capturando os caminhos possiveis. Recebe três argumentos: O nó, a profundidade atual e a dimensão do _LinkedList_ dos caminhos. É chamado no método _betterPath_.
-
-```java
-public LinkedList<Coordinate> betterPath();
-```
-
-- Método que retorna a lista com as melhores jogadas.
+- Retorna a melhor jogada naquele momento. Recebe como argumento o nó(Inteiro), a profundidade e se é momento de maximização.
 
 ### RandomPlay
 
