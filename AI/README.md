@@ -534,7 +534,7 @@ private int BrutalSearch(Game c);
 
 ### [Min Max](https://en.wikipedia.org/wiki/Minimax)
 
-Aplica o algoritmo principal do jogo, atuando na tomada de decisão.
+Este algoritmo atua na tomada de decisão da jogada feita pela máquina.
 
 ```
 function minimax(node, depth, maximizingPlayer) is
@@ -572,7 +572,7 @@ public MinMax(GraphBuilder gb);
 private int algorithm(int node, int depth, boolean isMaximizing);
 ```
 
-- Aplica o Algoritmo Min_Max, atribuindo a todos os nós os pesos. Recebe três argumentos: Nó, a profundidade e se é momento de maximização(Na primeira chamada passar este valor sendo verdadeiro).
+- Aplica o Algoritmo _MinMax_, atribuindo a todos os nós os pesos. Recebe três argumentos: Nó, a profundidade e se é momento de maximização(Na primeira chamada passar este valor sendo verdadeiro).
 
 ![Screenshot](minmax.png)
 
@@ -582,15 +582,40 @@ private int algorithm(int node, int depth, boolean isMaximizing);
 public Game bestPlaying(int node, int depth, boolean isMaximizing);
 ```
 
-- Retorna a melhor jogada naquele momento. Recebe como argumento o nó(Inteiro), a profundidade e se é momento de maximização.
+- Retorna a melhor jogada naquele momento. Recebe como argumento o nó(Inteiro), a profundidade e se é momento de maximização. É o único método(além do construtor) chamado na main.
 
 ### Evaluate
 
-- Está classe realiza a avalição seguindo o algoritmo de _[Alan Turing]()_ sobre a situação do tabuleiro e define os pesos da jogada.
+Está classe realiza a avalição seguindo o algoritmo de _[Alan Turing]()_ sobre a situação do tabuleiro e define os pesos da jogada.
 
 ### ForaNucleo
 
-- Está classe constrói o grafo das possiveis jogadas que a máquina pode realizar e atribui os pesos aos nós finais. Serve de grande apoio para a aplicação do _MinMax_.
+Está classe constrói o grafo das possiveis jogadas que a máquina pode realizar e atribui os pesos aos nós finais. Serve de grande apoio para a aplicação do _MinMax_.
+
+```java
+public ForaNucleo(Game board);
+```
+
+- Método construtor.
+
+```java
+public GraphBuilder getGraph();
+```
+
+- Retorna o objeto _GraphBuilder_, o Grafo das jogadas.
+
+
+```java
+public void createGraph(Game g, int depth);
+```
+
+- Método público que realiza a construção do Grafo de maneira recursiva para a realização de todas as jogadas.
+
+```java
+private void createSon(Game g);
+```
+
+- Método privado que é chamado no _createGraph(Game g, int depth)_ para adicionar um nó ao grafo.
 
 ### RandomPlay
 
