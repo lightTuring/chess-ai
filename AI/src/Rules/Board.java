@@ -1,8 +1,8 @@
 package Rules;
 
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.LinkedList;
-import Notation.Annotation;
+//import Notation.Annotation;
 
 
 public class Board implements Cloneable {
