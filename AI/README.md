@@ -4,6 +4,12 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
 
 ## Run
 
+O pacote apresenta os arquivos de execução.
+
+### Main
+
+Classe principal. Aplicação do método _main_. Onde ocorre a interação entre a máquina e o usuário.
+
 ## Rules
 
 O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
