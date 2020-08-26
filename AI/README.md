@@ -2,6 +2,8 @@
 
 Nesta pasta encontramos os códigos referentes a inteligência artificial do projeto. Contêm os seguintes pacotes.:
 
+## Run
+
 ## Rules
 
 O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
