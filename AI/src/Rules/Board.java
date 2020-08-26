@@ -39,12 +39,19 @@ public class Board implements Cloneable {
                 b.chessBoard[i][j] = this.chessBoard[i][j];
             }
         }
+        for (int i= 0; i<8; i++) {
+            for (int j= 0; j<8; j++) {
+                b.stateBoard[i][j] = (LinkedList<Coordinate>)this.stateBoard[i][j].clone();
+            }
+        }
         b.hasBlackKingMoved = this.hasBlackKingMoved;
         b.hasRightWhiteRookMoved = this.hasRightWhiteRookMoved;
         b.hasLeftWhiteRookMoved = this.hasLeftWhiteRookMoved;
         b.hasWhiteKingMoved = this.hasWhiteKingMoved;
         b.hasRightBlackRookMoved = this.hasRightBlackRookMoved;
         b.hasLeftBlackRookMoved = this.hasLeftBlackRookMoved;
+        
+
         return b;
     }
 
