@@ -10,6 +10,10 @@ O pacote apresenta os arquivos de execução.
 
 Classe principal. Aplicação do método _main_. Onde ocorre a interação entre a máquina e o usuário.
 
+### PvP
+
+Classe secundária para a realização de um jogo entre dois usuários.
+
 ## Rules
 
 O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
