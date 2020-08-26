@@ -588,6 +588,17 @@ public Game bestPlaying(int node, int depth, boolean isMaximizing);
 
 Está classe realiza a avalição seguindo o algoritmo de _[Alan Turing]()_ sobre a situação do tabuleiro e define os pesos da jogada.
 
+``` java
+public Evaluate (Board board)
+```
+- Método construtor.
+
+```java
+private double piece();
+```
+
+-Método para pontuar a situação do tabuleiro.
+
 ### ForaNucleo
 
 Está classe constrói o grafo das possiveis jogadas que a máquina pode realizar e atribui os pesos aos nós finais. Serve de grande apoio para a aplicação do _MinMax_.
