@@ -15,7 +15,7 @@ public class ForaNucleo {
     public ForaNucleo(Game board) {
         this.board = board;
         this.gb = new GraphBuilder();
-        gb.createGraph(board);
+        this.gb.createGraph(board);
     }
 
     public GraphBuilder getGraph() {
@@ -30,7 +30,7 @@ public class ForaNucleo {
         for (int i = 0; i<8; i++) {
             for (int j = 0; j<8; j++) {
                 for (Coordinate c : g.getBoard().getStateBoard()[i][j]) {
-                    Game copy = g.clone();
+                    Game copy = (Game)g.clone();
                     copy.move(i, j, c.getPos_i(), c.getPos_j());
                     list.add(copy);
                 }
@@ -53,16 +53,42 @@ public class ForaNucleo {
             for (int h : gb.getSon(gb.getNode(g))) {
                 Game x = gb.getGame(h);
                 Evaluate e = new Evaluate(x.getBoard());
-                if (x.isCheckMateBlack) {
+                if (x.getIsCheckMateBlack()) {
                     gb.setWeight(h, Integer.MAX_VALUE);
                 }
-                else if (x.isCheckMateWhite) {
+                else if (x.getIsCheckMateWhite()) {
                     gb.setWeight(h, Integer.MIN_VALUE);
                 }
                 else {
                     gb.setWeight(h, e.total());
                 }
             }
+        }
+    }
+    public void createGraph(Game g, int dpt, int depth) throws Exception {
+        if (dpt < (depth-1)) {
+            createSon(g);
+            for (int h : gb.getSon(gb.getNode(g))) {
+                createGraph(gb.getGame(h), (dpt+1), depth);
+            }
+        }
+        else if(dpt==depth-1){
+            createSon(g);
+            for (int h : gb.getSon(gb.getNode(g))) {
+                Game x = gb.getGame(h);
+                Evaluate e = new Evaluate(x.getBoard());
+                if (x.getIsCheckMateBlack()) {
+                    gb.setWeight(h, Integer.MAX_VALUE);
+                }
+                else if (x.getIsCheckMateWhite()) {
+                    gb.setWeight(h, Integer.MIN_VALUE);
+                }
+                else {
+                    gb.setWeight(h, e.total());
+                }
+            }
+        }else{
+            return;
         }
     }
 

@@ -8,8 +8,8 @@ public class Game {
     // true = brancas; false = pretas.
     private boolean turn;
     private boolean endOfGame = false;
-    public boolean isCheckMateBlack = false;
-    public boolean isCheckMateWhite = false;
+    private boolean isCheckMateBlack = false;
+    private boolean isCheckMateWhite = false;
     private int moves = 0;
 
     public Game(Board board) {
@@ -197,6 +197,12 @@ public class Game {
                 isCheckMateBlack = true;
             }
         }
+    }
+    public boolean getIsCheckMateBlack(){
+        return isCheckMateBlack;
+    }
+    public boolean getIsCheckMateWhite(){
+        return isCheckMateWhite;
     }
 
 }

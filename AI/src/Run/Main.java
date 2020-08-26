@@ -61,18 +61,18 @@ public class Main {
         Game game = new Game(board);
         ForaNucleo fn = new ForaNucleo(game);
 
-        int depth = 3;
+        int depth = 0;
 
         while (!game.hasEnded()) {
             game.getBoard().printImage();
             System.out.println();
             if(!game.getTurn()){
                 try {
-                    fn.createGraph(game, depth);
+                    fn.createGraph(game, 0, depth);
                     fn.getGraph().printGraph();
                     MinMax IA = new MinMax(fn.getGraph());
                     game.allLegal();
-                    game = IA.bestPlaying(0, depth, true);
+                    game = IA.bestPlaying(0, depth-1, true);
                     game.allLegal();
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
@@ -95,6 +95,7 @@ public class Main {
                 catch(ArrayIndexOutOfBoundsException a){
                     System.err.println("\n*Indice inválido*\n");
                 }
+                //game.setTurn(!game.getTurn());
             }else{
                 System.out.print("Peça da posição.: ");
                 String first = s.nextLine();
