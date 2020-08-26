@@ -69,8 +69,7 @@ public class Main {
             if(!game.getTurn()){
                 try {
                     fn.createGraph(game, depth);
-                    fn.createGraph(game, depth);
-    
+                    fn.getGraph().printGraph();
                     MinMax IA = new MinMax(fn.getGraph());
                     game.allLegal();
                     game = IA.bestPlaying(0, depth, true);

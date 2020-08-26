@@ -584,6 +584,10 @@ public Game bestPlaying(int node, int depth, boolean isMaximizing);
 
 - Retorna a melhor jogada naquele momento. Recebe como argumento o nó(Inteiro), a profundidade e se é momento de maximização.
 
+### Evaluate
+
+### ForaNucleo
+
 ### RandomPlay
 
 Está classe com métodos estáticos realiza um sorteio das peças e das posições para uma jogada.
