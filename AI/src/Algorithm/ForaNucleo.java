@@ -39,32 +39,6 @@ public class ForaNucleo {
         gb.createGraph(g, list);
         
     }
-
-    public void createGraph(Game g, int depth) throws Exception {
-        if (depth > 0) {
-            createSon(g);
-            for (int h : gb.getSon(gb.getNode(g))) {
-                Game x = gb.getGame(h);
-                createGraph(x, depth-1);
-            }
-        }
-        else {
-            createSon(g);
-            for (int h : gb.getSon(gb.getNode(g))) {
-                Game x = gb.getGame(h);
-                Evaluate e = new Evaluate(x.getBoard());
-                if (x.getIsCheckMateBlack()) {
-                    gb.setWeight(h, Integer.MAX_VALUE);
-                }
-                else if (x.getIsCheckMateWhite()) {
-                    gb.setWeight(h, Integer.MIN_VALUE);
-                }
-                else {
-                    gb.setWeight(h, e.total());
-                }
-            }
-        }
-    }
     public void createGraph(Game g, int dpt, int depth) throws Exception {
         if (dpt < (depth-1)) {
             createSon(g);
