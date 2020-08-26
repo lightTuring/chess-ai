@@ -98,6 +98,9 @@ public class Game {
                         
                     }
                     if (turn == false) {
+                        if (board.hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
+                            letra.remove(c);
+                        }
                         if (copy.isBlackKingInCheck()) {
                             letra.remove(c);
                         } 
