@@ -33,11 +33,11 @@ public class GraphBuilder {
         int nodeFather = BrutalSearch(father);
         if(nodeFather==-1) return;
         for (int i = 0; i < u.size(); i++) {
-            countNodes++;
+            //countNodes++;
             nodesPos.add(u.get(i));
-            graph[countNodes-1].add(nodeFather);
-            graph[nodeFather].add(countNodes-1);
-            
+            graph[countNodes].add(nodeFather);
+            graph[nodeFather].add(countNodes);
+            countNodes++;
 		}
     }
 
