@@ -81,7 +81,7 @@ public class Evaluate {
                     }
                 }
                 if (board.isWhite(i, j) && board.isSquareAttacked(new Coordinate(i, j), true)) {
-                    if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T') || (board.getPiece(i, j) == 'V')) {
+                    if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T') || (board.getPiece(i, j) == 'C')) {
                         white++;
                     }
                     if((board.getPiece(i, j) == 'P')) {
