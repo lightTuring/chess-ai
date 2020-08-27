@@ -69,8 +69,8 @@ public class ForaNucleo {
                 }
             }
             else {
-                createSon(gb.getGame(q.getFirst()));
-                for (int c : gb.getSon(q.getFirst())) {
+                createSon(gb.getGame(h));
+                for (int c : gb.getSon(h)) {
                     q.add(c);
                 }
             }
