@@ -1,13 +1,14 @@
 package Algorithm;
 
 import java.util.LinkedList;
+
 import Rules.Game;
 
 
 public class GraphBuilder {
     
-    private final int maxn = 1000007;
-    private static int depth = 0;
+    private final int maxn = Integer.MAX_VALUE;
+    //private static int depth = 0;
     private static int countNodes = 1; 
 
     @SuppressWarnings("unchecked")
@@ -15,19 +16,18 @@ public class GraphBuilder {
 	private LinkedList<Game> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
 	private double[] nodeWeights = new double[maxn];
 	private int[] depthNode = new int[maxn];//profundidades dos nós
+    private boolean[] mark = new boolean[maxn];
 
     public GraphBuilder(){
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new LinkedList<>();
             nodeWeights[i] = 0;
         }
+        depthNode[0] = 0;
     }
     public void createGraph(Game c){
-
         graph[0].add(0);
         nodesPos.add(c);
-		depthNode[0] = depth;
-        depth++;
     }
     public void createGraph(Game father, LinkedList<Game> u){
         int nodeFather = BrutalSearch(father);
@@ -37,8 +37,6 @@ public class GraphBuilder {
             graph[countNodes].add(countNodes);
             countNodes++;
 		}
-		depthNode[nodeFather] = depth;
-        depth++;
     }
 
 	public void setWeight(int u, double weight){
@@ -51,9 +49,19 @@ public class GraphBuilder {
 	public LinkedList<Integer>[] getGraph(){
 		return graph; 
 	}
+    private int dfsDpt(int u, int dpt){
+        mark[u] = true;
+        for (int v : graph[u]) {
+            if(!mark[v]){
+                dfsDpt(u, (dpt+1));
+            }
+        }
+        return dpt;
+    }
     public int getDepth(){
-        return depth;
-	}
+        for(int i=0;i<mark.length;i++) mark[i] = false;
+        return dfsDpt(0, 0);
+    }
 	public int getDepthFromNode(int u){
 		return depthNode[u];
 	}

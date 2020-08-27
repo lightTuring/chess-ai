@@ -71,7 +71,7 @@ public class Main {
                     fn.createGraph(game, 0, depth);
                     MinMax IA = new MinMax(fn.getGraph());
                     game.allLegal();
-                    game = IA.bestPlaying(0, depth-1, true);
+                    game = IA.bestPlaying(0, depth, true);
                     game.allLegal();
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
