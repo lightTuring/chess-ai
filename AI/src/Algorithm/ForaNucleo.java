@@ -46,7 +46,17 @@ public class ForaNucleo {
         if (dpt < (depth-1)) {
             createSon(g);
             for (int h : gb.getSon(gb.getNode(g))) {
-                createGraph(gb.getGame(h), (dpt+1), depth);
+                g.isCheckMateBlack();
+                g.isCheckMateWhite();
+                if (g.getIsCheckMateBlack()) {
+                    gb.setWeight(h, Integer.MAX_VALUE);
+                }
+                else if (g.getIsCheckMateWhite()) {
+                    gb.setWeight(h, Integer.MIN_VALUE);
+                }
+                else {
+                    createGraph(gb.getGame(h), (dpt+1), depth); 
+                }
             }
         }
         else if(dpt==depth-1){
