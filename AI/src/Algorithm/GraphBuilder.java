@@ -49,7 +49,8 @@ public class GraphBuilder {
 	public LinkedList<Integer>[] getGraph(){
 		return graph; 
 	}
-    private int bfsDpt(){
+    
+    public int getDepth(){
         boolean[] mark = new boolean[maxn];
         for(int i=0;i<mark.length;i++) mark[i] = false;
         Queue<Integer> fila = new LinkedList<>();
@@ -66,14 +67,8 @@ public class GraphBuilder {
                     mark[v] = true;
                 }  
             }
-        }   
-
-
+        }  
         return dist[countNodes-1];
-    }
-    public int getDepth(){
-        //for(int i=0;i<mark.length;i++) mark[i] = false;
-        return bfsDpt();
     }/*
 	public int getDepthFromNode(int u){
 		return depthNode[u];
