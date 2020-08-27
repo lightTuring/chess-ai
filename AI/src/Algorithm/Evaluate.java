@@ -111,12 +111,16 @@ public class Evaluate {
         Coordinate[] listWhite = board.indexOfPiece('P');
         Coordinate[] listBlack = board.indexOfPiece('p');
         for (Coordinate c : listWhite) {
-            int i = c.getPos_i();
-            white =+ (i-1)*0.2;
+            if (c != null) {
+                int i = c.getPos_i();
+                white =+ (i-1)*0.2; 
+            }
         }
         for (Coordinate c : listBlack) {
-            int i = c.getPos_i();
-            black =+ (i-1)*0.2;
+            if (c != null) {
+                int i = c.getPos_i();
+                black =+ (i-1)*0.2; 
+            }
         }
         return (white - black);
 
