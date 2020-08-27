@@ -61,7 +61,7 @@ public class Main {
         Game game = new Game(board);
         ForaNucleo fn = new ForaNucleo(game);
 
-        int depth = 0;
+        int depth = 3;
 
         while (!game.hasEnded()) {
             game.getBoard().printImage();

@@ -31,7 +31,9 @@ public class ForaNucleo {
             for (int j = 0; j<8; j++) {
                 for (Coordinate c : g.getBoard().getStateBoard()[i][j]) {
                     Game copy = (Game)g.clone();
-                    copy.move(i, j, c.getPos_i(), c.getPos_j());
+                    if (g.getBoard().isBlack(i, j)) {
+                        copy.move(i, j, c.getPos_i(), c.getPos_j()); 
+                    }
                     list.add(copy);
                 }
             }
