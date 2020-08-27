@@ -48,6 +48,10 @@ public class Game {
         return (turn ? "Brancas" : "Pretas");
     }
 
+    public void setTurn(boolean turn) {
+        this.turn = turn;
+    }
+
     public boolean getTurn() {
         return (turn);
     }

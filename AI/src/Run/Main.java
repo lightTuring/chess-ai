@@ -80,7 +80,9 @@ public class Main {
                     game.allLegal();
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
-                    
+                    System.out.println(" ");
+                    game.getBoard().printImage();
+                    game.setTurn(!game.getTurn());
     
                 }
                 catch (BoardOutOfBoundsException b) {
