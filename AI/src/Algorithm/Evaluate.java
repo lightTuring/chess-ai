@@ -77,7 +77,7 @@ public class Evaluate {
                         black++;
                     }
                     if((board.getPiece(i, j) == 'p')) {
-                        black =+ 0.1;
+                        black  += 0.1;
                     }
                 }
                 if (board.isWhite(i, j) && board.isSquareAttacked(new Coordinate(i, j), true)) {
@@ -85,7 +85,7 @@ public class Evaluate {
                         white++;
                     }
                     if((board.getPiece(i, j) == 'P')) {
-                        white =+ 0.1;
+                        white += 0.1;
                     }
                 }
             }
@@ -113,13 +113,13 @@ public class Evaluate {
         for (Coordinate c : listWhite) {
             if (c != null) {
                 int i = c.getPos_i();
-                white =+ (i-1)*0.2; 
+                white += (i-1)*0.2; 
             }
         }
         for (Coordinate c : listBlack) {
             if (c != null) {
                 int i = c.getPos_i();
-                black =+ (i-1)*0.2; 
+                black += (i-1)*0.2; 
             }
         }
         return (white - black);
