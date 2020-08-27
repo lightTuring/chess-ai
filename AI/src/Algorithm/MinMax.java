@@ -37,11 +37,20 @@ public class MinMax extends GraphBuilder{
 	}
 		//algoritmo guloso
 	public Game bestPlaying(int node, int depth, boolean isMaximizing) {
-		algorithm(node, depth, isMaximizing);
+		double search = algorithm(node, depth, isMaximizing);
 
 		//Zero-based
 		LinkedList<Integer> son = gb.getSon(0);
 		
+		int x=0;
+
+		for(int s : son){
+			if(gb.getWeight(s)==search){
+				x = s;
+				break;
+			}
+		}
+		/*
 		double ans = -inf;//resposta gulosa
 		double aux = -inf;
 
@@ -55,7 +64,7 @@ public class MinMax extends GraphBuilder{
 				aux = ans;
 			}
 		}
-
-		return gb.getGame(u);
+		System.out.println("DEU CERTOO");*/
+		return gb.getGame(x);
 	}
 }
