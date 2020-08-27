@@ -1,5 +1,6 @@
 package Algorithm;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 import Rules.BoardOutOfBoundsException;
@@ -42,9 +43,41 @@ public class ForaNucleo {
         gb.createGraph(g, list);
         
     }
-    public void createGraph(Game g, Game f, int dpt, int depth) throws Exception {
+    @SuppressWarnings("unchecked")
+    public void createGraph(int depth) throws Exception {
+        LinkedList<Integer> q = new LinkedList<Integer>();
+        HashSet<Integer>[] set = new HashSet[depth]; 
+        int x = depth;
+        q.add(gb.getNode(board));
+        set[0].add(gb.getNode(board));
+        while (!q.isEmpty()) {
+            int h = q.remove();
+            if(gb.getDepthFromNode(h) == depth) {
+                if (gb.getGame(h).getIsCheckMateBlack()) {
+                    gb.setWeight(h, Integer.MAX_VALUE);
+                }
+                else if (gb.getGame(h).getIsCheckMateWhite()) {
+                    gb.setWeight(h, Integer.MIN_VALUE);
+                }
+                else {
+                    Evaluate e = new Evaluate(gb.getGame(h).getBoard());
+                    gb.setWeight(h, e.total());
+                }
+            }
+            else {
+                createSon(gb.getGame(q.getFirst()));
+                for (int c : gb.getSon(q.getFirst())) {
+                    q.add(c);
+                }
+            }
+            q.remove();
+        }
+        
+
+    }
+
+    public void createGraph(Game g, int dpt, int depth) throws Exception {
         if (dpt < depth) {
-            if(g.equals(f)) return;
             createSon(g);
             int x = gb.getNode(g);
             if(x!=-1){
@@ -58,7 +91,7 @@ public class ForaNucleo {
                         gb.setWeight(h, Integer.MIN_VALUE);
                     }
                     else {
-                        createGraph(gb.getGame(h), g, (dpt+1), depth); 
+                        createGraph(gb.getGame(h), (dpt+1), depth); 
                     }
                 }
             }
