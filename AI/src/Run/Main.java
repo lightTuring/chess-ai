@@ -69,7 +69,7 @@ public class Main {
             System.out.println();
             if(!game.getTurn()){
                 try {
-                    fn.createGraph(game, new Game(new Board()), 0, depth);
+                    fn.createGraph(depth);
                     GraphBuilder gb = fn.getGraph();
                     MinMax IA = new MinMax(gb);
                     game.allLegal();
