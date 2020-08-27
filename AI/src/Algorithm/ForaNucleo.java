@@ -52,6 +52,12 @@ public class ForaNucleo {
         set[0].add(gb.getNode(board));
         while (!q.isEmpty()) {
             int h = q.remove();
+            if (gb.getGame(h).getIsCheckMateBlack()) {
+                gb.setWeight(h, Integer.MAX_VALUE);
+            }
+            else if (gb.getGame(h).getIsCheckMateWhite()) {
+                gb.setWeight(h, Integer.MIN_VALUE);
+            }
             if(gb.getDepthFromNode(h) == depth) {
                 if (gb.getGame(h).getIsCheckMateBlack()) {
                     gb.setWeight(h, Integer.MAX_VALUE);
