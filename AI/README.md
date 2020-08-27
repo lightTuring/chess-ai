@@ -598,7 +598,7 @@ public Game bestPlaying(int node, int depth, boolean isMaximizing);
 
 ### Evaluate
 
-Está classe realiza a avalição seguindo o algoritmo de _[Alan Turing]()_ sobre a situação do tabuleiro e define os pesos da jogada.
+Está classe realiza a avalição seguindo o algoritmo de _[Alan Turing](https://en.chessbase.com/post/reconstructing-turing-s-paper-machine)_ sobre a situação do tabuleiro e define os pesos da jogada.
 
 ``` java
 public Evaluate (Board board)
@@ -609,7 +609,7 @@ public Evaluate (Board board)
 private double piece();
 ```
 
--Método para pontuar a situação do tabuleiro.
+-Método para pontuar a situação do tabuleiro. Ele percorre o tabuleiro e soma (ou subtrai, no caso das pretas) o valor de cada peça, retornando o total.
 
 ### ForaNucleo
 
