@@ -16,7 +16,7 @@ public class MinMax extends GraphBuilder{
 		graph = gb.getGraph();	
 	}	
 	public double algorithm(int node, int depth, boolean isMaximizing) {
-		if(depth == 0 || depth == gb.getDepth()){return gb.getWeight(node);}
+		if(depth == gb.getDepth()){return gb.getWeight(node);}
 		if(isMaximizing){
 			double value = -inf;
 			for (Integer child : graph[node]) {

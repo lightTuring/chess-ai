@@ -61,7 +61,6 @@ public class ForaNucleo {
                     gb.setWeight(h, Integer.MIN_VALUE);
                 }
                 else {
-                    System.out.println("TA AQUI O->"+e.total());
                     gb.setWeight(h, e.total());
                 }
             }
