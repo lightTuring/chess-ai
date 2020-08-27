@@ -76,8 +76,9 @@ public class ForaNucleo {
 
     }
 
-    public void createGraph(Game g, int dpt, int depth) throws Exception {
+    public void createGraph(Game g, Game f, int dpt, int depth) throws Exception {
         if (dpt < depth) {
+            if(g.equals(f)) return;
             createSon(g);
             int x = gb.getNode(g);
             if(x!=-1){
@@ -91,31 +92,10 @@ public class ForaNucleo {
                         gb.setWeight(h, Integer.MIN_VALUE);
                     }
                     else {
-                        createGraph(gb.getGame(h), (dpt+1), depth); 
+                        createGraph(gb.getGame(h), g, (dpt+1), depth); 
                     }
                 }
             }
-        }
-        else if(dpt==depth){
-            createSon(g);
-            int y = gb.getNode(g);
-            if(y!=-1){
-                for (int h : gb.getSon(y)) {
-                    Game x = gb.getGame(h);
-                    Evaluate e = new Evaluate(x.getBoard());
-                    if (x.getIsCheckMateBlack()) {
-                        gb.setWeight(h, Integer.MAX_VALUE);
-                    }
-                    else if (x.getIsCheckMateWhite()) {
-                        gb.setWeight(h, Integer.MIN_VALUE);
-                    }
-                    else {
-                        gb.setWeight(h, e.total());
-                    }
-                }
-            }
-        }else{
-            return;
         }
     }
 
