@@ -26,16 +26,18 @@ public class GraphBuilder {
       //  depthNode[0] = 0;
     }
     public void createGraph(Game c){
-        graph[0].add(0);
+        //graph[0].add(0);
         nodesPos.add(c);
     }
     public void createGraph(Game father, LinkedList<Game> u){
         int nodeFather = BrutalSearch(father);
+        if(nodeFather==-1) return;
         for (int i = 0; i < u.size(); i++) {
-            nodesPos.add(u.get(i));
-            graph[countNodes].add(nodeFather);
-            graph[nodeFather].add(countNodes);
             countNodes++;
+            nodesPos.add(u.get(i));
+            graph[countNodes-1].add(nodeFather);
+            graph[nodeFather].add(countNodes-1);
+            
 		}
     }
 
