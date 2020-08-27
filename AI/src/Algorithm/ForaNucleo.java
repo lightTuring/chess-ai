@@ -43,35 +43,41 @@ public class ForaNucleo {
         
     }
     public void createGraph(Game g, int dpt, int depth) throws Exception {
-        if (dpt < (depth-1)) {
+        if (dpt < depth) {
             createSon(g);
-            for (int h : gb.getSon(gb.getNode(g))) {
-                g.isCheckMateBlack();
-                g.isCheckMateWhite();
-                if (g.getIsCheckMateBlack()) {
-                    gb.setWeight(h, Integer.MAX_VALUE);
-                }
-                else if (g.getIsCheckMateWhite()) {
-                    gb.setWeight(h, Integer.MIN_VALUE);
-                }
-                else {
-                    createGraph(gb.getGame(h), (dpt+1), depth); 
+            int x = gb.getNode(g);
+            if(x!=-1){
+                for (Integer h : gb.getSon(x)) {
+                    g.isCheckMateBlack();
+                    g.isCheckMateWhite();
+                    if (g.getIsCheckMateBlack()) {
+                        gb.setWeight(h, Integer.MAX_VALUE);
+                    }
+                    else if (g.getIsCheckMateWhite()) {
+                        gb.setWeight(h, Integer.MIN_VALUE);
+                    }
+                    else {
+                        createGraph(gb.getGame(h), (dpt+1), depth); 
+                    }
                 }
             }
         }
-        else if(dpt==depth-1){
+        else if(dpt==depth){
             createSon(g);
-            for (int h : gb.getSon(gb.getNode(g))) {
-                Game x = gb.getGame(h);
-                Evaluate e = new Evaluate(x.getBoard());
-                if (x.getIsCheckMateBlack()) {
-                    gb.setWeight(h, Integer.MAX_VALUE);
-                }
-                else if (x.getIsCheckMateWhite()) {
-                    gb.setWeight(h, Integer.MIN_VALUE);
-                }
-                else {
-                    gb.setWeight(h, e.total());
+            int y = gb.getNode(g);
+            if(y!=-1){
+                for (int h : gb.getSon(y)) {
+                    Game x = gb.getGame(h);
+                    Evaluate e = new Evaluate(x.getBoard());
+                    if (x.getIsCheckMateBlack()) {
+                        gb.setWeight(h, Integer.MAX_VALUE);
+                    }
+                    else if (x.getIsCheckMateWhite()) {
+                        gb.setWeight(h, Integer.MIN_VALUE);
+                    }
+                    else {
+                        gb.setWeight(h, e.total());
+                    }
                 }
             }
         }else{

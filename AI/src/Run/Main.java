@@ -3,6 +3,7 @@ package Run;
 import java.util.*;
 
 import Algorithm.ForaNucleo;
+import Algorithm.GraphBuilder;
 import Algorithm.MinMax;
 import Notation.*;
 import Rules.Board;
@@ -61,7 +62,7 @@ public class Main {
         Game game = new Game(board);
         ForaNucleo fn = new ForaNucleo(game);
 
-        int depth = 3;
+        int depth = 1;
 
         while (!game.hasEnded()) {
             game.getBoard().printImage();
@@ -69,10 +70,13 @@ public class Main {
             if(!game.getTurn()){
                 try {
                     fn.createGraph(game, 0, depth);
-                    MinMax IA = new MinMax(fn.getGraph());
+                    GraphBuilder gb = fn.getGraph();
+                    MinMax IA = new MinMax(gb);
                     game.allLegal();
-                    System.out.println("aqui->"+fn.getGraph().getDepth());
-                    game = IA.bestPlaying(0, fn.getGraph().getDepth(), true);
+                    //gb.printGraph();
+                    System.out.println(gb.HowManyNodes());
+                    System.out.println("aqui->"+gb.getDepth());
+                    game = IA.bestPlaying(0, depth, true);
                     game.allLegal();
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();

@@ -10,7 +10,7 @@ public class GraphBuilder {
     
     private final int maxn = 10000010;
     //private static int depth = 0;
-    private static int countNodes = 1; 
+    private int countNodes = 1; 
 
     @SuppressWarnings("unchecked")
     private LinkedList<Integer>[] graph = new LinkedList[maxn];//Grafo NÓSxARESTA
@@ -34,7 +34,7 @@ public class GraphBuilder {
         for (int i = 0; i < u.size(); i++) {
             nodesPos.add(u.get(i));
             graph[countNodes].add(nodeFather);
-            graph[countNodes].add(countNodes);
+            graph[nodeFather].add(countNodes);
             countNodes++;
 		}
     }
@@ -48,19 +48,22 @@ public class GraphBuilder {
 
 	public LinkedList<Integer>[] getGraph(){
 		return graph; 
-	}
+    }
+    public int HowManyNodes(){
+        return countNodes;
+    }
     
     public int getDepth(){
         boolean[] mark = new boolean[maxn];
         for(int i=0;i<mark.length;i++) mark[i] = false;
         Queue<Integer> fila = new LinkedList<>();
         int[] dist = new int[maxn];
-        dist[0] = 0;
+        for(int i=0;i<dist.length;i++) dist[i]=0;
         fila.add(0);
         mark[0] = true;
         while(!fila.isEmpty()){
-            int u = fila.poll();
-            for (int v : graph[u]) {
+            Integer u = fila.poll();
+            for (Integer v : graph[u]) {
                 if(!mark[v]){
                     dist[v] =dist[u]+1;
                     fila.add(v);
@@ -68,7 +71,7 @@ public class GraphBuilder {
                 }  
             }
         }  
-        return dist[countNodes-1];
+        return dist[countNodes-1]+1;
     }/*
 	public int getDepthFromNode(int u){
 		return depthNode[u];
