@@ -30,6 +30,7 @@ public class ForaNucleo {
         for (int i = 0; i<8; i++) {
             for (int j = 0; j<8; j++) {
                 for (Coordinate c : g.getBoard().getStateBoard()[i][j]) {
+                    if(c == null) continue;
                     Game copy = (Game)g.clone();
                     if (g.getBoard().isBlack(i, j)) {
                         copy.move(i, j, c.getPos_i(), c.getPos_j()); 
@@ -60,6 +61,7 @@ public class ForaNucleo {
                     gb.setWeight(h, Integer.MIN_VALUE);
                 }
                 else {
+                    System.out.println("TA AQUI O->"+e.total());
                     gb.setWeight(h, e.total());
                 }
             }
