@@ -1,6 +1,7 @@
 package Algorithm;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 import Rules.Game;
 
@@ -16,7 +17,6 @@ public class GraphBuilder {
 	private LinkedList<Game> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
 	private double[] nodeWeights = new double[maxn];
 	//private int[] depthNode = new int[maxn];//profundidades dos nós
-    private boolean[] mark = new boolean[maxn];
 
     public GraphBuilder(){
         for (int i = 0; i < graph.length; i++) {
@@ -49,18 +49,31 @@ public class GraphBuilder {
 	public LinkedList<Integer>[] getGraph(){
 		return graph; 
 	}
-    private int dfsDpt(int u, int dpt){
-        mark[u] = true;
-        for (int v : graph[u]) {
-            if(!mark[v]){
-                dfsDpt(u, (dpt+1));
+    private int bfsDpt(){
+        boolean[] mark = new boolean[maxn];
+        for(int i=0;i<mark.length;i++) mark[i] = false;
+        Queue<Integer> fila = new LinkedList<>();
+        int[] dist = new int[maxn];
+        dist[0] = 0;
+        fila.add(0);
+        mark[0] = true;
+        while(!fila.isEmpty()){
+            int u = fila.poll();
+            for (int v : graph[u]) {
+                if(!mark[v]){
+                    dist[v] =dist[u]+1;
+                    fila.add(v);
+                    mark[v] = true;
+                }  
             }
-        }
-        return dpt;
+        }   
+
+
+        return dist[countNodes-1];
     }
     public int getDepth(){
-        for(int i=0;i<mark.length;i++) mark[i] = false;
-        return dfsDpt(0, 0);
+        //for(int i=0;i<mark.length;i++) mark[i] = false;
+        return bfsDpt();
     }/*
 	public int getDepthFromNode(int u){
 		return depthNode[u];
