@@ -62,14 +62,14 @@ public class Main {
         Game game = new Game(board);
         ForaNucleo fn = new ForaNucleo(game);
 
-        int depth = 1;
+        int depth = 3;
 
         while (!game.hasEnded()) {
             game.getBoard().printImage();
             System.out.println();
             if(!game.getTurn()){
                 try {
-                    fn.createGraph(game, 0, depth);
+                    fn.createGraph(game, new Game(new Board()), 0, depth);
                     GraphBuilder gb = fn.getGraph();
                     MinMax IA = new MinMax(gb);
                     game.allLegal();

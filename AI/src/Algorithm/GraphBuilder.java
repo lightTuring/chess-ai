@@ -16,7 +16,7 @@ public class GraphBuilder {
     private LinkedList<Integer>[] graph = new LinkedList[maxn];//Grafo NÓSxARESTA
 	private LinkedList<Game> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
 	private double[] nodeWeights = new double[maxn];
-	//private int[] depthNode = new int[maxn];//profundidades dos nós
+	private int[] depthNode = new int[maxn];//profundidades dos nós
 
     public GraphBuilder(){
         for (int i = 0; i < graph.length; i++) {
@@ -28,6 +28,7 @@ public class GraphBuilder {
     public void createGraph(Game c){
         //graph[0].add(0);
         nodesPos.add(c);
+        depthNode[0] = 0;
     }
     public void createGraph(Game father, LinkedList<Game> u){
         int nodeFather = BrutalSearch(father);
@@ -38,6 +39,7 @@ public class GraphBuilder {
             graph[countNodes].add(nodeFather);
             graph[nodeFather].add(countNodes);
             countNodes++;
+            depthNode[countNodes] = getDepth();
 		}
     }
 
@@ -73,11 +75,11 @@ public class GraphBuilder {
                 }  
             }
         }  
-        return dist[countNodes-1]+1;
-    }/*
+        return dist[countNodes-1];
+    }
 	public int getDepthFromNode(int u){
 		return depthNode[u];
-	}*/
+	}
 	public Game getGame(int node){
 		return nodesPos.get(node); 
 	}

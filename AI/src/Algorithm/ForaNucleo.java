@@ -42,8 +42,9 @@ public class ForaNucleo {
         gb.createGraph(g, list);
         
     }
-    public void createGraph(Game g, int dpt, int depth) throws Exception {
+    public void createGraph(Game g, Game f, int dpt, int depth) throws Exception {
         if (dpt < depth) {
+            if(g.equals(f)) return;
             createSon(g);
             int x = gb.getNode(g);
             if(x!=-1){
@@ -57,7 +58,7 @@ public class ForaNucleo {
                         gb.setWeight(h, Integer.MIN_VALUE);
                     }
                     else {
-                        createGraph(gb.getGame(h), (dpt+1), depth); 
+                        createGraph(gb.getGame(h), g, (dpt+1), depth); 
                     }
                 }
             }
