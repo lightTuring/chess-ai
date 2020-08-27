@@ -7,7 +7,7 @@ import Rules.Game;
 
 public class GraphBuilder {
     
-    private final int maxn = Integer.MAX_VALUE;
+    private final int maxn = 10000010;
     //private static int depth = 0;
     private static int countNodes = 1; 
 
@@ -15,7 +15,7 @@ public class GraphBuilder {
     private LinkedList<Integer>[] graph = new LinkedList[maxn];//Grafo NÓSxARESTA
 	private LinkedList<Game> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
 	private double[] nodeWeights = new double[maxn];
-	private int[] depthNode = new int[maxn];//profundidades dos nós
+	//private int[] depthNode = new int[maxn];//profundidades dos nós
     private boolean[] mark = new boolean[maxn];
 
     public GraphBuilder(){
@@ -23,7 +23,7 @@ public class GraphBuilder {
             graph[i] = new LinkedList<>();
             nodeWeights[i] = 0;
         }
-        depthNode[0] = 0;
+      //  depthNode[0] = 0;
     }
     public void createGraph(Game c){
         graph[0].add(0);
@@ -61,10 +61,10 @@ public class GraphBuilder {
     public int getDepth(){
         for(int i=0;i<mark.length;i++) mark[i] = false;
         return dfsDpt(0, 0);
-    }
+    }/*
 	public int getDepthFromNode(int u){
 		return depthNode[u];
-	}
+	}*/
 	public Game getGame(int node){
 		return nodesPos.get(node); 
 	}

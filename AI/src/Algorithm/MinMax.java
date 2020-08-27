@@ -9,7 +9,7 @@ public class MinMax extends GraphBuilder{
 	public LinkedList<Integer>[] graph;	
 	private GraphBuilder gb;
 	private final int inf = 1000000007;
-	private final int maxn = 100000010;
+	private final int maxn = 2147483647;
 
 	public MinMax(GraphBuilder gb) {
 		this.gb = gb;
@@ -45,7 +45,7 @@ public class MinMax extends GraphBuilder{
 		double ans = -inf;//resposta gulosa
 		double aux = -inf;
 
-		int u = maxn;//nó resposta
+		int u = -1;//nó resposta
 
 		for(int i=0; i < son.size(); i++){
 			if(son.get(i) == 0) continue; //segurança
