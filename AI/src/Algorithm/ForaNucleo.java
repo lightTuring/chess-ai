@@ -58,7 +58,7 @@ public class ForaNucleo {
             else if (gb.getGame(h).getIsCheckMateWhite()) {
                 gb.setWeight(h, Integer.MIN_VALUE);
             }
-            if(gb.getDepthFromNode(h) == depth) {
+            if(gb.getDepthFromNode(h) >= depth) {
                 if (gb.getGame(h).getIsCheckMateBlack()) {
                     gb.setWeight(h, Integer.MAX_VALUE);
                 }
