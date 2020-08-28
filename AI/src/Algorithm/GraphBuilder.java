@@ -38,11 +38,20 @@ public class GraphBuilder {
             //countNodes++;
             nodesPos.add(u.get(i));
             graph[nodeFather].add(countNodes);
-            countNodes++;
             depthNode[countNodes] = getDepth();
+            countNodes++;
+        }
+    }
+    public void createGraph(int nodeFather, LinkedList<Game> u){
+        if(nodeFather==-1) return;
+        for (int i = 0; i < u.size(); i++) {
+            //countNodes++;
+            nodesPos.add(u.get(i));
+            graph[nodeFather].add(countNodes);
+            depthNode[countNodes] = getDepth();
+            countNodes++;
 		}
     }
-
 	public void setWeight(int u, double weight){
 		nodeWeights[u] = weight;
 	}
