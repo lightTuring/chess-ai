@@ -21,14 +21,14 @@ public class MinMax extends GraphBuilder{
 		if(isMaximizing){
 			double value = -inf;
 			for (Integer child : graph[node]) {
-				value = Math.max(value, algorithm(child, (++depth), false));	
+				value = Math.max(value, algorithm(child, (depth+1), false));	
 			}
 			gb.setWeight(node, value);
 			return value;
 		}else{
 			double value = inf;
 			for (Integer child : graph[node]) {
-				value = Math.min(value, algorithm(child, (++depth), true));	
+				value = Math.min(value, algorithm(child, (depth+1), true));	
 			}
 			gb.setWeight(node, value);
 			return value;
@@ -37,7 +37,12 @@ public class MinMax extends GraphBuilder{
 	}
 		//algoritmo guloso
 	public Game bestPlaying(int node, int depth, boolean isMaximizing) {
+
 		double search = algorithm(node, depth, isMaximizing);
+
+		for(int i=0;i<gb.HowManyNodes();i++){
+			System.out.println("*"+i+"->"+gb.getWeight(i));
+		}
 
 		//Zero-based
 		LinkedList<Integer> son = gb.getSon(0);
