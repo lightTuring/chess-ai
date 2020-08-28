@@ -40,9 +40,9 @@ public class MinMax extends GraphBuilder{
 
 		double search = algorithm(node, depth, isMaximizing);
 
-		for(int i=0;i<gb.HowManyNodes();i++){
+		/*for(int i=0;i<gb.HowManyNodes();i++){
 			System.out.println("*"+i+"->"+gb.getWeight(i));
-		}
+		}*/
 
 		//Zero-based
 		LinkedList<Integer> son = gb.getSon(0);

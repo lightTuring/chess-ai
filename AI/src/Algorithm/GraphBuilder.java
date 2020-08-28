@@ -3,6 +3,7 @@ package Algorithm;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import Rules.Board;
 import Rules.Game;
 
 
@@ -106,7 +107,7 @@ public class GraphBuilder {
 
     private int BrutalSearch(Game c){
         
-        for (int i = 0; i < nodesPos.size(); i++) {
+        for (int i = nodesPos.size()-1; i >= 0; i--) {
             if(nodesPos.get(i).equals(c)){
                 return i;
             }
@@ -114,25 +115,42 @@ public class GraphBuilder {
 
         return -1;
     }
-    /*
+    /*EXEMPLOS
     public static void main(String[] args) {
         
         GraphBuilder g = new GraphBuilder();
-        g.createGraph(new Game(0, 0));
+        Board board = new Board();
+        Board board1 = new Board();
+        Board board2 = new Board();
+        
+        Game p1 = new Game(board);
+        Game p2 = new Game(board1);
+        Game p3 = new Game(board2);
+        g.createGraph(p1);
 
         LinkedList<Game> ali = new LinkedList<Game>();
-		ali.add(new Game(1, 0));
-        ali.add(new Game(1,1));
+		ali.add(p2);
+        ali.add(p3);
         
-        g.createGraph(new Game(0, 0), ali);
-        LinkedList<Game> aqui = new LinkedList<Game>();
-		aqui.add(new Game(4, 4));
-        g.createGraph(new Game(1, 0), aqui);
-
+        g.createGraph(p1, ali);
+     
         System.out.println(g.getDepth());
         g.printGraph();
     
 
-    }*/
+    }
+    public static void main(String[] args) {
+        GraphBuilder gb = new GraphBuilder();
 
+        gb.createGraph(new Game(new Board()));
+
+        LinkedList<Game> ali = new LinkedList<Game>();
+		ali.add(new Game(new Board()));
+        ali.add(new Game(new Board()));
+
+        gb.createGraph(new Game(new Board()), ali);
+        System.out.println(gb.getDepth());
+        gb.printGraph();
+    
+    }*/
 }
