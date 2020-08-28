@@ -77,7 +77,7 @@ public class Main {
                     //gb.printGraph();
                     System.out.println(gb.HowManyNodes());
                     System.out.println("aqui->"+gb.getDepth());
-                    game = IA.bestPlaying(0, depth, false);
+                    game = IA.bestPlaying(0, gb.getDepth(), false);
                     game.allLegal();
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
