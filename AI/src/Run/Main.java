@@ -60,11 +60,12 @@ public class Main {
         Board board = new Board();
         Scanner s = new Scanner(System.in);
         Game game = new Game(board);
-        ForaNucleo fn = new ForaNucleo(game);
 
         int depth = 2;
 
         while (!game.hasEnded()) {
+            
+            ForaNucleo fn = new ForaNucleo(game);
             game.getBoard().printImage();
             System.out.println();
             if(!game.getTurn()){
