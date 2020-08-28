@@ -32,8 +32,8 @@ public class ForaNucleo {
             for (int j = 0; j<8; j++) {
                 for (Coordinate c : g.getBoard().getStateBoard()[i][j]) {
                     if(c == null) continue;
+                    Game copy = (Game)g.clone();
                     if ((g.getTurn() == g.getBoard().isWhite(i,j)) && g.getBoard().isAPiece(i, j)) {
-                        Game copy = (Game)g.clone();
                         copy.move(i, j, c.getPos_i(), c.getPos_j());
                         list.add(copy);
                     }
@@ -41,8 +41,9 @@ public class ForaNucleo {
                 }
             }
         }
-        gb.createGraph(g, list);
-        
+        if (list.size() != 0) {
+            gb.createGraph(g, list);
+        }
     }
     @SuppressWarnings("unchecked")
     public void createGraph(int depth) throws Exception {
