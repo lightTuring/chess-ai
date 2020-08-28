@@ -81,9 +81,6 @@ public class Main {
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
                     System.out.println(" ");
-                    game.getBoard().printImage();
-                    game.setTurn(!game.getTurn());
-    
                 }
                 catch (BoardOutOfBoundsException b) {
                     System.err.println("\n*Fora do tabuleiro*\n");
