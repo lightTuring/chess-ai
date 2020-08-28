@@ -36,7 +36,6 @@ public class GraphBuilder {
         for (int i = 0; i < u.size(); i++) {
             //countNodes++;
             nodesPos.add(u.get(i));
-            graph[countNodes].add(nodeFather);
             graph[nodeFather].add(countNodes);
             countNodes++;
             depthNode[countNodes] = getDepth();
