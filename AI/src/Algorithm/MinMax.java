@@ -15,18 +15,18 @@ public class MinMax extends GraphBuilder{
 		graph = gb.getGraph();	
 	}	
 	private double algorithm(int node, int depth, boolean isMaximizing) {
-		if(depth == gb.getDepth()){return gb.getWeight(node);}
+		if(depth == 0){return gb.getWeight(node);}
 		if(isMaximizing){
 			double value = -inf;
 			for (Integer child : graph[node]) {
-				value = Math.max(value, algorithm(child, (depth+1), false));	
+				value = Math.max(value, algorithm(child, (depth-1), false));	
 			}
 			gb.setWeight(node, value);
 			return value;
 		}else{
 			double value = inf;
 			for (Integer child : graph[node]) {
-				value = Math.min(value, algorithm(child, (depth+1), true));	
+				value = Math.min(value, algorithm(child, (depth-1), true));	
 			}
 			gb.setWeight(node, value);
 			return value;

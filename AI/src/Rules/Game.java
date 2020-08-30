@@ -63,12 +63,6 @@ public class Game {
     public int moveNumber() {
         return moves;
     } 
-
-    private LinkedList<Coordinate>[][] pseudoLegalMoves() {
-        return (board.getStateBoard());
-    }
-    
-    
     
     public void move(int i, int j, int final_i, int final_j)
             throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {

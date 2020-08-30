@@ -70,14 +70,14 @@ public class Main {
             System.out.println();
             if(!game.getTurn()){
                 try {
+                    game.allLegal();
                     fn.createGraph(depth);
                     GraphBuilder gb = fn.getGraph();
                     MinMax IA = new MinMax(gb);
-                    game.allLegal();
                     //gb.printGraph();
                     System.out.println(gb.HowManyNodes());
                     System.out.println("aqui->"+gb.getDepth());
-                    game = IA.bestPlaying(0, 1, true);
+                    game = IA.bestPlaying(0, depth, false);
                     game.allLegal();
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
