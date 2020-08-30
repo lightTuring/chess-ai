@@ -9,14 +9,12 @@ public class MinMax extends GraphBuilder{
 	public LinkedList<Integer>[] graph;	
 	private GraphBuilder gb;
 	private final int inf = 1000000007;
-	private final int maxn = 2147483647;
 
 	public MinMax(GraphBuilder gb) {
 		this.gb = gb;
 		graph = gb.getGraph();	
 	}	
 	public double algorithm(int node, int depth, boolean isMaximizing) {
-		//if(depth==0) return 0;
 		if(depth == gb.getDepth()){return gb.getWeight(node);}
 		if(isMaximizing){
 			double value = -inf;
@@ -35,14 +33,10 @@ public class MinMax extends GraphBuilder{
 		}
 		
 	}
-		//algoritmo guloso
+	//algoritmo guloso
 	public Game bestPlaying(int node, int depth, boolean isMaximizing) {
 
 		double search = algorithm(node, depth, isMaximizing);
-
-		/*for(int i=0;i<gb.HowManyNodes();i++){
-			System.out.println("*"+i+"->"+gb.getWeight(i));
-		}*/
 
 		//Zero-based
 		LinkedList<Integer> son = gb.getSon(0);
@@ -55,21 +49,35 @@ public class MinMax extends GraphBuilder{
 				break;
 			}
 		}
-		/*
-		double ans = -inf;//resposta gulosa
-		double aux = -inf;
-
-		int u = -1;//nó resposta
-
-		for(int i=0; i < son.size(); i++){
-			if(son.get(i) == 0) continue; //segurança
-			ans = Math.max(ans, gb.getWeight(son.get(i)));
-			if(ans != aux){
-				u = son.get(i);
-				aux = ans;
-			}
-		}
-		System.out.println("DEU CERTOO");*/
 		return gb.getGame(x);
 	}
+	/*
+	public static void main(String[] args) {
+		     
+        GraphBuilder g = new GraphBuilder();
+        Board board = new Board();
+        Board board1 = new Board();
+        Board board2 = new Board();
+        
+        Game p1 = new Game(board);
+        Game p2 = new Game(board1);
+        Game p3 = new Game(board2);
+        g.createGraph(p1);
+
+        LinkedList<Game> ali = new LinkedList<Game>();
+		ali.add(p2);
+        ali.add(p3);
+        
+        g.createGraph(p1, ali);
+		
+        System.out.println(g.getDepth());
+		g.printGraph();
+		
+		g.setWeight(1, 10);
+		g.setWeight(2, -1);
+
+		MinMax m = new MinMax(g);
+		
+		System.out.println(m.algorithm(0, 0, false));
+	}*/
 }

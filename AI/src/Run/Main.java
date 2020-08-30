@@ -61,7 +61,7 @@ public class Main {
         Scanner s = new Scanner(System.in);
         Game game = new Game(board);
 
-        int depth = 4;
+        int depth = 2;
 
         while (!game.hasEnded()) {
             
