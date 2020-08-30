@@ -48,7 +48,6 @@ public class ForaNucleo {
     @SuppressWarnings("unchecked")
     public void createGraph(int depth) throws Exception {
         LinkedList<Integer> q = new LinkedList<Integer>();
-        int x = depth;
         q.add(gb.getNode(board));
         while (!q.isEmpty()) {
             int h = q.remove();
@@ -58,7 +57,7 @@ public class ForaNucleo {
             else if (gb.getGame(h).getIsCheckMateWhite()) {
                 gb.setWeight(h, Integer.MIN_VALUE);
             }
-            if(gb.getDepthFromNode(h) >= depth) {
+            if(gb.getDepthFromNode(h) == depth) {
                 if (gb.getGame(h).getIsCheckMateBlack()) {
                     gb.setWeight(h, Integer.MAX_VALUE);
                 }

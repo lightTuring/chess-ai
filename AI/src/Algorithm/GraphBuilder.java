@@ -84,7 +84,7 @@ public class GraphBuilder {
                 }  
             }
         }  
-        return dist[countNodes-1];
+        return dist[countNodes];
     }
 	public int getDepthFromNode(int u){
 		return depthNode[u];
