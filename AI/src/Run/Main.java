@@ -75,8 +75,8 @@ public class Main {
                     GraphBuilder gb = fn.getGraph();
                     MinMax IA = new MinMax(gb);
                     //gb.printGraph();
-                    System.out.println(gb.HowManyNodes());
-                    System.out.println("aqui->"+gb.getDepth());
+                    //System.out.println(gb.HowManyNodes());
+                    //System.out.println("aqui->"+gb.getDepth());
                     game = IA.bestPlaying(0, depth, false);
                     game.allLegal();
                     game.isCheckMateBlack();

@@ -51,7 +51,7 @@ public class MinMax extends GraphBuilder{
 		}
 		return gb.getGame(x);
 	}
-	
+	/*
 	public static void main(String[] args) {
 		     
         GraphBuilder g = new GraphBuilder();
@@ -109,5 +109,5 @@ public class MinMax extends GraphBuilder{
 		MinMax m = new MinMax(g);
 		
 		System.out.println(m.algorithm(0, 1, true));
-	}
+	}*/
 }
