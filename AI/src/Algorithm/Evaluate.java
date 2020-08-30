@@ -113,7 +113,9 @@ public class Evaluate {
         for (Coordinate c : listWhite) {
             if (c != null) {
                 int i = c.getPos_i();
-                white += (i-1)*0.2; 
+                if (i!=7) {
+                    white += (7-(i+1))*0.2; 
+                }
             }
         }
         for (Coordinate c : listBlack) {
