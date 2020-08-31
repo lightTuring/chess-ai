@@ -5,7 +5,8 @@ struct Board{
                               
   int stateBoard[len][len]; //Matriz com o estado de cada pino 
   int lastMovement[2];//pair com o último movimento
-
+  int nowMovement[2];//pair com a jogada realizada
+  
   void updateBoard(){
     for(int i=0;i<len;i++)
       for(int j=0;j<len;j++)
@@ -28,24 +29,41 @@ struct Board{
         lastState[i][j] = stateBoard[i][j];
       
     updateBoard();
-    
+    bool cond = false;
+      
     for(int i=0;i<len;i++) for(int j=0;j<len;j++){
-      if(lastState[i][j] != stateBoard[i][j]){
+      if(lastState == HIGH && lastState[i][j] != stateBoard[i][j]){
         lastMovement[0] = i;
         lastMovement[1] = j;
-        return true;
+        cond = true;
       }
+    }
+    if(cond){
+      for(int i=0;i<len;i++) for(int j=0;j<len;j++){
+        if(lastState == LOW && lastState[i][j] != stateBoard[i][j]){
+          nowMovement[0] = i;
+          nowMovement[1] = j;
+          return true;
+        }
+      }  
     }
    
     return false;
   }
   
-  int getAxis_X(){
+  int getLMAxis_X(){
     return lastMovement[0];
   }
-  int getAxis_Y(){
+  int getLMAxis_Y(){
     return lastMovement[1];
   }
+  int getNMAxis_X(){
+    return nowMovement[0];
+  }
+  int getNMAxis_Y(){
+    return nowMovement[1];
+  }
+  
   void printBoard(){
     for(int i=0;i<len;i++){ 
        for(int j=0;j<len;j++){
@@ -59,6 +77,8 @@ struct Board{
   void clearState(){
     lastMovement[0] = -1;
     lastMovement[1] = -1;
+    nowMovement[0] = -1;
+    nowMovement[1] = -1;
   }
   
 };
