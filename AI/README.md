@@ -605,7 +605,7 @@ public Evaluate (Board board)
 private double piece();
 ```
 
--Método para pontuar a situação do tabuleiro. Ele percorre o tabuleiro e soma (ou subtrai, no caso das pretas) o valor de cada peça, retornando o total.
+- Método para pontuar a situação do tabuleiro. Ele percorre o tabuleiro e soma (ou subtrai, no caso das pretas) o valor de cada peça, retornando o total.
 
 ### ForaNucleo
 
