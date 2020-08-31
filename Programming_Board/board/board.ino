@@ -1,10 +1,7 @@
 #define len 8
 
 struct Board{
-  const int board[len][len] ={0,0,0,0,
-                              0,0,0,0,
-                              0,0,0,0,
-                              0,0,0,0};//Matriz com os pinos do tabuleiro
+  const int board[len][len] ={};//Matriz com os pinos do tabuleiro
                               
   int stateBoard[len][len]; //Matriz com o estado de cada pino 
   int lastMovement[2];//pair com o último movimento
@@ -23,7 +20,7 @@ struct Board{
     Serial.begin(9600);
   }
     
-  void movement(){
+  bool movement(){
     int lastState[len][len];
     
     for(int i=0;i<len;i++)
@@ -36,11 +33,11 @@ struct Board{
       if(lastState[i][j] != stateBoard[i][j]){
         lastMovement[0] = i;
         lastMovement[1] = j;
-        goto end_t;
+        return true;
       }
     }
-    end_t:
-    return;
+   
+    return false;
   }
   
   int getAxis_X(){
@@ -52,12 +49,16 @@ struct Board{
   void printBoard(){
     for(int i=0;i<len;i++){ 
        for(int j=0;j<len;j++){
-        Serial.print(board[i][j]);
+        Serial.print(stateBoard[i][j]);
             Serial.print(" ");
       }
       Serial.println();
     }
-        
+    Serial.println();    
+  }
+  void clearState(){
+    lastMovement[0] = -1;
+    lastMovement[1] = -1;
   }
   
 };
@@ -72,4 +73,5 @@ void setup(){
 void loop(){
   chess.updateBoard(); 
   chess.printBoard();
+  delay(5);
 }
