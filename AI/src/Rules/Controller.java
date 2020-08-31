@@ -26,7 +26,7 @@ public class Controller {
 				movesP.add(x);
 			}
 			// Se no primeiro movimento do peão, a casa na frente da frente estiver vazia:
-			if (!(i-2 < 0 || i-2>=8) && b.hasPawnMoved(i, j) == false && b.getPiece(i-2, j) == 'o') {
+			if (!(i-2 < 0 || i-2>=8) && b.hasPawnMoved(i, j) == false && b.getPiece(i-2, j) == 'o' && b.getPiece(i-1, j) == 'o') {
 				x = new Coordinate((i-2), (j));
 				movesP.add(x);
 			}
@@ -46,7 +46,7 @@ public class Controller {
 				x = new Coordinate((i+1), (j));
 				movesP.add(x);
 			}
-			if (!(i+2 < 0 || i+2>=8) && b.hasPawnMoved(i, j) == false && b.getPiece(i+2, j) == 'o') {
+			if (!(i+2 < 0 || i+2>=8) && b.hasPawnMoved(i, j) == false && b.getPiece(i+2, j) == 'o' && b.getPiece(i+1, j) == 'o') {
 				x = new Coordinate((i+2), (j));
 				movesP.add(x);
 			}

@@ -125,11 +125,8 @@ public class Game {
             CloneNotSupportedException {
         int legal = 0;
         Coordinate z = board.indexOfPiece('K')[0];
-        if ((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) && board.isWhiteKingInCheck()) {
-            endOfGame = true;
-        }
         
-        else if (board.isWhiteKingInCheck()) {
+        if (board.isWhiteKingInCheck()) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     Iterator<Coordinate> x = board.getStateBoard()[i][j].iterator();
@@ -163,13 +160,9 @@ public class Game {
 
     public void isCheckMateBlack() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException, CloneNotSupportedException {
         int legal = 0;
-        Coordinate z = board.indexOfPiece('k')[0];
-        if ((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) && board.isBlackKingInCheck()) {
-            System.out.println((board.getStateBoard()[z.getPos_i()][z.getPos_j()].size() == 0) + "<- OLHA O GOL");
-            endOfGame = true;
-        }
         
-        else if (board.isBlackKingInCheck()) {
+        
+        if (board.isBlackKingInCheck()) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     Iterator<Coordinate> x = board.getStateBoard()[i][j].iterator();
