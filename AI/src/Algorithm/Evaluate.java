@@ -56,11 +56,11 @@ public class Evaluate {
             for (int j = 0; j<8; j++) {
                 if (board.getPiece(i, j) == 'K') {
                     LinkedList<Coordinate> safeWhite = Controller.getQueenMoves(board, i, j);
-                    white = Math.sqrt(safeWhite.size());
+                    white = -Math.sqrt(safeWhite.size());
                 }
                 if (board.getPiece(i, j) == 'k') {
                     LinkedList<Coordinate> safeBlack = Controller.getQueenMoves(board, i, j);
-                    black = Math.sqrt(safeBlack.size());
+                    black = -Math.sqrt(safeBlack.size());
                 }
             }
         }
