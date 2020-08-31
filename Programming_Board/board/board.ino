@@ -73,5 +73,6 @@ void setup(){
 void loop(){
   chess.updateBoard(); 
   chess.printBoard();
+  chess.movement();
   delay(5);
 }
