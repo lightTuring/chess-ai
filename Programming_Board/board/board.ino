@@ -1,9 +1,9 @@
 struct Board{
-  int board[8][8] ={0,0,0,0,
-                    0,0,0,0,
-                    0,0,0,0,
-                    0,0,0,0};//Matriz com os pinos do tabuleiro
-                    
+  const int board[8][8] ={0,0,0,0,
+                          0,0,0,0,
+                          0,0,0,0,
+                          0,0,0,0};//Matriz com os pinos do tabuleiro
+                          
   int stateBoard[8][8]; //Matriz com o estado de cada pino 
   int lastMovement[2];//pair com o último movimento
   
