@@ -330,10 +330,6 @@ private byte pathBottomRightDiagonal(ArrayList<Coordinate> movements, ArrayList<
 
 - Verificação do caminho da diagonal inferior direita do Rei.
 
-### Position
-
-- Por enquanto não faz nada de mais;
-
 ### Controller
 
 Contêm métodos que retorna um _ArrayList_ de _Coordinate_ apresentando as possiveis posições finais que cada peça pode jogar. São exemplos dessa classe os métodos:
