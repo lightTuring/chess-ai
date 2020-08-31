@@ -1,28 +1,38 @@
+#define len 8
+
 struct Board{
-  const int board[8][8] ={0,0,0,0,
-                          0,0,0,0,
-                          0,0,0,0,
-                          0,0,0,0};//Matriz com os pinos do tabuleiro
-                          
-  int stateBoard[8][8]; //Matriz com o estado de cada pino 
+  const int board[len][len] ={0,0,0,0,
+                              0,0,0,0,
+                              0,0,0,0,
+                              0,0,0,0};//Matriz com os pinos do tabuleiro
+                              
+  int stateBoard[len][len]; //Matriz com o estado de cada pino 
   int lastMovement[2];//pair com o último movimento
-  
+
   void updateBoard(){
-    for(int i=0;i<8;i++)
-      for(int j=0;j<8;j++)
+    for(int i=0;i<len;i++)
+      for(int j=0;j<len;j++)
         stateBoard[i][j] = digitalRead(board[i][j]);
   }
   
-  void movement(){
-    int lastState[8][8];
+  void init(){
+    for(int i=0;i<len;i++)
+      for(int j=0;j<len;j++)
+        pinMode(board[i][j], INPUT);
+    updateBoard();
+    Serial.begin(9600);
+  }
     
-    for(int i=0;i<8;i++)
-      for(int j=0;j<8;j++)
+  void movement(){
+    int lastState[len][len];
+    
+    for(int i=0;i<len;i++)
+      for(int j=0;j<len;j++)
         lastState[i][j] = stateBoard[i][j];
       
     updateBoard();
     
-    for(int i=0;i<8;i++) for(int j=0;j<8;j++){
+    for(int i=0;i<len;i++) for(int j=0;j<len;j++){
       if(lastState[i][j] != stateBoard[i][j]){
         lastMovement[0] = i;
         lastMovement[1] = j;
@@ -39,12 +49,27 @@ struct Board{
   int getAxis_Y(){
     return lastMovement[1];
   }
+  void printBoard(){
+    for(int i=0;i<len;i++){ 
+       for(int j=0;j<len;j++){
+        Serial.print(board[i][j]);
+            Serial.print(" ");
+      }
+      Serial.println();
+    }
+        
+  }
   
-} tab;
+};
+
+#define tab struct Board
+
+tab chess;
 
 void setup(){
-  
+  chess.init();
 }
 void loop(){
-  
+  chess.updateBoard(); 
+  chess.printBoard();
 }
