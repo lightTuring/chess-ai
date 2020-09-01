@@ -1,13 +1,17 @@
 #define len 8
 
-struct Board{
+typedef struct Pair{
+   int x, y;
+}pair;
+
+typedef struct Board{
   const int board[len][len] ={};//Matriz com os pinos do tabuleiro
                              
   int stateBoard[len][len]; //Matriz com o estado de cada pino 
-  int lastMovement[2];//pair com o último movimento
-  int nowMovement[2];//pair com a jogada realizada
-
-  int turn = true;
+  pair lastMovement;//pair com o último movimento
+  pair nowMovement;//pair com a jogada realizada
+ 
+  bool turn = true;
   
   void updateBoard(){
     for(int i=0;i<len;i++)
@@ -60,20 +64,20 @@ struct Board{
   }
     while(cond){
       updateBoard();
-      for (int m=0;m<len && m!=i;m++) for(n=0;n<len && n!=j;n++){
+      for (int m=0;m<len && m!=i;m++) for(int n=0;n<len && n!=j;n++){
         if (lastState[m][n]==LOW && lastState[m][n] != stateBoard[m][n]){
-          lastMovement[0] = i;
-          lastMovement[1] = j;
-          nowMovement[0] = m;
-          nowMovement[1] = n;
+          lastMovement.x = i;
+          lastMovement.y = j;
+          nowMovement.x = m;
+          nowMovement.y = n;
           turn = !turn;
           return true;
         }
         if (lastState[m][n]==HIGH && lastState[m][n] != stateBoard[m][n]){
-          nowMovement[0]=i;
-          nowMovement[1]=j;
-          lastMovement[0]=m;
-          lastMovement[1]=n;
+          nowMovement.x = i;
+          nowMovement.y = j;
+          lastMovement.x = m;
+          lastMovement.y = n;
           turn = !turn;
           return true;
         }
@@ -114,18 +118,6 @@ struct Board{
     return false;
   }
   */
-  int getLMAxis_X(){
-    return lastMovement[0];
-  }
-  int getLMAxis_Y(){
-    return lastMovement[1];
-  }
-  int getNMAxis_X(){
-    return nowMovement[0];
-  }
-  int getNMAxis_Y(){
-    return nowMovement[1];
-  }
   
   void printStateBoard(){
     for(int i=0;i<len;i++){ 
@@ -138,15 +130,13 @@ struct Board{
     Serial.println();    
   }
   void clearState(){
-    lastMovement[0] = -1;
-    lastMovement[1] = -1;
-    nowMovement[0] = -1;
-    nowMovement[1] = -1;
+    lastMovement.x = -1;
+    lastMovement.y = -1;
+    nowMovement.x = -1;
+    nowMovement.y = -1;
   }
   
-};
-
-#define tab struct Board
+}tab;
 
 tab chess;
 
