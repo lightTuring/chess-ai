@@ -32,7 +32,7 @@ struct Board{
     bool cond = false;
       
     for(int i=0;i<len;i++) for(int j=0;j<len;j++){
-      if(lastState == HIGH && lastState[i][j] != stateBoard[i][j]){
+      if(lastState[i][j] == HIGH && lastState[i][j] != stateBoard[i][j]){
         lastMovement[0] = i;
         lastMovement[1] = j;
         cond = true;
@@ -40,7 +40,7 @@ struct Board{
     }
     if(cond){
       for(int i=0;i<len;i++) for(int j=0;j<len;j++){
-        if(lastState == LOW && lastState[i][j] != stateBoard[i][j]){
+        if(lastState[i][j] == LOW && lastState[i][j] != stateBoard[i][j]){
           nowMovement[0] = i;
           nowMovement[1] = j;
           return true;
