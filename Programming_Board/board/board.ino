@@ -24,11 +24,18 @@ struct Board{
   }
   
   bool capture(){
+    int lastState[len][len];
+    
+    for(int i=0;i<len;i++)
+      for(int j=0;j<len;j++)
+        lastState[i][j] = stateBoard[i][j];
+      
+    updateBoard();
     int countLast = 0;
     int countState = 0;
     for (int i = 0; i<len; i++) for(int j=0;j<len;j++){
-        if(lastState[i][j]==1) countLast++;
-        if(stateBoard[i][j]==1) countState++;
+        countLast+=(int)lastState[i][j];
+        countState+=(int)stateBoard[i][j];
     }
     if (countState<countLast) return true;
     return false;
