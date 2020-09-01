@@ -129,29 +129,38 @@ void loop(){
   chess.updateBoard(); 
   chess.printStateBoard();
 
+  //movimento das brancas
   if(chess.turn){
-    //movimento das brancas
     while(chess.turn){
       //mover
       chess.movement(); 
     }
   }
-  if(!chess.turn) {
-    //movimento das pretas
-    //comunicação serial é aqui
-    byte in = Serial.read();
-    if(in == 0){//Se as brancas realizaram mov ilegal
+  //movimento das pretas
+  if(!chess.turn) {   
+
+    /*
+     * MI -> MOVIMENTO ILEGAL
+     * CP -> CAPTURA DE PEÇA
+     * MS -> MOVIMENTO SIMPLES(TROCA DE CASA)
+     * 
+     */
+   
+    String in = Serial.readString();//Trocar pra comunicação Socket
+    
+    if(in == "MI"){
       while(!chess.backGame()){
         digitalWrite(GREEN_LED, LOW);
         digitalWrite(RED_LED, HIGH);
       }
       digitalWrite(GREEN_LED, HIGH);
-      digitalWrite(RED_LED, LOW);
-      chess.turn = true;
+      digitalWrite(RED_LED, LOW);     
+    }else if(in == "CP"){
       
-    }else if(in == 1){
-      //Realiza o mov do robo
+    }else if(in == "MS"){
+      
     }
+    chess.turn = true;
   }
   
   delay(5);
