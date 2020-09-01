@@ -2,10 +2,12 @@
 
 struct Board{
   const int board[len][len] ={};//Matriz com os pinos do tabuleiro
-                              
+                             
   int stateBoard[len][len]; //Matriz com o estado de cada pino 
   int lastMovement[2];//pair com o último movimento
   int nowMovement[2];//pair com a jogada realizada
+
+  int turn = true;
   
   void updateBoard(){
     for(int i=0;i<len;i++)
@@ -43,11 +45,12 @@ struct Board{
         if(lastState[i][j] == LOW && lastState[i][j] != stateBoard[i][j]){
           nowMovement[0] = i;
           nowMovement[1] = j;
+          turn = !turn;
           return true;
         }
       }  
     }
-   
+    turn = !turn;
     return false;
   }
   
@@ -64,7 +67,7 @@ struct Board{
     return nowMovement[1];
   }
   
-  void printBoard(){
+  void printStateBoard(){
     for(int i=0;i<len;i++){ 
        for(int j=0;j<len;j++){
         Serial.print(stateBoard[i][j]);
@@ -92,6 +95,13 @@ void setup(){
 }
 void loop(){
   chess.updateBoard(); 
-  chess.printBoard();
+  chess.printStateBoard();
+
+  if(chess.turn){
+    //movimento das brancas
+  }else {
+    //movimento das pretas
+  }
+  
   delay(5);
 }
