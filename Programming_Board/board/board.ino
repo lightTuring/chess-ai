@@ -42,6 +42,48 @@ struct Board{
 }
 
   bool movement(){
+  int lastState[len][len];
+  
+  for(int i=0;i<len;i++)
+    for(int j=0;j<len;j++)
+      lastState[i][j] = stateBoard[i][j];
+    
+  updateBoard();
+  bool cond = false;
+  int i = 0;
+  int j = 0;  
+  for(int i=0;i<len;i++) for(int j=0;j<len;j++){
+    if(lastState[i][j] == HIGH && lastState[i][j] != stateBoard[i][j]){
+      cond = true;
+      break;
+    }
+  }
+    while(cond){
+      updateBoard();
+      for (int m=0;m<len && m!=i;m++) for(n=0;n<len && n!=j;n++){
+        if (lastState[m][n]==LOW && lastState[m][n] != stateBoard[m][n]){
+          lastMovement[0] = i;
+          lastMovement[1] = j;
+          nowMovement[0] = m;
+          nowMovement[1] = n;
+          turn = !turn;
+          return true;
+        }
+        if (lastState[m][n]==HIGH && lastState[m][n] != stateBoard[m][n]){
+          nowMovement[0]=i;
+          nowMovement[1]=j;
+          lastMovement[0]=m;
+          lastMovement[1]=n;
+          turn = !turn;
+          return true;
+        }
+      }
+    }  
+  turn = !turn;
+  return false;
+}
+
+  /*bool movement(){
     int lastState[len][len];
     
     for(int i=0;i<len;i++)
@@ -71,7 +113,7 @@ struct Board{
     turn = !turn;
     return false;
   }
-  
+  */
   int getLMAxis_X(){
     return lastMovement[0];
   }
