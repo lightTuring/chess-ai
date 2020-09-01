@@ -149,6 +149,9 @@ void loop(){
 
   if(chess.turn){
     //movimento das brancas
+    while(chess.turn){
+      
+    }
   }else {
     //movimento das pretas
   }
