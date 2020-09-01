@@ -150,9 +150,10 @@ void loop(){
   if(chess.turn){
     //movimento das brancas
     while(chess.turn){
-      
+      //mover 
     }
-  }else {
+  }
+  if(!chess.turn) {
     //movimento das pretas
   }
   
