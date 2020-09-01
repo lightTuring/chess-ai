@@ -20,7 +20,18 @@ struct Board{
     updateBoard();
     Serial.begin(9600);
   }
-    
+  
+  bool capture(){
+    int countLast = 0;
+    int countState = 0;
+    for (int i = 0; i<len; i++) for(int j=0;j<len;j++){
+        if(lastState[i][j]==1) countLast++;
+        if(stateBoard[i][j]==1) countState++;
+    }
+    if (countState<countLast) return true;
+    return false;
+}
+
   bool movement(){
     int lastState[len][len];
     
