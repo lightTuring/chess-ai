@@ -148,6 +148,9 @@ void loop(){
       digitalWrite(GREEN_LED, HIGH);
       digitalWrite(RED_LED, LOW);
       chess.turn = true;
+      
+    }else if(in == 1){
+      //Realiza o mov do robo
     }
   }
   
