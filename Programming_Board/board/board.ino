@@ -1,6 +1,7 @@
 #define len 8
 #define GREEN_LED 12
 #define RED_LED 13
+
 typedef struct Pair{
    int x, y;
 }pair;
