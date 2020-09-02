@@ -32,6 +32,14 @@ int metricToRotation(int distance_cm);
 
 A ideia deste arquivo é armazenar/descrever o estado das casas(pinos) do tabuleiro. Isto é representado numa _struct_ e dentro dela podemos encontrar os seguintes métodos e atributos:
 
+```cpp
+typedef struct Board{
+  //code
+}board;
+```
+
+- Estrutura do tabuleiro
+
 ### Atributos:
 
 ```cpp
