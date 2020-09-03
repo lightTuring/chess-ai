@@ -129,7 +129,7 @@ public class Evaluate {
     }
 
     public double total () throws BoardOutOfBoundsException, Exception {
-        return (pieceSafety() + piece() + kingSafety() + pawnAdvancement());
+        return (kingMobility() + pieceSafety() + piece() + kingSafety() + pawnAdvancement());
     }
 
 }

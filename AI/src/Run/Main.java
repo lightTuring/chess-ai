@@ -81,7 +81,7 @@ public class Main {
                     test.allLegal();
                     test.isCheckMateBlack();
                     test.isCheckMateWhite();
-                    System.out.println(gb.HowManyNodes());
+                    System.out.println(" ");
                 }
                 catch (BoardOutOfBoundsException b) {
                     System.err.println("\n*Fora do tabuleiro*\n");
