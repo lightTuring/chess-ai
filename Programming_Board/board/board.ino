@@ -1,14 +1,22 @@
 #define len 8
+#define GREEN_LED 12
+#define RED_LED 13
 
-struct Board{
-  const int board[len][len] ={0,0,0,0,
-                              0,0,0,0,
-                              0,0,0,0,
-                              0,0,0,0};//Matriz com os pinos do tabuleiro
-                              
+typedef struct Pair{
+   int x, y;
+}pair;
+
+typedef struct Board{
+  const int board[len][len] ={};//Matriz com os pinos do tabuleiro
+                             
   int stateBoard[len][len]; //Matriz com o estado de cada pino 
-  int lastMovement[2];//pair com o último movimento
-
+  int lastState[len][len]; 
+  
+  pair lastMovement;//pair com o último movimento
+  pair nowMovement;//pair com a jogada realizada
+ 
+  bool turn = true;
+  
   void updateBoard(){
     for(int i=0;i<len;i++)
       for(int j=0;j<len;j++)
@@ -21,48 +29,96 @@ struct Board{
         pinMode(board[i][j], INPUT);
     updateBoard();
     Serial.begin(9600);
+    pinMode(GREEN_LED, OUTPUT);
+    pinMode(RED_LED, OUTPUT);
   }
-    
-  void movement(){
-    int lastState[len][len];
-    
+  
+  bool capture(){   
     for(int i=0;i<len;i++)
       for(int j=0;j<len;j++)
         lastState[i][j] = stateBoard[i][j];
       
     updateBoard();
-    
-    for(int i=0;i<len;i++) for(int j=0;j<len;j++){
-      if(lastState[i][j] != stateBoard[i][j]){
-        lastMovement[0] = i;
-        lastMovement[1] = j;
-        goto end_t;
-      }
+    int countLast = 0;
+    int countState = 0;
+    for (int i = 0; i<len; i++) for(int j=0;j<len;j++){
+        countLast+=(int)lastState[i][j];
+        countState+=(int)stateBoard[i][j];
     }
-    end_t:
-    return;
+    if (countState<countLast) return true;
+    return false;
+  }
+
+  bool movement(){
+    for(int i=0;i<len;i++)
+      for(int j=0;j<len;j++)
+        lastState[i][j] = stateBoard[i][j];
+      
+    updateBoard();
+    bool cond = false;
+    int i = 0;
+    int j = 0;  
+    for(i=0;i<len;i++) {
+      for(j=0;j<len;j++){
+        if(lastState[i][j] == HIGH && lastState[i][j] != stateBoard[i][j]){
+          cond = true;
+          break;
+        }
+      }
+      if(cond) break;
+    }
+      while(cond){
+        updateBoard();
+        for (int m=0;m<len;m++) {
+          for(int n=0;n<len;n++){
+            if(m==i&&n==j) continue;
+            if (lastState[m][n]==LOW && lastState[m][n] != stateBoard[m][n]){
+              lastMovement.x = i;
+              lastMovement.y = j;
+              nowMovement.x = m;
+              nowMovement.y = n;
+              turn = !turn;
+              return true;
+            }
+            if (lastState[m][n]==HIGH && lastState[m][n] != stateBoard[m][n]){
+              nowMovement.x = i;
+              nowMovement.y = j;
+              lastMovement.x = m;
+              lastMovement.y = n;
+              turn = !turn;
+              return true;
+            }
+          }
+        }
+      }  
+      turn = !turn;
+    return false;
   }
   
-  int getAxis_X(){
-    return lastMovement[0];
-  }
-  int getAxis_Y(){
-    return lastMovement[1];
-  }
-  void printBoard(){
+  void printStateBoard(){
     for(int i=0;i<len;i++){ 
        for(int j=0;j<len;j++){
-        Serial.print(board[i][j]);
+        Serial.print(stateBoard[i][j]);
             Serial.print(" ");
       }
       Serial.println();
     }
-        
+    Serial.println();    
+  }
+  void clearState(){
+    lastMovement.x = -1;
+    lastMovement.y = -1;
+    nowMovement.x = -1;
+    nowMovement.y = -1;
+  }
+  bool backGame(){
+    for(int i=0;i<len;i++) for(int j=0;j<len;j++){
+      if(lastState[i][j]!=stateBoard[i][j]) return false; 
+    }        
+    return true;
   }
   
-};
-
-#define tab struct Board
+}tab;
 
 tab chess;
 
@@ -71,5 +127,41 @@ void setup(){
 }
 void loop(){
   chess.updateBoard(); 
-  chess.printBoard();
+  chess.printStateBoard();
+
+  //movimento das brancas
+  if(chess.turn){
+    while(chess.turn){
+      //mover
+      chess.movement(); 
+    }
+  }
+  //movimento das pretas
+  if(!chess.turn) {   
+
+    /*
+     * MI -> MOVIMENTO ILEGAL
+     * CP -> CAPTURA DE PEÇA
+     * MS -> MOVIMENTO SIMPLES(TROCA DE CASA)
+     * 
+     */
+   
+    String in = Serial.readString();//Trocar pra comunicação Socket
+    
+    if(in == "MI"){
+      while(!chess.backGame()){
+        digitalWrite(GREEN_LED, LOW);
+        digitalWrite(RED_LED, HIGH);
+      }
+      digitalWrite(GREEN_LED, HIGH);
+      digitalWrite(RED_LED, LOW);     
+    }else if(in == "CP"){
+      
+    }else if(in == "MS"){
+      
+    }
+    chess.turn = true;
+  }
+  
+  delay(5);
 }
