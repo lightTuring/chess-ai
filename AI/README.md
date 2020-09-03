@@ -627,10 +627,17 @@ private double kingMobility();
 - Método pontua sobre a mobilidade do rei.
 
 ```java
+private double pieceMobility();
+```
+
+- Método pontua sobre a mobilidade das peças em geral.
+
+```java
 private double pawnAdvancement();
 ```
 
 - Retorna a pontuação do todos os peões(Quanto mais espaço para livre para percorrer o tabuleiro, maior o seu valor).
+
 
 ```java
 public double total();
