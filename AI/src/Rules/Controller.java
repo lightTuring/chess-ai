@@ -4,6 +4,30 @@ import java.util.LinkedList;
 @SuppressWarnings("unchecked")
 public class Controller {
 
+	public static boolean isSquareAttacked(Coordinate c, boolean turn, Board b) throws BoardOutOfBoundsException,
+			UnexpectedPieceException, IllegalMoveException {
+        
+        if (turn == false) {
+            for (Coordinate a : uncheckedMoves(b)[c.getPos_i()][c.getPos_j()]) {
+                if (b.isWhite(a)) {
+                    if (a.equals(c)) {
+                        return true;
+                    }
+                }
+                
+            }
+        }
+        if (turn == true) {
+            for (Coordinate a : uncheckedMoves(b)[c.getPos_i()][c.getPos_j()]) {
+                if (b.isBlack(a)) {
+                    if (a.equals(c)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
   	public static LinkedList<Coordinate> getPawnMoves(Board b, int i, int j) throws UnexpectedPieceException, BoardOutOfBoundsException {
 		LinkedList<Coordinate> movesP = new LinkedList<Coordinate>();

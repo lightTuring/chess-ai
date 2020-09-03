@@ -11,7 +11,6 @@ public class Board implements Cloneable {
     private final char[] initPosBlack = { 't', 'c', 'b', 'q', 'k', 'b', 'c', 't' };
     private final char[] initPosWhite = { 'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T' };
     @SuppressWarnings("unchecked")
-    private LinkedList<Coordinate>[][] stateBoard = new LinkedList[8][8];
 
     private boolean hasWhiteKingMoved = false;
     private boolean hasRightWhiteRookMoved = false;
@@ -19,6 +18,10 @@ public class Board implements Cloneable {
     private boolean hasBlackKingMoved = false;
     private boolean hasRightBlackRookMoved = false;
     private boolean hasLeftBlackRookMoved = false;
+    public boolean endOfGame = false;
+    public boolean isCheckmateWhite = false;
+    public boolean isCheckmateBlack = false;
+    public boolean turn = true;
 
     private int[] linha = {1, -1, 0, 0, -1, 1, -1, 1};
     private int[] coluna = {0, 0, 1, -1, -1, 1, 1, -1};
@@ -35,17 +38,13 @@ public class Board implements Cloneable {
                 b.chessBoard[i][j] = this.chessBoard[i][j];
             }
         }
-        for (int i= 0; i<8; i++) {
-            for (int j= 0; j<8; j++) {
-                b.stateBoard[i][j] = (LinkedList<Coordinate>)this.stateBoard[i][j].clone();
-            }
-        }
         b.hasBlackKingMoved = this.hasBlackKingMoved;
         b.hasRightWhiteRookMoved = this.hasRightWhiteRookMoved;
         b.hasLeftWhiteRookMoved = this.hasLeftWhiteRookMoved;
         b.hasWhiteKingMoved = this.hasWhiteKingMoved;
         b.hasRightBlackRookMoved = this.hasRightBlackRookMoved;
         b.hasLeftBlackRookMoved = this.hasLeftBlackRookMoved;
+        b.turn = this.turn;
         
 
         return b;
@@ -59,7 +58,7 @@ public class Board implements Cloneable {
                 };
             }
         }
-        return true;
+        return (b.turn == this.turn);
     }
 
     public Board() {
@@ -76,11 +75,7 @@ public class Board implements Cloneable {
             chessBoard[0][i] = initPosBlack[i];
         for (int i = 0; i < chessBoard.length; i++)
             chessBoard[7][i] = initPosWhite[i];
-        for (int i = 0; i<8; i++) {
-            for (int j = 0; j<8; j++) {
-                stateBoard[i][j] = new LinkedList<>();
-            }
-        }
+        this.turn = true;
     }
 
     public boolean isWhite(int pos_i, int pos_j) throws BoardOutOfBoundsException {
@@ -178,30 +173,6 @@ public class Board implements Cloneable {
             throw new BoardOutOfBoundsException("Board.getPiece tentou acessa uma casa além dos limites do tabuleiro.");
         }
         return chessBoard[c.getPos_i()][c.getPos_j()];
-    }
-
-    public LinkedList<Coordinate>[][] getStateBoard() {
-        return stateBoard;
-    }
-
-    public void setStateBoard(LinkedList<Coordinate> moves, int i, int j)
-            throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
-        
-        LinkedList<Coordinate> tmp = new LinkedList<>();
-        
-        for(Coordinate c : moves) {
-            if(!(new Game(this).isLegal(i, j, c))) tmp.add(c);
-        }
-
-        for(Coordinate c : tmp) {
-            if(!(new Game(this).isLegal(i, j, c))) moves.remove(moves.indexOf(c));
-        }
-
-        stateBoard[i][j] = moves;
-    }
-
-    public void setStateBoard(LinkedList<Coordinate>[][] moves) {
-        stateBoard = moves;
     }
 
     public void printImage() {
@@ -367,33 +338,14 @@ public class Board implements Cloneable {
         return new Coordinate(-1,-1);
     }
 
+	public boolean getTurn() {
+		return turn;
+	}
+
     // 0 -> borda; 1 -> tem uma peça da mesma cor; 2 -> tem uma peça oponente
 
 
-    //true = Brancas atacam, false = Pretas atacam
-    public boolean isSquareAttacked(Coordinate c, boolean turn) throws BoardOutOfBoundsException {
-        
-        if (turn = false) {
-            for (Coordinate a : stateBoard[c.getPos_i()][c.getPos_j()]) {
-                if (this.isWhite(a)) {
-                    if (a.equals(c)) {
-                        return true;
-                    }
-                }
-                
-            }
-        }
-        if (turn == true) {
-            for (Coordinate a : stateBoard[c.getPos_i()][c.getPos_j()]) {
-                if (this.isBlack(a)) {
-                    if (a.equals(c)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
+
     /*
      * public boolean isPiecePinned(int i, int j) throws BoardOutOfBoundsException,
      * UnexpectedPieceException { if (getPiece(i, j) != 'o' && isWhite(i, j) ==

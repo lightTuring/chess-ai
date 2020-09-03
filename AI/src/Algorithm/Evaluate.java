@@ -72,7 +72,7 @@ public class Evaluate {
         double black = 0;
         for (int i=0; i<8; i++) {
             for (int j=0; j<8; j++) {
-                if (board.isBlack(i, j) && board.isSquareAttacked(new Coordinate(i, j), false)) {
+                if (board.isBlack(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), false, board)) {
                     if ((board.getPiece(i, j) == 'b') || (board.getPiece(i, j) == 't') || (board.getPiece(i, j) == 'c')) {
                         black++;
                     }
@@ -80,7 +80,7 @@ public class Evaluate {
                         black  += 0.1;
                     }
                 }
-                if (board.isWhite(i, j) && board.isSquareAttacked(new Coordinate(i, j), true)) {
+                if (board.isWhite(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), true, board)) {
                     if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T') || (board.getPiece(i, j) == 'C')) {
                         white++;
                     }
