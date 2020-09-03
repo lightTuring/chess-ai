@@ -597,8 +597,9 @@ public Game bestPlaying(int node, int depth, boolean isMaximizing);
 Está classe realiza a avalição seguindo o algoritmo de _[Alan Turing](https://en.chessbase.com/post/reconstructing-turing-s-paper-machine)_ sobre a situação do tabuleiro e define os pesos da jogada.
 
 ``` java
-public Evaluate (Board board)
+public Evaluate (Board board);
 ```
+
 - Método construtor.
 
 ```java
@@ -606,6 +607,36 @@ private double piece();
 ```
 
 - Método para pontuar a situação do tabuleiro. Ele percorre o tabuleiro e soma (ou subtrai, no caso das pretas) o valor de cada peça, retornando o total.
+
+```java
+private double kingSafety();
+```
+
+- Retorna a pontuação do quão seguro está o rei.
+
+```java
+private double pieceSafety();
+```
+
+- Retorna a pontuação do quão segura estão todas as peças.
+
+```java
+private double kingMobility();
+```
+
+- Método pontua sobre a mobilidade do rei.
+
+```java
+private double pawnAdvancement();
+```
+
+- Retorna a pontuação do todos os peões(Quanto mais espaço para livre para percorrer o tabuleiro, maior o seu valor).
+
+```java
+public double total();
+```
+
+- Retorna a pontuação total, levando em conta todos os métodos(critérios) implementados.
 
 ### ForaNucleo
 
