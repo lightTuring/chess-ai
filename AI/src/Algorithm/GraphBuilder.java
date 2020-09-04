@@ -116,7 +116,7 @@ public class GraphBuilder {
 
     private int BrutalSearch(Board c){
         
-        for (int i = countNodes-1; i>=0; i--) {
+        for (int i = 0; i<countNodes+1; i++) {
             if(nodesPos.get(i).equals(c)){
                 return i;
             }

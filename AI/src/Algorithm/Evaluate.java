@@ -9,7 +9,6 @@ import Rules.Coordinate;
 import Rules.UnexpectedPieceException;
 
 public class Evaluate {
-    double pValue = 0;
     Board board;
 
     public Evaluate(Board board) {
