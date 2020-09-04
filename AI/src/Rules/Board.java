@@ -11,7 +11,6 @@ public class Board implements Cloneable {
     private final char[] initPosBlack = { 't', 'c', 'b', 'q', 'k', 'b', 'c', 't' };
     private final char[] initPosWhite = { 'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T' };
     @SuppressWarnings("unchecked")
-    private LinkedList<Coordinate>[][] stateBoard = new LinkedList[8][8];
 
     private boolean hasWhiteKingMoved = false;
     private boolean hasRightWhiteRookMoved = false;
@@ -19,13 +18,13 @@ public class Board implements Cloneable {
     private boolean hasBlackKingMoved = false;
     private boolean hasRightBlackRookMoved = false;
     private boolean hasLeftBlackRookMoved = false;
+    public boolean endOfGame = false;
+    public boolean isCheckmateWhite = false;
+    public boolean isCheckmateBlack = false;
+    public boolean turn = true;
 
     private int[] linha = {1, -1, 0, 0, -1, 1, -1, 1};
     private int[] coluna = {0, 0, 1, -1, -1, 1, 1, -1};
-    private boolean[][] mark_black = new boolean[8][8];
-    private boolean[][] mark_white = new boolean[8][8];
-    private boolean isCheckBlack = false;
-    private boolean isCheckWhite = false;
 
     private enum CastlingSide {
         Kingside, Queenside
@@ -39,17 +38,13 @@ public class Board implements Cloneable {
                 b.chessBoard[i][j] = this.chessBoard[i][j];
             }
         }
-        for (int i= 0; i<8; i++) {
-            for (int j= 0; j<8; j++) {
-                b.stateBoard[i][j] = (LinkedList<Coordinate>)this.stateBoard[i][j].clone();
-            }
-        }
         b.hasBlackKingMoved = this.hasBlackKingMoved;
         b.hasRightWhiteRookMoved = this.hasRightWhiteRookMoved;
         b.hasLeftWhiteRookMoved = this.hasLeftWhiteRookMoved;
         b.hasWhiteKingMoved = this.hasWhiteKingMoved;
         b.hasRightBlackRookMoved = this.hasRightBlackRookMoved;
         b.hasLeftBlackRookMoved = this.hasLeftBlackRookMoved;
+        b.turn = this.turn;
         
 
         return b;
@@ -63,7 +58,7 @@ public class Board implements Cloneable {
                 };
             }
         }
-        return true;
+        return (b.turn == this.turn);
     }
 
     public Board() {
@@ -80,11 +75,7 @@ public class Board implements Cloneable {
             chessBoard[0][i] = initPosBlack[i];
         for (int i = 0; i < chessBoard.length; i++)
             chessBoard[7][i] = initPosWhite[i];
-        for (int i = 0; i<8; i++) {
-            for (int j = 0; j<8; j++) {
-                stateBoard[i][j] = new LinkedList<>();
-            }
-        }
+        this.turn = true;
     }
 
     public boolean isWhite(int pos_i, int pos_j) throws BoardOutOfBoundsException {
@@ -184,30 +175,6 @@ public class Board implements Cloneable {
         return chessBoard[c.getPos_i()][c.getPos_j()];
     }
 
-    public LinkedList<Coordinate>[][] getStateBoard() {
-        return stateBoard;
-    }
-
-    public void setStateBoard(LinkedList<Coordinate> moves, int i, int j)
-            throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
-        
-        LinkedList<Coordinate> tmp = new LinkedList<>();
-        
-        for(Coordinate c : moves) {
-            if(!(new Game(this).isLegal(i, j, c))) tmp.add(c);
-        }
-
-        for(Coordinate c : tmp) {
-            if(!(new Game(this).isLegal(i, j, c))) moves.remove(moves.indexOf(c));
-        }
-
-        stateBoard[i][j] = moves;
-    }
-
-    public void setStateBoard(LinkedList<Coordinate>[][] moves) {
-        stateBoard = moves;
-    }
-
     public void printImage() {
         char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
         int[] numbers = { 8, 7, 6, 5, 4, 3, 2, 1 };
@@ -283,83 +250,6 @@ public class Board implements Cloneable {
             return true;
         }
     }
-
-    public void buildMark(){
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                mark_black[i][j] = false;
-                mark_white[i][j] = false;
-            }
-        }
-    }
-
-    public void isCheckBlackDFS(Coordinate c, Coordinate king) throws BoardOutOfBoundsException,
-            UnexpectedPieceException, IllegalMoveException {
-        
-        mark_black[c.getPos_i()][c.getPos_j()] = true;
-        
-        if(isWhite(c)){
-            LinkedList<Coordinate> ms = Controller.uncheckedMoves(this)[c.getPos_i()][c.getPos_j()];
-            //System.out.println("TAM -> " + ms.size());
-            for(Coordinate m : ms){
-                if(m.getPos_i()==king.getPos_i()&&m.getPos_j()==king.getPos_j()){
-                    System.out.println("ENTROU");
-                    isCheckBlack = true;
-                    return;
-                }
-                //System.out.println("POSIÇÕES -> "+m.getPos_i()+" "+m.getPos_j());
-                
-            }
-        }
-
-        for (int i = 0; i < linha.length; i++) {
-            int a = c.getPos_i() + linha[i];
-            int b = c.getPos_j() + coluna[i];
-
-            if(a<0||a>=8||b<0||b>=8||mark_black[a][b]||isBlack(new Coordinate(a, b))) continue;
-
-            isCheckBlackDFS(new Coordinate(a, b), king);
-        }
-        
-        
-    }
-
-    public boolean getIfIsCheckInBlack(){
-        return isCheckBlack;
-    }
-    public void isCheckWhiteDFS(Coordinate c, Coordinate king) throws BoardOutOfBoundsException,
-            UnexpectedPieceException, IllegalMoveException {
-        
-        mark_white[c.getPos_i()][c.getPos_j()] = true;
-        
-        if(isBlack(c)){
-            LinkedList<Coordinate> ms = Controller.uncheckedMoves(this)[c.getPos_i()][c.getPos_j()];
-            //System.out.println("TAM -> " + ms.size());
-            for(Coordinate m : ms){
-                if(m.getPos_i()==king.getPos_i()&&m.getPos_j()==king.getPos_j()){
-                    System.out.println("ENTROU");
-                    isCheckWhite = true;
-                    return;
-                }
-                //System.out.println("POSIÇÕES -> "+m.getPos_i()+" "+m.getPos_j());
-                
-            }
-        }
-
-        for (int i = 0; i < linha.length; i++) {
-            int a = c.getPos_i() + linha[i];
-            int b = c.getPos_j() + coluna[i];
-
-            if(a<0||a>=8||b<0||b>=8||mark_white[a][b]||isWhite(new Coordinate(a, b))) continue;
-
-            isCheckWhiteDFS(new Coordinate(a, b), king);
-        }
-        
-        
-    }
-    public boolean getIfIsCheckInWhite(){
-        return isCheckWhite;
-    }
     public boolean isBlackKingInCheck() throws BoardOutOfBoundsException, UnexpectedPieceException,
             IllegalMoveException {
         LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(this);
@@ -427,84 +317,6 @@ public class Board implements Cloneable {
         return (getPiece(pos_i, pos_j) != 'o');
     }
 
-    public byte[] HowManyKindOfAttacks(LinkedList<Coordinate> movements) throws BoardOutOfBoundsException {
-        byte[] attacks = new byte[movements.size() / 2];
-        for (int i = 0; i < movements.size(); i++) {
-            if (getPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == 'k'
-                    || getPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) == 'K') {
-                attacks[i] = 2;
-            } else {
-                attacks[i] = isAPiece(movements.get(i).getPos_i(), movements.get(i).getPos_j()) ? (byte) 1 : (byte) 0;
-            }
-        }
-
-        return attacks;
-
-    }
-
-    public boolean WillOccurCapture(LinkedList<Coordinate> movements) throws BoardOutOfBoundsException {
-        boolean r = false;
-        if (movements.equals(null))
-            return false;
-        for (byte element : HowManyKindOfAttacks(movements)) {
-            if (element == (byte) 1)
-                r = true;
-            break;
-        }
-
-        return r;
-    }
-
-    public boolean WillOccurCheck(LinkedList<Coordinate> movements) throws BoardOutOfBoundsException {
-        boolean r = false;
-        if (movements.equals(null))
-            return false;
-        for (byte element : HowManyKindOfAttacks(movements)) {
-            if (element == (byte) 2)
-                r = true;
-            break;
-        }
-
-        return r;
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean WillOccurCheckMate(LinkedList<Coordinate>... movements) throws BoardOutOfBoundsException {
-        boolean[] answers = new boolean[movements.length + 1];// todas as peças do cenário mais o rei.
-        for (int i = 0; i < movements.length; i++) {
-            for (byte element : HowManyKindOfAttacks(movements[i])) {
-                if (element == (byte) 2)
-                    answers[i] = true;
-                break;
-            }
-            if (answers[i] != true)
-                return false;
-        }
-        char b;
-        // se a jogada forem das pretas... senão...
-        if (isBlack(movements[0].get(0).getPos_i(), movements[0].get(0).getPos_j()))
-            b = 'K';
-        else
-            b = 'k';
-
-        answers[answers.length - 1] = (Controller.getKingMoves(this, indexOfPiece(b)[0].getPos_i(),
-                indexOfPiece(b)[0].getPos_j()) == null);
-
-        return answers[answers.length - 1];
-
-    }
-
-    // obs.: só chamar quando tiver certeza que pode ocorrer um xeque.
-    public Coordinate WherePlayToCheck(LinkedList<Coordinate> movements) throws BoardOutOfBoundsException {
-        for (int i = 0; i < HowManyKindOfAttacks(movements).length; i++) {
-            if (HowManyKindOfAttacks(movements)[i] == 2) {
-                return movements.get(i);
-            }
-        }
-
-        return null;
-
-    }
 
     public Coordinate promotionWhite() throws BoardOutOfBoundsException{
         for (int j = 0; j<8; j++) {
@@ -526,246 +338,14 @@ public class Board implements Cloneable {
         return new Coordinate(-1,-1);
     }
 
-    public boolean IsCheckMateInBlackKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1)
-            throws BoardOutOfBoundsException {
-        return IsCheckMate(movements, movements1, 'k');
-    }
-
-    public boolean IsCheckMateInWhiteKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1)
-            throws BoardOutOfBoundsException {
-        return IsCheckMate(movements, movements1, 'K');
-    }
-
-    // algoritmo bruto
-    private boolean IsCheckMate(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b)
-            throws BoardOutOfBoundsException {
-
-        /*
-         * * POSIÇÕES *
-         * 
-         * FRENTE ATRÁS ESQUERDA DIREITA DIAGONAL ESQUERDA SUPERIOR DIAGONAL DIREITA
-         * SUPERIOR DIAGONAL ESQUERDA INFERIOR DIAGONAL DIREITA INFERIOR
-         * 
-         */
-
-        byte[] cases = new byte[8];
-
-        cases[0] = pathForwardKing(movements, movements1, b);
-        cases[1] = pathBackwardKing(movements, movements1, b);
-        cases[2] = pathLeftKing(movements, movements1, b);
-        cases[3] = pathRightKing(movements, movements1, b);
-        cases[4] = pathTopLeftDiagonal(movements, movements1, b);
-        cases[5] = pathTopRightDiagonal(movements, movements1, b);
-        cases[6] = pathBottomLeftDiagonal(movements, movements1, b);
-        cases[7] = pathBottomRightDiagonal(movements, movements1, b);
-
-        for (int i = 0; i < cases.length; i++) {
-            if (cases[i] == (byte) 1) {
-                return false;
-            }
-        }
-
-        return true;
-    }
+	public boolean getTurn() {
+		return turn;
+	}
 
     // 0 -> borda; 1 -> tem uma peça da mesma cor; 2 -> tem uma peça oponente
 
-    private byte pathForwardKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b)
-            throws BoardOutOfBoundsException {
 
-        Coordinate coordinate = indexOfPiece(b)[0];
 
-        for (int i = coordinate.getPos_i(); i >= 0; i--) {
-            if (WillOccurCheck(movements) || WillOccurCheck(movements1)
-                    || (getPiece(i, coordinate.getPos_j()) != 'o'
-                            && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())
-                            && (getPiece(i, coordinate.getPos_j()) == 'T' || getPiece(i, coordinate.getPos_j()) == 't'
-                                    || getPiece(i, coordinate.getPos_j()) == 'q'
-                                    || getPiece(i, coordinate.getPos_j()) == 'Q'))) {
-                return 2;
-            } else if (getPiece(i, coordinate.getPos_j()) != 'o'
-                    && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())) {
-                return 1;
-            }
-        }
-
-        return 0;
-    }
-
-    private byte pathBackwardKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b)
-            throws BoardOutOfBoundsException {
-
-        Coordinate coordinate = indexOfPiece(b)[0];
-
-        for (int i = coordinate.getPos_i(); i < 8; i++) {
-            if (WillOccurCheck(movements) || WillOccurCheck(movements1)
-                    || (getPiece(i, coordinate.getPos_j()) != 'o'
-                            && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())
-                            && (getPiece(i, coordinate.getPos_j()) == 'T' || getPiece(i, coordinate.getPos_j()) == 't'
-                                    || getPiece(i, coordinate.getPos_j()) == 'q'
-                                    || getPiece(i, coordinate.getPos_j()) == 'Q'))) {
-                return 2;
-            } else if (getPiece(i, coordinate.getPos_j()) != 'o'
-                    && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, coordinate.getPos_j())) {
-                return 1;
-            }
-        }
-
-        return 0;
-    }
-
-    private byte pathLeftKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b)
-            throws BoardOutOfBoundsException {
-
-        Coordinate coordinate = indexOfPiece(b)[0];
-
-        for (int j = coordinate.getPos_j(); j >= 0; j--) {
-            if (WillOccurCheck(movements) || WillOccurCheck(movements1)
-                    || (getPiece(coordinate.getPos_i(), j) != 'o'
-                            && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)
-                            && (getPiece(coordinate.getPos_i(), j) == 'T' || getPiece(coordinate.getPos_i(), j) == 't'
-                                    || getPiece(coordinate.getPos_i(), j) == 'q'
-                                    || getPiece(coordinate.getPos_i(), j) == 'Q'))) {
-                return 2;
-            } else if (getPiece(coordinate.getPos_i(), j) != 'o'
-                    && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
-                return 1;
-            }
-        }
-
-        return 0;
-    }
-
-    private byte pathRightKing(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b)
-            throws BoardOutOfBoundsException {
-
-        Coordinate coordinate = indexOfPiece(b)[0];
-
-        for (int j = coordinate.getPos_j(); j < 8; j++) {
-            if (WillOccurCheck(movements) || WillOccurCheck(movements1)
-                    || (getPiece(coordinate.getPos_i(), j) != 'o'
-                            && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)
-                            && (getPiece(coordinate.getPos_i(), j) == 'T' || getPiece(coordinate.getPos_i(), j) == 't'
-                                    || getPiece(coordinate.getPos_i(), j) == 'q'
-                                    || getPiece(coordinate.getPos_i(), j) == 'Q'))) {
-                return 2;
-            } else if (getPiece(coordinate.getPos_i(), j) != 'o'
-                    && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), coordinate.getPos_i(), j)) {
-                return 1;
-            }
-        }
-
-        return 0;
-    }
-
-    private byte pathTopLeftDiagonal(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b)
-            throws BoardOutOfBoundsException {
-
-        Coordinate coordinate = indexOfPiece(b)[0];
-
-        for (int i = coordinate.getPos_i(); i >= 0; i--) {
-            for (int j = coordinate.getPos_j(); j >= 0; j--) {
-                if (WillOccurCheck(movements) || WillOccurCheck(movements1)
-                        || (getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)
-                                && (getPiece(i, j) == 'B' || getPiece(i, j) == 'b' || getPiece(i, j) == 'q'
-                                        || getPiece(i, j) == 'Q' || getPiece(i, j) == 'P' || getPiece(i, j) == 'p'))) {
-                    return 2;
-                } else if (getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
-                    return 1;
-                }
-            }
-        }
-
-        return 0;
-    }
-
-    private byte pathTopRightDiagonal(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b)
-            throws BoardOutOfBoundsException {
-
-        Coordinate coordinate = indexOfPiece(b)[0];
-
-        for (int i = coordinate.getPos_i(); i >= 0; i--) {
-            for (int j = coordinate.getPos_j(); j < 8; j++) {
-                if (WillOccurCheck(movements) || WillOccurCheck(movements1)
-                        || (getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)
-                                && (getPiece(i, j) == 'B' || getPiece(i, j) == 'b' || getPiece(i, j) == 'q'
-                                        || getPiece(i, j) == 'Q' || getPiece(i, j) == 'P' || getPiece(i, j) == 'p'))) {
-                    return 2;
-                } else if (getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
-                    return 1;
-                }
-            }
-        }
-
-        return 0;
-    }
-
-    private byte pathBottomLeftDiagonal(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b)
-            throws BoardOutOfBoundsException {
-
-        Coordinate coordinate = indexOfPiece(b)[0];
-
-        for (int i = coordinate.getPos_i(); i < 8; i++) {
-            for (int j = coordinate.getPos_j(); j >= 0; j--) {
-                if (WillOccurCheck(movements) || WillOccurCheck(movements1)
-                        || (getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)
-                                && (getPiece(i, j) == 'B' || getPiece(i, j) == 'b' || getPiece(i, j) == 'q'
-                                        || getPiece(i, j) == 'Q' || getPiece(i, j) == 'P' || getPiece(i, j) == 'p'))) {
-                    return 2;
-                } else if (getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
-                    return 1;
-                }
-            }
-        }
-
-        return 0;
-    }
-
-    private byte pathBottomRightDiagonal(LinkedList<Coordinate> movements, LinkedList<Coordinate> movements1, char b)
-            throws BoardOutOfBoundsException {
-
-        Coordinate coordinate = indexOfPiece(b)[0];
-
-        for (int i = coordinate.getPos_i(); i < 8; i++) {
-            for (int j = coordinate.getPos_j(); j < 8; j++) {
-                if (WillOccurCheck(movements) || WillOccurCheck(movements1)
-                        || (getPiece(i, j) != 'o' && !hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)
-                                && (getPiece(i, j) == 'B' || getPiece(i, j) == 'b' || getPiece(i, j) == 'q'
-                                        || getPiece(i, j) == 'Q' || getPiece(i, j) == 'P' || getPiece(i, j) == 'p'))) {
-                    return 2;
-                } else if (getPiece(i, j) != 'o' && hasSameColor(coordinate.getPos_i(), coordinate.getPos_j(), i, j)) {
-                    return 1;
-                }
-            }
-        }
-
-        return 0;
-    }
-
-    //true = Brancas atacam, false = Pretas atacam
-    public boolean isSquareAttacked(Coordinate c, boolean turn) throws BoardOutOfBoundsException {
-        
-        if (turn = false) {
-            for (Coordinate a : stateBoard[c.getPos_i()][c.getPos_j()]) {
-                if (this.isWhite(a)) {
-                    if (a.equals(c)) {
-                        return true;
-                    }
-                }
-                
-            }
-        }
-        if (turn == true) {
-            for (Coordinate a : stateBoard[c.getPos_i()][c.getPos_j()]) {
-                if (this.isBlack(a)) {
-                    if (a.equals(c)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
     /*
      * public boolean isPiecePinned(int i, int j) throws BoardOutOfBoundsException,
      * UnexpectedPieceException { if (getPiece(i, j) != 'o' && isWhite(i, j) ==

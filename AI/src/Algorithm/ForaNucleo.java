@@ -1,8 +1,7 @@
 package Algorithm;
-
-import java.util.HashSet;
 import java.util.LinkedList;
 
+import Rules.Board;
 import Rules.BoardOutOfBoundsException;
 import Rules.Coordinate;
 import Rules.Game;
@@ -10,10 +9,10 @@ import Rules.IllegalMoveException;
 import Rules.UnexpectedPieceException; 
 
 public class ForaNucleo {
-    public Game board;
+    public Board board;
     public GraphBuilder gb;
 
-    public ForaNucleo(Game board) {
+    public ForaNucleo(Board board) {
         this.board = board;
         this.gb = new GraphBuilder();
         this.gb.createGraph(board);
@@ -23,48 +22,50 @@ public class ForaNucleo {
         return gb;
     }
 
-    private void createSon(Game g) throws BoardOutOfBoundsException, UnexpectedPieceException,
+    private void createSon(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException,
             IllegalMoveException, CloneNotSupportedException {
         
+        Game g = new Game(b);
         g.allLegal();
-        LinkedList<Game> list = new LinkedList<Game>();
+        LinkedList<Board> list = new LinkedList<Board>();
         for (int i = 0; i<8; i++) {
             for (int j = 0; j<8; j++) {
-                for (Coordinate c : g.getBoard().getStateBoard()[i][j]) {
+                for (Coordinate c : g.getStateBoard()[i][j]) {
                     if(c == null) continue;
                     Game copy = (Game)g.clone();
-                    if ((g.getTurn() == g.getBoard().isWhite(i,j)) && g.getBoard().isAPiece(i, j)) {
+                    if ((b.getTurn() == b.isWhite(i,j)) && b.isAPiece(i, j)) {
                         copy.move(i, j, c.getPos_i(), c.getPos_j());
-                        list.add(copy);
+                        copy.isCheckMateBlack();
+                        copy.isCheckMateWhite();
+                        list.add(copy.getBoard());
                     }
                     
                 }
             }
         }
         if (list.size() != 0) {
-            gb.createGraph(g, list);
+            gb.createGraph(b, list);
         }
     }
-    @SuppressWarnings("unchecked")
     public void createGraph(int depth) throws Exception {
         LinkedList<Integer> q = new LinkedList<Integer>();
         q.add(gb.getNode(board));
         while (!q.isEmpty()) {
             int h = q.remove();
-            if (gb.getGame(h).getIsCheckMateBlack()) {
+            if (gb.getBoard(h).isCheckmateBlack) {
                 gb.setWeight(h, Integer.MAX_VALUE);
             }
-            else if (gb.getGame(h).getIsCheckMateWhite()) {
+            else if (gb.getBoard(h).isCheckmateWhite) {
                 gb.setWeight(h, Integer.MIN_VALUE);
             }
             else if(gb.getDepthFromNode(h) == depth) {
                 
-                Evaluate e = new Evaluate(gb.getGame(h).getBoard());
+                Evaluate e = new Evaluate(gb.getBoard(h));
                 gb.setWeight(h, e.total());
                 
             }
             else {
-                createSon(gb.getGame(h));
+                createSon(gb.getBoard(h));
                 for (int c : gb.getSon(h)) {
                     q.add(c);
                 }
@@ -73,7 +74,7 @@ public class ForaNucleo {
         
 
     }
-
+    /*
     public void createGraph(Game g, Game f, int dpt, int depth) throws Exception {
         if (dpt < depth) {
             if(g.equals(f)) return;
@@ -95,6 +96,6 @@ public class ForaNucleo {
                 }
             }
         }
-    }
+    }*/
 
 }

@@ -59,16 +59,16 @@ public class Main {
         */
         Board board = new Board();
         Scanner s = new Scanner(System.in);
-        Game game = new Game(board);
+        
 
-        int depth = 2;
+        int depth = 3;
 
-        while (!game.hasEnded()) {
-            
-            ForaNucleo fn = new ForaNucleo(game);
+        while (!board.endOfGame) {
+            Game game = new Game(board);
+            ForaNucleo fn = new ForaNucleo(board);
             game.getBoard().printImage();
             System.out.println();
-            if(!game.getTurn()){
+            if(!board.getTurn()){
                 try {
                     fn.createGraph(depth);
                     GraphBuilder gb = fn.getGraph();
@@ -76,10 +76,11 @@ public class Main {
                     //gb.printGraph();
                     //System.out.println(gb.HowManyNodes());
                     //System.out.println("aqui->"+gb.getDepth());
-                    game = IA.bestPlaying(0, depth, false);
-                    game.allLegal();
-                    game.isCheckMateBlack();
-                    game.isCheckMateWhite();
+                    board = IA.bestPlaying(0, depth, false);
+                    Game test = new Game(board);
+                    test.allLegal();
+                    test.isCheckMateBlack();
+                    test.isCheckMateWhite();
                     System.out.println(" ");
                 }
                 catch (BoardOutOfBoundsException b) {
@@ -135,7 +136,7 @@ public class Main {
             }
 
         }
-        game.getBoard().printImage();
+        board.printImage();
         System.out.println(" ");
         System.out.println("Jogo Acabou");
         s.close();

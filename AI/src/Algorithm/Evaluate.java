@@ -6,54 +6,54 @@ import Rules.Board;
 import Rules.BoardOutOfBoundsException;
 import Rules.Controller;
 import Rules.Coordinate;
+import Rules.UnexpectedPieceException;
 
 public class Evaluate {
     double pValue = 0;
     Board board;
 
-    public Evaluate (Board board) {
+    public Evaluate(Board board) {
         this.board = board;
     }
 
     private double piece() throws BoardOutOfBoundsException {
         double white = 0;
         double black = 0;
-        for (int i = 0; i<8; i++) {
-            for (int j = 0; j<8; j++) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 if (board.isWhite(i, j)) {
-                    if (board.getPiece(i, j) == 'P') 
+                    if (board.getPiece(i, j) == 'P')
                         white = white + 1;
-                    if (board.getPiece(i, j) == 'Q')  
+                    if (board.getPiece(i, j) == 'Q')
                         white = white + 9;
-                    if (board.getPiece(i, j) == 'T')  
+                    if (board.getPiece(i, j) == 'T')
                         white = white + 5;
-                    if (board.getPiece(i, j) == 'B')  
+                    if (board.getPiece(i, j) == 'B')
                         white = white + 3.5;
-                    if (board.getPiece(i, j) == 'C')  
+                    if (board.getPiece(i, j) == 'C')
                         white = white + 3;
-                    }
-                else {
-                    if (board.getPiece(i, j) == 'p') 
+                } else {
+                    if (board.getPiece(i, j) == 'p')
                         black = black + 1;
-                    if (board.getPiece(i, j) == 'q')  
+                    if (board.getPiece(i, j) == 'q')
                         black = black + 9;
-                    if (board.getPiece(i, j) == 't')  
+                    if (board.getPiece(i, j) == 't')
                         black = black + 5;
-                    if (board.getPiece(i, j) == 'b')  
+                    if (board.getPiece(i, j) == 'b')
                         black = black + 3.5;
-                    if (board.getPiece(i, j) == 'c')  
+                    if (board.getPiece(i, j) == 'c')
                         black = black + 3;
-                    }
                 }
             }
+        }
         return (white - black);
     }
 
     private double kingSafety() throws BoardOutOfBoundsException {
         double white = 0;
         double black = 0;
-        for (int i = 0; i<8; i++) {
-            for (int j = 0; j<8; j++) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 if (board.getPiece(i, j) == 'K') {
                     LinkedList<Coordinate> safeWhite = Controller.getQueenMoves(board, i, j);
                     white = -Math.sqrt(safeWhite.size());
@@ -70,26 +70,28 @@ public class Evaluate {
     private double pieceSafety() throws Exception {
         double white = 0;
         double black = 0;
-        for (int i=0; i<8; i++) {
-            for (int j=0; j<8; j++) {
-                if (board.isBlack(i, j) && board.isSquareAttacked(new Coordinate(i, j), false)) {
-                    if ((board.getPiece(i, j) == 'b') || (board.getPiece(i, j) == 't') || (board.getPiece(i, j) == 'c')) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board.isBlack(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), false, board)) {
+                    if ((board.getPiece(i, j) == 'b') || (board.getPiece(i, j) == 't')
+                            || (board.getPiece(i, j) == 'c')) {
                         black++;
                     }
-                    if((board.getPiece(i, j) == 'p')) {
-                        black  += 0.1;
+                    if ((board.getPiece(i, j) == 'p')) {
+                        black += 0.1;
                     }
                 }
-                if (board.isWhite(i, j) && board.isSquareAttacked(new Coordinate(i, j), true)) {
-                    if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T') || (board.getPiece(i, j) == 'C')) {
+                if (board.isWhite(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), true, board)) {
+                    if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T')
+                            || (board.getPiece(i, j) == 'C')) {
                         white++;
                     }
-                    if((board.getPiece(i, j) == 'P')) {
+                    if ((board.getPiece(i, j) == 'P')) {
                         white += 0.1;
                     }
                 }
             }
-        } 
+        }
         return (white - black);
     }
 
@@ -98,11 +100,13 @@ public class Evaluate {
         double black = 0;
         Coordinate[] whiteKing = board.indexOfPiece('K');
         Coordinate[] blackKing = board.indexOfPiece('k');
-        LinkedList<Coordinate> listWhite = Controller.getKingMoves(board, whiteKing[0].getPos_i(), whiteKing[0].getPos_j());
-        LinkedList<Coordinate> listBlack = Controller.getKingMoves(board, blackKing[0].getPos_i(), blackKing[0].getPos_j());
+        LinkedList<Coordinate> listWhite = Controller.getKingMoves(board, whiteKing[0].getPos_i(),
+                whiteKing[0].getPos_j());
+        LinkedList<Coordinate> listBlack = Controller.getKingMoves(board, blackKing[0].getPos_i(),
+                blackKing[0].getPos_j());
         white = Math.sqrt((double) listWhite.size());
         black = Math.sqrt((double) listBlack.size());
-        return(white-black);
+        return (white - black);
     }
 
     private double pawnAdvancement() {
@@ -113,23 +117,58 @@ public class Evaluate {
         for (Coordinate c : listWhite) {
             if (c != null) {
                 int i = c.getPos_i();
-                if (i!=7) {
-                    white += (7-(i+1))*0.2; 
+                if (i != 7) {
+                    white += (7 - (i + 1)) * 0.2;
                 }
             }
         }
         for (Coordinate c : listBlack) {
             if (c != null) {
                 int i = c.getPos_i();
-                black += (i-1)*0.2; 
+                black += (i - 1) * 0.2;
             }
         }
         return (white - black);
 
     }
 
+    private double pieceMobility() throws BoardOutOfBoundsException, UnexpectedPieceException {
+        double white = 0;
+        double black = 0;
+        for (int i = 0; i<8; i++) {
+            for (int j = 0; j<8; j++) {
+                if (board.isWhite(i, j)) {
+                    if (board.getPiece(i, j) == 'P') 
+                        white = white + Math.sqrt(Controller.getPawnMoves(board, i, j).size());
+                    if (board.getPiece(i, j) == 'Q')  
+                        white = white + Math.sqrt(Controller.getQueenMoves(board, i, j).size());
+                    if (board.getPiece(i, j) == 'T')  
+                        white = white + Math.sqrt(Controller.getRookMoves(board, i, j).size());
+                    if (board.getPiece(i, j) == 'B')  
+                        white = white + Math.sqrt(Controller.getBishopMoves(board, i, j).size());
+                    if (board.getPiece(i, j) == 'C')  
+                        white = white + Math.sqrt(Controller.getKnightMoves(board, i, j).size());
+                    }
+                else {
+                    if (board.getPiece(i, j) == 'p') 
+                        white = white + Math.sqrt(Controller.getPawnMoves(board, i, j).size());
+                    if (board.getPiece(i, j) == 'q')  
+                        white = white + Math.sqrt(Controller.getQueenMoves(board, i, j).size());
+                    if (board.getPiece(i, j) == 't')  
+                        white = white + Math.sqrt(Controller.getRookMoves(board, i, j).size());
+                    if (board.getPiece(i, j) == 'b')  
+                        white = white + Math.sqrt(Controller.getBishopMoves(board, i, j).size());
+                    if (board.getPiece(i, j) == 'c')  
+                        white = white + Math.sqrt(Controller.getKnightMoves(board, i, j).size());
+                    }
+                }
+            }
+
+        return (white-black);
+    }
+
     public double total () throws BoardOutOfBoundsException, Exception {
-        return (pieceSafety() + piece() + kingSafety() + pawnAdvancement());
+        return (kingMobility() + pieceSafety() + piece() + kingSafety() + pawnAdvancement() + pieceMobility());
     }
 
 }

@@ -1,6 +1,7 @@
 #define len 8
 #define GREEN_LED 12
 #define RED_LED 13
+
 typedef struct Pair{
    int x, y;
 }pair;
@@ -69,9 +70,8 @@ typedef struct Board{
       while(cond){
         updateBoard();
         for (int m=0;m<len;m++) {
-          if(m==i) continue;
           for(int n=0;n<len;n++){
-            if(n==j) continue;
+            if(m==i&&n==j) continue;
             if (lastState[m][n]==LOW && lastState[m][n] != stateBoard[m][n]){
               lastMovement.x = i;
               lastMovement.y = j;

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import Rules.Board;
-import Rules.Game;
+import Rules.Board;
 
 
 public class GraphBuilder {
@@ -15,7 +15,7 @@ public class GraphBuilder {
 
     @SuppressWarnings("unchecked")
     private LinkedList<Integer>[] graph = new LinkedList[maxn];//Grafo NÓSxARESTA
-	private LinkedList<Game> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
+	private LinkedList<Board> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
 	private double[] nodeWeights = new double[maxn];
 	private int[] depthNode = new int[maxn];//profundidades dos nós
 
@@ -26,29 +26,29 @@ public class GraphBuilder {
         }
       //  depthNode[0] = 0;
     }
-    public void createGraph(Game c){
+    public void createGraph(Board c){
         //graph[0].add(0);
         nodesPos.add(c);
         depthNode[0] = 0;
     }
-    public void createGraph(Game father, LinkedList<Game> u){
+    public void createGraph(Board father, LinkedList<Board> u){
         int nodeFather = BrutalSearch(father);
         if(nodeFather==-1) return;
         for (int i = 0; i < u.size(); i++) {
             //countNodes++;
             nodesPos.add(u.get(i));
             graph[nodeFather].add(countNodes);
-            depthNode[countNodes] = getDepth();
+            depthNode[countNodes] = depthNode[nodeFather] + 1;
             countNodes++;
         }
     }
-    public void createGraph(int nodeFather, LinkedList<Game> u){
+    public void createGraph(int nodeFather, LinkedList<Board> u){
         if(nodeFather==-1) return;
         for (int i = 0; i < u.size(); i++) {
             //countNodes++;
             nodesPos.add(u.get(i));
             graph[nodeFather].add(countNodes);
-            depthNode[countNodes] = getDepth();
+            depthNode[countNodes] = depthNode[nodeFather] + 1;
             countNodes++;
 		}
     }
@@ -89,10 +89,10 @@ public class GraphBuilder {
 	public int getDepthFromNode(int u){
 		return depthNode[u];
 	}
-	public Game getGame(int node){
+	public Board getBoard(int node){
 		return nodesPos.get(node); 
 	}
-	public int getNode(Game c){
+	public int getNode(Board c){
 		return BrutalSearch(c);
 	}
     public LinkedList<Integer> getSon(int u){
@@ -100,7 +100,7 @@ public class GraphBuilder {
     }
 	public void printGraph(){
         for (int i = 0; i < countNodes; i++) {
-            System.out.print("The node:" + i + " has connections with this Games-> ");
+            System.out.print("The node:" + i + " has connections with this Boards-> ");
             for (int j = 0; j < graph[i].size(); j++) {
                 System.out.print(graph[i].get(j) + " ");
             }
@@ -114,9 +114,9 @@ public class GraphBuilder {
         }
 	}
 
-    private int BrutalSearch(Game c){
+    private int BrutalSearch(Board c){
         
-        for (int i = 0; i<countNodes+1; i++) {
+        for (int i = countNodes-1; i>=0; i--) {
             if(nodesPos.get(i).equals(c)){
                 return i;
             }
@@ -132,12 +132,12 @@ public class GraphBuilder {
         Board board1 = new Board();
         Board board2 = new Board();
         
-        Game p1 = new Game(board);
-        Game p2 = new Game(board1);
-        Game p3 = new Game(board2);
+        Board p1 = new Board(board);
+        Board p2 = new Board(board1);
+        Board p3 = new Board(board2);
         g.createGraph(p1);
 
-        LinkedList<Game> ali = new LinkedList<Game>();
+        LinkedList<Board> ali = new LinkedList<Board>();
 		ali.add(p2);
         ali.add(p3);
         
@@ -151,13 +151,13 @@ public class GraphBuilder {
     public static void main(String[] args) {
         GraphBuilder gb = new GraphBuilder();
 
-        gb.createGraph(new Game(new Board()));
+        gb.createGraph(new Board(new Board()));
 
-        LinkedList<Game> ali = new LinkedList<Game>();
-		ali.add(new Game(new Board()));
-        ali.add(new Game(new Board()));
+        LinkedList<Board> ali = new LinkedList<Board>();
+		ali.add(new Board(new Board()));
+        ali.add(new Board(new Board()));
 
-        gb.createGraph(new Game(new Board()), ali);
+        gb.createGraph(new Board(new Board()), ali);
         System.out.println(gb.getDepth());
         gb.printGraph();
     
