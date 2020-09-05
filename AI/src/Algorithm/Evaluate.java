@@ -71,22 +71,22 @@ public class Evaluate {
         double black = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (board.isBlack(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), false, board)) {
+                if (board.isBlack(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), true, board)) {
                     if ((board.getPiece(i, j) == 'b') || (board.getPiece(i, j) == 't')
                             || (board.getPiece(i, j) == 'c')) {
                         black++;
                     }
                     if ((board.getPiece(i, j) == 'p')) {
-                        black += 0.1;
+                        black += 0.3;
                     }
                 }
-                if (board.isWhite(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), true, board)) {
+                if (board.isWhite(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), false, board)) {
                     if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T')
                             || (board.getPiece(i, j) == 'C')) {
                         white++;
                     }
                     if ((board.getPiece(i, j) == 'P')) {
-                        white += 0.1;
+                        white += 0.3;
                     }
                 }
             }
@@ -117,14 +117,14 @@ public class Evaluate {
             if (c != null) {
                 int i = c.getPos_i();
                 if (i != 7) {
-                    white += (7 - (i + 1)) * 0.2;
+                    white += (7 - (i + 1)) * 0.05;
                 }
             }
         }
         for (Coordinate c : listBlack) {
             if (c != null) {
                 int i = c.getPos_i();
-                black += (i - 1) * 0.2;
+                black += (i - 1) * 0.05;
             }
         }
         return (white - black);
