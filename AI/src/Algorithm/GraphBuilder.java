@@ -31,17 +31,6 @@ public class GraphBuilder {
         nodesPos.add(c);
         depthNode[0] = 0;
     }
-    public void createGraph(Board father, LinkedList<Board> u){
-        int nodeFather = BrutalSearch(father);
-        if(nodeFather==-1) return;
-        for (int i = 0; i < u.size(); i++) {
-            //countNodes++;
-            nodesPos.add(u.get(i));
-            graph[nodeFather].add(countNodes);
-            depthNode[countNodes] = depthNode[nodeFather] + 1;
-            countNodes++;
-        }
-    }
     public void createGraph(int nodeFather, LinkedList<Board> u){
         if(nodeFather==-1) return;
         for (int i = 0; i < u.size(); i++) {
@@ -92,9 +81,6 @@ public class GraphBuilder {
 	public Board getBoard(int node){
 		return nodesPos.get(node); 
 	}
-	public int getNode(Board c){
-		return BrutalSearch(c);
-	}
     public LinkedList<Integer> getSon(int u){
         return graph[u];
     }
@@ -114,16 +100,7 @@ public class GraphBuilder {
         }
 	}
 
-    private int BrutalSearch(Board c){
-        
-        for (int i = 0; i<countNodes+1; i++) {
-            if(nodesPos.get(i).equals(c)){
-                return i;
-            }
-        }
 
-        return -1;
-    }
     /*EXEMPLOS
     public static void main(String[] args) {
         

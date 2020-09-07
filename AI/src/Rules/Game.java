@@ -119,9 +119,7 @@ public class Game {
 
     public void isCheckMateWhite() throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException,
             CloneNotSupportedException {
-        int legal = 0;
-        Coordinate z = board.indexOfPiece('K')[0];
-        
+        int legal = 0;        
         if (board.isWhiteKingInCheck()) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {

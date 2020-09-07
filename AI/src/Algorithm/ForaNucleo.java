@@ -22,9 +22,9 @@ public class ForaNucleo {
         return gb;
     }
 
-    private void createSon(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException,
+    private void createSon(int h) throws BoardOutOfBoundsException, UnexpectedPieceException,
             IllegalMoveException, CloneNotSupportedException {
-        
+        Board b = gb.getBoard(h);
         Game g = new Game(b);
         g.allLegal();
         LinkedList<Board> list = new LinkedList<Board>();
@@ -44,12 +44,12 @@ public class ForaNucleo {
             }
         }
         if (list.size() != 0) {
-            gb.createGraph(b, list);
+            gb.createGraph(h, list);
         }
     }
     public void createGraph(int depth) throws Exception {
         LinkedList<Integer> q = new LinkedList<Integer>();
-        q.add(gb.getNode(board));
+        q.add(0);
         while (!q.isEmpty()) {
             int h = q.remove();
             if (gb.getBoard(h).isCheckmateBlack) {
@@ -59,13 +59,11 @@ public class ForaNucleo {
                 gb.setWeight(h, Integer.MIN_VALUE);
             }
             else if(gb.getDepthFromNode(h) == depth) {
-                
                 Evaluate e = new Evaluate(gb.getBoard(h));
                 gb.setWeight(h, e.total());
-                
             }
             else {
-                createSon(gb.getBoard(h));
+                createSon(h);
                 for (int c : gb.getSon(h)) {
                     q.add(c);
                 }
