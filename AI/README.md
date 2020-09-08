@@ -539,6 +539,7 @@ public void printWeightGraph();
 Este é o antigo algoritmo da tomada de decisão(inteligência artificial) da jogada feita pela máquina.
 
 - Complexidade:
+
 ![Screenshot](cm.png)
 
 ```
