@@ -70,16 +70,20 @@ public class Main {
                 try {
                     fn.createGraph(depth);
                     GraphBuilder gb = fn.getGraph();
+                    long time = System.currentTimeMillis();
                     AlphaBeta IA = new AlphaBeta(gb);
                     //gb.printGraph();
                     //System.out.println(gb.HowManyNodes());
                     //System.out.println("aqui->"+gb.getDepth());
                     board = IA.bestPlaying(0, depth, false);
+                    long tn = System.currentTimeMillis();
+                    System.out.println(tn - time);
                     Game test = new Game(board);
                     test.allLegal();
                     test.isCheckMateBlack();
                     test.isCheckMateWhite();
                     System.out.println(" ");
+                    
                 }
                 catch (BoardOutOfBoundsException b) {
                     System.err.println("\n*Fora do tabuleiro*\n");
