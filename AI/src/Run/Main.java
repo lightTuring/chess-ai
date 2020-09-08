@@ -2,9 +2,7 @@ package Run;
 
 import java.util.*;
 
-import Algorithm.ForaNucleo;
-import Algorithm.GraphBuilder;
-import Algorithm.MinMax;
+import Algorithm.*;
 import Notation.*;
 import Rules.Board;
 import Rules.BoardOutOfBoundsException;
@@ -72,7 +70,7 @@ public class Main {
                 try {
                     fn.createGraph(depth);
                     GraphBuilder gb = fn.getGraph();
-                    MinMax IA = new MinMax(gb);
+                    AlphaBeta IA = new AlphaBeta(gb);
                     //gb.printGraph();
                     //System.out.println(gb.HowManyNodes());
                     //System.out.println("aqui->"+gb.getDepth());
