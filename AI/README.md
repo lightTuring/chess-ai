@@ -2,6 +2,15 @@
 
 Nesta pasta encontramos os códigos referentes a inteligência artificial do projeto. Contêm os seguintes pacotes.:
 
+
+## Sumário
+
+- [Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.
+- [Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
+- [Algorithm](https://github.com/lightTuring/chess-ai/tree/master/AI#algorithm): Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
+- [Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server): Arquivos da comunicação Socket.
+- [Notation](https://github.com/lightTuring/chess-ai/tree/master/AI#notation): Anotações do jogo.
+
 ## Run
 
 O pacote apresenta os arquivos de execução.
@@ -456,7 +465,7 @@ public IllegalCastlingException(String message);
 
 ## Algorithm
 
-Neste pacote está disposto a implementação de alguns algoritmos que ajudam na construção da I.A(Inteligência Artificial).
+Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
 
 ### GraphBuilder
 
