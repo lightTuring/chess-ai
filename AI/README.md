@@ -17,10 +17,21 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
     6. [IllegalCastlingException](https://github.com/lightTuring/chess-ai/tree/master/AI#illegalcastlingexception)
 
 3. [Algorithm](https://github.com/lightTuring/chess-ai/tree/master/AI#algorithm): Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
+    1. [GraphBuilder](https://github.com/lightTuring/chess-ai/tree/master/AI#graphbuilder)
+    2. [Min Max](https://github.com/lightTuring/chess-ai/tree/master/AI#min-max)
+    3. [AlphaBeta](https://github.com/lightTuring/chess-ai/tree/master/AI#alphabeta)
+    4. [Evaluate](https://github.com/lightTuring/chess-ai/tree/master/AI#evaluate)
+    5. [ForaNucleo](https://github.com/lightTuring/chess-ai/tree/master/AI#foranucleo)
+    6. [RandomPlay](https://github.com/lightTuring/chess-ai/tree/master/AI#randomplay)
 
 4. [Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server): Arquivos da comunicação Socket.
+    1. [Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server-1)
 
 5. [Notation](https://github.com/lightTuring/chess-ai/tree/master/AI#notation): Anotações do jogo.
+    1. [Translator](https://github.com/lightTuring/chess-ai/tree/master/AI#translator)
+    2. [Annotation](https://github.com/lightTuring/chess-ai/tree/master/AI#annotation)
+
+6. [Teste](https://github.com/lightTuring/chess-ai/tree/master/AI#teste)
 
 ## Run
 
