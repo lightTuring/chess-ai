@@ -598,10 +598,9 @@ public Game bestPlaying(int node, int depth, boolean isMaximizing);
 
 - Retorna a melhor jogada naquele momento. Recebe como argumento o nó(Inteiro), a profundidade e se é momento de maximização. É o único método(além do construtor) chamado na main.
 
-
 ### [AlphaBeta](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
 
-Atual algoritmo da tomada de decisão(inteligência artificial) da jogada feita pela máquina. O _alpha-beta pruning_ é uma otimização do _Min Max_ . Na chamada da recurssão é guardado dois valores, o alfa e o beta, que apresentam respectivamente o minimo valor da variável que será miximizada e o máximo valor da variável que será minimizada. Quando a pontuação do beta passa a ser menor ou igual ao do alfa, então o jogador não precisa considerar mais descendentes deste nó, pois eles nunca serão alcançados no jogo real.
+Atual algoritmo da tomada de decisão(inteligência artificial) da jogada feita pela máquina. O _alpha-beta pruning_ é uma otimização do _Min Max_. Na chamada da recurssão é guardado dois valores, o alfa e o beta, que apresentam respectivamente o minimo valor da variável que será miximizada e o máximo valor da variável que será minimizada. Quando a pontuação do beta passa a ser menor ou igual ao do alfa, então o jogador não precisa considerar mais descendentes deste nó, pois eles nunca serão alcançados no jogo real.
 
 - Complexidade:
 
