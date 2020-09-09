@@ -2,6 +2,14 @@
 
 Nesta pasta encontramos os códigos referentes a inteligência artificial do projeto. Contêm os seguintes pacotes.:
 
+## Sumário
+
+- [Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.
+- [Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
+- [Algorithm](https://github.com/lightTuring/chess-ai/tree/master/AI#algorithm): Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
+- [Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server): Arquivos da comunicação Socket.
+- [Notation](https://github.com/lightTuring/chess-ai/tree/master/AI#notation): Anotações do jogo.
+
 ## Run
 
 O pacote apresenta os arquivos de execução.
@@ -456,7 +464,7 @@ public IllegalCastlingException(String message);
 
 ## Algorithm
 
-Neste pacote está disposto a implementação de alguns algoritmos que ajudam na construção da I.A(Inteligência Artificial).
+Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
 
 ### GraphBuilder
 
@@ -534,15 +542,13 @@ public void printWeightGraph();
 
 - Método que imprime os pesos que são atribuídos à todos os nós.
 
-```java
-private int BrutalSearch(Game c);
-```
-
-- Método que faz uma busca em O(n). Serve para a construção do Grafo. É passado como argumento um _Game_.
-
 ### [Min Max](https://en.wikipedia.org/wiki/Minimax)
 
-Este algoritmo atua na tomada de decisão da jogada feita pela máquina.
+Este é o antigo algoritmo da tomada de decisão(inteligência artificial) da jogada feita pela máquina.
+
+- Complexidade:
+
+![Screenshot](cm.png)
 
 ```
 function minimax(node, depth, maximizingPlayer) is
@@ -565,10 +571,10 @@ function minimax(node, depth, maximizingPlayer) is
 
 ```
 (* Initial call *)
-minimax(origin, depth, TRUE)
+minimax(origin, depth, FALSE)
 ```
 
-- Chamada da função MinMax.
+- Chamada da função MinMax. No nosso caso queremos minimizar as jogadas, pois é favoravel para as pretas na nossa implementação.
 
 ```java
 public MinMax(GraphBuilder gb);
@@ -583,6 +589,68 @@ private int algorithm(int node, int depth, boolean isMaximizing);
 - Aplica o Algoritmo _MinMax_, atribuindo a todos os nós os pesos. Recebe três argumentos: Nó, a profundidade e se é momento de maximização(Na primeira chamada passar este valor sendo verdadeiro).
 
 ![Screenshot](minmax.png)
+
+- Imagem da aplicação do algoritmo.
+
+```java
+public Game bestPlaying(int node, int depth, boolean isMaximizing);
+```
+
+- Retorna a melhor jogada naquele momento. Recebe como argumento o nó(Inteiro), a profundidade e se é momento de maximização. É o único método(além do construtor) chamado na main.
+
+
+### [AlphaBeta](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
+
+Atual algoritmo da tomada de decisão(inteligência artificial) da jogada feita pela máquina. O _alpha-beta pruning_ é uma otimização do _Min Max_ . Na chamada da recurssão é guardado dois valores, o alfa e o beta, que apresentam respectivamente o minimo valor da variável que será miximizada e o máximo valor da variável que será minimizada. Quando a pontuação do beta passa a ser menor ou igual ao do alfa, então o jogador não precisa considerar mais descendentes deste nó, pois eles nunca serão alcançados no jogo real.
+
+- Complexidade:
+
+![Screenshot](cab.png)
+
+```
+function alphabeta(node, depth, α, β, maximizingPlayer) is
+    if depth = 0 or node is a terminal node then
+        return the heuristic value of node
+    if maximizingPlayer then
+        value := −∞
+        for each child of node do
+            value := max(value, alphabeta(child, depth − 1, α, β, FALSE))
+            α := max(α, value)
+            if α ≥ β then
+                break (* β cut-off *)
+        return value
+    else
+        value := +∞
+        for each child of node do
+            value := min(value, alphabeta(child, depth − 1, α, β, TRUE))
+            β := min(β, value)
+            if β ≤ α then
+                break (* α cut-off *)
+        return value
+```
+
+- Pseudo-código do algoritmo.
+
+```
+(* Initial call *)
+alphabeta(origin, depth, −∞, +∞, FALSE)
+```
+
+- Pseudo-código.: Chamada do algoritmo.
+
+```java
+public AlphaBeta(GraphBuilder gb);
+```
+
+- Método construtor.
+
+```java
+private int algorithm(int node, int depth, double a, double b, boolean isMaximizing);
+```
+
+- Aplica o Algoritmo _Alpha-Beta Pruning_, atribuindo a todos os nós os pesos. Recebe cinco argumentos: Nó, a profundidade, o pior valor para alfa e o pior valor para o beta e se é momento de maximização(Na primeira chamada passar este valor sendo verdadeiro).
+
+![Screenshot](alphabeta.png)
 
 - Imagem da aplicação do algoritmo.
 
