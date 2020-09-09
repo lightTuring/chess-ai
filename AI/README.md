@@ -5,17 +5,22 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
 ## Sumário
 
 1. [Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.
-    1. [Sub paragraph](#subparagraph1)
+    1. [Main](https://github.com/lightTuring/chess-ai/tree/master/AI#main)
+    2. [PvP](https://github.com/lightTuring/chess-ai/tree/master/AI#pvp)
 
-2.[Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
-    1. [Sub paragraph](#subparagraph2)
+2. [Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
+    1. [Board](https://github.com/lightTuring/chess-ai/tree/master/AI#board)
+    2. [Controller](https://github.com/lightTuring/chess-ai/tree/master/AI#controller)
+    3. [Coordinate](https://github.com/lightTuring/chess-ai/tree/master/AI#coordinate)
+    4. [BoardOutOfBoundsException](https://github.com/lightTuring/chess-ai/tree/master/AI#boardoutofboundsexception)
+    5. [UnexpectedPieceException](https://github.com/lightTuring/chess-ai/tree/master/AI#unexpectedpieceexception)
+    6. [IllegalCastlingException](https://github.com/lightTuring/chess-ai/tree/master/AI#illegalcastlingexception)
 
+3. [Algorithm](https://github.com/lightTuring/chess-ai/tree/master/AI#algorithm): Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
 
-3.[Algorithm](https://github.com/lightTuring/chess-ai/tree/master/AI#algorithm): Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
+4. [Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server): Arquivos da comunicação Socket.
 
-4.[Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server): Arquivos da comunicação Socket.
-
-5.[Notation](https://github.com/lightTuring/chess-ai/tree/master/AI#notation): Anotações do jogo.
+5. [Notation](https://github.com/lightTuring/chess-ai/tree/master/AI#notation): Anotações do jogo.
 
 ## Run
 
