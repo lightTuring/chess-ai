@@ -4,7 +4,7 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
 
 ## Sumário
 
-1.[Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.
+1. [[Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.](#subparagraph1)
     1. [Sub paragraph](#subparagraph1)
 2.[Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
 
