@@ -4,11 +4,15 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
 
 ## Sumário
 
-- [Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.
-- [Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
-- [Algorithm](https://github.com/lightTuring/chess-ai/tree/master/AI#algorithm): Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
-- [Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server): Arquivos da comunicação Socket.
-- [Notation](https://github.com/lightTuring/chess-ai/tree/master/AI#notation): Anotações do jogo.
+1.[[Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.](#paragraph1)
+
+2.[Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
+
+3.[Algorithm](https://github.com/lightTuring/chess-ai/tree/master/AI#algorithm): Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
+
+4.[Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server): Arquivos da comunicação Socket.
+
+5.[Notation](https://github.com/lightTuring/chess-ai/tree/master/AI#notation): Anotações do jogo.
 
 ## Run
 
