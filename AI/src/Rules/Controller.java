@@ -4,29 +4,37 @@ import java.util.LinkedList;
 @SuppressWarnings("unchecked")
 public class Controller {
 
-	public static boolean isSquareAttacked(Coordinate c, boolean turn, Board b) throws BoardOutOfBoundsException,
+	public static boolean isSquareAttacked(Coordinate c, Board b) throws BoardOutOfBoundsException,
 			UnexpectedPieceException, IllegalMoveException {
-        
-        if (turn == false) {
-            for (Coordinate a : uncheckedMoves(b)[c.getPos_i()][c.getPos_j()]) {
-                if (b.isWhite(a)) {
-                    if (a.equals(c)) {
-                        return true;
-                    }
-                }
-                
-            }
-        }
-        if (turn == true) {
-            for (Coordinate a : uncheckedMoves(b)[c.getPos_i()][c.getPos_j()]) {
-                if (b.isBlack(a)) {
-                    if (a.equals(c)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+		LinkedList<Coordinate>[][] list = uncheckedMoves(b);
+		for (int i = 0; i<8; i++) {
+			for (int j = 0; j<8; j++) {
+				for (Coordinate a : list[i][j]) {
+					if (a.equals(c) && !b.hasSameColor(i, j, a.getPos_i(), a.getPos_j())) {
+						return true;	
+					}
+				}
+			}
+		}
+            
+		return false;
+	}
+	
+	public static boolean isSquareDefended(Coordinate c, Board b) throws BoardOutOfBoundsException,
+			UnexpectedPieceException, IllegalMoveException {
+		LinkedList<Coordinate>[][] list = uncheckedMoves(b);
+		
+		for (int i = 0; i<8; i++) {
+			for (int j = 0; j<8; j++) {
+				for (Coordinate a : list[i][j]) {
+					if (a.equals(c) && b.hasSameColor(i, j, a.getPos_i(), a.getPos_j())) {
+						return true;	
+					}
+				}
+			}
+		
+		}
+		return false;
     }
 
   	public static LinkedList<Coordinate> getPawnMoves(Board b, int i, int j) throws UnexpectedPieceException, BoardOutOfBoundsException {
@@ -84,7 +92,8 @@ public class Controller {
 	    return movesP;
     }
 
-  	public static LinkedList<Coordinate> getKnightMoves(Board b, int pos_i, int pos_j){
+  	public static LinkedList<Coordinate> getKnightMoves(Board b, int pos_i, int pos_j)
+			throws BoardOutOfBoundsException {
 		LinkedList<Coordinate> movesK = new LinkedList<Coordinate>();
 		Coordinate x;
 		byte[] addingGeneralCoordinate = {-2, -1, -2, 1, 2, -1, 2, 1, -1, -2, -1, 2, 1, -2, 1, 2};
@@ -142,7 +151,7 @@ public class Controller {
 
 		for (Coordinate c : list) {
 			if(c.getPos_i() != -1) {
-			moves.add(c);
+				moves.add(c);
 			}
 		}
 		return moves;
@@ -206,6 +215,8 @@ public class Controller {
 		return list;
 	}
 
+	
+
 	private static LinkedList<Coordinate> rookGen (Board b, int pos_i, int pos_j) throws BoardOutOfBoundsException{
 		LinkedList<Coordinate> moves = new LinkedList<Coordinate>();
 		Coordinate x; 
@@ -220,10 +231,9 @@ public class Controller {
 			}
 		}
 		if (pathBlocked == true) {
-			if (!(b.hasSameColor(pos_i, pos_j, pos_i, t))) {
-				x = new Coordinate(pos_i, t);
-				moves.add(x);
-			}
+			x = new Coordinate(pos_i, t);
+			moves.add(x);
+			
 			for (int j = (t+1); j < pos_j; j++) {
 				x = new Coordinate(pos_i, j);
 				moves.add(x);
@@ -242,10 +252,8 @@ public class Controller {
 				moves.add(x);
 			}
 			else {
-				if (b.hasSameColor(pos_i, pos_j, pos_i, j) == false) {
-					x = new Coordinate(pos_i, j);
-					moves.add(x);
-				}
+				x = new Coordinate(pos_i, j);
+				moves.add(x);
 				break;
 			}
 		}
@@ -257,10 +265,9 @@ public class Controller {
 			}
 		}
 		if(pathBlocked2 == true) {
-			if (!(b.hasSameColor(pos_i, pos_j, t, pos_j))) {
-				x = new Coordinate(t, pos_j);
-				moves.add(x);
-			}
+			x = new Coordinate(t, pos_j);
+			moves.add(x);
+			
 			for (int i = (t+1); i < pos_i; i++) {
 				x = new Coordinate(i, pos_j);
 				moves.add(x);
@@ -278,10 +285,8 @@ public class Controller {
 				moves.add(x);
 			}
 			else {
-				if(!(b.hasSameColor(pos_i, pos_j, i, pos_j))) {
-					x = new Coordinate(i, pos_j);
-					moves.add(x);
-				}
+				x = new Coordinate(i, pos_j);			
+				moves.add(x);
 				break;
 			}
 		}
@@ -350,25 +355,6 @@ public class Controller {
 		return list;
 		
 	}
-	/*
-	public static void allLegal(Board b) throws BoardOutOfBoundsException, UnexpectedPieceException, IllegalMoveException, CloneNotSupportedException {
-		LinkedList<Coordinate>[][] list = uncheckedMoves(b);
-		for (int i = 0; i<8; i++) {
-			for (int j = 0; j<8; j++){
-				LinkedList<Coordinate> teste = list[i][j];
-				LinkedList<Coordinate> letra = teste;
-				for (Coordinate c : teste) {
-					Board copy = b.clone();
-					copy.changePos(i, j, c);
-					if (copy.isBlackKingInCheck() || copy.isWhiteKingInCheck()) {
-						letra.remove(c);
-					}
-				}
-				list[i][j] = letra;
-			}
-		}
-		b.setStateBoard(list);
-	}*/
 		
 }
 

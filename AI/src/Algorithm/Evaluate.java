@@ -71,7 +71,7 @@ public class Evaluate {
         double black = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (board.isBlack(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), true, board)) {
+                if (board.isBlack(i, j) && Controller.isSquareDefended(new Coordinate(i, j), board)) {
                     if ((board.getPiece(i, j) == 'b') || (board.getPiece(i, j) == 't')
                             || (board.getPiece(i, j) == 'c')) {
                         black++;
@@ -80,7 +80,7 @@ public class Evaluate {
                         black += 0.3;
                     }
                 }
-                if (board.isWhite(i, j) && Controller.isSquareAttacked(new Coordinate(i, j), false, board)) {
+                if (board.isWhite(i, j) && Controller.isSquareDefended(new Coordinate(i, j), board)) {
                     if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T')
                             || (board.getPiece(i, j) == 'C')) {
                         white++;
@@ -99,10 +99,8 @@ public class Evaluate {
         double black = 0;
         Coordinate[] whiteKing = board.indexOfPiece('K');
         Coordinate[] blackKing = board.indexOfPiece('k');
-        LinkedList<Coordinate> listWhite = Controller.getKingMoves(board, whiteKing[0].getPos_i(),
-                whiteKing[0].getPos_j());
-        LinkedList<Coordinate> listBlack = Controller.getKingMoves(board, blackKing[0].getPos_i(),
-                blackKing[0].getPos_j());
+        LinkedList<Coordinate> listWhite = Controller.getKingMoves(board, whiteKing[0].getPos_i(), whiteKing[0].getPos_j());
+        LinkedList<Coordinate> listBlack = Controller.getKingMoves(board, blackKing[0].getPos_i(), blackKing[0].getPos_j());
         white = Math.sqrt((double) listWhite.size());
         black = Math.sqrt((double) listBlack.size());
         return (white - black);
