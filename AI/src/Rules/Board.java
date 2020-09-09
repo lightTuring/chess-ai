@@ -10,7 +10,6 @@ public class Board implements Cloneable {
     private char[][] chessBoard = new char[8][8];
     private final char[] initPosBlack = { 't', 'c', 'b', 'q', 'k', 'b', 'c', 't' };
     private final char[] initPosWhite = { 'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T' };
-    @SuppressWarnings("unchecked")
 
     private boolean hasWhiteKingMoved = false;
     private boolean hasRightWhiteRookMoved = false;
@@ -22,9 +21,6 @@ public class Board implements Cloneable {
     public boolean isCheckmateWhite = false;
     public boolean isCheckmateBlack = false;
     public boolean turn = true;
-
-    private int[] linha = {1, -1, 0, 0, -1, 1, -1, 1};
-    private int[] coluna = {0, 0, 1, -1, -1, 1, 1, -1};
 
     private enum CastlingSide {
         Kingside, Queenside
@@ -254,17 +250,16 @@ public class Board implements Cloneable {
             IllegalMoveException {
         LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(this);
         Coordinate[] king = indexOfPiece('k');
-        boolean isCheck = false;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 for (Coordinate c : list[i][j]) {
-                    if (c.equals(king[0]) && getPiece(c.getPos_i(), c.getPos_j()) != 'K' && isWhite(i,j)) {
-                        isCheck = true;
+                    if (c.equals(king[0]) && getPiece(c.getPos_i(), c.getPos_j()) != 'K' && isWhite(i,j) && !hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
+                        return true;
                     }
                 }
             }
         }
-        return isCheck;
+        return false;
 
     }
 
@@ -272,17 +267,16 @@ public class Board implements Cloneable {
             IllegalMoveException {
         LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(this);
         Coordinate[] king = indexOfPiece('K');
-        boolean isCheck = false;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 for (Coordinate c : list[i][j]) {
-                    if (c.equals(king[0]) && getPiece(c.getPos_i(), c.getPos_j()) != 'k' && isBlack(i,j)) {
-                        isCheck = true;
+                    if (c.equals(king[0]) && getPiece(c.getPos_i(), c.getPos_j()) != 'k' && isBlack(i,j) && !hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
+                        return true;
                     }
                 }
             }
         }
-        return isCheck;
+        return false;
 
     }
 
