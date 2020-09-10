@@ -55,11 +55,11 @@ public class Evaluate {
             for (int j = 0; j < 8; j++) {
                 if (board.getPiece(i, j) == 'K') {
                     LinkedList<Coordinate> safeWhite = Controller.getQueenMoves(board, i, j);
-                    white = -Math.sqrt(safeWhite.size());
+                    white = -Math.sqrt((double)safeWhite.size());
                 }
                 if (board.getPiece(i, j) == 'k') {
                     LinkedList<Coordinate> safeBlack = Controller.getQueenMoves(board, i, j);
-                    black = -Math.sqrt(safeBlack.size());
+                    black = -Math.sqrt((double)safeBlack.size());
                 }
             }
         }
@@ -135,28 +135,20 @@ public class Evaluate {
         for (int i = 0; i<8; i++) {
             for (int j = 0; j<8; j++) {
                 if (board.isWhite(i, j)) {
-                    if (board.getPiece(i, j) == 'P') 
-                        white = white + Math.sqrt(Controller.getPawnMoves(board, i, j).size());
-                    if (board.getPiece(i, j) == 'Q')  
-                        white = white + Math.sqrt(Controller.getQueenMoves(board, i, j).size());
                     if (board.getPiece(i, j) == 'T')  
-                        white = white + Math.sqrt(Controller.getRookMoves(board, i, j).size());
+                        white = white + Math.sqrt((double)Controller.getRookMoves(board, i, j).size());
                     if (board.getPiece(i, j) == 'B')  
-                        white = white + Math.sqrt(Controller.getBishopMoves(board, i, j).size());
+                        white = white + Math.sqrt((double)Controller.getBishopMoves(board, i, j).size());
                     if (board.getPiece(i, j) == 'C')  
-                        white = white + Math.sqrt(Controller.getKnightMoves(board, i, j).size());
+                        white = white + Math.sqrt((double)Controller.getKnightMoves(board, i, j).size());
                     }
                 else {
-                    if (board.getPiece(i, j) == 'p') 
-                        white = white + Math.sqrt(Controller.getPawnMoves(board, i, j).size());
-                    if (board.getPiece(i, j) == 'q')  
-                        white = white + Math.sqrt(Controller.getQueenMoves(board, i, j).size());
                     if (board.getPiece(i, j) == 't')  
-                        white = white + Math.sqrt(Controller.getRookMoves(board, i, j).size());
+                        white = white + Math.sqrt((double)Controller.getRookMoves(board, i, j).size());
                     if (board.getPiece(i, j) == 'b')  
-                        white = white + Math.sqrt(Controller.getBishopMoves(board, i, j).size());
+                        white = white + Math.sqrt((double)Controller.getBishopMoves(board, i, j).size());
                     if (board.getPiece(i, j) == 'c')  
-                        white = white + Math.sqrt(Controller.getKnightMoves(board, i, j).size());
+                        white = white + Math.sqrt((double)Controller.getKnightMoves(board, i, j).size());
                     }
                 }
             }
