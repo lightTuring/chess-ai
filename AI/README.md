@@ -126,6 +126,12 @@ public char getPiece(int pos_x, int pos_y);
 - Retorna a peça presente na posição passada pelo argumento.
 
 ```java
+public char getPiece(Coordinate c);
+```
+
+- Retorna a peça presente na posição passada pelo argumento.
+
+```java
 public void printImage();
 ```
 
