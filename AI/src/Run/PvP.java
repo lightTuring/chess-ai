@@ -33,7 +33,8 @@ public class PvP {
                 game.allLegal();
                 game.isCheckMateBlack();
                 game.isCheckMateWhite();
-                
+                game.isBlackPromotion();
+                game.isWhitePromotion();
             }
             catch (BoardOutOfBoundsException b) {
                 System.err.println("\n*Fora do tabuleiro*\n");

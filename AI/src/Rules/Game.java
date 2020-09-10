@@ -192,5 +192,20 @@ public class Game {
     public boolean getIsCheckMateWhite(){
         return isCheckMateWhite;
     }
-
+    public void isBlackPromotion(){
+        char[][] ourBoard = board.getBoard();
+        for(int i=0;i<ourBoard[7].length;i++){
+            if(ourBoard[7][i] == 'p'){
+                ourBoard[7][i] = 'q';
+            }
+        }
+    }
+    public void isWhitePromotion(){
+        char[][] ourBoard = board.getBoard();
+        for(int i=0;i<ourBoard[7].length;i++){
+            if(ourBoard[0][i] == 'P'){
+                ourBoard[0][i] = 'Q';
+            }
+        }
+    }
 }
