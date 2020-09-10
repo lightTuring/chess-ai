@@ -82,6 +82,8 @@ public class Main {
                     test.allLegal();
                     test.isCheckMateBlack();
                     test.isCheckMateWhite();
+                    test.isBlackPromotion();
+                    test.isWhitePromotion();
                     System.out.println(" ");
                     
                 }
@@ -117,7 +119,8 @@ public class Main {
                     game.allLegal();
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
-                    
+                    game.isWhitePromotion();
+                    game.isBlackPromotion();
                 }
                 catch (BoardOutOfBoundsException b) {
                     System.err.println("\n*Fora do tabuleiro*\n");

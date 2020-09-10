@@ -202,7 +202,7 @@ public class Game {
     }
     public void isWhitePromotion(){
         char[][] ourBoard = board.getBoard();
-        for(int i=0;i<ourBoard[7].length;i++){
+        for(int i=0;i<ourBoard[0].length;i++){
             if(ourBoard[0][i] == 'P'){
                 ourBoard[0][i] = 'Q';
             }
