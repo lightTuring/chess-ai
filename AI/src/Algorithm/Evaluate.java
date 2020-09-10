@@ -144,11 +144,11 @@ public class Evaluate {
                     }
                 else {
                     if (board.getPiece(i, j) == 't')  
-                        white = white + Math.sqrt((double)Controller.getRookMoves(board, i, j).size());
+                        black += Math.sqrt((double)Controller.getRookMoves(board, i, j).size());
                     if (board.getPiece(i, j) == 'b')  
-                        white = white + Math.sqrt((double)Controller.getBishopMoves(board, i, j).size());
+                        black += Math.sqrt((double)Controller.getBishopMoves(board, i, j).size());
                     if (board.getPiece(i, j) == 'c')  
-                        white = white + Math.sqrt((double)Controller.getKnightMoves(board, i, j).size());
+                        black += Math.sqrt((double)Controller.getKnightMoves(board, i, j).size());
                     }
                 }
             }
