@@ -115,14 +115,14 @@ public class Evaluate {
             if (c != null) {
                 int i = c.getPos_i();
                 if (i != 7) {
-                    white += (7 - (i + 1)) * 0.05;
+                    white += (7 - (i + 1)) * 0.2;
                 }
             }
         }
         for (Coordinate c : listBlack) {
             if (c != null) {
                 int i = c.getPos_i();
-                black += (i - 1) * 0.05;
+                black += (i - 1) * 0.2;
             }
         }
         return (white - black);
@@ -136,19 +136,19 @@ public class Evaluate {
             for (int j = 0; j<8; j++) {
                 if (board.isWhite(i, j)) {
                     if (board.getPiece(i, j) == 'T')  
-                        white = white + Math.sqrt((double)Controller.getRookMoves(board, i, j).size());
+                        white = white + Math.sqrt((double)Controller.getRookMoves(board, i, j).size())/2;
                     if (board.getPiece(i, j) == 'B')  
-                        white = white + Math.sqrt((double)Controller.getBishopMoves(board, i, j).size());
+                        white = white + Math.sqrt((double)Controller.getBishopMoves(board, i, j).size())/2;
                     if (board.getPiece(i, j) == 'C')  
-                        white = white + Math.sqrt((double)Controller.getKnightMoves(board, i, j).size());
+                        white = white + Math.sqrt((double)Controller.getKnightMoves(board, i, j).size())/2;
                     }
                 else {
                     if (board.getPiece(i, j) == 't')  
-                        black += Math.sqrt((double)Controller.getRookMoves(board, i, j).size());
+                        black += Math.sqrt((double)Controller.getRookMoves(board, i, j).size())/2;
                     if (board.getPiece(i, j) == 'b')  
-                        black += Math.sqrt((double)Controller.getBishopMoves(board, i, j).size());
+                        black += Math.sqrt((double)Controller.getBishopMoves(board, i, j).size())/2;
                     if (board.getPiece(i, j) == 'c')  
-                        black += Math.sqrt((double)Controller.getKnightMoves(board, i, j).size());
+                        black += Math.sqrt((double)Controller.getKnightMoves(board, i, j).size())/2;
                     }
                 }
             }
