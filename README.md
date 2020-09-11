@@ -20,9 +20,21 @@ Projeto para a disciplina Física e suas Tecnologias do 2º ano do ensino médio
 
 ## REGRAS
 
-1. Captura:
-2. Para fazer roque:
-3. Para um bom funcionamento do sistema robótico siga todas as regras :)
+1. O usuário assume o controle das brancas e o robô assume o controle das pretas.
+2. As pretas são as letras Minúsculas e as brancas as Maiúsculas.
+
+|    Caracter      | Peça                                                   |
+| ---------------- | ------------------------------------------------------ |
+| P/p                | Peão |
+| T/t                | Torre                                  |
+| C/c                |     Cavalo        |
+| B/b                |        Bispo     |
+| Q/q                |         Rainha    |
+| K/k                |          Rei   |
+
+3. Captura:
+4. Para fazer roque:
+5. Para um bom funcionamento do sistema robótico siga todas as regras :)
 
 ![Screenshot](gchess.png)
 
