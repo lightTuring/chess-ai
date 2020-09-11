@@ -70,7 +70,7 @@ public class Game {
         Coordinate c = new Coordinate(final_i, final_j);
         if(i == 7 && j == 4 && final_i == 7 && final_j == 2){
             board.changePos(i, j, c);
-            board.changePos(7, 0, new Coordinate(7, 2));
+            board.changePos(7, 0, new Coordinate(7, 3));
         }else if(i == 7 && j == 4 && final_i == 7 && final_j == 6){
             board.changePos(i, j, c);
             board.changePos(7, 7, new Coordinate(7, 5));
