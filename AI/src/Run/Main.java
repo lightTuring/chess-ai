@@ -71,9 +71,9 @@ public class Main {
                     long time = System.currentTimeMillis();
                     
                     board = foraNucleo.bestPlaying(0, depth, false);
-                    System.out.println(foraNucleo.getGraph().HowManyNodes());
+                    //System.out.println(foraNucleo.getGraph().HowManyNodes());
                     long tn = System.currentTimeMillis();
-                    System.out.println(tn - time);
+                    //System.out.println(tn - time);
                     Game test = new Game(board);
                     
                     test.allLegal();

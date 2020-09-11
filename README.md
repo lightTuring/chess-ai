@@ -17,3 +17,13 @@ Projeto para a disciplina Física e suas Tecnologias do 2º ano do ensino médio
 ## [Depreciated](https://github.com/lightTuring/chess-ai/tree/master/Depreciated)
 
 - Arquivos depreciados, porém podem servir de ideias para futuras implementações ou para outros desenvolvedores.
+
+## REGRAS
+
+1. Captura:
+2. Para fazer roque:
+3. Para um bom funcionamento do sistema robótico siga todas as regras :)
+
+![Screenshot](gchess.png)
+
+- Backend rodando o jogo.

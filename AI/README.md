@@ -2,6 +2,10 @@
 
 Nesta pasta encontramos os códigos referentes a inteligência artificial do projeto. Contêm os seguintes pacotes.:
 
+![Screenshot](Gchess.png)
+
+- Backend rodando o jogo entre a I.A e o usuário.
+
 ## Sumário
 
 1. [Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.
