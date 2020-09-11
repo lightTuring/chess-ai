@@ -207,5 +207,6 @@ public class Game {
                 ourBoard[0][i] = 'Q';
             }
         }
+        
     }
 }

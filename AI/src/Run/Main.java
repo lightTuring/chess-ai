@@ -59,11 +59,11 @@ public class Main {
         Scanner s = new Scanner(System.in);
         
 
-        int depth = 5;
+        int depth = 3;
 
         while (!board.endOfGame) {
             Game game = new Game(board);
-            ForaNucleo fn = new ForaNucleo(board);
+            AlphaBeta foraNucleo = new AlphaBeta(board);
             game.getBoard().printImage();
             System.out.println();
             if(!board.getTurn()){
@@ -72,7 +72,8 @@ public class Main {
                     //gb.printGraph();
                     //System.out.println(gb.HowManyNodes());
                     //System.out.println("aqui->"+gb.getDepth());
-                    board = fn.bestPlaying(0, depth, false);
+                    System.out.println(foraNucleo.getGraph().HowManyNodes());
+                    board = foraNucleo.bestPlaying(0, depth, false);
                     long tn = System.currentTimeMillis();
                     System.out.println(tn - time);
                     Game test = new Game(board);
