@@ -36,6 +36,30 @@ public class AlphaBeta {
 		}
 		
 	}
+	private double algorithmGraph(int node, int depth, double a, double b, boolean isMaximizing) {
+		if(depth == 0){return gb.getWeight(node);}
+		if(isMaximizing){
+			double value = -inf;
+			for (Integer child : graph[node]) {
+                value = Math.max(value, algorithm(child, (depth-1), a, b, false));	
+                a = Math.max(a, value);
+                if(a >= b) break;
+			}
+			gb.setWeight(node, value);
+			return value;
+		}
+		else{
+			double value = inf;
+			for (Integer child : graph[node]) {
+                value = Math.min(value, algorithm(child, (depth-1), a, b, true));
+                b = Math.min(b, value);
+                if(b <= a) break;	
+			}
+			gb.setWeight(node, value);
+			return value;
+		}
+		
+	}
 	//algoritmo guloso
 	public Board bestPlaying(int node, int depth, boolean isMaximizing) {
 

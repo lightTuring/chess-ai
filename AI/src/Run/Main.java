@@ -59,7 +59,7 @@ public class Main {
         Scanner s = new Scanner(System.in);
         
 
-        int depth = 3;
+        int depth = 5;
 
         while (!board.endOfGame) {
             Game game = new Game(board);
@@ -68,14 +68,11 @@ public class Main {
             System.out.println();
             if(!board.getTurn()){
                 try {
-                    fn.createGraph(depth);
-                    GraphBuilder gb = fn.getGraph();
                     long time = System.currentTimeMillis();
-                    AlphaBeta IA = new AlphaBeta(gb);
                     //gb.printGraph();
                     //System.out.println(gb.HowManyNodes());
                     //System.out.println("aqui->"+gb.getDepth());
-                    board = IA.bestPlaying(0, depth, false);
+                    board = fn.bestPlaying(0, depth, false);
                     long tn = System.currentTimeMillis();
                     System.out.println(tn - time);
                     Game test = new Game(board);

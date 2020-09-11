@@ -11,6 +11,8 @@ import Rules.UnexpectedPieceException;
 public class ForaNucleo {
     public Board board;
     public GraphBuilder gb;
+    private final int inf = 1000000007;
+
 
     public ForaNucleo(Board board) {
         this.board = board;
@@ -72,6 +74,62 @@ public class ForaNucleo {
         
 
     }
+    private double algorithmGraph(int node, int depth, double a, double b, boolean isMaximizing)
+            throws Exception {
+		if(depth == 0){
+            if (gb.getBoard(node).isCheckmateBlack) {
+                gb.setWeight(node, Integer.MAX_VALUE);
+            }
+            else if (gb.getBoard(node).isCheckmateWhite) {
+                gb.setWeight(node, Integer.MIN_VALUE);
+            }
+            else {
+                Evaluate e = new Evaluate(gb.getBoard(node));
+                gb.setWeight(node, e.total());
+            }
+            return gb.getWeight(node);
+        }
+		else if(isMaximizing){
+            double value = -inf;
+            createSon(node);
+			for (Integer child : gb.getSon(node)) {
+                value = Math.max(value, algorithmGraph(child, (depth-1), a, b, false));	
+                a = Math.max(a, value);
+                if(a >= b) break;
+			}
+			gb.setWeight(node, value);
+			return value;
+		}
+		else{
+            double value = inf;
+            createSon(node);
+			for (Integer child : gb.getSon(node)) {
+                value = Math.min(value, algorithmGraph(child, (depth-1), a, b, true));
+                b = Math.min(b, value);
+                if(b <= a) break;	
+			}
+			gb.setWeight(node, value);
+			return value;
+		}
+		
+    }
+    public Board bestPlaying(int node, int depth, boolean isMaximizing) throws Exception {
+
+		double search = algorithmGraph(node, depth,(double)-inf, (double)inf, isMaximizing);
+
+		//Zero-based
+		LinkedList<Integer> son = gb.getSon(0);
+		
+		int x=0;
+
+		for(int s : son){
+			if(gb.getWeight(s)==search){
+				x = s;
+				break;
+			}
+		}
+		return gb.getBoard(x);
+	}
     /*
     public void createGraph(Game g, Game f, int dpt, int depth) throws Exception {
         if (dpt < depth) {
