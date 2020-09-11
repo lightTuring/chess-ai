@@ -52,7 +52,7 @@ public class AlphaBeta {
 		
     }
     
-    private double algorithmGraph(int node, int depth, double a, double b, boolean isMaximizing, int corno)
+    private double algorithmGraph(int node, int depth, double a, double b, boolean isMaximizing)
             throws Exception {
 		if(depth == 0){
             if (gb.getBoard(node).isCheckmateBlack) {

@@ -208,5 +208,9 @@ public class Game {
             }
         }
         
-    }
+    }/*
+    public void BlackCastling(){
+        char[][] ourBoard = board.getBoard();
+        if(ourBoard[7][4]=='k')
+    }*/
 }
