@@ -10,13 +10,13 @@ public class Game {
     private boolean isCheckMateBlack = false;
     private boolean isCheckMateWhite = false;
 
-    private boolean hasBlackKingMoved = false;
-    private boolean hasWhiteKingMoved = false;
+    private static boolean hasBlackKingMoved = false;
+    private static boolean hasWhiteKingMoved = false;
     
-    private boolean hasBlackLeftRookMoved = false;
-    private boolean hasBlackRightRookMoved = false;
-    private boolean hasWhiteLeftRookMoved = false;
-    private boolean hasWhiteRightRookMoved = false;
+    private static boolean hasBlackLeftRookMoved = false;
+    private static boolean hasBlackRightRookMoved = false;
+    private static boolean hasWhiteLeftRookMoved = false;
+    private static boolean hasWhiteRightRookMoved = false;
 
     private int moves = 0;
     @SuppressWarnings("unchecked")
@@ -241,31 +241,31 @@ public class Game {
     }
     public void getHasWhiteKingMoved(){
         char[][] ourBoard = board.getBoard();
-        if(ourBoard[0][4] == 'o'){
+        if(ourBoard[7][4] == 'o'){
             hasWhiteKingMoved = true;
         }
     }
     public void getHasWhiteLeftRookMoved(){
         char[][] ourBoard = board.getBoard();
-        if(ourBoard[0][4] == 'o'){
+        if(ourBoard[7][0] == 'o'){
             hasWhiteLeftRookMoved = true;
         }
     }
     public void getHasWhiteRightRookMoved(){
         char[][] ourBoard = board.getBoard();
-        if(ourBoard[0][4] == 'o'){
+        if(ourBoard[7][7] != 'T'){
             hasWhiteRightRookMoved = true;
         }
     }
     public void getHasBlackLeftRookMoved(){
         char[][] ourBoard = board.getBoard();
-        if(ourBoard[0][4] == 'o'){
+        if(ourBoard[0][0] != 't'){
             hasBlackLeftRookMoved = true;
         }
     }
     public void getHasBlackRightRookMoved(){
         char[][] ourBoard = board.getBoard();
-        if(ourBoard[0][4] == 'o'){
+        if(ourBoard[0][7] == 'o'){
             hasBlackRightRookMoved = true;
         }
     }

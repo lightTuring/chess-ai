@@ -125,6 +125,11 @@ public class Main {
                     game.move(ii[0], ii[1], jj[0], jj[1]);
                     game.allLegal();
                     
+                    game.getHasWhiteKingMoved();
+                    game.getHasWhiteLeftRookMoved();
+                    game.getHasWhiteRightRookMoved();
+                    game.WhitesCastling();
+
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
                     
