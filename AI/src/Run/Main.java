@@ -72,8 +72,8 @@ public class Main {
                     //gb.printGraph();
                     //System.out.println(gb.HowManyNodes());
                     //System.out.println("aqui->"+gb.getDepth());
-                    System.out.println(foraNucleo.getGraph().HowManyNodes());
                     board = foraNucleo.bestPlaying(0, depth, false);
+                    System.out.println(foraNucleo.getGraph().HowManyNodes());
                     long tn = System.currentTimeMillis();
                     System.out.println(tn - time);
                     Game test = new Game(board);
