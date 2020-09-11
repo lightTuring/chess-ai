@@ -9,6 +9,15 @@ public class Game {
     private boolean endOfGame = false;
     private boolean isCheckMateBlack = false;
     private boolean isCheckMateWhite = false;
+
+    private boolean hasBlackKingMoved = false;
+    private boolean hasWhiteKingMoved = false;
+    
+    private boolean hasBlackLeftRookMoved = false;
+    private boolean hasBlackRightRookMoved = false;
+    private boolean hasWhiteLeftRookMoved = false;
+    private boolean hasWhiteRightRookMoved = false;
+
     private int moves = 0;
     @SuppressWarnings("unchecked")
     private LinkedList<Coordinate>[][] stateBoard =  new LinkedList[8][8]; 
@@ -59,13 +68,28 @@ public class Game {
     public void move(int i, int j, int final_i, int final_j)
             throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         Coordinate c = new Coordinate(final_i, final_j);
-        if (isLegal(i, j, c) && (!board.isBlack(i,j) == board.turn || board.isWhite(i,j) == board.turn)) {
+        if(i == 7 && j == 4 && final_i == 7 && final_j == 2){
             board.changePos(i, j, c);
-            board.turn = !board.turn;
-            moves++;
-        }
-        else {
-            throw new IllegalMoveException("Movimento ilegal");
+            board.changePos(7, 0, new Coordinate(7, 2));
+        }else if(i == 7 && j == 4 && final_i == 7 && final_j == 6){
+            board.changePos(i, j, c);
+            board.changePos(7, 7, new Coordinate(7, 5));
+        }else if(i == 0 && j == 4 && final_i == 0 && final_j == 2){
+            board.changePos(i, j, c);
+            board.changePos(0, 0, new Coordinate(0, 3));
+        }else if(i == 0 && j == 4 && final_i == 0 && final_j == 6){
+            board.changePos(i, j, c);
+            board.changePos(0, 7, new Coordinate(0, 5));
+        }else{
+            
+            if (isLegal(i, j, c) && (!board.isBlack(i,j) == board.turn || board.isWhite(i,j) == board.turn)) {
+                board.changePos(i, j, c);
+                board.turn = !board.turn;
+                moves++;
+            }
+            else {
+                throw new IllegalMoveException("Movimento ilegal");
+            }
         }
     }
 
@@ -208,9 +232,62 @@ public class Game {
             }
         }
         
-    }/*
-    public void BlackCastling(){
+    }
+    public void getHasBlackKingMoved(){
         char[][] ourBoard = board.getBoard();
-        if(ourBoard[7][4]=='k')
-    }*/
+        if(ourBoard[0][4] == 'o'){
+            hasBlackKingMoved = true;
+        }
+    }
+    public void getHasWhiteKingMoved(){
+        char[][] ourBoard = board.getBoard();
+        if(ourBoard[0][4] == 'o'){
+            hasWhiteKingMoved = true;
+        }
+    }
+    public void getHasWhiteLeftRookMoved(){
+        char[][] ourBoard = board.getBoard();
+        if(ourBoard[0][4] == 'o'){
+            hasWhiteLeftRookMoved = true;
+        }
+    }
+    public void getHasWhiteRightRookMoved(){
+        char[][] ourBoard = board.getBoard();
+        if(ourBoard[0][4] == 'o'){
+            hasWhiteRightRookMoved = true;
+        }
+    }
+    public void getHasBlackLeftRookMoved(){
+        char[][] ourBoard = board.getBoard();
+        if(ourBoard[0][4] == 'o'){
+            hasBlackLeftRookMoved = true;
+        }
+    }
+    public void getHasBlackRightRookMoved(){
+        char[][] ourBoard = board.getBoard();
+        if(ourBoard[0][4] == 'o'){
+            hasBlackRightRookMoved = true;
+        }
+    }
+    public void BlacksCastling(){
+        if(!hasBlackKingMoved && !hasBlackLeftRookMoved){
+            stateBoard[0][4].add(new Coordinate(0, 2));
+            //stateBoard[0][0].add(new Coordinate(0, 3));
+        }
+        if(!hasBlackKingMoved && !hasBlackRightRookMoved){
+            stateBoard[0][4].add(new Coordinate(0, 6));
+            //stateBoard[0][7].add(new Coordinate(0, 5));
+        }
+    }
+    public void WhitesCastling(){
+        if(!hasWhiteKingMoved && !hasWhiteLeftRookMoved){
+            stateBoard[7][4].add(new Coordinate(7, 2));
+            //stateBoard[7][0].add(new Coordinate(7, 3));
+        }
+        if(!hasWhiteKingMoved && !hasWhiteRightRookMoved){
+            stateBoard[7][4].add(new Coordinate(7, 6));
+            //stateBoard[7][7].add(new Coordinate(7, 5));
+        }
+
+    }
 }

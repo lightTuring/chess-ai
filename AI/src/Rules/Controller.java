@@ -303,46 +303,47 @@ public class Controller {
 						list[i][j] = Controller.getPawnMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 'C') {
+					else if (b.getPiece(i, j) == 'C') {
 						list[i][j] = Controller.getKnightMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 'B') {
+					else if (b.getPiece(i, j) == 'B') {
 						list[i][j] = Controller.getBishopMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 'T') {
+					else if (b.getPiece(i, j) == 'T') {
 						list[i][j] = Controller.getRookMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 'Q') {
+					else if (b.getPiece(i, j) == 'Q') {
 						list[i][j] = Controller.getQueenMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 'K') {
+					else if (b.getPiece(i, j) == 'K') {
 						list[i][j] = Controller.getKingMoves(b, i, j);
+						
 					}
-					if (b.getPiece(i, j) == 'p') {
+					else if (b.getPiece(i, j) == 'p') {
 						list[i][j] = Controller.getPawnMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 'c') {
+					else if (b.getPiece(i, j) == 'c') {
 						list[i][j] = Controller.getKnightMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 'b') {
+					else if (b.getPiece(i, j) == 'b') {
 						list[i][j] = Controller.getBishopMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 't') {
+					else if (b.getPiece(i, j) == 't') {
 						list[i][j] = Controller.getRookMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 'q') {
+					else if (b.getPiece(i, j) == 'q') {
 						list[i][j] = Controller.getQueenMoves(b, i, j);
 					}
 
-					if (b.getPiece(i, j) == 'k') {
+					else if (b.getPiece(i, j) == 'k') {
 						list[i][j] = Controller.getKingMoves(b, i, j);
 					}
 				
