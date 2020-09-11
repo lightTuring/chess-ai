@@ -108,18 +108,6 @@ private void setChange(int begin_x, int begin_y, int final_x, int final_y);
 - Realiza a operação de troca genérica de posição entre duas peças.
 
 ```java
-public void doBlacksCastling(CastlingSide side);
-```
-
-- Método de roque para as pretas. Pede qual das duas possibilidades de roque vai ser feita.
-
-```java
-public void doWhitesCastling(CastlingSide side);
-```
-
-- Método de roque para as brancas. Pede qual das duas possibilidades de roque vai ser feita.
-
-```java
 public char getPiece(int pos_x, int pos_y);
 ```
 
@@ -138,12 +126,6 @@ public void printImage();
 - Imprime uma imagem do tabuleiro no terminal.
 
 ```java
-public LinkedList<Coordinate>[][] getStateBoard();
-```
-
-- Retorna o array `stateBoard[][]` do tipo `LinkedList<Coordinate>`.
-
-```java
 public boolean isBlackKingInCheck() throws Exception
 ```
 
@@ -154,84 +136,6 @@ public boolean isWhiteKingInCheck() throws Exception
 ```
 
 - Verifica se o rei branco está em xeque usando o `stateBoard[][]`
-
-```java
-public void setStateBoard(LinkedList<Coordinate> moves, int i, int j);
-```
-
-- Coloca a lista _moves_ na posição do array `stateBoard[i][j]`
-
-```java
-public boolean getHasWhiteKingMoved();
-```
-
-- Retorna se o rei branco deu o seu primeiro movimento.
-
-```java
-public boolean setHasWhiteKingMovedAsTrue();
-```
-
-- Declara que o rei branco deu o seu primeiro movimento.
-
-```java
-public boolean getHasRightWhiteRookMoved();
-```
-
-- Retorna se a torre branca da direita deu o seu primeiro movimento.
-
-```java
-public boolean getHasLeftWhiteRookMoved();
-```
-
-- Retorna se a torre branca da esquerda deu o seu primeiro movimento.
-
-```java
-public boolean setHasRightWhiteRookMovedAsTrue();
-```
-
-- Declara que a torre branca da direita deu o seu primeiro movimento.
-
-```java
-public boolean setHasLeftWhiteRookMovedAsTrue();
-```
-
-- Declara que a torre branca da esquerda deu o seu primeiro movimento.
-
-```java
-public boolean getHasBlackKingMoved();
-```
-
-- Retorna se o rei preto deu o seu primeiro movimento.
-
-```java
-public boolean setHasBlackKingMovedAsTrue();
-```
-
-- Declara que o rei preto deu o seu primeiro movimento.
-
-```java
-public boolean getHasRightBlackRookMoved();
-```
-
-- Retorna se a torre preta da direita deu o seu primeiro movimento.
-
-```java
-public boolean getHasLeftBlackRookMoved();
-```
-
-- Retorna se a torre preta da esquerda deu o seu primeiro movimento.
-
-```java
-public boolean setHasRightBlackRookMovedAsTrue();
-```
-
-- Declara que a torre preta da direita deu o seu primeiro movimento.
-
-```java
-public boolean setHasLeftBlackRookMovedAsTrue();
-```
-
-- Declara que a torre preta da esquerda deu o seu primeiro movimento.
 
 ```java
 public boolean hasPawnMoved(int pos_i, int pos_j);

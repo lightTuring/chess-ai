@@ -109,7 +109,7 @@ public class Board implements Cloneable {
     public void changePos(int begin_x, int begin_y, Coordinate c) {
         setChange(begin_x, begin_y, c.getPos_i(), c.getPos_j());
     }
-
+    /*DEPRECIADO
     // Método de roque para as pretas. Pede um y para definir qual das duas
     // possiblidades de roque vai ser feita.
     public void doBlacksCastling(CastlingSide side) throws IllegalCastlingException, BoardOutOfBoundsException {
@@ -139,7 +139,7 @@ public class Board implements Cloneable {
             throw new IllegalCastlingException("doBlacksCastling chamado ilegamente");
         }
     }
-
+    */
     private void setChange(int begin_x, int begin_y, int final_x, int final_y) {
         // a verificação é com a peça final? está peça de comparação é o rei?
         if (chessBoard[final_x][final_y] != 'K' && chessBoard[final_x][final_y] != 'k' && begin_x < 8 && begin_y < 8) {
@@ -185,6 +185,7 @@ public class Board implements Cloneable {
         for (int i = 0; i < letters.length; i++)
             System.out.print(letters[i]);
     }
+    /*DEPRECIADO
 
     public boolean getHasWhiteKingMoved() {
         return this.hasWhiteKingMoved;
@@ -234,6 +235,7 @@ public class Board implements Cloneable {
         this.hasLeftBlackRookMoved = true;
     }
 
+    */
     public boolean hasPawnMoved(int pos_i, int pos_j) throws UnexpectedPieceException, BoardOutOfBoundsException {
         char piece = getPiece(pos_i, pos_j);
         if (piece != 'p' && piece != 'P') {

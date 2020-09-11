@@ -4,8 +4,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import Rules.Board;
-import Rules.Board;
-
 
 public class GraphBuilder {
     
