@@ -76,6 +76,7 @@ public class Main {
                     game.BlacksCastling();
 
                     board = foraNucleo.bestPlaying(0, depth, false);
+                    System.out.println(foraNucleo.getGraph().HowManyNodes());
                     long tn = System.currentTimeMillis();
                     System.out.println(tn - time);
                     Game test = new Game(board);

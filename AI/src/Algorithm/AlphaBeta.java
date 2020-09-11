@@ -12,7 +12,6 @@ public class AlphaBeta {
     public Board board;
     public GraphBuilder gb;
     private final int inf = 1000000007;
-	private static int howManyNodes = 1;
 
     public AlphaBeta(Board board) {
         this.board = board;
@@ -25,8 +24,7 @@ public class AlphaBeta {
     }
 
     private void createSon(int h) throws BoardOutOfBoundsException, UnexpectedPieceException,
-            IllegalMoveException, CloneNotSupportedException {
-		howManyNodes++;			
+            IllegalMoveException, CloneNotSupportedException {			
         Board b = gb.getBoard(h);
         Game g = new Game(b);
         g.allLegal();
@@ -107,9 +105,6 @@ public class AlphaBeta {
 			}
 		}
 		return gb.getBoard(x);
-	}
-	public int getHowManyNodes(){
-		return howManyNodes;
 	}
 
 }
