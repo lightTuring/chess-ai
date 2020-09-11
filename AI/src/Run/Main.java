@@ -69,14 +69,18 @@ public class Main {
             if(!board.getTurn()){
                 try {
                     long time = System.currentTimeMillis();
-                    //gb.printGraph();
-                    //System.out.println(gb.HowManyNodes());
-                    //System.out.println("aqui->"+gb.getDepth());
+                    
+                    game.getHasBlackKingMoved();
+                    game.getHasBlackLeftRookMoved();
+                    game.getHasBlackRightRookMoved();
+                    game.BlacksCastling();
+
                     board = foraNucleo.bestPlaying(0, depth, false);
                     System.out.println(foraNucleo.getGraph().HowManyNodes());
                     long tn = System.currentTimeMillis();
                     System.out.println(tn - time);
                     Game test = new Game(board);
+                    
                     test.allLegal();
                     test.isCheckMateBlack();
                     test.isCheckMateWhite();
@@ -112,13 +116,22 @@ public class Main {
                 int[] jj = Translator.NotationChessToComputer(second.charAt(0), Character.getNumericValue(second.charAt(1)));
                 
                 try {
+                    game.getHasWhiteKingMoved();
+                    game.getHasWhiteLeftRookMoved();
+                    game.getHasWhiteRightRookMoved();
+                    game.WhitesCastling();
+
                     game.allLegal();
+                    
                     game.move(ii[0], ii[1], jj[0], jj[1]);
                     game.allLegal();
+                    
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
+                    
                     game.isWhitePromotion();
                     game.isBlackPromotion();
+
                 }
                 catch (BoardOutOfBoundsException b) {
                     System.err.println("\n*Fora do tabuleiro*\n");

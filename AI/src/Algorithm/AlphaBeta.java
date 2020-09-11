@@ -13,11 +13,10 @@ public class AlphaBeta {
     public GraphBuilder gb;
     private final int inf = 1000000007;
 
-
     public AlphaBeta(Board board) {
         this.board = board;
         this.gb = new GraphBuilder();
-        this.gb.createGraph(board);
+		this.gb.createGraph(board);
     }
 
     public GraphBuilder getGraph() {
@@ -25,7 +24,7 @@ public class AlphaBeta {
     }
 
     private void createSon(int h) throws BoardOutOfBoundsException, UnexpectedPieceException,
-            IllegalMoveException, CloneNotSupportedException {
+            IllegalMoveException, CloneNotSupportedException {			
         Board b = gb.getBoard(h);
         Game g = new Game(b);
         g.allLegal();
@@ -47,33 +46,10 @@ public class AlphaBeta {
         }
         if (list.size() != 0) {
             gb.createGraph(h, list);
-        }
+		}
+		
     }
-    public void createGraph(int depth) throws Exception {
-        LinkedList<Integer> q = new LinkedList<Integer>();
-        q.add(0);
-        while (!q.isEmpty()) {
-            int h = q.remove();
-            if (gb.getBoard(h).isCheckmateBlack) {
-                gb.setWeight(h, Integer.MAX_VALUE);
-            }
-            else if (gb.getBoard(h).isCheckmateWhite) {
-                gb.setWeight(h, Integer.MIN_VALUE);
-            }
-            else if(gb.getDepthFromNode(h) == depth) {
-                Evaluate e = new Evaluate(gb.getBoard(h));
-                gb.setWeight(h, e.total());
-            }
-            else {
-                createSon(h);
-                for (int c : gb.getSon(h)) {
-                    q.add(c);
-                }
-            }
-        }
-        
-
-    }
+    
     private double algorithmGraph(int node, int depth, double a, double b, boolean isMaximizing)
             throws Exception {
 		if(depth == 0){
@@ -130,28 +106,5 @@ public class AlphaBeta {
 		}
 		return gb.getBoard(x);
 	}
-    /*
-    public void createGraph(Game g, Game f, int dpt, int depth) throws Exception {
-        if (dpt < depth) {
-            if(g.equals(f)) return;
-            createSon(g);
-            int x = gb.getNode(g);
-            if(x!=-1){
-                for (Integer h : gb.getSon(x)) {
-                    g.isCheckMateBlack();
-                    g.isCheckMateWhite();
-                    if (g.getIsCheckMateBlack()) {
-                        gb.setWeight(h, Integer.MAX_VALUE);
-                    }
-                    else if (g.getIsCheckMateWhite()) {
-                        gb.setWeight(h, Integer.MIN_VALUE);
-                    }
-                    else {
-                        createGraph(gb.getGame(h), g, (dpt+1), depth); 
-                    }
-                }
-            }
-        }
-    }*/
 
 }
