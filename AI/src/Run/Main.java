@@ -93,7 +93,7 @@ public class Main {
                     System.err.println("\n*Fora do tabuleiro*\n");
                 }
 
-                catch (StringIndexOutOfBoundsException | UnexpectedPieceException b) {
+                catch (UnexpectedPieceException b) {
                     System.err.println("\n*Não é peça*\n");
                 }
                 catch (CloneNotSupportedException clone) {
@@ -111,11 +111,10 @@ public class Main {
                 String first = s.nextLine();
                 System.out.print("Para.: ");
                 String second = s.nextLine();
-                
-                int[] ii = Translator.NotationChessToComputer(first.charAt(0), Character.getNumericValue(first.charAt(1)));
-                int[] jj = Translator.NotationChessToComputer(second.charAt(0), Character.getNumericValue(second.charAt(1)));
-                
-                try {
+                try { 
+                    int[] ii = Translator.NotationChessToComputer(first.charAt(0), Character.getNumericValue(first.charAt(1)));
+                    int[] jj = Translator.NotationChessToComputer(second.charAt(0), Character.getNumericValue(second.charAt(1)));
+                    
                     game.getHasWhiteKingMoved();
                     game.getHasWhiteLeftRookMoved();
                     game.getHasWhiteRightRookMoved();
@@ -136,8 +135,10 @@ public class Main {
                 catch (BoardOutOfBoundsException b) {
                     System.err.println("\n*Fora do tabuleiro*\n");
                 }
-                
-                catch (StringIndexOutOfBoundsException | UnexpectedPieceException b) {
+                catch(StringIndexOutOfBoundsException b){
+                    System.err.println("\n*Entrada Inválida*\n");
+                }
+                catch (UnexpectedPieceException b) {
                     System.err.println("\n*Não é peça*\n");
                 }
                 catch (CloneNotSupportedException clone) {
