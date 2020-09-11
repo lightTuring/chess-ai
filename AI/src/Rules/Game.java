@@ -68,29 +68,30 @@ public class Game {
     public void move(int i, int j, int final_i, int final_j)
             throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         Coordinate c = new Coordinate(final_i, final_j);
-        if(i == 7 && j == 4 && final_i == 7 && final_j == 2){
-            board.changePos(i, j, c);
-            board.changePos(7, 0, new Coordinate(7, 3));
-        }else if(i == 7 && j == 4 && final_i == 7 && final_j == 6){
-            board.changePos(i, j, c);
-            board.changePos(7, 7, new Coordinate(7, 5));
-        }else if(i == 0 && j == 4 && final_i == 0 && final_j == 2){
-            board.changePos(i, j, c);
-            board.changePos(0, 0, new Coordinate(0, 3));
-        }else if(i == 0 && j == 4 && final_i == 0 && final_j == 6){
-            board.changePos(i, j, c);
-            board.changePos(0, 7, new Coordinate(0, 5));
-        }else{
-            
-            if (isLegal(i, j, c) && (!board.isBlack(i,j) == board.turn || board.isWhite(i,j) == board.turn)) {
+               
+        if (isLegal(i, j, c) && (!board.isBlack(i,j) == board.turn || board.isWhite(i,j) == board.turn)) {
+            if(i == 7 && j == 4 && final_i == 7 && final_j == 2){
+                board.changePos(i, j, c);
+                board.changePos(7, 0, new Coordinate(7, 3));
+            }else if(i == 7 && j == 4 && final_i == 7 && final_j == 6){
+                board.changePos(i, j, c);
+                board.changePos(7, 7, new Coordinate(7, 5));
+            }else if(i == 0 && j == 4 && final_i == 0 && final_j == 2){
+                board.changePos(i, j, c);
+                board.changePos(0, 0, new Coordinate(0, 3));
+            }else if(i == 0 && j == 4 && final_i == 0 && final_j == 6){
+                board.changePos(i, j, c);
+                board.changePos(0, 7, new Coordinate(0, 5));
+            }else{
                 board.changePos(i, j, c);
                 board.turn = !board.turn;
                 moves++;
             }
-            else {
-                throw new IllegalMoveException("Movimento ilegal");
-            }
         }
+        else {
+            throw new IllegalMoveException("Movimento ilegal");
+        }
+        
     }
 
     public void allLegal() throws BoardOutOfBoundsException, UnexpectedPieceException, IllegalMoveException, CloneNotSupportedException {

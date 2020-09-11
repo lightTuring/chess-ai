@@ -115,27 +115,22 @@ public class Main {
                     int[] ii = Translator.NotationChessToComputer(first.charAt(0), Character.getNumericValue(first.charAt(1)));
                     int[] jj = Translator.NotationChessToComputer(second.charAt(0), Character.getNumericValue(second.charAt(1)));
                     
+                    game.allLegal();
+                    
                     game.getHasWhiteKingMoved();
                     game.getHasWhiteLeftRookMoved();
                     game.getHasWhiteRightRookMoved();
                     game.WhitesCastling();
-
-                    game.allLegal();
                     
                     game.move(ii[0], ii[1], jj[0], jj[1]);
                     game.allLegal();
                     
-                    game.getHasWhiteKingMoved();
-                    game.getHasWhiteLeftRookMoved();
-                    game.getHasWhiteRightRookMoved();
-                    game.WhitesCastling();
-
                     game.isCheckMateBlack();
                     game.isCheckMateWhite();
                     
                     game.isWhitePromotion();
                     game.isBlackPromotion();
-
+                    //System.out.println(game.hasWhiteRightRookMoved);
                 }
                 catch (BoardOutOfBoundsException b) {
                     System.err.println("\n*Fora do tabuleiro*\n");
