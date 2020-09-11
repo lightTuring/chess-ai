@@ -70,11 +70,6 @@ public class Main {
                 try {
                     long time = System.currentTimeMillis();
                     
-                    game.getHasBlackKingMoved();
-                    game.getHasBlackLeftRookMoved();
-                    game.getHasBlackRightRookMoved();
-                    game.BlacksCastling();
-
                     board = foraNucleo.bestPlaying(0, depth, false);
                     System.out.println(foraNucleo.getGraph().HowManyNodes());
                     long tn = System.currentTimeMillis();
