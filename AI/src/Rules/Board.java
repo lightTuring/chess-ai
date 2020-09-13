@@ -21,6 +21,8 @@ public class Board implements Cloneable {
     public boolean isCheckmateWhite = false;
     public boolean isCheckmateBlack = false;
     public boolean turn = true;
+	public boolean hasBlackCastled = false;
+	public boolean hasWhiteCastled = false;
 
     private enum CastlingSide {
         Kingside, Queenside
@@ -40,9 +42,12 @@ public class Board implements Cloneable {
         b.hasWhiteKingMoved = this.hasWhiteKingMoved;
         b.hasRightBlackRookMoved = this.hasRightBlackRookMoved;
         b.hasLeftBlackRookMoved = this.hasLeftBlackRookMoved;
+        b.hasWhiteCastled = this.hasWhiteCastled;
+        b.hasBlackCastled = this.hasBlackCastled;
+        b.endOfGame = this.endOfGame;
+        b.isCheckmateBlack = this.isCheckmateBlack;
+        b.isCheckmateWhite = this.isCheckmateWhite;
         b.turn = this.turn;
-        
-
         return b;
     }
 

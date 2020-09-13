@@ -73,15 +73,24 @@ public class Game {
             if(i == 7 && j == 4 && final_i == 7 && final_j == 2){
                 board.changePos(i, j, c);
                 board.changePos(7, 0, new Coordinate(7, 3));
+                board.turn = !board.turn;
+                moves++;
+                board.hasWhiteCastled = true;
             }else if(i == 7 && j == 4 && final_i == 7 && final_j == 6){
                 board.changePos(i, j, c);
                 board.changePos(7, 7, new Coordinate(7, 5));
+                board.turn = !board.turn;
+                moves++;
             }else if(i == 0 && j == 4 && final_i == 0 && final_j == 2){
                 board.changePos(i, j, c);
                 board.changePos(0, 0, new Coordinate(0, 3));
+                board.turn = !board.turn;
+                moves++;
             }else if(i == 0 && j == 4 && final_i == 0 && final_j == 6){
                 board.changePos(i, j, c);
                 board.changePos(0, 7, new Coordinate(0, 5));
+                board.turn = !board.turn;
+                moves++;
             }else{
                 board.changePos(i, j, c);
                 board.turn = !board.turn;
