@@ -270,22 +270,22 @@ public class Game {
             hasBlackRightRookMoved = true;
         }
     }
-    public void BlacksCastling(){
-        if(!hasBlackKingMoved && !hasBlackLeftRookMoved){
+    public void BlacksCastling() throws BoardOutOfBoundsException {
+        if(!hasBlackKingMoved && !hasBlackLeftRookMoved && (board.getPiece(0,3) == 'o') && (board.getPiece(0,2) == 'o')){
             stateBoard[0][4].add(new Coordinate(0, 2));
             //stateBoard[0][0].add(new Coordinate(0, 3));
         }
-        if(!hasBlackKingMoved && !hasBlackRightRookMoved){
+        if(!hasBlackKingMoved && !hasBlackRightRookMoved && (board.getPiece(0,5) == 'o') && (board.getPiece(0,6) == 'o')){
             stateBoard[0][4].add(new Coordinate(0, 6));
             //stateBoard[0][7].add(new Coordinate(0, 5));
         }
     }
-    public void WhitesCastling(){
-        if(!hasWhiteKingMoved && !hasWhiteLeftRookMoved){
+    public void WhitesCastling() throws BoardOutOfBoundsException {
+        if(!hasWhiteKingMoved && !hasWhiteLeftRookMoved && (board.getPiece(7,3) == 'o') && (board.getPiece(7,2) == 'o')){
             stateBoard[7][4].add(new Coordinate(7, 2));
             //stateBoard[7][0].add(new Coordinate(7, 3));
         }
-        if(!hasWhiteKingMoved && !hasWhiteRightRookMoved){
+        if(!hasWhiteKingMoved && !hasWhiteRightRookMoved && (board.getPiece(7,5) == 'o') && (board.getPiece(7,6) == 'o')){
             stateBoard[7][4].add(new Coordinate(7, 6));
             //stateBoard[7][7].add(new Coordinate(7, 5));
         }
