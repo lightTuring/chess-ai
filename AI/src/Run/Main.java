@@ -81,7 +81,6 @@ public class Main {
                     test.isCheckMateWhite();
                     test.isBlackPromotion();
                     test.isWhitePromotion();
-                    test.BlacksCastling();
                     System.out.println(" ");
                     
                 }
@@ -116,8 +115,7 @@ public class Main {
                     game.getHasWhiteKingMoved();
                     game.getHasWhiteLeftRookMoved();
                     game.getHasWhiteRightRookMoved();
-                    game.WhitesCastling();
-                    
+                                        
                     game.move(ii[0], ii[1], jj[0], jj[1]);
                     game.allLegal();
                     
