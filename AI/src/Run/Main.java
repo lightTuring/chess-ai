@@ -81,6 +81,7 @@ public class Main {
                     test.isCheckMateWhite();
                     test.isBlackPromotion();
                     test.isWhitePromotion();
+                    test.BlacksCastling();
                     System.out.println(" ");
                     
                 }

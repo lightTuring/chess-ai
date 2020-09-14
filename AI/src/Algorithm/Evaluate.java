@@ -156,8 +156,20 @@ public class Evaluate {
         return (white-black);
     }
 
+    private double castlePoints() {
+        double white= 0;
+        double black= 0;
+        if (board.hasWhiteCastled) {
+            white+=1.5;
+        }
+        if (board.hasBlackCastled) {
+            black+=1.5;
+        }
+        return (white-black);
+    }
+
     public double total () throws BoardOutOfBoundsException, Exception {
-        return (kingMobility() + pieceSafety() + piece() + kingSafety() + pawnAdvancement() + pieceMobility());
+        return (kingMobility() + pieceSafety() + piece() + kingSafety() + pawnAdvancement() + pieceMobility() + castlePoints());
     }
 
 }

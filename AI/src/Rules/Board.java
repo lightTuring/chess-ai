@@ -11,12 +11,12 @@ public class Board implements Cloneable {
     private final char[] initPosBlack = { 't', 'c', 'b', 'q', 'k', 'b', 'c', 't' };
     private final char[] initPosWhite = { 'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T' };
 
-    private boolean hasWhiteKingMoved = false;
-    private boolean hasRightWhiteRookMoved = false;
-    private boolean hasLeftWhiteRookMoved = false;
-    private boolean hasBlackKingMoved = false;
-    private boolean hasRightBlackRookMoved = false;
-    private boolean hasLeftBlackRookMoved = false;
+    public boolean hasWhiteKingMoved = false;
+    public boolean hasRightWhiteRookMoved = false;
+    public boolean hasLeftWhiteRookMoved = false;
+    public boolean hasBlackKingMoved = false;
+    public boolean hasRightBlackRookMoved = false;
+    public boolean hasLeftBlackRookMoved = false;
     public boolean endOfGame = false;
     public boolean isCheckmateWhite = false;
     public boolean isCheckmateBlack = false;

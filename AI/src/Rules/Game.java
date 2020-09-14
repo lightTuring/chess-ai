@@ -10,14 +10,6 @@ public class Game {
     private boolean isCheckMateBlack = false;
     private boolean isCheckMateWhite = false;
 
-    private static boolean hasBlackKingMoved = false;
-    private static boolean hasWhiteKingMoved = false;
-    
-    private static boolean hasBlackLeftRookMoved = false;
-    private static boolean hasBlackRightRookMoved = false;
-    private static boolean hasWhiteLeftRookMoved = false;
-    private static boolean hasWhiteRightRookMoved = false;
-
     private int moves = 0;
     @SuppressWarnings("unchecked")
     private LinkedList<Coordinate>[][] stateBoard =  new LinkedList[8][8]; 
@@ -79,16 +71,19 @@ public class Game {
             }else if(i == 7 && j == 4 && final_i == 7 && final_j == 6){
                 board.changePos(i, j, c);
                 board.changePos(7, 7, new Coordinate(7, 5));
+                board.hasWhiteCastled = true;
                 board.turn = !board.turn;
                 moves++;
             }else if(i == 0 && j == 4 && final_i == 0 && final_j == 2){
                 board.changePos(i, j, c);
                 board.changePos(0, 0, new Coordinate(0, 3));
+                board.hasBlackCastled = true;
                 board.turn = !board.turn;
                 moves++;
             }else if(i == 0 && j == 4 && final_i == 0 && final_j == 6){
                 board.changePos(i, j, c);
                 board.changePos(0, 7, new Coordinate(0, 5));
+                board.hasBlackCastled = true;
                 board.turn = !board.turn;
                 moves++;
             }else{
@@ -134,7 +129,13 @@ public class Game {
 				list[i][j] = letra;
 			}
 		}
-		stateBoard = list;
+        stateBoard = list;
+        if (board.turn) {
+            WhitesCastling();
+        }
+        else {
+            BlacksCastling();
+        }
 	}
 
     public boolean isLegal(int i, int j, Coordinate c) throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
@@ -246,55 +247,55 @@ public class Game {
     public void getHasBlackKingMoved(){
         char[][] ourBoard = board.getBoard();
         if(ourBoard[0][4] == 'o'){
-            hasBlackKingMoved = true;
+            board.hasBlackKingMoved = true;
         }
     }
     public void getHasWhiteKingMoved(){
         char[][] ourBoard = board.getBoard();
         if(ourBoard[7][4] == 'o'){
-            hasWhiteKingMoved = true;
+            board.hasWhiteKingMoved = true;
         }
     }
     public void getHasWhiteLeftRookMoved(){
         char[][] ourBoard = board.getBoard();
         if(ourBoard[7][0] == 'o'){
-            hasWhiteLeftRookMoved = true;
+            board.hasLeftWhiteRookMoved = true;
         }
     }
     public void getHasWhiteRightRookMoved(){
         char[][] ourBoard = board.getBoard();
         if(ourBoard[7][7] != 'T'){
-            hasWhiteRightRookMoved = true;
+            board.hasRightWhiteRookMoved = true;
         }
     }
     public void getHasBlackLeftRookMoved(){
         char[][] ourBoard = board.getBoard();
         if(ourBoard[0][0] != 't'){
-            hasBlackLeftRookMoved = true;
+            board.hasLeftBlackRookMoved = true;
         }
     }
     public void getHasBlackRightRookMoved(){
         char[][] ourBoard = board.getBoard();
         if(ourBoard[0][7] == 'o'){
-            hasBlackRightRookMoved = true;
+            board.hasRightBlackRookMoved = true;
         }
     }
     public void BlacksCastling() throws BoardOutOfBoundsException {
-        if(!hasBlackKingMoved && !hasBlackLeftRookMoved && (board.getPiece(0,3) == 'o') && (board.getPiece(0,2) == 'o')){
+        if(!board.hasBlackKingMoved && !board.hasLeftBlackRookMoved && (board.getPiece(0,3) == 'o') && (board.getPiece(0,2) == 'o')){
             stateBoard[0][4].add(new Coordinate(0, 2));
             //stateBoard[0][0].add(new Coordinate(0, 3));
         }
-        if(!hasBlackKingMoved && !hasBlackRightRookMoved && (board.getPiece(0,5) == 'o') && (board.getPiece(0,6) == 'o')){
+        if(!board.hasBlackKingMoved && !board.hasRightBlackRookMoved && (board.getPiece(0,5) == 'o') && (board.getPiece(0,6) == 'o')){
             stateBoard[0][4].add(new Coordinate(0, 6));
             //stateBoard[0][7].add(new Coordinate(0, 5));
         }
     }
     public void WhitesCastling() throws BoardOutOfBoundsException {
-        if(!hasWhiteKingMoved && !hasWhiteLeftRookMoved && (board.getPiece(7,3) == 'o') && (board.getPiece(7,2) == 'o')){
+        if(!board.hasWhiteKingMoved && !board.hasLeftWhiteRookMoved && (board.getPiece(7,3) == 'o') && (board.getPiece(7,2) == 'o')){
             stateBoard[7][4].add(new Coordinate(7, 2));
             //stateBoard[7][0].add(new Coordinate(7, 3));
         }
-        if(!hasWhiteKingMoved && !hasWhiteRightRookMoved && (board.getPiece(7,5) == 'o') && (board.getPiece(7,6) == 'o')){
+        if(!board.hasWhiteKingMoved && !board.hasRightWhiteRookMoved && (board.getPiece(7,5) == 'o') && (board.getPiece(7,6) == 'o')){
             stateBoard[7][4].add(new Coordinate(7, 6));
             //stateBoard[7][7].add(new Coordinate(7, 5));
         }
