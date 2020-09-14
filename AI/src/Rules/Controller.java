@@ -37,14 +37,13 @@ public class Controller {
 		return false;
 	}
 	
-	public static boolean isSquareAttacked(Coordinate c, Board b, boolean turn) throws BoardOutOfBoundsException,
-			UnexpectedPieceException, IllegalMoveException {
+	public static boolean isSquareAttacked(Coordinate[] c, Board b, boolean turn) throws BoardOutOfBoundsException,UnexpectedPieceException, IllegalMoveException {
 		LinkedList<Coordinate>[][] list = uncheckedMoves(b);
 		for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++) {
 				if (b.isWhite(i,j) == turn) {
 					for (Coordinate a : list[i][j]) {
-						if (a.equals(c) && !b.hasSameColor(i, j, a.getPos_i(), a.getPos_j())) {
+						if (a.equals(c[0]) || a.equals(c[1])) {
 							return true;	
 						}
 					}

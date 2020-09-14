@@ -280,24 +280,44 @@ public class Game {
             board.hasRightBlackRookMoved = true;
         }
     }
-    public void BlacksCastling() throws BoardOutOfBoundsException {
+    public void BlacksCastling() throws BoardOutOfBoundsException, UnexpectedPieceException, IllegalMoveException {
         if(!board.hasBlackKingMoved && !board.hasLeftBlackRookMoved && (board.getPiece(0,3) == 'o') && (board.getPiece(0,2) == 'o') && (board.getPiece(0,1) == 'o')){
-            stateBoard[0][4].add(new Coordinate(0, 2));
-            //stateBoard[0][0].add(new Coordinate(0, 3));
+            Coordinate[] c = new Coordinate[2];
+            c[0] = new Coordinate(0, 3);
+            c[1] = new Coordinate(0, 2);
+            if (Controller.isSquareAttacked(c, board, board.turn)) {
+                stateBoard[0][4].add(new Coordinate(0, 2));
+                //stateBoard[0][0].add(new Coordinate(0, 3));
+            }
         }
         if(!board.hasBlackKingMoved && !board.hasRightBlackRookMoved && (board.getPiece(0,5) == 'o') && (board.getPiece(0,6) == 'o')){
-            stateBoard[0][4].add(new Coordinate(0, 6));
-            //stateBoard[0][7].add(new Coordinate(0, 5));
+            Coordinate[] c = new Coordinate[2];
+            c[0] = new Coordinate(0, 5);
+            c[1] = new Coordinate(0, 6);
+            if (Controller.isSquareAttacked(c, board, board.turn)) {
+                stateBoard[0][4].add(new Coordinate(0, 6));
+                //stateBoard[0][7].add(new Coordinate(0, 5)); 
+            }
         }
     }
-    public void WhitesCastling() throws BoardOutOfBoundsException {
+    public void WhitesCastling() throws BoardOutOfBoundsException, UnexpectedPieceException, IllegalMoveException {
         if(!board.hasWhiteKingMoved && !board.hasLeftWhiteRookMoved && (board.getPiece(7,3) == 'o') && (board.getPiece(7,2) == 'o') && (board.getPiece(7,1) == 'o')){
-            stateBoard[7][4].add(new Coordinate(7, 2));
-            //stateBoard[7][0].add(new Coordinate(7, 3));
+            Coordinate[] c = new Coordinate[2];
+            c[0] = new Coordinate(7, 3);
+            c[1] = new Coordinate(7, 2);
+            if (Controller.isSquareAttacked(c, board, board.turn)) {
+                stateBoard[7][4].add(new Coordinate(7, 2));
+                //stateBoard[7][0].add(new Coordinate(7, 3));
+            }
         }
         if(!board.hasWhiteKingMoved && !board.hasRightWhiteRookMoved && (board.getPiece(7,5) == 'o') && (board.getPiece(7,6) == 'o')) {
-            stateBoard[7][4].add(new Coordinate(7, 6));
-            //stateBoard[7][7].add(new Coordinate(7, 5));
+            Coordinate[] c = new Coordinate[2];
+            c[0] = new Coordinate(7, 5);
+            c[1] = new Coordinate(7, 6);
+            if (Controller.isSquareAttacked(c, board, board.turn)) {
+                stateBoard[7][4].add(new Coordinate(7, 6));
+                //stateBoard[7][7].add(new Coordinate(7, 5));
+            }
         }
 
     }
