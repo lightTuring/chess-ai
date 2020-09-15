@@ -48,6 +48,16 @@ public class AlphaBeta {
                     }
                     
                 }
+                for (Coordinate c : g.getPassBoard()[i][j]) {
+                    if(c == null) continue;
+                    Game copy = (Game)g.clone();
+                    if ((b.getTurn() == b.isWhite(i,j)) && b.isAPiece(i, j)) {
+                        copy.move(i, j, c.getPos_i(), c.getPos_j());
+                        copy.isCheckMateBlack();
+                        copy.isCheckMateWhite();
+                        list.add(copy.getBoard());
+                    }
+                }
             }
         }
         if (list.size() != 0) {

@@ -33,6 +33,7 @@ public class Game {
         for (int i= 0; i<8; i++) {
             for (int j= 0; j<8; j++) {
                 game.stateBoard[i][j] = (LinkedList<Coordinate>)this.stateBoard[i][j].clone();
+                game.passBoard[i][j] = (LinkedList<Coordinate>)this.passBoard[i][j].clone();
             }
         }
         return game;
@@ -47,6 +48,10 @@ public class Game {
 
     public Board getBoard() {
         return board;
+    }
+
+    public LinkedList<Coordinate>[][] getPassBoard() {
+        return (passBoard);
     }
 
 
