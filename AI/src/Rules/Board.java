@@ -28,10 +28,7 @@ public class Board implements Cloneable {
     public boolean[] enPassantBlack = new boolean[8];
     public Coordinate[] lastMove = new Coordinate[2];
 
-    private enum CastlingSide {
-        Kingside, Queenside
-    };
-
+    
     @Override
     public Board clone() throws CloneNotSupportedException {
         Board b = new Board();

@@ -56,7 +56,7 @@ public class AlphaBeta {
 		
     }
     
-    private double algorithmGraph(int node, int depth, double a, double b, boolean isMaximizing)
+    private double algorithm(int node, int depth, double a, double b, boolean isMaximizing)
             throws Exception {
 		if(depth == 0){
             if (gb.getBoard(node).isCheckmateBlack) {
@@ -75,7 +75,7 @@ public class AlphaBeta {
             double value = -inf;
             createSon(node);
 			for (Integer child : gb.getSon(node)) {
-                value = Math.max(value, algorithmGraph(child, (depth-1), a, b, false));	
+                value = Math.max(value, algorithm(child, (depth-1), a, b, false));	
                 a = Math.max(a, value);
                 if(a >= b) break;
 			}
@@ -86,7 +86,7 @@ public class AlphaBeta {
             double value = inf;
             createSon(node);
 			for (Integer child : gb.getSon(node)) {
-                value = Math.min(value, algorithmGraph(child, (depth-1), a, b, true));
+                value = Math.min(value, algorithm(child, (depth-1), a, b, true));
                 b = Math.min(b, value);
                 if(b <= a) break;	
 			}
@@ -97,7 +97,7 @@ public class AlphaBeta {
     }
     public Board bestPlaying(int node, int depth, boolean isMaximizing) throws Exception {
 
-		double search = algorithmGraph(node, depth,(double)-inf, (double)inf, isMaximizing);
+		double search = algorithm(node, depth,(double)-inf, (double)inf, isMaximizing);
 
 		//Zero-based
 		LinkedList<Integer> son = gb.getSon(0);
