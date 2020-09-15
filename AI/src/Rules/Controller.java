@@ -373,6 +373,44 @@ public class Controller {
 		return list;
 		
 	}
+
+	public static LinkedList<Coordinate>[] pass (Board b, int i, int j) throws BoardOutOfBoundsException {
+		LinkedList<Coordinate> list[] = new LinkedList[2];
+		list[0] = new LinkedList<Coordinate>();
+		list[1] = new LinkedList<Coordinate>();
+		if (b.getLastMove()[0] != null) {
+			if (b.getPiece(i, j) == 'P' && i == 3) {
+					Coordinate a1 = new Coordinate(1, j+1);
+					Coordinate b1 = new Coordinate(1,j-1);
+					Coordinate a2 = new Coordinate(3, j+1);
+					Coordinate b2 = new Coordinate(3, j-1);
+					if ((j+1<8) && b.getLastMove()[0].equals(a1) && b.getLastMove()[1].equals(a2)) {
+						list[0].add(new Coordinate(2, j+1));
+						list[1].add(new Coordinate(3, j+1));
+					}
+					if ((j-1)>=0 && b.getLastMove()[0].equals(b1) && b.getLastMove()[1].equals(b2)) {
+						list[0].add(new Coordinate(2, j-1));
+						list[1].add(new Coordinate(3, j-1));
+					}
+				
+			}
+			else if (b.getPiece(i, j) == 'p' && i==4) {
+					Coordinate a1 = new Coordinate(6, j+1);
+					Coordinate b1 = new Coordinate(6,j-1);
+					Coordinate a2 = new Coordinate(4, j+1);
+					Coordinate b2 = new Coordinate(4, j-1);
+					if ((j+1<8) && b.getLastMove()[0].equals(a1) && b.getLastMove()[1].equals(a2)) {
+						list[0].add(new Coordinate(5, j+1));
+						list[1].add(new Coordinate(4, j+1));
+					}
+					if ((j-1)>=0 && b.getLastMove()[0].equals(b1) && b.getLastMove()[1].equals(b2)) {
+						list[0].add(new Coordinate(5, j-1));
+						list[1].add(new Coordinate(4, j-1));
+					}
+			}
+		}
+		return list;
+	}
 		
 }
 

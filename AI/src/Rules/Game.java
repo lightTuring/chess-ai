@@ -3,22 +3,23 @@ package Rules;
 import java.util.Iterator;
 import java.util.LinkedList; 
 
+@SuppressWarnings("unchecked")
 public class Game {
     private Board board;
     // true = brancas; false = pretas.
     private boolean endOfGame = false;
     private boolean isCheckMateBlack = false;
     private boolean isCheckMateWhite = false;
-
     private int moves = 0;
-    @SuppressWarnings("unchecked")
-    private LinkedList<Coordinate>[][] stateBoard =  new LinkedList[8][8]; 
+    private LinkedList<Coordinate>[][] stateBoard =  new LinkedList[8][8];
+    private LinkedList<Coordinate>[][] passBoard = new LinkedList[8][8];
 
     public Game(Board board) {
         this.board = board;
         for (int i = 0; i<8; i++) {
             for (int j = 0; j<8; j++) {
                 stateBoard[i][j] = new LinkedList<Coordinate>();
+                passBoard[i][j] = new LinkedList<Coordinate>();
             }
         }
     }
@@ -91,6 +92,11 @@ public class Game {
                 board.turn = !board.turn;
                 moves++;
             }
+            board.setLastMove(i, j, final_i, final_j);
+        }
+        else if (isEnPassantLegal(i, j, c) && board.isWhite(i,j) == board.turn) {
+            board.changePos(i, j, c);
+            board.eliminate(i, c.getPos_j());
         }
         else {
             throw new IllegalMoveException("Movimento ilegal");
@@ -136,13 +142,71 @@ public class Game {
         else {
             BlacksCastling();
         }
-	}
+        legalEnPassant();
+    }
+    
+    private void legalEnPassant() throws BoardOutOfBoundsException, CloneNotSupportedException, UnexpectedPieceException,
+            IllegalMoveException {
+        if (board.turn) {
+            for (int j = 0; j<8; j++) {
+                passBoard[3][j] = Controller.pass(board, 3, j)[0];
+            }
+            for (int j = 0; j<8; j++) {
+                for (Coordinate c : passBoard[3][j]) {
+                    Board copy = board.clone();
+                    copy.changePos(3, j, c);
+                    copy.eliminate(3, c.getPos_j());
+                    if (copy.isWhiteKingInCheck()) {
+                        passBoard[3][j].remove(c);
+                    }
+                }
+            }
+        }
+        else {
+            for (int j = 0; j<8; j++) {
+                passBoard[4][j] = Controller.pass(board, 4, j)[0];
+            }
+            for (int j = 0; j<8; j++) {
+                for (Coordinate c : passBoard[4][j]) {
+                    Board copy = board.clone();
+                    copy.changePos(4, j, c);
+                    copy.eliminate(4, c.getPos_j());
+                    if (copy.isBlackKingInCheck()) {
+                        passBoard[4][j].remove(c);
+                    }
+                }
+            }
+        
+        }
+
+    }
 
     public boolean isLegal(int i, int j, Coordinate c) throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         LinkedList<Coordinate> list = stateBoard[i][j];
         for (Coordinate x : list) {
             if (x.equals(c)) {
                 return true;
+            }
+        }
+        
+        return false;
+    }
+
+    public boolean isEnPassantLegal(int i, int j, Coordinate c) {
+        if (i == 3 && board.turn) {
+            LinkedList<Coordinate> b = passBoard[i][j];
+            for (Coordinate x : b) {
+                if (x.equals(c)) {
+                    return true;
+                }
+            }
+        }
+        else if (i == 4 && !board.turn) {
+            LinkedList<Coordinate> b = passBoard[i][j];
+            for (Coordinate x : b) {
+                if (x.equals(c)) {
+                    return true;
+                }
             }
         }
         return false;

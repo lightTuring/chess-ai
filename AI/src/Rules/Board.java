@@ -22,7 +22,11 @@ public class Board implements Cloneable {
     public boolean isCheckmateBlack = false;
     public boolean turn = true;
 	public boolean hasBlackCastled = false;
-	public boolean hasWhiteCastled = false;
+    public boolean hasWhiteCastled = false;
+    //White = O peao que captura é branco
+    public boolean[] enPassantWhite = new boolean[8];
+    public boolean[] enPassantBlack = new boolean[8];
+    public Coordinate[] lastMove = new Coordinate[2];
 
     private enum CastlingSide {
         Kingside, Queenside
@@ -48,7 +52,24 @@ public class Board implements Cloneable {
         b.isCheckmateBlack = this.isCheckmateBlack;
         b.isCheckmateWhite = this.isCheckmateWhite;
         b.turn = this.turn;
+        if (this.lastMove[0] != null) {
+            b.lastMove[0] = this.lastMove[0].clone();
+        }
+        if (this.lastMove[1] != null) {
+            b.lastMove[1] = this.lastMove[1].clone();
+        }
+        
+        for (int i = 0; i < enPassantWhite.length; i++) {
+            b.enPassantWhite[i] = this.enPassantWhite[i];
+        }
+        for (int i = 0; i < enPassantBlack.length; i++) {
+            b.enPassantBlack[i] = this.enPassantBlack[i];
+        }
         return b;
+    }
+
+    public void eliminate(int i, int j) {
+        chessBoard[i][j] = 'o';
     }
 
     public boolean equals(Board b) {
@@ -77,6 +98,11 @@ public class Board implements Cloneable {
         for (int i = 0; i < chessBoard.length; i++)
             chessBoard[7][i] = initPosWhite[i];
         this.turn = true;
+
+        for(int i = 0; i < chessBoard.length; i++) {
+            enPassantBlack[i] = false;
+            enPassantWhite[i] = false;
+        }
     }
 
     public boolean isWhite(int pos_i, int pos_j) throws BoardOutOfBoundsException {
@@ -344,7 +370,14 @@ public class Board implements Cloneable {
 	}
 
     // 0 -> borda; 1 -> tem uma peça da mesma cor; 2 -> tem uma peça oponente
+    public void setLastMove(int i, int j, int a, int b) {
+        lastMove[0] = new Coordinate(i, j);
+        lastMove[1] = new Coordinate(a, b);
+    }
 
+    public Coordinate[] getLastMove() {
+       return lastMove;
+    }
 
 
     /*
