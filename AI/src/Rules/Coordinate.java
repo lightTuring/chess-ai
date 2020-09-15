@@ -22,6 +22,9 @@ public class Coordinate implements Cloneable {
     public void printCoordinate() {
         System.out.println(this.pos_i + ", " + this.pos_j);
     } 
+    public String toString() {
+        return(this.pos_i + " " + this.pos_j);
+    }
 
     public boolean equals(Coordinate c) {
         if (c.getPos_i() == pos_i && c.getPos_j() == pos_j) {

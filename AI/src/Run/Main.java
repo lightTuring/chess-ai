@@ -1,7 +1,6 @@
 package Run;
 
 import java.util.*;
-
 import Algorithm.*;
 import Notation.*;
 import Rules.Board;
@@ -81,7 +80,9 @@ public class Main {
                     test.isCheckMateWhite();
                     test.isBlackPromotion();
                     test.isWhitePromotion();
-                    System.out.println(" ");
+                    Translator.NotationComputerToChess(board.getLastMove()[0].getPos_i(), board.getLastMove()[0].getPos_j());
+                    System.out.println("De: " + Translator.NotationComputerToChess(board.getLastMove()[0].getPos_i(), board.getLastMove()[0].getPos_j()) 
+                        + " Para: " + Translator.NotationComputerToChess(board.getLastMove()[1].getPos_i(), board.getLastMove()[1].getPos_j()));
                     
                 }
                 catch (BoardOutOfBoundsException b) {
