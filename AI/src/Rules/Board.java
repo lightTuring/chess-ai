@@ -24,10 +24,7 @@ public class Board implements Cloneable {
 	public boolean hasBlackCastled = false;
 	public boolean hasWhiteCastled = false;
 
-    private enum CastlingSide {
-        Kingside, Queenside
-    };
-
+    
     @Override
     public Board clone() throws CloneNotSupportedException {
         Board b = new Board();

@@ -19,14 +19,14 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
     4. [BoardOutOfBoundsException](https://github.com/lightTuring/chess-ai/tree/master/AI#boardoutofboundsexception)
     5. [UnexpectedPieceException](https://github.com/lightTuring/chess-ai/tree/master/AI#unexpectedpieceexception)
     6. [IllegalCastlingException](https://github.com/lightTuring/chess-ai/tree/master/AI#illegalcastlingexception)
+    7. [Game]()
 
 3. [Algorithm](https://github.com/lightTuring/chess-ai/tree/master/AI#algorithm): Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
     1. [GraphBuilder](https://github.com/lightTuring/chess-ai/tree/master/AI#graphbuilder)
     2. [Min Max](https://github.com/lightTuring/chess-ai/tree/master/AI#min-max)
     3. [AlphaBeta](https://github.com/lightTuring/chess-ai/tree/master/AI#alphabeta)
     4. [Evaluate](https://github.com/lightTuring/chess-ai/tree/master/AI#evaluate)
-    5. [ForaNucleo](https://github.com/lightTuring/chess-ai/tree/master/AI#foranucleo)
-    6. [RandomPlay](https://github.com/lightTuring/chess-ai/tree/master/AI#randomplay)
+    5. [RandomPlay](https://github.com/lightTuring/chess-ai/tree/master/AI#randomplay)
 
 4. [Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server): Arquivos da comunicação Socket.
     1. [Server](https://github.com/lightTuring/chess-ai/tree/master/AI#server-1)
@@ -389,15 +389,129 @@ public UnexpectedPieceException(String message);
 
 - Construtor.
 
-### IllegalCastlingException
+### Game
 
-Exceção a ser lançada quando doWhitesCastling ou doBlacksCastling são chamadas mas as condições para o roque de uma dada cor não são atendidas.
+Classe que roda as peculiariedades e retorna as ocorrências do jogo, como por exemplo se o jogo acabou, se ocorreu xeque-mate, promoção ou roque. Aqui também é gerado a _stateBoard_, onde armazena as posições que cada peça pode jogar.
 
 ```java
-public IllegalCastlingException(String message);
+public Game(Board board);
 ```
 
-- Construtor.
+- Método construtor. Recebe como argumento um objeto _Board_.
+
+```java
+public Game clone();
+```
+
+- Método que clona o objeto _Game_.
+
+```java
+public boolean equals (Game g);
+```
+
+- Método que verifica igualdade.
+
+```java
+public Board getBoard();
+```
+
+- Retorna o Board presente na classe.
+
+```java
+public void move(int i, int j, int final_i, int final_j);
+```
+
+- Realiza o movimento passado.
+
+```java
+public void allLegal();
+```
+
+- Verifica se todas os movimentos são legais.
+
+```java
+public boolean isLegal(int i, int j, Coordinate c);
+```
+
+-Verifica se o movimento é legal.
+
+```java
+public LinkedList<Coordinate>[][] getStateBoard();
+```
+
+- Retorna o _stateBoard_.
+
+```java
+public void isCheckMateWhite();
+```
+
+- Verifica se ocorreu xeque-mate nas brancas.
+
+```java
+public void isCheckMateBlack();
+```
+
+- Verifica se ocorreu xeque-mate nas pretas.
+
+```java
+public void isBlackPromotion();
+```
+
+- Verifica se ocorreu promoção nas pretras.
+
+```java
+public void isWhitePromotion();
+```
+
+- Verifica se ocorreu promoção nas brancas.
+
+```java
+public void getHasBlackKingMoved()
+```
+
+- Verifica se ocorreu o primeiro movimento do rei preto, condição para o roque.
+
+```java
+public void getHasWhiteKingMoved();
+```
+
+- Verifica se ocorreu o primeiro movimento do rei branco, condição para o roque.
+
+```java
+public void getHasWhiteLeftRookMoved();
+```
+
+- Verifica se ocorreu o primeiro movimento da torre esquerda, condição para o roque das brancas.
+
+```java
+public void getHasWhiteRightRookMoved();
+```
+
+- Verifica se ocorreu o primeiro movimento da torre direita, condição para o roque das brancas.
+
+```java
+public void getHasBlackLeftRookMoved();
+```
+
+- Verifica se ocorreu o primeiro movimento da torre esquerda, condição para o roque das pretas.
+
+```java
+public void getHasBlackRightRookMoved();
+```
+
+- Verifica se ocorreu o primeiro movimento da torre direita, condição para o roque das pretas.
+
+```java
+public void BlacksCastling();
+```
+
+- Permite o roque(maior e menor) nas pretas.
+
+```java
+public void WhitesCastling();
+```
+
+- Permite o roque(maior e menor) nas brancas.
 
 ## Algorithm
 
@@ -596,6 +710,18 @@ public Game bestPlaying(int node, int depth, boolean isMaximizing);
 
 - Retorna a melhor jogada naquele momento. Recebe como argumento o nó(Inteiro), a profundidade e se é momento de maximização. É o único método(além do construtor) chamado na main.
 
+```java
+private void createSon(int h);
+```
+
+- Cria o filho do grafo que será avaliado. Obs.: Criamos o grafo ao mesmo que passamos o algoritmo _Alpha-Beta Pruning_.
+
+```java
+public GraphBuilder getGraph();
+```
+
+- Retorna o grafo construido.
+
 ### Evaluate
 
 Está classe realiza a avalição seguindo o algoritmo de _[Alan Turing](https://en.chessbase.com/post/reconstructing-turing-s-paper-machine)_ sobre a situação do tabuleiro e define os pesos da jogada.
@@ -648,35 +774,6 @@ public double total();
 ```
 
 - Retorna a pontuação total, levando em conta todos os métodos(critérios) implementados.
-
-### ForaNucleo
-
-Está classe constrói o grafo das possiveis jogadas que a máquina pode realizar e atribui os pesos aos nós finais. Serve de grande apoio para a aplicação do _MinMax_.
-
-```java
-public ForaNucleo(Game board);
-```
-
-- Método construtor.
-
-```java
-public GraphBuilder getGraph();
-```
-
-- Retorna o objeto _GraphBuilder_, o Grafo das jogadas.
-
-
-```java
-public void createGraph(Game g, int depth);
-```
-
-- Método público que realiza a construção do Grafo de maneira recursiva para a realização de todas as jogadas.
-
-```java
-private void createSon(Game g);
-```
-
-- Método privado que é chamado no _createGraph(Game g, int depth)_ para adicionar um nó ao grafo.
 
 ### RandomPlay
 
