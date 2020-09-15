@@ -384,11 +384,11 @@ public class Controller {
 					Coordinate b1 = new Coordinate(1,j-1);
 					Coordinate a2 = new Coordinate(3, j+1);
 					Coordinate b2 = new Coordinate(3, j-1);
-					if ((j+1<8) && b.getLastMove()[0].equals(a1) && b.getLastMove()[1].equals(a2)) {
+					if ((j+1<8) && b.getLastMove()[0].equals(a1) && b.getLastMove()[1].equals(a2) && b.getPiece(2, j+1) == 'o' && b.getPiece(3, j+1) == 'p') {
 						list[0].add(new Coordinate(2, j+1));
 						list[1].add(new Coordinate(3, j+1));
 					}
-					if ((j-1)>=0 && b.getLastMove()[0].equals(b1) && b.getLastMove()[1].equals(b2)) {
+					if ((j-1)>=0 && b.getLastMove()[0].equals(b1) && b.getLastMove()[1].equals(b2) && b.getPiece(2, j-1) == 'o' && b.getPiece(3, j-1) == 'p') {
 						list[0].add(new Coordinate(2, j-1));
 						list[1].add(new Coordinate(3, j-1));
 					}
@@ -399,11 +399,11 @@ public class Controller {
 					Coordinate b1 = new Coordinate(6,j-1);
 					Coordinate a2 = new Coordinate(4, j+1);
 					Coordinate b2 = new Coordinate(4, j-1);
-					if ((j+1<8) && b.getLastMove()[0].equals(a1) && b.getLastMove()[1].equals(a2)) {
+					if ((j+1<8) && b.getLastMove()[0].equals(a1) && b.getLastMove()[1].equals(a2) && b.getPiece(5, j+1) == 'o' && b.getPiece(4, j+1) == 'P') {
 						list[0].add(new Coordinate(5, j+1));
 						list[1].add(new Coordinate(4, j+1));
 					}
-					if ((j-1)>=0 && b.getLastMove()[0].equals(b1) && b.getLastMove()[1].equals(b2)) {
+					if ((j-1)>=0 && b.getLastMove()[0].equals(b1) && b.getLastMove()[1].equals(b2) && b.getPiece(5, j-1) == 'o' && b.getPiece(4, j-1) == 'P') {
 						list[0].add(new Coordinate(5, j-1));
 						list[1].add(new Coordinate(4, j-1));
 					}
