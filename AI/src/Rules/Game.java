@@ -102,6 +102,8 @@ public class Game {
         else if (isEnPassantLegal(i, j, c) && board.isWhite(i,j) == board.turn) {
             board.changePos(i, j, c);
             board.eliminate(i, c.getPos_j());
+            board.turn = !board.turn;
+            moves++;
         }
         else {
             throw new IllegalMoveException("Movimento ilegal");
