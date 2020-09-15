@@ -19,7 +19,7 @@ public class Translator {
 	}
 	public static String NotationComputerToChess(int i, int j) {
 		
-		String OrderedPair = letters[i] + String.valueOf(numbers[j]);
+		String OrderedPair = letters[j] + String.valueOf(numbers[i]);
 		
 		return OrderedPair;
 		
