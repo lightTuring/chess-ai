@@ -6,6 +6,51 @@ typedef struct Pair{
    int x, y;
 }pair;
 
+typedef struct Translator{
+  char letters[8] = {'A','B','C','D','E', 'F', 'G', 'H'};
+  int numbers[8] = {8,7,6,5,4,3,2,1};
+
+  int binary_search(char element){
+      int r = sizeof(letters)/sizeof(char) - 1;
+      int l = 0;
+      while(l<=r){
+        int mid = (l+r)/2;
+        if(element==letters[mid]) return mid;
+        else if((int)letters[mid]<(int)element) l = mid + 1;
+        else if((int)letters[mid]>(int)element) r = mid - 1;
+      }
+      return -1;
+  }
+  
+  pair NotationChessToComputer(char pos_w, int pos_h) {
+    
+    if((int)pos_w > 90)
+      pos_w = (char)((int)pos_w - ((int)'a' - (int)'A'));
+    
+    pair OrderedPair;
+
+    for (int i = 0; i < sizeof(numbers)/sizeof(int); i++) {
+      if(pos_h == numbers[i])
+        OrderedPair.x = i;
+        break;
+    }
+    OrderedPair.y = binary_search(pos_w);
+    
+    return OrderedPair;
+    
+  }
+
+  String NotationComputerToChess(int i, int j) {
+    
+    String OrderedPair = letters[j] + String(binary_search(numbers[i]));
+    
+    return OrderedPair;
+    
+  }
+  
+}translator;
+
+
 typedef struct Board{
   const int board[len][len] ={};//Matriz com os pinos do tabuleiro
                              

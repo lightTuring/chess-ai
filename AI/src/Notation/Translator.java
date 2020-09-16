@@ -35,7 +35,7 @@ public class Translator {
 	/*
 	public static void main(String[] args) {
 		System.out.println(NotationComputerToChess(0, 0));
-		int[] retorno = NotationChessToComputer('A', 3);
+		int[] retorno = NotationChessToComputer('e', 1);
 		System.out.println(retorno[0]+" "+retorno[1]);
 		System.out.println(retorno[1]);
 	}
