@@ -16,12 +16,18 @@ public class Server {
 
 	public void sendMoviment() throws Exception{
         Socket socket = server.accept();
-        try(PrintWriter w = new PrintWriter(socket.getOutputStream())){
-            w.println(Byte.valueOf(this.moviment));
-        }
+        PrintWriter w = new PrintWriter(socket.getOutputStream());
+        w.println(Byte.valueOf(this.moviment));
+    }
+    public void sendMoviment(String str) throws IOException {
+        Socket socket = server.accept();
+        PrintWriter w = new PrintWriter(socket.getOutputStream());
+        w.println((str));
+        w.flush();
+    
     }
     public void setMoviment(int xo, int yo, int xf, int yf){
-        moviment += String.valueOf(xo)+String.valueOf(yo)+String.valueOf(xf)+String.valueOf(yf);//O split é dado por todos os chars, pois o valor das variaveis são compreendidos entre 0-7
+        moviment = String.valueOf(xo)+String.valueOf(yo)+String.valueOf(xf)+String.valueOf(yf);//O split é dado por todos os chars, pois o valor das variaveis são compreendidos entre 0-7
     }
     public void finalizeCommunication() throws IOException{
         server.close();
