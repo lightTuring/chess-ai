@@ -1,5 +1,8 @@
 package Run;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.*;
 import Algorithm.*;
 import Notation.*;
@@ -11,6 +14,58 @@ import Rules.UnexpectedPieceException;
 
 //rodar em um while
 public class Main {
+
+    // BEGIN - RECEBE A MSG DO ARDUINO
+
+    final int PORT = 5000;
+
+    public Main() {
+        ServerSocket server;
+        try {
+            server = new ServerSocket(PORT);
+            while (true) {
+                Socket socket = server.accept();
+                new Thread(new RecebeACall(socket)).start();
+            }
+        } catch (IOException e1) {
+        }
+
+    }
+
+    private class RecebeACall implements Runnable {
+        Scanner leitor;
+
+        public RecebeACall(Socket socket) {
+
+            try {
+                leitor = new Scanner(socket.getInputStream());
+            } catch (Exception e) {
+            }
+        }
+
+        public void run() {
+            String msgBot;
+            try {
+                while ((msgBot = leitor.nextLine()) != null) {
+                    System.out.println(msgBot);
+                }
+            } catch (Exception e) {
+            }
+        }
+
+    }
+    /*
+    private void configRede() {
+        Socket socket;
+        try {
+            socket = new Socket("127", PORT);
+            PrintWriter escritor = new PrintWriter(socket.getOutputStream());
+        } catch (Exception e) { }
+        
+    }*/
+
+    //END - RECEBE A MSG DO ARDUINO
+
     public static void main(String[] args) throws Exception {
         /*
         CLASSE PRINCIPAL DE EXECUÇÃO        
