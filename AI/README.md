@@ -11,6 +11,7 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
 1. [Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.
     1. [Main](https://github.com/lightTuring/chess-ai/tree/master/AI#main)
     2. [PvP](https://github.com/lightTuring/chess-ai/tree/master/AI#pvp)
+    3. [PvM]()
 
 2. [Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
     1. [Board](https://github.com/lightTuring/chess-ai/tree/master/AI#board)
@@ -44,6 +45,10 @@ O pacote apresenta os arquivos de execução.
 ### Main
 
 Classe principal. Aplicação do método _main_. Onde ocorre a interação entre a máquina e o usuário.
+
+### PvM
+
+Classe secundária para a realização de um jogo entre usuário e máquina.
 
 ### PvP
 
