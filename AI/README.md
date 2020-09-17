@@ -11,7 +11,7 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
 1. [Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.
     1. [Main](https://github.com/lightTuring/chess-ai/tree/master/AI#main)
     2. [PvP](https://github.com/lightTuring/chess-ai/tree/master/AI#pvp)
-    3. [PvM]()
+    3. [PvM](https://github.com/lightTuring/chess-ai/tree/master/AI#pvm)
 
 2. [Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
     1. [Board](https://github.com/lightTuring/chess-ai/tree/master/AI#board)
@@ -20,7 +20,7 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
     4. [BoardOutOfBoundsException](https://github.com/lightTuring/chess-ai/tree/master/AI#boardoutofboundsexception)
     5. [UnexpectedPieceException](https://github.com/lightTuring/chess-ai/tree/master/AI#unexpectedpieceexception)
     6. [IllegalCastlingException](https://github.com/lightTuring/chess-ai/tree/master/AI#illegalcastlingexception)
-    7. [Game]()
+    7. [Game](https://github.com/lightTuring/chess-ai/tree/master/AI#game)
 
 3. [Algorithm](https://github.com/lightTuring/chess-ai/tree/master/AI#algorithm): Neste pacote está disposto a implementação dos algoritmos da I.A(Inteligência Artificial).
     1. [GraphBuilder](https://github.com/lightTuring/chess-ai/tree/master/AI#graphbuilder)
