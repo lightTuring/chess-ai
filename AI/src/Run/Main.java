@@ -1,6 +1,7 @@
 package Run;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
@@ -18,18 +19,31 @@ public class Main {
     // BEGIN - RECEBE A MSG DO ARDUINO
 
     final int PORT = 5000;
-
+    ServerSocket server;
+    PrintWriter escritor;
+    
     public Main() {
-        ServerSocket server;
+        
         try {
             server = new ServerSocket(PORT);
             while (true) {
                 Socket socket = server.accept();
                 new Thread(new RecebeACall(socket)).start();
+                escritor = new PrintWriter(socket.getOutputStream());
             }
         } catch (IOException e1) {
+            System.err.println("Não conseguiu inicializar o servidor");
         }
 
+    }
+
+    private void SendMovement(String txt){
+        try{
+            escritor.println(txt);
+            escritor.flush();
+        }catch (Exception e) {
+            System.err.println("Não conseguiu enviar o movimento");
+        }
     }
 
     private class RecebeACall implements Runnable {
@@ -40,6 +54,7 @@ public class Main {
             try {
                 leitor = new Scanner(socket.getInputStream());
             } catch (Exception e) {
+                System.err.println("Não conseguiu inicializar a escuta");
             }
         }
 
@@ -50,20 +65,11 @@ public class Main {
                     System.out.println(msgBot);
                 }
             } catch (Exception e) {
+                System.err.println("Não conseguiu rodar a escuta");
             }
         }
 
     }
-    /*
-    private void configRede() {
-        Socket socket;
-        try {
-            socket = new Socket("127", PORT);
-            PrintWriter escritor = new PrintWriter(socket.getOutputStream());
-        } catch (Exception e) { }
-        
-    }*/
-
     //END - RECEBE A MSG DO ARDUINO
 
     public static void main(String[] args) throws Exception {
