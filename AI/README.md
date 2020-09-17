@@ -10,8 +10,8 @@ Nesta pasta encontramos os códigos referentes a inteligência artificial do pro
 
 1. [Run](https://github.com/lightTuring/chess-ai/tree/master/AI#run): Arquivos de execução.
     1. [Main](https://github.com/lightTuring/chess-ai/tree/master/AI#main)
-    2. [PvM](https://github.com/lightTuring/chess-ai/tree/master/AI#pvp)
-    3. [PvP](https://github.com/lightTuring/chess-ai/tree/master/AI#pvm)
+    2. [PvM](https://github.com/lightTuring/chess-ai/tree/master/AI#pvm)
+    3. [PvP](https://github.com/lightTuring/chess-ai/tree/master/AI#pvp)
 
 2. [Rules](https://github.com/lightTuring/chess-ai/tree/master/AI#rules): O pacote apresenta classes de criação e manipulação do tabuleiro e das peças de xadrez.
     1. [Board](https://github.com/lightTuring/chess-ai/tree/master/AI#board)
