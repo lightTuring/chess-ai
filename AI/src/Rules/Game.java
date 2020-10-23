@@ -7,9 +7,6 @@ import java.util.LinkedList;
 public class Game {
     private Board board;
     // true = brancas; false = pretas.
-    private boolean endOfGame = false;
-    private boolean isCheckMateBlack = false;
-    private boolean isCheckMateWhite = false;
     private int moves = 0;
     private LinkedList<Coordinate>[][] stateBoard =  new LinkedList[8][8];
     private LinkedList<Coordinate>[][] passBoard = new LinkedList[8][8];
@@ -26,9 +23,6 @@ public class Game {
     public Game clone() throws CloneNotSupportedException {
         Board b = this.board.clone();
         Game game = new Game(b);
-        game.endOfGame = this.endOfGame;
-        game.isCheckMateBlack = this.isCheckMateBlack;
-        game.isCheckMateWhite = this.isCheckMateWhite;
         game.moves = this.moves;
         for (int i= 0; i<8; i++) {
             for (int j= 0; j<8; j++) {
@@ -292,12 +286,7 @@ public class Game {
             }
         }
     }
-    public boolean getIsCheckMateBlack(){
-        return isCheckMateBlack;
-    }
-    public boolean getIsCheckMateWhite(){
-        return isCheckMateWhite;
-    }
+    
     public void isBlackPromotion(){
         char[][] ourBoard = board.getBoard();
         for(int i=0;i<ourBoard[7].length;i++){
