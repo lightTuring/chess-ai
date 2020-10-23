@@ -56,7 +56,7 @@ public class Game {
 
 
     public boolean hasEnded() {
-        return endOfGame;
+        return board.endOfGame;
     }
 
     public int moveNumber() {
