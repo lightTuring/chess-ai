@@ -230,7 +230,7 @@ public class Game {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     Iterator<Coordinate> x = stateBoard[i][j].iterator();
-                    while (x.hasNext() && legal == 0) {
+                    while (x.hasNext() && legal == 0 && board.isWhite(i,j)) {
                         Board copy = board.clone();
                         Coordinate c = x.next();
                         copy.changePos(i, j, c);
@@ -266,7 +266,7 @@ public class Game {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     Iterator<Coordinate> x = stateBoard[i][j].iterator();
-                    while (x.hasNext() && legal == 0) {
+                    while (x.hasNext() && legal == 0 && board.isBlack(i,j)) {
                         Board copy = board.clone();
                         Coordinate c = x.next();
                         copy.changePos(i, j, c);

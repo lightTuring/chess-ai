@@ -282,9 +282,11 @@ public class Board implements Cloneable {
         Coordinate[] king = indexOfPiece('k');
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                for (Coordinate c : list[i][j]) {
-                    if (c.equals(king[0]) && getPiece(c.getPos_i(), c.getPos_j()) != 'K' && isWhite(i,j) && !hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
-                        return true;
+                if (isWhite(i,j)) {
+                    for (Coordinate c : list[i][j]) {
+                        if (c.equals(king[0])) {
+                            return true;
+                        }
                     }
                 }
             }
@@ -299,9 +301,11 @@ public class Board implements Cloneable {
         Coordinate[] king = indexOfPiece('K');
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                for (Coordinate c : list[i][j]) {
-                    if (c.equals(king[0]) && getPiece(c.getPos_i(), c.getPos_j()) != 'k' && isBlack(i,j) && !hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
-                        return true;
+                if (isBlack(i,j)) {
+                    for (Coordinate c : list[i][j]) {
+                        if (c.equals(king[0])) {
+                            return true;
+                        }
                     }
                 }
             }
