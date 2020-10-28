@@ -7,7 +7,6 @@ import java.util.LinkedList;
 public class Game {
     private Board board;
     // true = brancas; false = pretas.
-    private int moves = 0;
     private LinkedList<Coordinate>[][] stateBoard =  new LinkedList[8][8];
     private LinkedList<Coordinate>[][] passBoard = new LinkedList[8][8];
 
@@ -23,7 +22,6 @@ public class Game {
     public Game clone() throws CloneNotSupportedException {
         Board b = this.board.clone();
         Game game = new Game(b);
-        game.moves = this.moves;
         for (int i= 0; i<8; i++) {
             for (int j= 0; j<8; j++) {
                 game.stateBoard[i][j] = (LinkedList<Coordinate>)this.stateBoard[i][j].clone();
@@ -53,10 +51,6 @@ public class Game {
         return board.endOfGame;
     }
 
-    public int moveNumber() {
-        return moves;
-    } 
-    
     public void move(int i, int j, int final_i, int final_j)
             throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         Coordinate c = new Coordinate(final_i, final_j);
@@ -66,30 +60,30 @@ public class Game {
                 board.changePos(i, j, c);
                 board.changePos(7, 0, new Coordinate(7, 3));
                 board.turn = !board.turn;
-                moves++;
+                
                 board.hasWhiteCastled = true;
             }else if(i == 7 && j == 4 && final_i == 7 && final_j == 6){
                 board.changePos(i, j, c);
                 board.changePos(7, 7, new Coordinate(7, 5));
                 board.hasWhiteCastled = true;
                 board.turn = !board.turn;
-                moves++;
+                
             }else if(i == 0 && j == 4 && final_i == 0 && final_j == 2){
                 board.changePos(i, j, c);
                 board.changePos(0, 0, new Coordinate(0, 3));
                 board.hasBlackCastled = true;
                 board.turn = !board.turn;
-                moves++;
+                
             }else if(i == 0 && j == 4 && final_i == 0 && final_j == 6){
                 board.changePos(i, j, c);
                 board.changePos(0, 7, new Coordinate(0, 5));
                 board.hasBlackCastled = true;
                 board.turn = !board.turn;
-                moves++;
+                
             }else{
                 board.changePos(i, j, c);
                 board.turn = !board.turn;
-                moves++;
+                
             }
             board.setLastMove(i, j, final_i, final_j);
         }
@@ -97,7 +91,7 @@ public class Game {
             board.changePos(i, j, c);
             board.eliminate(i, c.getPos_j());
             board.turn = !board.turn;
-            moves++;
+            
         }
         else {
             throw new IllegalMoveException("Movimento ilegal");

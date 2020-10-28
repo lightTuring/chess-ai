@@ -24,8 +24,6 @@ public class Board implements Cloneable {
 	public boolean hasBlackCastled = false;
     public boolean hasWhiteCastled = false;
     //White = O peao que captura é branco
-    public boolean[] enPassantWhite = new boolean[8];
-    public boolean[] enPassantBlack = new boolean[8];
     public Coordinate[] lastMove = new Coordinate[2];
 
     
@@ -54,13 +52,6 @@ public class Board implements Cloneable {
         }
         if (this.lastMove[1] != null) {
             b.lastMove[1] = this.lastMove[1].clone();
-        }
-        
-        for (int i = 0; i < enPassantWhite.length; i++) {
-            b.enPassantWhite[i] = this.enPassantWhite[i];
-        }
-        for (int i = 0; i < enPassantBlack.length; i++) {
-            b.enPassantBlack[i] = this.enPassantBlack[i];
         }
         return b;
     }
@@ -96,10 +87,7 @@ public class Board implements Cloneable {
             chessBoard[7][i] = initPosWhite[i];
         this.turn = true;
 
-        for(int i = 0; i < chessBoard.length; i++) {
-            enPassantBlack[i] = false;
-            enPassantWhite[i] = false;
-        }
+
     }
 
     public boolean isWhite(int pos_i, int pos_j) throws BoardOutOfBoundsException {
