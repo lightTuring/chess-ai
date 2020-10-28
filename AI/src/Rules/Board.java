@@ -125,6 +125,9 @@ public class Board implements Cloneable {
     public void changePos(int begin_x, int begin_y, Coordinate c) {
         setChange(begin_x, begin_y, c.getPos_i(), c.getPos_j());
     }
+    public void setTurn(boolean b) {
+        this.turn = b;
+    }
     /*DEPRECIADO
     // Método de roque para as pretas. Pede um y para definir qual das duas
     // possiblidades de roque vai ser feita.

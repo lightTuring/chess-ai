@@ -1,0 +1,13 @@
+ARQUIVO PARA AJUDAR NOS TESTES DA IA (CRIA UM AMBIENTE ONDE O ERRO PODE OCORRER);        
+        
+        char[][] chess ={{'b', 'k', 'o', 'o', 'o', 'o', 'q', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'P', 'P', 'P',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'K', 'o',},};
+        
+
+        board.setBoard(chess);

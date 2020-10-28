@@ -15,6 +15,19 @@ public class PvM {
     public static void main(String[] args) throws Exception {
 
         Board board = new Board();
+        char[][] chess ={{'b', 'k', 'o', 'o', 'o', 'o', 'q', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                         {'o', 'o', 'o', 'o', 'o', 'P', 'P', 'P',},
+                         {'o', 'o', 'o', 'o', 'o', 'o', 'K', 'o',},};
+        
+
+        board.setBoard(chess);
+        board.setTurn(false);
+
         Scanner s = new Scanner(System.in);
         
 
