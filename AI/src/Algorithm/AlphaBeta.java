@@ -28,11 +28,6 @@ public class AlphaBeta {
         Board b = gb.getBoard(h);
         Game g = new Game(b);
         g.allLegal();
-
-        g.getHasBlackKingMoved();
-        g.getHasBlackLeftRookMoved();
-        g.getHasBlackRightRookMoved();
-        g.BlacksCastling();
         
         LinkedList<Board> list = new LinkedList<Board>();
         for (int i = 0; i<8; i++) {

@@ -7,10 +7,6 @@ import java.util.LinkedList;
 public class Game {
     private Board board;
     // true = brancas; false = pretas.
-    private boolean endOfGame = false;
-    private boolean isCheckMateBlack = false;
-    private boolean isCheckMateWhite = false;
-    private int moves = 0;
     private LinkedList<Coordinate>[][] stateBoard =  new LinkedList[8][8];
     private LinkedList<Coordinate>[][] passBoard = new LinkedList[8][8];
 
@@ -26,10 +22,6 @@ public class Game {
     public Game clone() throws CloneNotSupportedException {
         Board b = this.board.clone();
         Game game = new Game(b);
-        game.endOfGame = this.endOfGame;
-        game.isCheckMateBlack = this.isCheckMateBlack;
-        game.isCheckMateWhite = this.isCheckMateWhite;
-        game.moves = this.moves;
         for (int i= 0; i<8; i++) {
             for (int j= 0; j<8; j++) {
                 game.stateBoard[i][j] = (LinkedList<Coordinate>)this.stateBoard[i][j].clone();
@@ -59,10 +51,6 @@ public class Game {
         return board.endOfGame;
     }
 
-    public int moveNumber() {
-        return moves;
-    } 
-    
     public void move(int i, int j, int final_i, int final_j)
             throws IllegalMoveException, BoardOutOfBoundsException, UnexpectedPieceException {
         Coordinate c = new Coordinate(final_i, final_j);
@@ -72,30 +60,30 @@ public class Game {
                 board.changePos(i, j, c);
                 board.changePos(7, 0, new Coordinate(7, 3));
                 board.turn = !board.turn;
-                moves++;
+                
                 board.hasWhiteCastled = true;
             }else if(i == 7 && j == 4 && final_i == 7 && final_j == 6){
                 board.changePos(i, j, c);
                 board.changePos(7, 7, new Coordinate(7, 5));
                 board.hasWhiteCastled = true;
                 board.turn = !board.turn;
-                moves++;
+                
             }else if(i == 0 && j == 4 && final_i == 0 && final_j == 2){
                 board.changePos(i, j, c);
                 board.changePos(0, 0, new Coordinate(0, 3));
                 board.hasBlackCastled = true;
                 board.turn = !board.turn;
-                moves++;
+                
             }else if(i == 0 && j == 4 && final_i == 0 && final_j == 6){
                 board.changePos(i, j, c);
                 board.changePos(0, 7, new Coordinate(0, 5));
                 board.hasBlackCastled = true;
                 board.turn = !board.turn;
-                moves++;
+                
             }else{
                 board.changePos(i, j, c);
                 board.turn = !board.turn;
-                moves++;
+                
             }
             board.setLastMove(i, j, final_i, final_j);
         }
@@ -103,7 +91,7 @@ public class Game {
             board.changePos(i, j, c);
             board.eliminate(i, c.getPos_j());
             board.turn = !board.turn;
-            moves++;
+            
         }
         else {
             throw new IllegalMoveException("Movimento ilegal");
@@ -115,32 +103,35 @@ public class Game {
 		LinkedList<Coordinate>[][] list = Controller.uncheckedMoves(board);
 		for (int i = 0; i<8; i++) {
 			for (int j = 0; j<8; j++){
-				LinkedList<Coordinate> teste = list[i][j];
-				LinkedList<Coordinate> letra = (LinkedList<Coordinate>)teste.clone();
-				for (Coordinate c : teste) {
-					Board copy = board.clone();
-                    copy.changePos(i, j, c);
-                    if (board.turn == true) {
-                        if (board.hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
-                            letra.remove(c);
+                if (board.isAPiece(i, j) && (board.isWhite(i, j) == board.turn)) {
+                    LinkedList<Coordinate> teste = list[i][j];
+                    LinkedList<Coordinate> letra = (LinkedList<Coordinate>)teste.clone();
+                    for (Coordinate c : teste) {
+                        Board copy = board.clone();
+                        copy.changePos(i, j, c);
+                        if (board.turn == true) {
+                            if (board.hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
+                                letra.remove(c);
+                            }
+                            else if (copy.isWhiteKingInCheck()) {
+                                letra.remove(c);
+                            } 
+                            
                         }
-                        else if (copy.isWhiteKingInCheck()) {
-                            letra.remove(c);
-                        } 
-                        
-                    }
-                    if (board.turn == false) {
-                        if (board.hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
-                            letra.remove(c);
+                        if (board.turn == false) {
+                            if (board.hasSameColor(i, j, c.getPos_i(), c.getPos_j())) {
+                                letra.remove(c);
+                            }
+                            if (copy.isBlackKingInCheck()) {
+                                letra.remove(c);
+                            } 
+                            
                         }
-                        if (copy.isBlackKingInCheck()) {
-                            letra.remove(c);
-                        } 
-                        
                     }
-				}
-				list[i][j] = letra;
-			}
+                    list[i][j] = letra;
+                }
+                else {list[i][j] = new LinkedList<Coordinate>();}
+            }
 		}
         stateBoard = list;
         if (board.turn) {
@@ -150,6 +141,13 @@ public class Game {
             BlacksCastling();
         }
         legalEnPassant();
+        getHasBlackKingMoved();
+        getHasBlackLeftRookMoved();
+        getHasBlackRightRookMoved();
+        getHasWhiteKingMoved();
+        getHasWhiteLeftRookMoved();
+        getHasWhiteRightRookMoved();
+        
     }
     
     private void legalEnPassant() throws BoardOutOfBoundsException, CloneNotSupportedException, UnexpectedPieceException,
@@ -230,7 +228,7 @@ public class Game {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     Iterator<Coordinate> x = stateBoard[i][j].iterator();
-                    while (x.hasNext() && legal == 0 && board.isWhite(i,j)) {
+                    while (x.hasNext() && legal == 0) {
                         Board copy = board.clone();
                         Coordinate c = x.next();
                         copy.changePos(i, j, c);
@@ -292,12 +290,7 @@ public class Game {
             }
         }
     }
-    public boolean getIsCheckMateBlack(){
-        return isCheckMateBlack;
-    }
-    public boolean getIsCheckMateWhite(){
-        return isCheckMateWhite;
-    }
+    
     public void isBlackPromotion(){
         char[][] ourBoard = board.getBoard();
         for(int i=0;i<ourBoard[7].length;i++){
