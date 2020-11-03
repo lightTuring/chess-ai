@@ -1,38 +1,54 @@
 #include <Ethernet.h>
 #include <SPI.h>
 
-#define PORT 5005
+#define PORTAO 5005
 
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};//Esta informação depende do shield
 byte ip[] = {127, 0, 0, 1};//IP do meu PC
 
-EthernetClient client;
+//EthernetClient client;
+
+EthernetServer server(PORTAO);
+boolean myTurn = true;
+
 
 void setup(){
   Ethernet.begin(mac, ip);
+  server.begin();
   Serial.begin(9600);
   delay(1000);
-  
-  if (client.connect(ip, PORT)) {
-    Serial.println("connected");
-    client.println("GET /search?q=arduino HTTP/1.0");
-    client.println();
-  } else {
-    Serial.println("connection failed");
-  }
 }
 
-void loop()
-{
-  if(client.available()) {
-    String c = client.readString();//Talvez deixe lento
-    Serial.print(c);
-  }
+void loop(){
+  ConnectedAI();
+}
+void ConnectedAI(){
+  EthernetClient client = server.available();
+  if (client) {
+    Serial.println("new client");
+    while (client.connected()) {
+       if(!myTurn){
+        if (client.available()) {
+          char c = client.read();
+          if(c=='E'){//End
+            break;
+          }
+          if(c == 'n'){
+            //MOVIMENTO DA MÁQUINA        
+          }
+          
+        }
+      }else{
+        //LER O MOVIMENTO DO JOGADOR
 
-  if(!client.connected()) {
-    Serial.println();
-    Serial.println("disconnecting.");
+        String movement = "";
+
+        client.print(movement);
+      }
+    }
+    
+    delay(1);
+    // close the connection:
     client.stop();
-    return;
   }
 }
