@@ -1,0 +1,1003 @@
+tcbqkbct 8
+pppppppp 7
+oooooooo 6
+oooooooo 5
+oooooooo 4
+oooooooo 3
+PPPPPPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+Peça da posição.: g1
+Para.: h3
+tcbqkbct 8
+pppppppp 7
+oooooooo 6
+oooooooo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+De: G8 Para: F6
+tcbqkbot 8
+pppppppp 7
+ooooocoo 6
+oooooooo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: h3
+Para.: g1
+tcbqkbot 8
+pppppppp 7
+ooooocoo 6
+oooooooo 5
+oooooooo 4
+oooooooo 3
+PPPPPPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+De: H8 Para: G8
+tcbqkbto 8
+pppppppp 7
+ooooocoo 6
+oooooooo 5
+oooooooo 4
+oooooooo 3
+PPPPPPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+Peça da posição.: g1
+Para.: h3
+tcbqkbto 8
+pppppppp 7
+ooooocoo 6
+oooooooo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+De: B8 Para: C6
+tobqkbto 8
+pppppppp 7
+oocoocoo 6
+oooooooo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: h3
+Para.: g1
+tobqkbto 8
+pppppppp 7
+oocoocoo 6
+oooooooo 5
+oooooooo 4
+oooooooo 3
+PPPPPPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+De: D7 Para: D6
+tobqkbto 8
+pppopppp 7
+oocpocoo 6
+oooooooo 5
+oooooooo 4
+oooooooo 3
+PPPPPPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+Peça da posição.: g1
+Para.: h3
+tobqkbto 8
+pppopppp 7
+oocpocoo 6
+oooooooo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+De: A7 Para: A5
+tobqkbto 8
+oppopppp 7
+oocpocoo 6
+pooooooo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: g1
+Para.: h3
+
+*Movimento ilegal*
+
+tobqkbto 8
+oppopppp 7
+oocpocoo 6
+pooooooo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: h3
+Para.: g1
+tobqkbto 8
+oppopppp 7
+oocpocoo 6
+pooooooo 5
+oooooooo 4
+oooooooo 3
+PPPPPPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+De: C8 Para: E6
+tooqkbto 8
+oppopppp 7
+oocpbcoo 6
+pooooooo 5
+oooooooo 4
+oooooooo 3
+PPPPPPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+Peça da posição.: g1
+Para.: h3
+tooqkbto 8
+oppopppp 7
+oocpbcoo 6
+pooooooo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+De: G7 Para: G5
+tooqkbto 8
+oppoppop 7
+oocpbcoo 6
+pooooopo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: g1
+Para.: h3
+
+*Movimento ilegal*
+
+tooqkbto 8
+oppoppop 7
+oocpbcoo 6
+pooooopo 5
+oooooooo 4
+oooooooC 3
+PPPPPPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: h3
+Para.: g1
+tooqkbto 8
+oppoppop 7
+oocpbcoo 6
+pooooopo 5
+oooooooo 4
+oooooooo 3
+PPPPPPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+De: D8 Para: D7
+toookbto 8
+oppqppop 7
+oocpbcoo 6
+pooooopo 5
+oooooooo 4
+oooooooo 3
+PPPPPPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+Peça da posição.: e2
+Para.: e4
+toookbto 8
+oppqppop 7
+oocpbcoo 6
+pooooopo 5
+ooooPooo 4
+oooooooo 3
+PPPPoPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+De: C6 Para: B4
+toookbto 8
+oppqppop 7
+ooopbcoo 6
+pooooopo 5
+ocooPooo 4
+oooooooo 3
+PPPPoPPP 2
+TCBQKBCT 1
+
+ABCDEFGH
+Peça da posição.: g1
+Para.: h3
+toookbto 8
+oppqppop 7
+ooopbcoo 6
+pooooopo 5
+ocooPooo 4
+oooooooC 3
+PPPPoPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+De: E8 Para: C8
+ooktobto 8
+oppqppop 7
+ooopbcoo 6
+pooooopo 5
+ocooPooo 4
+oooooooC 3
+PPPPoPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: h1
+Para.: g1
+ooktobto 8
+oppqppop 7
+ooopbcoo 6
+pooooopo 5
+ocooPooo 4
+oooooooC 3
+PPPPoPPP 2
+TCBQKBTo 1
+
+ABCDEFGH
+De: C7 Para: C5
+ooktobto 8
+opoqppop 7
+ooopbcoo 6
+popooopo 5
+ocooPooo 4
+oooooooC 3
+PPPPoPPP 2
+TCBQKBTo 1
+
+ABCDEFGH
+Peça da posição.: g1
+Para.: h1
+ooktobto 8
+opoqppop 7
+ooopbcoo 6
+popooopo 5
+ocooPooo 4
+oooooooC 3
+PPPPoPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+De: C8 Para: B8
+okotobto 8
+opoqppop 7
+ooopbcoo 6
+popooopo 5
+ocooPooo 4
+oooooooC 3
+PPPPoPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: a2
+Para.: a4
+okotobto 8
+opoqppop 7
+ooopbcoo 6
+popooopo 5
+PcooPooo 4
+oooooooC 3
+oPPPoPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+De: H7 Para: H6
+okotobto 8
+opoqppoo 7
+ooopbcop 6
+popooopo 5
+PcooPooo 4
+oooooooC 3
+oPPPoPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: h1
+Para.: f4
+
+*Movimento ilegal*
+
+okotobto 8
+opoqppoo 7
+ooopbcop 6
+popooopo 5
+PcooPooo 4
+oooooooC 3
+oPPPoPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: h3
+Para.: f4
+okotobto 8
+opoqppoo 7
+ooopbcop 6
+popooopo 5
+PcooPCoo 4
+oooooooo 3
+oPPPoPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+De: G5 Para: F4
+okotobto 8
+opoqppoo 7
+ooopbcop 6
+popooooo 5
+PcooPpoo 4
+oooooooo 3
+oPPPoPPP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: g2
+Para.: g4
+okotobto 8
+opoqppoo 7
+ooopbcop 6
+popooooo 5
+PcooPpPo 4
+oooooooo 3
+oPPPoPoP 2
+TCBQKBoT 1
+
+ABCDEFGH
+De: E6 Para: G4
+okotobto 8
+opoqppoo 7
+ooopocop 6
+popooooo 5
+PcooPpbo 4
+oooooooo 3
+oPPPoPoP 2
+TCBQKBoT 1
+
+ABCDEFGH
+Peça da posição.: h1
+Para.: g1
+okotobto 8
+opoqppoo 7
+ooopocop 6
+popooooo 5
+PcooPpbo 4
+oooooooo 3
+oPPPoPoP 2
+TCBQKBTo 1
+
+ABCDEFGH
+De: G4 Para: D1
+okotobto 8
+opoqppoo 7
+ooopocop 6
+popooooo 5
+PcooPpoo 4
+oooooooo 3
+oPPPoPoP 2
+TCBbKBTo 1
+
+ABCDEFGH
+Peça da posição.: h2
+Para.: h3
+okotobto 8
+opoqppoo 7
+ooopocop 6
+popooooo 5
+PcooPpoo 4
+oooooooP 3
+oPPPoPoo 2
+TCBbKBTo 1
+
+ABCDEFGH
+De: G8 Para: G1
+okotoboo 8
+opoqppoo 7
+ooopocop 6
+popooooo 5
+PcooPpoo 4
+oooooooP 3
+oPPPoPoo 2
+TCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: d2
+Para.: d3
+okotoboo 8
+opoqppoo 7
+ooopocop 6
+popooooo 5
+PcooPpoo 4
+oooPoooP 3
+oPPooPoo 2
+TCBbKBto 1
+
+ABCDEFGH
+De: D7 Para: H3
+okotoboo 8
+opooppoo 7
+ooopocop 6
+popooooo 5
+PcooPpoo 4
+oooPoooq 3
+oPPooPoo 2
+TCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: a4
+Para.: a5
+
+*Movimento ilegal*
+
+okotoboo 8
+opooppoo 7
+ooopocop 6
+popooooo 5
+PcooPpoo 4
+oooPoooq 3
+oPPooPoo 2
+TCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: a4
+Para.: b5
+
+*Movimento ilegal*
+
+okotoboo 8
+opooppoo 7
+ooopocop 6
+popooooo 5
+PcooPpoo 4
+oooPoooq 3
+oPPooPoo 2
+TCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: b2
+Para.: b3
+okotoboo 8
+opooppoo 7
+ooopocop 6
+popooooo 5
+PcooPpoo 4
+oPoPoooq 3
+ooPooPoo 2
+TCBbKBto 1
+
+ABCDEFGH
+De: F6 Para: E4
+okotoboo 8
+opooppoo 7
+ooopooop 6
+popooooo 5
+Pcoocpoo 4
+oPoPoooq 3
+ooPooPoo 2
+TCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: f2
+Para.: f3
+okotoboo 8
+opooppoo 7
+ooopooop 6
+popooooo 5
+Pcoocpoo 4
+oPoPoPoq 3
+ooPooooo 2
+TCBbKBto 1
+
+ABCDEFGH
+De: B8 Para: C8
+ooktoboo 8
+opooppoo 7
+ooopooop 6
+popooooo 5
+Pcoocpoo 4
+oPoPoPoq 3
+ooPooooo 2
+TCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: d3
+Para.: d4
+ooktoboo 8
+opooppoo 7
+ooopooop 6
+popooooo 5
+PcoPcpoo 4
+oPoooPoq 3
+ooPooooo 2
+TCBbKBto 1
+
+ABCDEFGH
+De: C8 Para: C7
+oootoboo 8
+opkoppoo 7
+ooopooop 6
+popooooo 5
+PcoPcpoo 4
+oPoooPoq 3
+ooPooooo 2
+TCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: a1
+Para.: a3
+oootoboo 8
+opkoppoo 7
+ooopooop 6
+popooooo 5
+PcoPcpoo 4
+TPoooPoq 3
+ooPooooo 2
+oCBbKBto 1
+
+ABCDEFGH
+De: D8 Para: A8
+tooooboo 8
+opkoppoo 7
+ooopooop 6
+popooooo 5
+PcoPcpoo 4
+TPoooPoq 3
+ooPooooo 2
+oCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: d4
+Para.: d5
+tooooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+TPoooPoq 3
+ooPooooo 2
+oCBbKBto 1
+
+ABCDEFGH
+De: A8 Para: B8
+otoooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+TPoooPoq 3
+ooPooooo 2
+oCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: a3
+Para.: a1
+otoooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+oPoooPoq 3
+ooPooooo 2
+TCBbKBto 1
+
+ABCDEFGH
+De: B8 Para: A8
+tooooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+oPoooPoq 3
+ooPooooo 2
+TCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: a1
+Para.: a3
+tooooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+TPoooPoq 3
+ooPooooo 2
+oCBbKBto 1
+
+ABCDEFGH
+De: A8 Para: B8
+otoooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+TPoooPoq 3
+ooPooooo 2
+oCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: a3
+Para.: a
+
+*Entrada Inválida*
+
+otoooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+TPoooPoq 3
+ooPooooo 2
+oCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: a3
+Para.: a1
+otoooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+oPoooPoq 3
+ooPooooo 2
+TCBbKBto 1
+
+ABCDEFGH
+De: B8 Para: A8
+tooooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+oPoooPoq 3
+ooPooooo 2
+TCBbKBto 1
+
+ABCDEFGH
+Peça da posição.: b1
+Para.: a3
+tooooboo 8
+opkoppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+CPoooPoq 3
+ooPooooo 2
+ToBbKBto 1
+
+ABCDEFGH
+De: C7 Para: C8
+tokooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+CPoooPoq 3
+ooPooooo 2
+ToBbKBto 1
+
+ABCDEFGH
+Peça da posição.: f1
+Para.: h3
+
+*Movimento ilegal*
+
+tokooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+CPoooPoq 3
+ooPooooo 2
+ToBbKBto 1
+
+ABCDEFGH
+Peça da posição.: c1
+Para.: d2
+tokooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+CPoooPoq 3
+ooPBoooo 2
+ToobKBto 1
+
+ABCDEFGH
+De: A8 Para: B8
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+CPoooPoq 3
+ooPBoooo 2
+ToobKBto 1
+
+ABCDEFGH
+Peça da posição.: e1
+Para.: f2
+
+*Movimento ilegal*
+
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+CPoooPoq 3
+ooPBoooo 2
+ToobKBto 1
+
+ABCDEFGH
+Peça da posição.: d2
+Para.: e3
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pcoocpoo 4
+CPooBPoq 3
+ooPooooo 2
+ToobKBto 1
+
+ABCDEFGH
+De: B4 Para: D3
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pooocpoo 4
+CPocBPoq 3
+ooPooooo 2
+ToobKBto 1
+
+ABCDEFGH
+Peça da posição.: e1
+Para.: c2
+
+*Movimento ilegal*
+
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pooocpoo 4
+CPocBPoq 3
+ooPooooo 2
+ToobKBto 1
+
+ABCDEFGH
+Peça da posição.: c2
+Para.: d3
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pooocpoo 4
+CPoPBPoq 3
+oooooooo 2
+ToobKBto 1
+
+ABCDEFGH
+De: F4 Para: E3
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pooocooo 4
+CPoPpPoq 3
+oooooooo 2
+ToobKBto 1
+
+ABCDEFGH
+Peça da posição.: a1
+Para.: a2
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pooocooo 4
+CPoPpPoq 3
+Tooooooo 2
+ooobKBto 1
+
+ABCDEFGH
+De: E4 Para: F2
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pooooooo 4
+CPoPpPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+Peça da posição.: a4
+Para.: a5
+
+*Movimento ilegal*
+
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pooooooo 4
+CPoPpPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+Peça da posição.: d5
+Para.: c6
+
+*Movimento ilegal*
+
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pooooooo 4
+CPoPpPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+Peça da posição.: d5
+Para.: e6
+
+*Movimento ilegal*
+
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+Pooooooo 4
+CPoPpPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+Peça da posição.: d3
+Para.: d4
+otkooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+PooPoooo 4
+CPoopPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+De: B8 Para: A8
+tokooboo 8
+opooppoo 7
+ooopooop 6
+popPoooo 5
+PooPoooo 4
+CPoopPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+Peça da posição.: d4
+Para.: c5
+tokooboo 8
+opooppoo 7
+ooopooop 6
+poPPoooo 5
+Pooooooo 4
+CPoopPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+De: A8 Para: B8
+otkooboo 8
+opooppoo 7
+ooopooop 6
+poPPoooo 5
+Pooooooo 4
+CPoopPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+Peça da posição.: e1
+Para.: e2
+
+*Movimento ilegal*
+
+otkooboo 8
+opooppoo 7
+ooopooop 6
+poPPoooo 5
+Pooooooo 4
+CPoopPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+Peça da posição.: e1
+Para.: d1
+
+*Movimento ilegal*
+
+otkooboo 8
+opooppoo 7
+ooopooop 6
+poPPoooo 5
+Pooooooo 4
+CPoopPoq 3
+Toooocoo 2
+ooobKBto 1
+
+ABCDEFGH
+Peça da posição.: a2
+Para.: f2
+otkooboo 8
+opooppoo 7
+ooopooop 6
+poPPoooo 5
+Pooooooo 4
+CPoopPoq 3
+oooooToo 2
+ooobKBto 1
+
+ABCDEFGH
+De: H3 Para: F1
+otkooboo 8
+opooppoo 7
+ooopooop 6
+poPPoooo 5
+Pooooooo 4
+CPoopPoo 3
+oooooToo 2
+ooobKqto 1
+
+ABCDEFGH 
+Jogo Acabou
