@@ -55,11 +55,11 @@ public class Evaluate {
             for (int j = 0; j < 8; j++) {
                 if (board.getPiece(i, j) == 'K') {
                     LinkedList<Coordinate> safeWhite = Controller.getQueenMoves(board, i, j);
-                    white = -Math.sqrt((double)safeWhite.size());
+                    white = -(Math.sqrt((double)safeWhite.size())/1.5);
                 }
                 if (board.getPiece(i, j) == 'k') {
                     LinkedList<Coordinate> safeBlack = Controller.getQueenMoves(board, i, j);
-                    black = -Math.sqrt((double)safeBlack.size());
+                    black = -(Math.sqrt((double)safeBlack.size())/1.5);
                 }
             }
         }
@@ -77,7 +77,7 @@ public class Evaluate {
                         black++;
                     }
                     if ((board.getPiece(i, j) == 'p')) {
-                        black += 0.3;
+                        black += 0.1;
                     }
                 }
                 if (board.isWhite(i, j) && Controller.isSquareDefended(new Coordinate(i, j), board)) {
@@ -86,7 +86,7 @@ public class Evaluate {
                         white++;
                     }
                     if ((board.getPiece(i, j) == 'P')) {
-                        white += 0.3;
+                        white += 0.1;
                     }
                 }
             }
@@ -101,8 +101,8 @@ public class Evaluate {
         Coordinate[] blackKing = board.indexOfPiece('k');
         LinkedList<Coordinate> listWhite = Controller.getKingMoves(board, whiteKing[0].getPos_i(), whiteKing[0].getPos_j());
         LinkedList<Coordinate> listBlack = Controller.getKingMoves(board, blackKing[0].getPos_i(), blackKing[0].getPos_j());
-        white = Math.sqrt((double) listWhite.size());
-        black = Math.sqrt((double) listBlack.size());
+        white = Math.sqrt((double) listWhite.size())/3.0;
+        black = Math.sqrt((double) listBlack.size())/3.0;
         return (white - black);
     }
 
@@ -160,16 +160,16 @@ public class Evaluate {
         double white= 0;
         double black= 0;
         if (board.hasWhiteCastled) {
-            white+=1.5;
+            white+=0.5;
         }
         if (board.hasBlackCastled) {
-            black+=1.5;
+            black+=0.5;
         }
         return (white-black);
     }
 
     public double total () throws BoardOutOfBoundsException, Exception {
-        return (kingMobility() + pieceSafety() + piece() + kingSafety() + pawnAdvancement() + pieceMobility() + castlePoints());
+        return (pieceSafety() + piece() + kingSafety() + pawnAdvancement() + pieceMobility() + castlePoints());
     }
 
 }
