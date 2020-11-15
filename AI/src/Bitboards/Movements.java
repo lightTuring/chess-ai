@@ -80,4 +80,46 @@ public class Movements {
         int j = sq%8;
         return (bit.chessBoard[i][j]); 
     }
+
+    public long getPieceSet(int sq) {
+        long set = getPieceSet(sq);
+        if (set == 'p') {
+            return bit.pb;
+        }
+        if (set == 'P') {
+            return bit.pw;
+        }
+        if (set == 'C') {
+            return bit.cw;
+        }
+        if (set == 'c') {
+            return bit.cb;
+        }
+        if (set == 'b') {
+            return bit.bb;
+        }
+        if (set == 'B') {
+            return bit.bw;
+        }
+
+        if (set == 't') {
+            return bit.tb;
+        }
+        if (set == 'T') {
+            return bit.tw;
+        }
+        if (set == 'q') {
+            return bit.qb;
+        }
+        if (set == 'Q') {
+            return bit.qw;
+        }
+        if (set == 'k') {
+            return bit.kb;
+        }
+        if (set == 'K') {
+            return bit.kw;
+        }
+        return 0L;
+    }
 }

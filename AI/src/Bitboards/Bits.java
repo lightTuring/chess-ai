@@ -189,14 +189,4 @@ public class Bits {
         }
         return (p^gen);
     }
-
-   
-
-    public long bPawnDouble() {
-        long rank = 130816L; 
-        long d = ((pb & rank)<<16);
-        long dblTargets = d & (~board);
-        return dblTargets;
-    }
-
 }
