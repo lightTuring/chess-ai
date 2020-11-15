@@ -1,3 +1,5 @@
+package Bitboards;
+
 public class Movements {
     public Bits bit = new Bits();
 

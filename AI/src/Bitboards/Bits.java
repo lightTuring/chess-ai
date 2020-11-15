@@ -1,3 +1,4 @@
+package Bitboards;
 
 public class Bits {
     public char[][] chessBoard = new char[8][8];

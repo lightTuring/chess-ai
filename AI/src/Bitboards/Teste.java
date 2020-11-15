@@ -1,3 +1,5 @@
+package Bitboards;
+
 public class Teste {
     public static void main(String[] args) {
         Bits bit = new Bits();
