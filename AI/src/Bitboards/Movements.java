@@ -56,6 +56,28 @@ public class Movements {
         return a;
     }
 
-    
+    public long kingMoves(int sq) {
+        long a = (1<<sq);
+        long b = a;
+        for (int i = 9; i>=7; i++) {
+            b |= a<<i;
+        }
+        b |= b<<1;
+        b |= b>>1;
+        for (int i = 9; i>=7; i++) {
+            b |= a>>i;
+        }
 
+        return (b^a);
+    }
+
+    public long queenMoves(int sq) {
+        return (rookGen(sq) | bishopGen(sq));
+    }
+
+    public char getPiece(int sq) {
+        int i = sq/8;
+        int j = sq%8;
+        return (bit.chessBoard[i][j]); 
+    }
 }
