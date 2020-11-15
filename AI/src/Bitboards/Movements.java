@@ -10,15 +10,15 @@ public class Movements {
     //por igual.
     public long positiveMove(int sq, int a) {
         long board = bit.board;
-        long mask = bit.rayAttacks[sq][a] & board;
-        long attack = bit.rayAttacks[sq][a] & bit.below_LS1B_mask_include(mask);
+        long mask = Manipulator.rayAttacks[sq][a] & board;
+        long attack = Manipulator.rayAttacks[sq][a] & Manipulator.below_LS1B_mask_include(mask);
         return attack;
     }
 
     public long negativeMove(int sq, int a) {
         long board = bit.board;
-        long mask = bit.rayAttacks[sq][a] & board;
-        long attack = bit.rayAttacks[sq][a] & bit.above_msb_mask_include(mask);
+        long mask = Manipulator.rayAttacks[sq][a] & board;
+        long attack = Manipulator.rayAttacks[sq][a] & Manipulator.above_msb_mask_include(mask);
         return attack;
     }
 
@@ -82,7 +82,7 @@ public class Movements {
     }
 
     public long getPieceSet(int sq) {
-        long set = getPieceSet(sq);
+        long set = getPiece(sq);
         if (set == 'p') {
             return bit.pb;
         }
