@@ -1,4 +1,5 @@
 package Bitboards;
+import Rules.IllegalMoveException;
 
 @SuppressWarnings("unchecked")
 public class Game {
@@ -10,6 +11,11 @@ public class Game {
     
     public Game(Bits bit) {
         this.bit = bit;
+        for (int i= 0; i<64; i++) {
+            this.stateBoard[i] = 0L;
+            this.castleBoard[i] = 0L;
+            this.enPassantBoard[i] = 0L;
+        }
     }
     public Game clone() throws CloneNotSupportedException {
         Bits b = this.bit.clone();
@@ -18,6 +24,18 @@ public class Game {
             game.stateBoard[i] = this.stateBoard[i];
         }
         return game;
+    }
+    //implementar enPassant e roque;
+    public void move  (int sqi, int sqf, Bits bit) throws IllegalMoveException {
+        long target = 1L<<sqf; 
+        if ((stateBoard[sqi] & target) != 0L) {
+            Manipulator.changePos(sqi, sqf, bit);
+            bit.turn = !bit.turn;
+        }
+        else {
+            throw new IllegalMoveException("Movimento errado");
+        }
+        
     }
     public boolean isEmpty(long[] a) {
         for (int i = 0; i<a.length; i++) {
@@ -30,12 +48,12 @@ public class Game {
     public boolean isCheckWhite() {
         Movements move = new Movements(bit);
         long k = bit.kw;
-        return ((move.blackAttackMap()&k) != 0);
+        return ((move.blackAttackMap()&k) != 0L);
     }
     public boolean isCheckBlack() {
         Movements move = new Movements(bit);
         long k = bit.kb;
-        return ((move.whiteAttackMap()&k) != 0);
+        return ((move.whiteAttackMap()&k) != 0L);
     }
     public boolean isCheck() {
         if (bit.turn == true) {
@@ -52,7 +70,7 @@ public class Game {
             long a = 0L;
             if (Manipulator.isWhite(sq, bit) == bit.turn) {
                 long x = b[sq];  
-                while (x != 0) {
+                while (x != 0L) {
                     long lsb = Manipulator.lsb(x);
                     int pos = Manipulator.positionOfBit(lsb);
                     Manipulator.changePos(sq, pos, bit);
@@ -77,5 +95,15 @@ public class Game {
             return true;
         }
         return false;
+    }
+    public void isCheckMate() {
+        if (isCheckMateBlack()) {
+            bit.checkmateBlack = true;
+            bit.endOfGame = true;
+        }
+        else if (isCheckMateWhite()) {
+            bit.checkmateWhite = true;
+            bit.endOfGame = true;
+        }
     }
 }

@@ -79,7 +79,7 @@ public class Manipulator {
     //posição do bit 1 em um long com um único bit 1:
     public static int positionOfBit(long x) {
         int count = 0;
-        while (x != 0) {
+        while (x != 0L) {
             x>>=1;
             count++;
         }
