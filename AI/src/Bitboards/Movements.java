@@ -8,6 +8,8 @@ public class Movements {
     //a = qual a direção (norte, nordeste, noroeste e leste).
     //elas não diferenciam a cor das peças, logo ataques e defesas são vistos
     //por igual.
+    //ATENÇÃO: A IMPLEMENTAÇÃO DAS PEÇAS DESLIZANTES ESTÁ ERRADA 
+    //CONSERTAR DEPOIS!!!!!!!!!
     public long positiveMove(int sq, int a) {
         long board = bit.board;
         long mask = Manipulator.rayAttacks[sq][a] & board;
@@ -43,13 +45,13 @@ public class Movements {
         }
         return a;
     } 
-
+    //falta implementar captura
     public long pawnWhite(int sq) {
         long a = (1L << sq);
         a >>= 8;
         return a;
     }
-
+    //falta implementar captura
     public long pawnBlack(int sq) {
         long a = (1L << sq);
         a <<= 8;
@@ -57,18 +59,7 @@ public class Movements {
     }
 
     public long kingMoves(int sq) {
-        long a = (1<<sq);
-        long b = a;
-        for (int i = 9; i>=7; i++) {
-            b |= a<<i;
-        }
-        b |= b<<1;
-        b |= b>>1;
-        for (int i = 9; i>=7; i++) {
-            b |= a>>i;
-        }
-
-        return (b^a);
+        return 0L;
     }
 
     public long queenMoves(int sq) {
@@ -76,9 +67,11 @@ public class Movements {
     }
 
     public char getPiece(int sq) {
-        int i = sq/8;
-        int j = sq%8;
-        return (bit.chessBoard[i][j]); 
+        return (bit.chessBoard[sq/8][sq%8]); 
+    }
+    //IMPLEMENTAR DEPOIS
+    public long knightMoves(int sq) {
+        return 0L;
     }
 
     public long getPieceSet(int sq) {
@@ -122,4 +115,40 @@ public class Movements {
         }
         return 0L;
     }
+    //tentar substituir por um jeito mais eficiente!
+    public long getPieceMove(int sq) {
+        long set = getPiece(sq);
+        if (set == 'p') {
+            return pawnBlack(sq);
+        }
+        if (set == 'P') {
+            return pawnWhite(sq);
+        }
+        if (set == 'C' || set == 'c') {
+            return knightMoves(sq);
+        }
+        if (set == 'b' || set == 'B') {
+            return bishopGen(sq);
+        }
+
+        if (set == 't'||set == 'T') {
+            return rookGen(sq);
+        }
+        if (set == 'q' || set == 'Q') {
+            return queenMoves(sq);
+        }
+        if (set == 'k' || set == 'K') {
+            return kingMoves(sq);
+        }
+        return 0L;
+    }
+
+    public long[] uncheckedMoves() {
+        long[] moves = new long[64];
+        for (int i = 0; i<64; i++) {
+            moves[i] = getPieceMove(bit.chessBoard[i/8][i%8]);
+        }
+        return moves;
+    }
+
 }

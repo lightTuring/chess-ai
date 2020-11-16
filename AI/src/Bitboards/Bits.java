@@ -3,7 +3,6 @@ package Bitboards;
 //Métodos foram movidos para manipulator, deixando essa classe apenas para armazenar dados
 public class Bits {
     public char[][] chessBoard = new char[8][8];
-    // 0 - nordeste, 1 - norte, 2 - noroeste, 3 - leste, 4 - oeste, 5 - sudeste, 6 - sul, 7- sudoeste 
     public final char[] initPosBlack = { 't', 'c', 'b', 'q', 'k', 'b', 'c', 't' };
     public final char[] initPosWhite = { 'T', 'C', 'B', 'Q', 'K', 'B', 'C', 'T' };
     public long board = 0L;

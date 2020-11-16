@@ -1,7 +1,9 @@
 package Bitboards;
 
 public class Manipulator {
-    public static final long rayAttacks[][] = new long [64][8];
+    // 0 - nordeste, 1 - norte, 2 - noroeste, 3 - leste, 4 - oeste, 5 - sudeste, 6 - sul, 7- sudoeste 
+    public static long rayAttacks[][] = new long [64][8];
+
 
     public static void initBits(Bits bit) {
         for (int i = 0; i < bit.chessBoard.length; i++) {
@@ -20,19 +22,19 @@ public class Manipulator {
 
         initRayEmpty(bit);
     } 
-    private static void initRayEmpty(Bits bit) {
-        for (int i = 0; i<64; i++) {
-            rayAttacks[i][0] = noEaRay(i);
-            rayAttacks[i][1] = northRay(i);
-            rayAttacks[i][2] = noWeRay(i);
-            rayAttacks[i][3] = eastRay(i);
-            rayAttacks[i][4] = westRay(i);
-            rayAttacks[i][5] = soEaRay(i);
-            rayAttacks[i][6] = southRay(i);
-            rayAttacks[i][7] = soWeRay(i);
-        }
-        
+    //INVOCAR ANTES DO JOGO:
+    public static void initRayEmpty(Bits bit) {
+   
+        noEaRay();
+        northRay();
+        noWeRay();
+        eastRay();
+        westRay();
+        soEaRay();
+        southRay();
+        soWeRay();
     }
+
     public static void makeBoards(Bits bit) {
         for (int i = 0; i <64; i++) {
             long mask = (1L << i);
@@ -101,6 +103,10 @@ public class Manipulator {
         return ((x >> 1) + 1);
     }
 
+    public static long reset(long x) {
+        return (x & (x-1)); 
+    }
+
     public static long above_msb_mask_include(long x) {
         return (-(msb(x)));
     }
@@ -108,67 +114,72 @@ public class Manipulator {
     //x tem que ter apenas um bit '1';
     //north é na direção de cima das PRETAS;
     //retorna um long sem conter a peça em si;
-    public static long northRay(long p) {
-        long gen = p;
-        for (int x = 0; x < 7; x++) {
-            p |= (p << 8);
-        }
-        return (p^gen);
+    public static void northRay() {
+        long nort = 72340172838076672L;
+        for (int sq=0; sq < 64; sq++, nort <<= 1)
+            rayAttacks[sq][1] = nort;
     }
-    public static long noEaRay(long p) {
-        long gen = p;
-        for (int x = 0; x < 7; x++) {
-            p |= (p << 9);
+    public static void noEaRay() {
+        long a = 72624976668147712L;
+        for (int j=7; j >= 0; j--, a >>= 8, a &= (a-1)) {
+            long ne = a;
+            for (int i = 0; i < 64; i += 8, ne <<= 8)
+               rayAttacks[i+j][0] = ne;
         }
-        return (p^gen);
-    }
-
-    public static long noWeRay(long p) {
-        long gen = p;
-        for (int x = 0; x < 7; x++) {
-            p |= (p << 7);
-        }
-        return (p^gen);
     }
 
-    public static long eastRay(long p) {
-        long gen = p;
-        for (int x = 0; x < 7; x++) {
-            p |= (p << 1);
+    public static void noWeRay() {
+        long a = -(9205322385119247872L);
+        for (int j=0; j < 8; j++, a <<= 1) {
+            long nw = a;
+            for (int i = 0; i < 64; i += 8, nw <<= 8)
+               rayAttacks[i+j][2] = nw;
         }
-        return (p^gen);
     }
 
-    public static long westRay(long p) {
-        long gen = p;
-        for (int x = 0; x < 7; x++) {
-            p |= (p >> 1);
+    public static void eastRay() {
+        long a = 127L;
+        for (int j=7; j >= 0; j--, a >>= 1) {
+            long e = a;
+            for (int i = 0; i < 64; i += 8, e <<= 8)
+               rayAttacks[i+j][3] = e;
         }
-        return (p^gen);
+    }
+
+    public static void westRay() {
+        long a = -(144115188075855872L);
+        for (int j=0; j < 8; j++, a <<= 1) {
+            long W = a;
+            for (int i = 56; i >= 0; i -= 8, W >>= 8)
+               rayAttacks[i+j][4] = W;
+        }
     }
     
-    public static long southRay(long p) {
-        long gen = p;
-        for (int x = 0; x < 7; x++) {
-            p |= (p >> 8);
+    public static void southRay() {
+        long a = (282578800148737L);
+        for (int j=0; j < 8; j++, a <<= 1) {
+            long W = a;
+            for (int i = 56; i >= 0; i -= 8, W >>= 8)
+               rayAttacks[i+j][6] = W;
         }
-        return (p^gen);
     }
 
-    public static long soWeRay(long p) {
-        long gen = p;
-        for (int x = 0; x < 7; x++) {
-            p |= (p >> 9);
+    public static void soWeRay() {
+        long a = (567382630219904L);
+        for (int j=0; j < 8; j++, a <<= 1, a &= (a-1)) {
+            long W = a;
+            for (int i = 56; i >= 0; i -= 8, W >>= 8)
+               rayAttacks[i+j][7] = W;
         }
-        return (p^gen);
     }
 
-    public static long soEaRay(long p) {
-        long gen = p;
-        for (int x = 0; x < 7; x++) {
-            p |= (p >> 7);
+    public static void soEaRay() {
+        long a = (18049651735527937L);
+        for (int j=7; j >= 0; j--, a >>= 1) {
+            long se = a;
+            for (int i = 56; i >= 0; i -= 8, se >>= 8)
+               rayAttacks[i+j][5] = se;
         }
-        return (p^gen);
     }
 
     public static char getPiece(int sq, Bits bit) {
