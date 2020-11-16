@@ -1,3 +1,9 @@
 1. Verificar se I.A. consegue ver roques; [v] Consegue realizar!
 2. Verificar se I.A. consegue ver en passant;[]
 3. Alterar método de avaliação, pois está um cu. []
+
+BITBOARDS
+1 - Adicionar roque e enpassant;
+2 - adicionar os movimentos restantes;
+3 - corrigir a geração de forma que ele só gere os movimentos 
+normais e os ataques (atualmente ele permite captura de peças da mesma cor!);
