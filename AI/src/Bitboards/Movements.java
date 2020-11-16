@@ -10,6 +10,11 @@ public class Movements {
     //por igual.
     //ATENÇÃO: A IMPLEMENTAÇÃO DAS PEÇAS DESLIZANTES ESTÁ ERRADA 
     //CONSERTAR DEPOIS!!!!!!!!!
+
+    public Movements (Bits bit) {
+        this.bit = bit;
+    }
+
     public long positiveMove(int sq, int a) {
         long board = bit.board;
         long mask = Manipulator.rayAttacks[sq][a] & board;

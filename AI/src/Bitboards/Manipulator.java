@@ -238,4 +238,16 @@ public class Manipulator {
     public static boolean isPiece(int sq, Bits bit) {
         return (getPiece(sq, bit) != 'o');
     }
+    public static long[] indexOfPiece(char b, Bits bit) {
+        long[] positions = new long[10];
+        int p = 0;
+
+        for (int i = 0; i < 64; i++) {
+            if (bit.chessBoard[i/8][i%8] == b) {
+                positions[p] = 1L << i;
+                p++;
+            }
+        }
+        return positions;
+    }
 }
