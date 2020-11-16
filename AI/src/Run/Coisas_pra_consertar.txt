@@ -7,3 +7,4 @@ BITBOARDS
 2 - adicionar os movimentos restantes;
 3 - corrigir a geração de forma que ele só gere os movimentos 
 normais e os ataques (atualmente ele permite captura de peças da mesma cor!);
+4 - Implementar movimento do peão;
