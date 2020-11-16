@@ -189,7 +189,7 @@ public class Manipulator {
     }
 
     public static long getPieceSet(int sq, Bits bit) {
-        long set = getPiece(sq, bit);
+        char set = getPiece(sq, bit);
         if (set == 'p') {
             return bit.pb;
         }
@@ -229,6 +229,48 @@ public class Manipulator {
         }
         return 0L;
     }
+    //considerar otimizar
+    public static long getPieceSet(char set, Bits bit) {
+        if (set == 'p') {
+            return bit.pb;
+        }
+        if (set == 'P') {
+            return bit.pw;
+        }
+        if (set == 'C') {
+            return bit.cw;
+        }
+        if (set == 'c') {
+            return bit.cb;
+        }
+        if (set == 'b') {
+            return bit.bb;
+        }
+        if (set == 'B') {
+            return bit.bw;
+        }
+
+        if (set == 't') {
+            return bit.tb;
+        }
+        if (set == 'T') {
+            return bit.tw;
+        }
+        if (set == 'q') {
+            return bit.qb;
+        }
+        if (set == 'Q') {
+            return bit.qw;
+        }
+        if (set == 'k') {
+            return bit.kb;
+        }
+        if (set == 'K') {
+            return bit.kw;
+        }
+        return 0L;
+    }
+
     public static boolean isWhite(int sq, Bits bit) {
         return (Character.isUpperCase(getPiece(sq, bit)));
     }
@@ -238,16 +280,15 @@ public class Manipulator {
     public static boolean isPiece(int sq, Bits bit) {
         return (getPiece(sq, bit) != 'o');
     }
-    public static long[] indexOfPiece(char b, Bits bit) {
-        long[] positions = new long[10];
-        int p = 0;
-
-        for (int i = 0; i < 64; i++) {
-            if (bit.chessBoard[i/8][i%8] == b) {
-                positions[p] = 1L << i;
-                p++;
-            }
-        }
+    public static long indexOfPiece(char b, Bits bit) {
+        long positions = getPieceSet(b, bit);
         return positions;
+    }
+    public static void setPiece(char b, int sq, Bits bit) {
+        bit.chessBoard[sq/8][sq%8] = b;
+    }
+    public static void changePos(int sqi, int sqf, Bits bit) {
+        bit.chessBoard[sqf/8][sqf%8] = bit.chessBoard[sqi/8][sqi%8];
+        bit.chessBoard[sqi/8][sqi%8] = 'o';
     }
 }

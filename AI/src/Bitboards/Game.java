@@ -3,6 +3,9 @@ package Bitboards;
 @SuppressWarnings("unchecked")
 public class Game {
     public long[] stateBoard = new long[64];
+    public long[] castleBoard = new long[64];
+    public long[] enPassantBoard = new long[64];
+
     public Bits bit = new Bits();
     
     public Game(Bits bit) {
@@ -18,15 +21,16 @@ public class Game {
     }
     public boolean isCheckWhite() {
         Movements move = new Movements(bit);
-        long k = Manipulator.indexOfPiece('K', bit)[0];
+        long k = bit.kw;
         return ((move.blackAttackMap()&k) != 0);
     }
     public boolean isCheckBlack() {
         Movements move = new Movements(bit);
-        long k = Manipulator.indexOfPiece('k', bit)[0];
+        long k = bit.kb;
         return ((move.whiteAttackMap()&k) != 0);
     }
     public boolean isCheckMateWhite() {
+        Movements move = new Movements(bit);
         
     }
 }
