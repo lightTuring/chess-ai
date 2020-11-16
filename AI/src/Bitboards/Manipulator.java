@@ -76,6 +76,15 @@ public class Manipulator {
             }
         }
     }
+    //posição do bit 1 em um long com um único bit 1:
+    public static int positionOfBit(long x) {
+        int count = 0;
+        while (x != 0) {
+            x>>=1;
+            count++;
+        }
+        return count;
+    }
     //bit 1 menos significativo:
     public static long lsb(long x) {
         return (x & -x); 
@@ -287,8 +296,11 @@ public class Manipulator {
     public static void setPiece(char b, int sq, Bits bit) {
         bit.chessBoard[sq/8][sq%8] = b;
     }
+    //automaticamente faz os bitboards ao mover;
     public static void changePos(int sqi, int sqf, Bits bit) {
         bit.chessBoard[sqf/8][sqf%8] = bit.chessBoard[sqi/8][sqi%8];
         bit.chessBoard[sqi/8][sqi%8] = 'o';
+        bit.makeBoards();
     }
+    
 }

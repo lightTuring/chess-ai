@@ -169,7 +169,7 @@ public class Movements {
     }
 
     public long blackAttackMap () {
-        long board = bit.white;
+        long board = bit.black;
         long a = 0L;
         for (int i = 0; i<64; i++) {
             if (Manipulator.isBlack(i, bit)) {
