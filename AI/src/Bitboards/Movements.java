@@ -118,12 +118,13 @@ public class Movements {
     //tentar substituir por um jeito mais eficiente!
     public long getPieceMove(int sq) {
         long set = getPiece(sq);
+        /*resolver ataque dos peões.
         if (set == 'p') {
             return pawnBlack(sq);
         }
         if (set == 'P') {
             return pawnWhite(sq);
-        }
+        }*/
         if (set == 'C' || set == 'c') {
             return knightMoves(sq);
         }
@@ -149,6 +150,28 @@ public class Movements {
             moves[i] = getPieceMove(bit.chessBoard[i/8][i%8]);
         }
         return moves;
+    }
+
+    public long whiteAttackMap () {
+        long board = bit.white;
+        long a = 0L;
+        for (int i = 0; i<64; i++) {
+            if (Manipulator.isWhite(i, bit)) {
+                a |= getPieceMove(i);
+            }
+        }
+        return (a^board);
+    }
+
+    public long blackAttackMap () {
+        long board = bit.white;
+        long a = 0L;
+        for (int i = 0; i<64; i++) {
+            if (Manipulator.isBlack(i, bit)) {
+                a |= getPieceMove(i);
+            }
+        }
+        return (a^board);
     }
 
 }

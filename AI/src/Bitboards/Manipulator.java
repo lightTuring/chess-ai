@@ -229,4 +229,13 @@ public class Manipulator {
         }
         return 0L;
     }
+    public static boolean isWhite(int sq, Bits bit) {
+        return (Character.isUpperCase(getPiece(sq, bit)));
+    }
+    public static boolean isBlack(int sq, Bits bit) {
+        return (Character.isLowerCase(getPiece(sq, bit)) && (getPiece(sq, bit) != 'o'));
+    }
+    public static boolean isPiece(int sq, Bits bit) {
+        return (getPiece(sq, bit) != 'o');
+    }
 }
