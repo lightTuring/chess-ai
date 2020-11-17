@@ -43,48 +43,6 @@ public class Bits {
 
     } 
 
-    public void makeBoards() {
-        for (int i = 0; i <64; i++) {
-            long mask = (1L << i);
-            if (chessBoard[i/8][i%8] != 'o') {
-                board = (board | mask);
-                if (Character.isUpperCase(chessBoard[i/8][i%8])) {
-                    white = (white | mask);
-                }
-                else {
-                    black = (black | mask);
-                }
-                switch (chessBoard[i/8][i%8]) {
-                    case 'p': pb = (pb | mask);
-                        break;
-                    case 'P': pw = (pw | mask);
-                        break;
-                    case 'b': bb = (bb | mask);
-                        break;
-                    case 'B': bw = (bw | mask);
-                        break;
-                    case 'c': cb = (cb | mask);
-                        break;
-                    case 'C': cw = (cw | mask);
-                        break;
-                    case 't': tb = (tb | mask);
-                        break;
-                    case 'T': tw = (tw | mask);
-                        break;
-                    case 'k': kb = (kb | mask);
-                        break;
-                    case 'K': kw = (kw | mask);
-                        break;
-                    case 'q': qb = (qb | mask);
-                        break;
-                    case 'Q': qw = (qw | mask);
-                        break;                  
-            
-                }
-            }
-        }
-    }
-
     @Override
     public Bits clone() throws CloneNotSupportedException {
         Bits b = new Bits();

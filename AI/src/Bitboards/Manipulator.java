@@ -1,29 +1,18 @@
 package Bitboards;
 
 public class Manipulator {
-    // 0 - nordeste, 1 - norte, 2 - noroeste, 3 - leste, 4 - oeste, 5 - sudeste, 6 - sul, 7- sudoeste 
+   
+    // 0 - nordeste, 1 - norte, 2 - noroeste, 3 - leste, 4 - oeste, 5 - sudeste, 6 -
+    // sul, 7- sudoeste
     public static long rayAttacks[][] = new long [64][8];
-
-
-    public static void initBits(Bits bit) {
-        for (int i = 0; i < bit.chessBoard.length; i++) {
-            for (int j = 0; j < bit.chessBoard[i].length; j++) {
-                bit.chessBoard[i][j] = 'o';
-            }
-        }
-        for (int i = 0; i < bit.chessBoard.length; i++)
-            bit.chessBoard[1][i] = 'p';
-        for (int i = 0; i < bit.chessBoard.length; i++)
-            bit.chessBoard[6][i] = 'P';
-        for (int i = 0; i < bit.chessBoard.length; i++)
-            bit.chessBoard[0][i] = bit.initPosBlack[i];
-        for (int i = 0; i < bit.chessBoard.length; i++)
-            bit.chessBoard[7][i] = bit.initPosWhite[i];
-
-        initRayEmpty(bit);
-    } 
+    public static long knightAttacks[] = new long[64];
+    public static final long AFile = Long.parseLong("0000000100000001000000010000000100000001000000010000000100000001", 2);
+    public static final long BAFile = Long.parseLong("0000001100000011000000110000001100000011000000110000001100000011", 2);
+    private static final long HFile = Long.parseLong("1000000010000000100000001000000010000000100000001000000010000000", 2);
+    private static final long HGFile = Long.parseLong("1100000011000000110000001100000011000000110000001100000011000000", 2);;
+ 
     //INVOCAR ANTES DO JOGO:
-    public static void initRayEmpty(Bits bit) {
+    public static void init() {
    
         noEaRay();
         northRay();
@@ -33,7 +22,31 @@ public class Manipulator {
         soEaRay();
         southRay();
         soWeRay();
+
+        for (int i = 0; i<64; i++) {
+            long b = 1L<<i;
+            long a = 0L;
+            a |= noNoEa(b);
+            a |= noEaEa(b);
+            a |= soEaEa(b);
+            a |= soSoEa(b);
+            a |= noNoWe(b);
+            a |= noWeWe(b);
+            a |= soWeWe(b);
+            a |= soSoWe(b);
+            knightAttacks[i] = a;
+        }
     }
+
+    public static long noNoEa(long b) {return (b & ~AFile) << 15;}
+    public static long noEaEa(long b) {return (b & ~BAFile) << 6;} 
+    public static long soEaEa(long b) {return (b & ~BAFile) >> 10;}
+    public static long soSoEa(long b) {return (b & ~AFile ) >> 17;} 
+    public static long noNoWe(long b) {return (b & ~HFile) << 17;}
+    public static long noWeWe(long b) {return (b & ~HGFile) <<  10;}
+    public static long soWeWe(long b) {return (b & ~HGFile) >> 6;}
+    public static long soSoWe(long b) {return (b & ~HFile ) >> 15;}
+    
 
     public static void makeBoards(Bits bit) {
         for (int i = 0; i <64; i++) {
@@ -300,7 +313,7 @@ public class Manipulator {
     public static void changePos(int sqi, int sqf, Bits bit) {
         bit.chessBoard[sqf/8][sqf%8] = bit.chessBoard[sqi/8][sqi%8];
         bit.chessBoard[sqi/8][sqi%8] = 'o';
-        bit.makeBoards();
+        makeBoards(bit);
     }
     
 }

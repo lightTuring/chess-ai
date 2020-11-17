@@ -76,7 +76,7 @@ public class Movements {
     }
     //IMPLEMENTAR DEPOIS
     public long knightMoves(int sq) {
-        return 0L;
+        return Manipulator.knightAttacks[sq];
     }
 
     public long getPieceSet(int sq) {
