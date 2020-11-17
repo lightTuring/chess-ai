@@ -74,51 +74,8 @@ public class Movements {
     public char getPiece(int sq) {
         return (bit.chessBoard[sq/8][sq%8]); 
     }
-    //IMPLEMENTAR DEPOIS
     public long knightMoves(int sq) {
         return Manipulator.knightAttacks[sq];
-    }
-
-    public long getPieceSet(int sq) {
-        long set = getPiece(sq);
-        if (set == 'p') {
-            return bit.pb;
-        }
-        if (set == 'P') {
-            return bit.pw;
-        }
-        if (set == 'C') {
-            return bit.cw;
-        }
-        if (set == 'c') {
-            return bit.cb;
-        }
-        if (set == 'b') {
-            return bit.bb;
-        }
-        if (set == 'B') {
-            return bit.bw;
-        }
-
-        if (set == 't') {
-            return bit.tb;
-        }
-        if (set == 'T') {
-            return bit.tw;
-        }
-        if (set == 'q') {
-            return bit.qb;
-        }
-        if (set == 'Q') {
-            return bit.qw;
-        }
-        if (set == 'k') {
-            return bit.kb;
-        }
-        if (set == 'K') {
-            return bit.kw;
-        }
-        return 0L;
     }
     //tentar substituir por um jeito mais eficiente!
     public long getPieceMove(int sq) {
@@ -156,7 +113,7 @@ public class Movements {
         }
         return moves;
     }
-
+    //tentar otimizar
     public long whiteAttackMap () {
         long board = bit.white;
         long a = 0L;

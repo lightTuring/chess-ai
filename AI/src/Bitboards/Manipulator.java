@@ -6,6 +6,8 @@ public class Manipulator {
     // sul, 7- sudoeste
     public static long rayAttacks[][] = new long [64][8];
     public static long knightAttacks[] = new long[64];
+    public static long kingAttacks[] = new long[64];
+
     public static final long AFile = Long.parseLong("0000000100000001000000010000000100000001000000010000000100000001", 2);
     public static final long BAFile = Long.parseLong("0000001100000011000000110000001100000011000000110000001100000011", 2);
     private static final long HFile = Long.parseLong("1000000010000000100000001000000010000000100000001000000010000000", 2);
@@ -35,7 +37,17 @@ public class Manipulator {
             a |= soWeWe(b);
             a |= soSoWe(b);
             knightAttacks[i] = a;
+            
+            long c = 0L;
+            c |= noEa(b);
+            c |= nort(b);
+            c |= noWe(b);
+            c |= soWe(b);
+            c |= south(b);
+            c |= soEa(b);
+            kingAttacks[i] = c;
         }
+        
     }
 
     public static long noNoEa(long b) {return (b & ~AFile) << 15;}
@@ -46,7 +58,13 @@ public class Manipulator {
     public static long noWeWe(long b) {return (b & ~HGFile) <<  10;}
     public static long soWeWe(long b) {return (b & ~HGFile) >> 6;}
     public static long soSoWe(long b) {return (b & ~HFile ) >> 15;}
-    
+
+    public static long noEa(long b) {return (b & ~AFile) << 7;}
+    public static long nort(long b) {return (b << 8);}
+    public static long noWe(long b) {return (b & ~HFile) << 9;}
+    public static long soWe(long b) {return (b & ~HFile) >> 7;}
+    public static long south(long b) {return (b >> 8);}
+    public static long soEa(long b) {return (b & ~AFile) >> 9;}
 
     public static void makeBoards(Bits bit) {
         for (int i = 0; i <64; i++) {
@@ -292,7 +310,6 @@ public class Manipulator {
         }
         return 0L;
     }
-
     public static boolean isWhite(int sq, Bits bit) {
         return (Character.isUpperCase(getPiece(sq, bit)));
     }
