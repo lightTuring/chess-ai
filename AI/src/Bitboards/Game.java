@@ -13,11 +13,6 @@ public class Game {
     //com a chamada do construtor.
     public Game(Bits bit) {
         this.bit = bit;
-        for (int i= 0; i<64; i++) {
-            this.stateBoard[i] = 0L;
-            this.castleBoard[i] = 0L;
-            this.enPassantBoard[i] = 0L;
-        }
         allLegal();
     }
     public Game clone() throws CloneNotSupportedException {
