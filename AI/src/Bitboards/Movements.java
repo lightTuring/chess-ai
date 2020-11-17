@@ -42,10 +42,10 @@ public class Movements {
     
     public long rookGen(int sq) {
         long a = 0L;
-        for (int i = 1; i<=3; i += 2) {
+        for (int i = 1; i<=4; i += 3) {
             a |= positiveMove(sq, i);
         }
-        for (int i = 4; i<=6; i += 2) {
+        for (int i = 3; i<=6; i += 3) {
             a |= negativeMove(sq, i);
         }
         return a;
@@ -77,16 +77,16 @@ public class Movements {
         return a&bit.board;
     }
 
-    private long doublePawnWhite(int sq) {
+    public long doublePawnWhite(int sq) {
         long b = (1L << sq);
-        long mask = 65280L;
-        return ((b&mask)>>16) & ~ bit.board;
+        long mask = 71776119061217280L;
+        return ((b&mask)>>16) & ~bit.board;
     }
 
     private long doublePawnBlack(int sq) {
         long b = (1L << sq);
-        long mask = 71776119061217280L;
-        return ((b&mask)<<16) & ~ bit.board;
+        long mask = 65280L;
+        return ((b&mask)<<16) & ~bit.board;
     }
 
     public long pawnWhiteTotal(int sq) {
