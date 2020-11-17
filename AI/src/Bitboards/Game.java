@@ -9,6 +9,8 @@ public class Game {
 
     public Bits bit = new Bits();
     
+    //pra não ter que ficar colocando allLegal toda hora ele já entra automaticamente
+    //com a chamada do construtor.
     public Game(Bits bit) {
         this.bit = bit;
         for (int i= 0; i<64; i++) {
@@ -16,6 +18,7 @@ public class Game {
             this.castleBoard[i] = 0L;
             this.enPassantBoard[i] = 0L;
         }
+        allLegal();
     }
     public Game clone() throws CloneNotSupportedException {
         Bits b = this.bit.clone();
