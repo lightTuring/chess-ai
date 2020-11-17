@@ -10,8 +10,8 @@ public class Manipulator {
 
     public static final long AFile = Long.parseLong("0000000100000001000000010000000100000001000000010000000100000001", 2);
     public static final long BAFile = Long.parseLong("0000001100000011000000110000001100000011000000110000001100000011", 2);
-    private static final long HFile = Long.parseLong("1000000010000000100000001000000010000000100000001000000010000000", 2);
-    private static final long HGFile = Long.parseLong("1100000011000000110000001100000011000000110000001100000011000000", 2);;
+    private static final long HFile = -9187201950435737472L;
+    private static final long HGFile = -4557430888798830400L;
  
     //INVOCAR ANTES DO JOGO:
     public static void init() {
@@ -333,4 +333,25 @@ public class Manipulator {
         makeBoards(bit);
     }
     
+    public static long getColorSet(int sq, Bits bit) {
+        long a = 1L << sq;
+        if ((bit.white & a) != 0L) {
+            return bit.white;
+        }
+        return bit.black;
+    }
+    public static void printImage(Bits bit) {
+        char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
+        int[] numbers = { 8, 7, 6, 5, 4, 3, 2, 1 };
+        for (int i = 0; i < bit.chessBoard.length; i++) {
+            for (int j = 0; j < bit.chessBoard[i].length; j++) {
+                System.out.print(bit.chessBoard[i][j]);
+            }
+            System.out.print(" ");
+            System.out.println(numbers[i]);
+        }
+        System.out.println();
+        for (int i = 0; i < letters.length; i++)
+            System.out.print(letters[i]);
+    }
 }

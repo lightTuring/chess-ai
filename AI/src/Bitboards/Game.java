@@ -14,6 +14,7 @@ public class Game {
     public Game(Bits bit) {
         this.bit = bit;
         allLegal();
+        isCheckMate();
     }
     public Game clone() throws CloneNotSupportedException {
         Bits b = this.bit.clone();

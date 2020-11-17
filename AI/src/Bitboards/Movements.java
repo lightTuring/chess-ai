@@ -50,21 +50,55 @@ public class Movements {
         }
         return a;
     } 
-    //falta implementar captura
-    public long pawnWhite(int sq) {
+    private long pawnWhite(int sq) {
         long a = (1L << sq);
         a >>= 8;
-        return a;
+        return a^bit.board;
     }
-    //falta implementar captura
-    public long pawnBlack(int sq) {
+    private long pawnBlack(int sq) {
         long a = (1L << sq);
         a <<= 8;
-        return a;
+        return a^bit.board;
+    }
+
+    private long pawnWhiteAttack(int sq) {
+        long b = (1L << sq);
+        long a = 0L;
+        a |= Manipulator.soEa(b);
+        a |= Manipulator.soWe(b);
+        return a&bit.board;
+    }
+
+    private long pawnBlackAttack(int sq) {
+        long b = (1L << sq);
+        long a = 0L;
+        a |= Manipulator.noEa(b);
+        a |= Manipulator.noWe(b);
+        return a&bit.board;
+    }
+
+    private long doublePawnWhite(int sq) {
+        long b = (1L << sq);
+        long mask = 65280L;
+        return ((b&mask)>>16) ^ bit.board;
+    }
+
+    private long doublePawnBlack(int sq) {
+        long b = (1L << sq);
+        long mask = 71776119061217280L;
+        return ((b&mask)<<16) ^ bit.board;
+    }
+
+    public long pawnWhiteTotal(int sq) {
+        return (pawnWhite(sq) | pawnWhiteAttack(sq) | doublePawnWhite(sq));
+    }
+
+    public long pawnBlackTotal(int sq) {
+        return (pawnBlack(sq) | pawnBlackAttack(sq) | doublePawnBlack(sq));
     }
 
     public long kingMoves(int sq) {
-        return 0L;
+        return Manipulator.kingAttacks[sq];
     }
 
     public long queenMoves(int sq) {
@@ -78,15 +112,44 @@ public class Movements {
         return Manipulator.knightAttacks[sq];
     }
     //tentar substituir por um jeito mais eficiente!
+
     public long getPieceMove(int sq) {
-        long set = getPiece(sq);
-        /*resolver ataque dos peões.
+        char set = getPiece(sq);
+        
         if (set == 'p') {
-            return pawnBlack(sq);
+            return pawnBlackTotal(sq);
         }
         if (set == 'P') {
-            return pawnWhite(sq);
-        }*/
+            return pawnWhiteTotal(sq);
+        }
+        if (set == 'C' || set == 'c') {
+            return knightMoves(sq);
+        }
+        if (set == 'b' || set == 'B') {
+            return bishopGen(sq);
+        }
+
+        if (set == 't'||set == 'T') {
+            return rookGen(sq);
+        }
+        if (set == 'q' || set == 'Q') {
+            return queenMoves(sq);
+        }
+        if (set == 'k' || set == 'K') {
+            return kingMoves(sq);
+        }
+        return 0L;
+    }
+
+    public long getPieceAttacks(int sq) {
+        long set = getPiece(sq);
+
+        if (set == 'p') {
+            return pawnBlackAttack(sq);
+        }
+        if (set == 'P') {
+            return pawnWhiteAttack(sq);
+        }
         if (set == 'C' || set == 'c') {
             return knightMoves(sq);
         }
@@ -109,7 +172,7 @@ public class Movements {
     public long[] uncheckedMoves() {
         long[] moves = new long[64];
         for (int i = 0; i<64; i++) {
-            moves[i] = getPieceMove(bit.chessBoard[i/8][i%8]);
+            moves[i] = getPieceMove(i) ^ Manipulator.getColorSet(i, bit);
         }
         return moves;
     }
@@ -119,7 +182,7 @@ public class Movements {
         long a = 0L;
         for (int i = 0; i<64; i++) {
             if (Manipulator.isWhite(i, bit)) {
-                a |= getPieceMove(i);
+                a |= getPieceAttacks(i);
             }
         }
         return (a^board);
@@ -130,7 +193,7 @@ public class Movements {
         long a = 0L;
         for (int i = 0; i<64; i++) {
             if (Manipulator.isBlack(i, bit)) {
-                a |= getPieceMove(i);
+                a |= getPieceAttacks(i);
             }
         }
         return (a^board);
