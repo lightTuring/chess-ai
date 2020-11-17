@@ -53,12 +53,12 @@ public class Movements {
     private long pawnWhite(int sq) {
         long a = (1L << sq);
         a >>= 8;
-        return a^bit.board;
+        return a& ~bit.board;
     }
     private long pawnBlack(int sq) {
         long a = (1L << sq);
         a <<= 8;
-        return a^bit.board;
+        return a& ~bit.board;
     }
 
     private long pawnWhiteAttack(int sq) {
@@ -80,13 +80,13 @@ public class Movements {
     private long doublePawnWhite(int sq) {
         long b = (1L << sq);
         long mask = 65280L;
-        return ((b&mask)>>16) ^ bit.board;
+        return ((b&mask)>>16) & ~ bit.board;
     }
 
     private long doublePawnBlack(int sq) {
         long b = (1L << sq);
         long mask = 71776119061217280L;
-        return ((b&mask)<<16) ^ bit.board;
+        return ((b&mask)<<16) & ~ bit.board;
     }
 
     public long pawnWhiteTotal(int sq) {
@@ -172,7 +172,7 @@ public class Movements {
     public long[] uncheckedMoves() {
         long[] moves = new long[64];
         for (int i = 0; i<64; i++) {
-            moves[i] = getPieceMove(i) ^ Manipulator.getColorSet(i, bit);
+            moves[i] = getPieceMove(i) & ~Manipulator.getColorSet(i, bit);
         }
         return moves;
     }
@@ -185,7 +185,7 @@ public class Movements {
                 a |= getPieceAttacks(i);
             }
         }
-        return (a^board);
+        return (a& ~board);
     }
 
     public long blackAttackMap () {
@@ -196,7 +196,7 @@ public class Movements {
                 a |= getPieceAttacks(i);
             }
         }
-        return (a^board);
+        return (a& ~board);
     }
 
 }

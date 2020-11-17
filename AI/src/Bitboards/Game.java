@@ -77,7 +77,7 @@ public class Game {
                         a |= lsb;
                     }
                     Manipulator.changePos(pos, sq, bit);
-                    Manipulator.reset(x);
+                    x = Manipulator.reset(x);
                 }
             }
             stateBoard[sq] = a;
