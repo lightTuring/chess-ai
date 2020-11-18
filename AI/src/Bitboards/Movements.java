@@ -15,6 +15,8 @@ public class Movements {
         this.bit = bit;
     }
 
+    
+
     public long positiveMove(int sq, int a) {
         long board = bit.board;
         long mask = Manipulator.rayAttacks[sq][a] & board;

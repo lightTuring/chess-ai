@@ -28,6 +28,8 @@ public class PvP {
             int[] jj = Translator.NotationChessToComputer(second.charAt(0), Character.getNumericValue(second.charAt(1)));
             
             try {
+                long time = System.currentTimeMillis();
+                
                 game.allLegal();
                 game.move(ii[0], ii[1], jj[0], jj[1]);
                 game.allLegal();
@@ -35,6 +37,8 @@ public class PvP {
                 game.isCheckMateWhite();
                 game.isBlackPromotion();
                 game.isWhitePromotion();
+                long tn = System.currentTimeMillis();
+                System.out.println(tn - time);
             }
             catch (BoardOutOfBoundsException b) {
                 System.err.println("\n*Fora do tabuleiro*\n");

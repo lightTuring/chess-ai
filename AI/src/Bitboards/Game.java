@@ -44,22 +44,6 @@ public class Game {
         }
         return true;
     }
-    public boolean isCheckWhite() {
-        Movements move = new Movements(bit);
-        long k = bit.kw;
-        return ((move.blackAttackMap()&k) != 0L);
-    }
-    public boolean isCheckBlack() {
-        Movements move = new Movements(bit);
-        long k = bit.kb;
-        return ((move.whiteAttackMap()&k) != 0L);
-    }
-    public boolean isCheck() {
-        if (bit.turn == true) {
-            return isCheckWhite();
-        }
-        return isCheckBlack();
-    }
     //implementar verificação de en passant depois;
     //deve inicializar o jogo;
     public void allLegal() {
@@ -72,11 +56,13 @@ public class Game {
                 while (x != 0L) {
                     long lsb = Manipulator.lsb(x);
                     int pos = Manipulator.positionOfBit(lsb);
+                    char c = Manipulator.getPiece(pos, bit);
                     Manipulator.changePos(sq, pos, bit);
-                    if (!isCheck()) {
+                    if (!(Manipulator.isCheck(bit))) {
                         a |= lsb;
                     }
                     Manipulator.changePos(pos, sq, bit);
+                    Manipulator.changePiece(pos, c, bit);
                     x = Manipulator.reset(x);
                 }
             }
@@ -84,13 +70,13 @@ public class Game {
         }
     }
     public boolean isCheckMateWhite() {
-        if (isCheckWhite() && bit.turn && isEmpty(stateBoard) && isEmpty(enPassantBoard)){
+        if (Manipulator.isCheckWhite(bit) && bit.turn && isEmpty(stateBoard) && isEmpty(enPassantBoard)){
             return true;
         }
         return false;
     }
     public boolean isCheckMateBlack() {
-        if (isCheckBlack() && !bit.turn && isEmpty(stateBoard) && isEmpty(enPassantBoard)){
+        if (Manipulator.isCheckBlack(bit) && !bit.turn && isEmpty(stateBoard) && isEmpty(enPassantBoard)){
             return true;
         }
         return false;

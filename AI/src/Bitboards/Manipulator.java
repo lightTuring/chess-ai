@@ -354,4 +354,25 @@ public class Manipulator {
         for (int i = 0; i < letters.length; i++)
             System.out.print(letters[i]);
     }
+    
+    public static void changePiece(int sq, char c, Bits bit) {
+        bit.chessBoard[sq/8][sq%8] = c; 
+    }
+
+    public static boolean isCheckWhite(Bits bit) {
+        Movements move = new Movements(bit);
+        long k = bit.kw;
+        return ((move.blackAttackMap()&k) != 0L);
+    }
+    public static boolean isCheckBlack(Bits bit) {
+        Movements move = new Movements(bit);
+        long k = bit.kb;
+        return ((move.whiteAttackMap()&k) != 0L);
+    }
+    public static boolean isCheck(Bits bit) {
+        if (bit.turn == true) {
+            return isCheckWhite(bit);
+        }
+        return isCheckBlack(bit);
+    }
 }

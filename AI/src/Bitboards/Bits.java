@@ -44,7 +44,7 @@ public class Bits {
     } 
 
     @Override
-    public Bits clone() throws CloneNotSupportedException {
+    public Bits clone() {
         Bits b = new Bits();
         for (int i= 0; i<8; i++) {
             for (int j= 0; j<8; j++) {

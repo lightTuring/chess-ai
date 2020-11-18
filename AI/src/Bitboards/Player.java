@@ -10,26 +10,33 @@ public class Player {
         Manipulator.init();
         Bits bit = new Bits();
         Manipulator.makeBoards(bit);
-        Manipulator.printImage(bit);
+        
 
         while(!bit.endOfGame) {
-            try {  
+            try {
+                Manipulator.printImage(bit);  
                 System.out.println(" ");
                 int ii = s.nextInt();
                 int ji = s.nextInt();
                 int i = s.nextInt();
                 int j = s.nextInt();
-              
+                long a = System.currentTimeMillis();
+
                 int sqi = 8*ii + ji;
                 int sqf = 8*i + j;
 
                 Game foranucleo = new Game(bit);
                 foranucleo.move(sqi, sqf, bit);
+                long b = System.currentTimeMillis();
+                System.out.println(b - a);
             }
             catch(IllegalMoveException e) {
                 System.err.println("Movimento errado");
             }
         }
+        System.out.println("Acabou");
+        Manipulator.printImage(bit);  
+
         s.close();
     }
 }
