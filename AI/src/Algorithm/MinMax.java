@@ -34,7 +34,7 @@ public class MinMax extends GraphBuilder{
 		
 	}
 	//algoritmo guloso
-	public Board bestPlaying(int node, int depth, boolean isMaximizing) {
+	public Bits bestPlaying(int node, int depth, boolean isMaximizing) {
 
 		double search = algorithm(node, depth, isMaximizing);
 
@@ -49,7 +49,7 @@ public class MinMax extends GraphBuilder{
 				break;
 			}
 		}
-		return gb.getBoard(x);
+		return gb.getBits(x);
 	}
 	/*
 	public static void main(String[] args) {

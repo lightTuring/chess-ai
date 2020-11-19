@@ -1,79 +1,62 @@
 package Algorithm;
 import java.util.LinkedList;
 
-import Rules.Board;
-import Rules.BoardOutOfBoundsException;
-import Rules.Coordinate;
+import Rules.Bits;
+import Rules.Manipulator;
 import Rules.Game;
 import Rules.IllegalMoveException;
-import Rules.UnexpectedPieceException; 
 
 public class AlphaBeta {
-    public Board board;
+    public Bits bit;
     public GraphBuilder gb;
     private final int inf = 1000000007;
 
-    public AlphaBeta(Board board) {
-        this.board = board;
+    public AlphaBeta(Bits bit) {
+        this.bit = bit;
         this.gb = new GraphBuilder();
-		this.gb.createGraph(board);
+		this.gb.createGraph(bit);
     }
 
     public GraphBuilder getGraph() {
         return gb;
     }
-
-    private void createSon(int h) throws BoardOutOfBoundsException, UnexpectedPieceException,
-            IllegalMoveException, CloneNotSupportedException {			
-        Board b = gb.getBoard(h);
+    //otimizar criacao
+    private void createSon(int h) throws IllegalMoveException {
+        Bits b = gb.getBits(h);
         Game g = new Game(b);
-        g.allLegal();
         
-        LinkedList<Board> list = new LinkedList<Board>();
-        for (int i = 0; i<8; i++) {
-            for (int j = 0; j<8; j++) {
-                for (Coordinate c : g.getStateBoard()[i][j]) {
-                    if(c == null) continue;
-                    Game copy = (Game)g.clone();
-                    if ((b.getTurn() == b.isWhite(i,j)) && b.isAPiece(i, j)) {
-                        copy.move(i, j, c.getPos_i(), c.getPos_j());
-                        copy.allLegal();
-                        copy.isCheckMateBlack();
-                        copy.isCheckMateWhite();
-                        list.add(copy.getBoard());
-                    }
-                    
-                }
-                for (Coordinate c : g.getPassBoard()[i][j]) {
-                    if(c == null) continue;
-                    Game copy = (Game)g.clone();
-                    if ((b.getTurn() == b.isWhite(i,j)) && b.isAPiece(i, j)) {
-                        copy.move(i, j, c.getPos_i(), c.getPos_j());
-                        copy.allLegal();
-                        copy.isCheckMateBlack();
-                        copy.isCheckMateWhite();
-                        list.add(copy.getBoard());
-                    }
+        LinkedList<Bits> list = new LinkedList<Bits>();
+        if (!(g.isCheckMateBlack() || g.isCheckMateBlack())) {        
+            for (int sq = 0; sq<64; sq++) {
+                long x = g.stateBoard[sq];  
+                while (x != 0L) {
+                    long lsb = Manipulator.lsb(x);
+                    int pos = Manipulator.positionOfBit(lsb);
+                    Bits copy = b.clone();
+                    g.move(sq, pos, copy);
+                    list.add(copy);
+                    x = Manipulator.reset(x);
                 }
             }
+            if (list.size() != 0) {
+                gb.createGraph(h, list);
+            }
         }
-        if (list.size() != 0) {
-            gb.createGraph(h, list);
-		}
+
 		
     }
     
     private double algorithm(int node, int depth, double a, double b, boolean isMaximizing)
             throws Exception {
-		if(depth == 0){
-            if (gb.getBoard(node).isCheckmateBlack) {
+		if(depth == 0 || gb.getBits(node).endOfGame){
+            if (gb.getBits(node).checkmateBlack) {
                 gb.setWeight(node, Integer.MAX_VALUE);
             }
-            else if (gb.getBoard(node).isCheckmateWhite) {
+            else if (gb.getBits(node).checkmateWhite) {
                 gb.setWeight(node, Integer.MIN_VALUE);
             }
             else {
-                Evaluate e = new Evaluate(gb.getBoard(node));
+                Evaluate e = new Evaluate(gb.getBits(node));
                 gb.setWeight(node, e.total());
             }
             return gb.getWeight(node);
@@ -102,7 +85,7 @@ public class AlphaBeta {
 		}
 		
     }
-    public Board bestPlaying(int node, int depth, boolean isMaximizing) throws Exception {
+    public Bits bestPlaying(int node, int depth, boolean isMaximizing) throws Exception {
 
 		double search = algorithm(node, depth,(double)-inf, (double)inf, isMaximizing);
 
@@ -117,7 +100,7 @@ public class AlphaBeta {
 				break;
 			}
 		}
-		return gb.getBoard(x);
+		return gb.getBits(x);
 	}
 
 }

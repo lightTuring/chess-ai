@@ -1,24 +1,26 @@
 package Notation;
 
-import java.util.Arrays;
 
 public class Translator {
 	
 	private static char[] letters = {'A','B','C','D','E', 'F', 'G', 'H'};
 	private static int[] numbers = {8,7,6,5,4,3,2,1}; 
 		
-	public static int[] NotationChessToComputer(char pos_w, int pos_h) {
-		
-		if((int)pos_w > 90)
-			pos_w = (char)((int)pos_w - ((int)'a' - (int)'A'));
-		
-		int[] OrderedPair = {SearchGross(numbers, pos_h), Arrays.binarySearch(letters, pos_w)};
-				
-		return OrderedPair;
-		
+	public static int NotationChessToComputer(char pos_w, int pos_h) {
+			
+		int i = 7 - (pos_h - 1);
+		int j = 0;
+		if (Character.isUpperCase(pos_w)) {
+			j = pos_w - 'A';
+		}
+		else {
+			j = pos_w - 'a';
+		}
+		return (i*8 + j);
 	}
 	public static String NotationComputerToChess(int i, int j) {
 		
+
 		String OrderedPair = letters[j] + String.valueOf(numbers[i]);
 		
 		return OrderedPair;

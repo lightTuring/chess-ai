@@ -1,4 +1,4 @@
-package Bitboards;
+package Rules;
 
 //Métodos foram movidos para manipulator, deixando essa classe apenas para armazenar dados
 public class Bits {
@@ -40,7 +40,7 @@ public class Bits {
         for (int i = 0; i < chessBoard.length; i++)
             chessBoard[7][i] = initPosWhite[i];
 
-
+        Manipulator.makeBoards(this);
     } 
 
     @Override

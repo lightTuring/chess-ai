@@ -1,7 +1,9 @@
-package Bitboards;
+package Run;
 
 import java.util.Scanner;
-
+import Rules.Manipulator;
+import Rules.Bits;
+import Rules.Game;
 import Rules.IllegalMoveException;
 
 public class Player {
@@ -26,7 +28,7 @@ public class Player {
                 int sqf = 8*i + j;
 
                 Game foranucleo = new Game(bit);
-                foranucleo.move(sqi, sqf, bit);
+                foranucleo.move(sqi, sqf);
                 long b = System.currentTimeMillis();
                 System.out.println(b - a);
             }

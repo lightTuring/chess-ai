@@ -1,4 +1,4 @@
-package Bitboards;
+package Rules;
 
 public class Manipulator {
    
@@ -10,9 +10,15 @@ public class Manipulator {
 
     public static final long AFile = Long.parseLong("0000000100000001000000010000000100000001000000010000000100000001", 2);
     public static final long BAFile = Long.parseLong("0000001100000011000000110000001100000011000000110000001100000011", 2);
-    private static final long HFile = -9187201950435737472L;
-    private static final long HGFile = -4557430888798830400L;
- 
+    public static final long HFile = -9187201950435737472L;
+    public static final long HGFile = -4557430888798830400L;
+    public static final long[] ranks = {-72057594037927936L, Long.parseLong("0000000111111110000000000000000000000000000000000000000000000000", 2), 
+                                        Long.parseLong("0000000000000001111111100000000000000000000000000000000000000000", 2), 
+                                        Long.parseLong("0000000000000000000000011111111000000000000000000000000000000000", 2), 
+                                        Long.parseLong("0000000000000000000000000000000111111110000000000000000000000000", 2), 
+                                        Long.parseLong("0000000000000000000000000000000000000001111111100000000000000000", 2), 
+                                        Long.parseLong("0000000000000000000000000000000000000000000000001111111100000000", 2), 
+                                        Long.parseLong("0000000000000000000000000000000000000000000000000000000011111111", 2)};
     //INVOCAR ANTES DO JOGO:
     public static void init() {
    
@@ -114,7 +120,7 @@ public class Manipulator {
             x>>=1;
             count++;
         }
-        return count;
+        return count-1;
     }
     //bit 1 menos significativo:
     public static long lsb(long x) {
@@ -323,6 +329,9 @@ public class Manipulator {
         long positions = getPieceSet(b, bit);
         return positions;
     }
+    public static int squareOfPiece(char b, Bits bit) {
+        return (positionOfBit(indexOfPiece(b, bit)));
+    }
     public static void setPiece(char b, int sq, Bits bit) {
         bit.chessBoard[sq/8][sq%8] = b;
     }
@@ -330,7 +339,6 @@ public class Manipulator {
     public static void changePos(int sqi, int sqf, Bits bit) {
         bit.chessBoard[sqf/8][sqf%8] = bit.chessBoard[sqi/8][sqi%8];
         bit.chessBoard[sqi/8][sqi%8] = 'o';
-        makeBoards(bit);
     }
     
     public static long getColorSet(int sq, Bits bit) {

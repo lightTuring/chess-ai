@@ -1,175 +1,160 @@
 package Algorithm;
 
-import java.util.LinkedList;
-
-import Rules.Board;
-import Rules.BoardOutOfBoundsException;
-import Rules.Controller;
-import Rules.Coordinate;
-import Rules.UnexpectedPieceException;
+import Rules.Bits;
+import Rules.Manipulator;
+import Rules.Movements;
 
 public class Evaluate {
-    Board board;
+    Bits bit;
+    Movements move;
+    long attackWhite;
+    long attackBlack;
 
-    public Evaluate(Board board) {
-        this.board = board;
+    public Evaluate(Bits bit) {
+        this.bit = bit;
+        this.move = new Movements(bit);
+        this.attackWhite = move.whiteAttackMap();
+        this.attackBlack= move.blackAttackMap();
     }
 
-    private double piece() throws BoardOutOfBoundsException {
+    private double piece() {
         double white = 0;
         double black = 0;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (board.isWhite(i, j)) {
-                    if (board.getPiece(i, j) == 'P')
+        for (int i = 0; i < 64; i++) {
+                if (Manipulator.isWhite(i, bit)) {
+                    if (Manipulator.getPiece(i, bit) == 'P')
                         white = white + 1;
-                    if (board.getPiece(i, j) == 'Q')
+                    if (Manipulator.getPiece(i, bit) == 'Q')
                         white = white + 9;
-                    if (board.getPiece(i, j) == 'T')
+                    if (Manipulator.getPiece(i, bit) == 'T')
                         white = white + 5;
-                    if (board.getPiece(i, j) == 'B')
+                    if (Manipulator.getPiece(i, bit) == 'B')
                         white = white + 3.5;
-                    if (board.getPiece(i, j) == 'C')
+                    if (Manipulator.getPiece(i, bit) == 'C')
                         white = white + 3;
                 } else {
-                    if (board.getPiece(i, j) == 'p')
+                    if (Manipulator.getPiece(i, bit) == 'p')
                         black = black + 1;
-                    if (board.getPiece(i, j) == 'q')
+                    if (Manipulator.getPiece(i, bit) == 'q')
                         black = black + 9;
-                    if (board.getPiece(i, j) == 't')
+                    if (Manipulator.getPiece(i, bit) == 't')
                         black = black + 5;
-                    if (board.getPiece(i, j) == 'b')
+                    if (Manipulator.getPiece(i, bit) == 'b')
                         black = black + 3.5;
-                    if (board.getPiece(i, j) == 'c')
+                    if (Manipulator.getPiece(i, bit) == 'c')
                         black = black + 3;
                 }
             }
-        }
+        
         return (white - black);
     }
 
-    private double kingSafety() throws BoardOutOfBoundsException {
+    private double kingSafety()  {
         double white = 0;
         double black = 0;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (board.getPiece(i, j) == 'K') {
-                    LinkedList<Coordinate> safeWhite = Controller.getQueenMoves(board, i, j);
-                    white = -(Math.sqrt((double)safeWhite.size())/1.5);
-                }
-                if (board.getPiece(i, j) == 'k') {
-                    LinkedList<Coordinate> safeBlack = Controller.getQueenMoves(board, i, j);
-                    black = -(Math.sqrt((double)safeBlack.size())/1.5);
-                }
-            }
-        }
+        int w = Manipulator.squareOfPiece('K', bit);
+        int b = Manipulator.squareOfPiece('k', bit);
+
+        long x = move.queenMoves(w);
+        white = -(Math.sqrt((double)Long.bitCount(x))/1.5);
+
+            
+        long y = move.queenMoves(b);
+        black = -(Math.sqrt((double)Long.bitCount(y))/1.5);
+            
+        
         return (white - black);
     }
 
-    private double pieceSafety() throws Exception {
+    private double pieceSafety()  {
         double white = 0;
         double black = 0;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (board.isBlack(i, j) && Controller.isSquareDefended(new Coordinate(i, j), board)) {
-                    if ((board.getPiece(i, j) == 'b') || (board.getPiece(i, j) == 't')
-                            || (board.getPiece(i, j) == 'c')) {
+        for (int i = 0; i < 64; i++) {
+                if (Manipulator.isBlack(i, bit) && move.isDefendedBlack(i)) {
+                    if ((Manipulator.getPiece(i, bit) == 'b') || (Manipulator.getPiece(i, bit) == 't') || (Manipulator.getPiece(i, bit) == 'c')) {
                         black++;
                     }
-                    if ((board.getPiece(i, j) == 'p')) {
+                    if ((Manipulator.getPiece(i, bit) == 'p')) {
                         black += 0.1;
                     }
                 }
-                if (board.isWhite(i, j) && Controller.isSquareDefended(new Coordinate(i, j), board)) {
-                    if ((board.getPiece(i, j) == 'B') || (board.getPiece(i, j) == 'T')
-                            || (board.getPiece(i, j) == 'C')) {
+                else if (Manipulator.isWhite(i, bit) && move.isDefendedWhite(i)) {
+                    if (Manipulator.getPiece(i, bit) == 'B' || (Manipulator.getPiece(i, bit) == 'T') || (Manipulator.getPiece(i, bit) == 'C')) {
                         white++;
                     }
-                    if ((board.getPiece(i, j) == 'P')) {
+                    if ((Manipulator.getPiece(i, bit) == 'P')) {
                         white += 0.1;
                     }
                 }
-            }
         }
         return (white - black);
     }
 
-    private double kingMobility() throws BoardOutOfBoundsException {
+    private double kingMobility() {
         double white = 0;
         double black = 0;
-        Coordinate[] whiteKing = board.indexOfPiece('K');
-        Coordinate[] blackKing = board.indexOfPiece('k');
-        LinkedList<Coordinate> listWhite = Controller.getKingMoves(board, whiteKing[0].getPos_i(), whiteKing[0].getPos_j());
-        LinkedList<Coordinate> listBlack = Controller.getKingMoves(board, blackKing[0].getPos_i(), blackKing[0].getPos_j());
-        white = Math.sqrt((double) listWhite.size())/3.0;
-        black = Math.sqrt((double) listBlack.size())/3.0;
+        int kingWhite = Manipulator.squareOfPiece('K', bit);
+        int kingBlack = Manipulator.squareOfPiece('k', bit);
+
+        long listWhite = move.kingMoves(kingWhite) & ~bit.white;
+        long listBlack = move.kingMoves(kingBlack) & ~bit.black;
+        white = Math.sqrt((double) listWhite)/3.0;
+        black = Math.sqrt((double) Long.bitCount(listBlack))/3.0;
         return (white - black);
     }
 
     private double pawnAdvancement() {
         double white = 0;
         double black = 0;
-        Coordinate[] listWhite = board.indexOfPiece('P');
-        Coordinate[] listBlack = board.indexOfPiece('p');
-        for (Coordinate c : listWhite) {
-            if (c != null) {
-                int i = c.getPos_i();
-                if (i != 7) {
-                    white += (7 - (i + 1)) * 0.2;
-                }
-            }
+        long whitePawn = bit.pw;
+        long blackPawn = bit.pb;
+        while (whitePawn != 0L) {
+            long x = Manipulator.lsb(whitePawn);
+            int pos = Manipulator.positionOfBit(x);
+            white += 6 - (pos/8) ;
+            whitePawn = Manipulator.reset(whitePawn);
         }
-        for (Coordinate c : listBlack) {
-            if (c != null) {
-                int i = c.getPos_i();
-                black += (i - 1) * 0.2;
-            }
+        while (blackPawn != 0L) {
+            long x = Manipulator.lsb(blackPawn);
+            int pos = Manipulator.positionOfBit(x);
+            black += (pos/8) - 1 ;
+            blackPawn = Manipulator.reset(blackPawn);
         }
+
+        
         return (white - black);
 
     }
-
-    private double pieceMobility() throws BoardOutOfBoundsException, UnexpectedPieceException {
+    /*
+    private double pieceMobility() {
         double white = 0;
         double black = 0;
         for (int i = 0; i<8; i++) {
             for (int j = 0; j<8; j++) {
-                if (board.isWhite(i, j)) {
-                    if (board.getPiece(i, j) == 'T')  
-                        white = white + Math.sqrt((double)Controller.getRookMoves(board, i, j).size())/2;
-                    if (board.getPiece(i, j) == 'B')  
-                        white = white + Math.sqrt((double)Controller.getBishopMoves(board, i, j).size())/2;
-                    if (board.getPiece(i, j) == 'C')  
-                        white = white + Math.sqrt((double)Controller.getKnightMoves(board, i, j).size())/2;
+                if (bit.isWhite(i, j)) {
+                    if (bit.getPiece(i, j) == 'T')  
+                        white = white + Math.sqrt((double)Controller.getRookMoves(bit, i, j).size())/2;
+                    if (bit.getPiece(i, j) == 'B')  
+                        white = white + Math.sqrt((double)Controller.getBishopMoves(bit, i, j).size())/2;
+                    if (bit.getPiece(i, j) == 'C')  
+                        white = white + Math.sqrt((double)Controller.getKnightMoves(bit, i, j).size())/2;
                     }
                 else {
-                    if (board.getPiece(i, j) == 't')  
-                        black += Math.sqrt((double)Controller.getRookMoves(board, i, j).size())/2;
-                    if (board.getPiece(i, j) == 'b')  
-                        black += Math.sqrt((double)Controller.getBishopMoves(board, i, j).size())/2;
-                    if (board.getPiece(i, j) == 'c')  
-                        black += Math.sqrt((double)Controller.getKnightMoves(board, i, j).size())/2;
+                    if (bit.getPiece(i, j) == 't')  
+                        black += Math.sqrt((double)Controller.getRookMoves(bit, i, j).size())/2;
+                    if (bit.getPiece(i, j) == 'b')  
+                        black += Math.sqrt((double)Controller.getBishopMoves(bit, i, j).size())/2;
+                    if (bit.getPiece(i, j) == 'c')  
+                        black += Math.sqrt((double)Controller.getKnightMoves(bit, i, j).size())/2;
                     }
                 }
             }
 
         return (white-black);
     }
-
-    private double castlePoints() {
-        double white= 0;
-        double black= 0;
-        if (board.hasWhiteCastled) {
-            white+=0.5;
-        }
-        if (board.hasBlackCastled) {
-            black+=0.5;
-        }
-        return (white-black);
+*/
+    public double total () {
+        return (pieceSafety() + piece() + kingSafety() + pawnAdvancement());
     }
-
-    public double total () throws BoardOutOfBoundsException, Exception {
-        return (pieceSafety() + piece() + kingSafety() + pawnAdvancement() + pieceMobility() + castlePoints());
-    }
-
+    
 }

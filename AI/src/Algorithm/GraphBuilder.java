@@ -3,7 +3,7 @@ package Algorithm;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import Rules.Board;
+import Rules.Bits;
 
 public class GraphBuilder {
     
@@ -13,7 +13,7 @@ public class GraphBuilder {
 
     @SuppressWarnings("unchecked")
     private LinkedList<Integer>[] graph = new LinkedList[maxn];//Grafo NÓSxARESTA
-	private LinkedList<Board> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
+	private LinkedList<Bits> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
 	private double[] nodeWeights = new double[maxn];
 	private int[] depthNode = new int[maxn];//profundidades dos nós
 
@@ -24,12 +24,12 @@ public class GraphBuilder {
         }
       //  depthNode[0] = 0;
     }
-    public void createGraph(Board c){
+    public void createGraph(Bits c){
         //graph[0].add(0);
         nodesPos.add(c);
         depthNode[0] = 0;
     }
-    public void createGraph(int nodeFather, LinkedList<Board> u){
+    public void createGraph(int nodeFather, LinkedList<Bits> u){
         if(nodeFather==-1) return;
         for (int i = 0; i < u.size(); i++) {
             //countNodes++;
@@ -76,7 +76,7 @@ public class GraphBuilder {
 	public int getDepthFromNode(int u){
 		return depthNode[u];
 	}
-	public Board getBoard(int node){
+	public Bits getBits(int node){
 		return nodesPos.get(node); 
 	}
     public LinkedList<Integer> getSon(int u){
@@ -84,7 +84,7 @@ public class GraphBuilder {
     }
 	public void printGraph(){
         for (int i = 0; i < countNodes; i++) {
-            System.out.print("The node:" + i + " has connections with this Boards-> ");
+            System.out.print("The node:" + i + " has connections with this Bitss-> ");
             for (int j = 0; j < graph[i].size(); j++) {
                 System.out.print(graph[i].get(j) + " ");
             }
@@ -103,16 +103,16 @@ public class GraphBuilder {
     public static void main(String[] args) {
         
         GraphBuilder g = new GraphBuilder();
-        Board board = new Board();
-        Board board1 = new Board();
-        Board board2 = new Board();
+        Bits Bits = new Bits();
+        Bits Bits1 = new Bits();
+        Bits Bits2 = new Bits();
         
-        Board p1 = new Board(board);
-        Board p2 = new Board(board1);
-        Board p3 = new Board(board2);
+        Bits p1 = new Bits(Bits);
+        Bits p2 = new Bits(Bits1);
+        Bits p3 = new Bits(Bits2);
         g.createGraph(p1);
 
-        LinkedList<Board> ali = new LinkedList<Board>();
+        LinkedList<Bits> ali = new LinkedList<Bits>();
 		ali.add(p2);
         ali.add(p3);
         
@@ -126,13 +126,13 @@ public class GraphBuilder {
     public static void main(String[] args) {
         GraphBuilder gb = new GraphBuilder();
 
-        gb.createGraph(new Board(new Board()));
+        gb.createGraph(new Bits(new Bits()));
 
-        LinkedList<Board> ali = new LinkedList<Board>();
-		ali.add(new Board(new Board()));
-        ali.add(new Board(new Board()));
+        LinkedList<Bits> ali = new LinkedList<Bits>();
+		ali.add(new Bits(new Bits()));
+        ali.add(new Bits(new Bits()));
 
-        gb.createGraph(new Board(new Board()), ali);
+        gb.createGraph(new Bits(new Bits()), ali);
         System.out.println(gb.getDepth());
         gb.printGraph();
     

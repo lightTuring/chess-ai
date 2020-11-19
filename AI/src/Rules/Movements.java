@@ -1,4 +1,4 @@
-package Bitboards;
+package Rules;
 
 public class Movements {
     public Bits bit = new Bits();
@@ -8,8 +8,6 @@ public class Movements {
     //a = qual a direção (norte, nordeste, noroeste e leste).
     //elas não diferenciam a cor das peças, logo ataques e defesas são vistos
     //por igual.
-    //ATENÇÃO: A IMPLEMENTAÇÃO DAS PEÇAS DESLIZANTES ESTÁ ERRADA 
-    //CONSERTAR DEPOIS!!!!!!!!!
 
     public Movements (Bits bit) {
         this.bit = bit;
@@ -70,6 +68,13 @@ public class Movements {
         a |= Manipulator.soWe(b);
         return a&bit.board;
     }
+    private long pawnWhiteAttackUnchecked(int sq) {
+        long b = (1L << sq);
+        long a = 0L;
+        a |= Manipulator.soEa(b);
+        a |= Manipulator.soWe(b);
+        return a;
+    }
 
     private long pawnBlackAttack(int sq) {
         long b = (1L << sq);
@@ -77,6 +82,14 @@ public class Movements {
         a |= Manipulator.noEa(b);
         a |= Manipulator.noWe(b);
         return a&bit.board;
+    }
+
+    private long pawnBlackAttackUnchecked(int sq) {
+        long b = (1L << sq);
+        long a = 0L;
+        a |= Manipulator.noEa(b);
+        a |= Manipulator.noWe(b);
+        return a;
     }
 
     public long doublePawnWhite(int sq) {
@@ -147,10 +160,10 @@ public class Movements {
         long set = getPiece(sq);
 
         if (set == 'p') {
-            return pawnBlackAttack(sq);
+            return pawnBlackAttackUnchecked(sq);
         }
         if (set == 'P') {
-            return pawnWhiteAttack(sq);
+            return pawnWhiteAttackUnchecked(sq);
         }
         if (set == 'C' || set == 'c') {
             return knightMoves(sq);
@@ -199,6 +212,36 @@ public class Movements {
             }
         }
         return (a& ~board);
+    }
+
+    public long blackDefendMap () {
+        long board = bit.white;
+        long a = 0L;
+        for (int i = 0; i<64; i++) {
+            if (Manipulator.isBlack(i, bit)) {
+                a |= getPieceAttacks(i);
+            }
+        }
+        return (a& ~board);
+    }
+
+    public long whiteDefendMap () {
+        long board = bit.black;
+        long a = 0L;
+        for (int i = 0; i<64; i++) {
+            if (Manipulator.isWhite(i, bit)) {
+                a |= getPieceAttacks(i);
+            }
+        }
+        return (a& ~board);
+    }
+
+    public boolean isDefendedWhite(int sq) {
+        return (whiteDefendMap()&(1L<<sq)) != 0L;
+    }
+
+    public boolean isDefendedBlack(int sq) {
+        return (blackDefendMap()&(1L<<sq)) != 0L;
     }
 
 }
