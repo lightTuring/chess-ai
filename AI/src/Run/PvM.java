@@ -18,7 +18,7 @@ public class PvM {
         Scanner s = new Scanner(System.in);
         Manipulator.init();
         Game init = new Game(bit);
-        int depth = 5;
+        int depth = 4;
 
         while (!bit.endOfGame) {
             Manipulator.printImage(bit);
@@ -31,7 +31,7 @@ public class PvM {
                     bit = foraNucleo.bestPlaying(0, depth, false);
                     //System.out.println(foraNucleo.getGraph().HowManyNodes());
                     long tn = System.currentTimeMillis();
-                    //System.out.println(tn - time);                    
+                    System.out.println(tn - time);                    
                 }
                 catch (UnexpectedPieceException b) {
                     System.err.println("\n*Não é peça*\n");

@@ -90,19 +90,6 @@ public class Evaluate {
         return (white - black);
     }
 
-    private double kingMobility() {
-        double white = 0;
-        double black = 0;
-        int kingWhite = Manipulator.squareOfPiece('K', bit);
-        int kingBlack = Manipulator.squareOfPiece('k', bit);
-
-        long listWhite = move.kingMoves(kingWhite) & ~bit.white;
-        long listBlack = move.kingMoves(kingBlack) & ~bit.black;
-        white = Math.sqrt((double) listWhite)/3.0;
-        black = Math.sqrt((double) Long.bitCount(listBlack))/3.0;
-        return (white - black);
-    }
-
     private double pawnAdvancement() {
         double white = 0;
         double black = 0;
@@ -111,13 +98,13 @@ public class Evaluate {
         while (whitePawn != 0L) {
             long x = Manipulator.lsb(whitePawn);
             int pos = Manipulator.positionOfBit(x);
-            white += 6 - (pos/8) ;
+            white += (6 - (pos/8))*0.1;
             whitePawn = Manipulator.reset(whitePawn);
         }
         while (blackPawn != 0L) {
             long x = Manipulator.lsb(blackPawn);
             int pos = Manipulator.positionOfBit(x);
-            black += (pos/8) - 1 ;
+            black += ((pos/8) - 1)*0.1;
             blackPawn = Manipulator.reset(blackPawn);
         }
 
@@ -125,36 +112,27 @@ public class Evaluate {
         return (white - black);
 
     }
-    /*
+    
     private double pieceMobility() {
         double white = 0;
         double black = 0;
-        for (int i = 0; i<8; i++) {
-            for (int j = 0; j<8; j++) {
-                if (bit.isWhite(i, j)) {
-                    if (bit.getPiece(i, j) == 'T')  
-                        white = white + Math.sqrt((double)Controller.getRookMoves(bit, i, j).size())/2;
-                    if (bit.getPiece(i, j) == 'B')  
-                        white = white + Math.sqrt((double)Controller.getBishopMoves(bit, i, j).size())/2;
-                    if (bit.getPiece(i, j) == 'C')  
-                        white = white + Math.sqrt((double)Controller.getKnightMoves(bit, i, j).size())/2;
-                    }
-                else {
-                    if (bit.getPiece(i, j) == 't')  
-                        black += Math.sqrt((double)Controller.getRookMoves(bit, i, j).size())/2;
-                    if (bit.getPiece(i, j) == 'b')  
-                        black += Math.sqrt((double)Controller.getBishopMoves(bit, i, j).size())/2;
-                    if (bit.getPiece(i, j) == 'c')  
-                        black += Math.sqrt((double)Controller.getKnightMoves(bit, i, j).size())/2;
-                    }
+        for (int i = 0; i<64; i++) {
+            if (Manipulator.getPiece(i, bit) != 'q' || Manipulator.getPiece(i, bit) != 'Q') {
+                long x = move.getPieceMove(i) & ~bit.board;
+                if (Manipulator.isWhite(i, bit)) {
+                    white += Math.sqrt((double)Long.bitCount(x));
                 }
-            }
+                else if(Manipulator.isBlack(i, bit)) {
+                    black += Math.sqrt((double)Long.bitCount(x));
+                }                                
+            }                         
+        }
 
         return (white-black);
     }
-*/
+
     public double total () {
-        return (pieceSafety() + piece() + kingSafety() + pawnAdvancement());
+        return (pieceSafety() + piece() + kingSafety() + pawnAdvancement() + pieceMobility());
     }
     
 }

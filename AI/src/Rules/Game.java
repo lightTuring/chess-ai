@@ -72,6 +72,7 @@ public class Game {
                     int pos = Manipulator.positionOfBit(lsb);
                     Bits copy = bit.clone();
                     Manipulator.changePos(sq, pos, copy);
+                    Manipulator.makeBoards(copy);
                     if (!(Manipulator.isCheck(copy))) {
                         a |= lsb;
                     }
