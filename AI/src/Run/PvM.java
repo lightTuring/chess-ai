@@ -17,7 +17,6 @@ public class PvM {
         Bits bit = new Bits();
         Scanner s = new Scanner(System.in);
         Manipulator.init();
-        Game init = new Game(bit);
         int depth = 4;
 
         while (!bit.endOfGame) {
@@ -30,6 +29,7 @@ public class PvM {
                     
                     bit = foraNucleo.bestPlaying(0, depth, false);
                     //System.out.println(foraNucleo.getGraph().HowManyNodes());
+                    Game g = new Game(bit);
                     long tn = System.currentTimeMillis();
                     System.out.println(tn - time);                    
                 }
@@ -56,7 +56,8 @@ public class PvM {
                     int sqi = Translator.NotationChessToComputer(first.charAt(0),first.charAt(1) - '0' );
                     int sqf = Translator.NotationChessToComputer(second.charAt(0), second.charAt(1)- '0');
                     g.move(sqi, sqf);
-                    
+                    g.allLegal();
+                    g.isCheckMate();
                 }
                 catch(StringIndexOutOfBoundsException b){
                     System.err.println("\n*Entrada Inválida*\n");
@@ -65,8 +66,6 @@ public class PvM {
                     System.err.println("\n*Movimento ilegal*\n");
                 }
             }
-            init.allLegal();
-            init.isCheckMate();
         }
         Manipulator.printImage(bit);
         System.out.println(" ");

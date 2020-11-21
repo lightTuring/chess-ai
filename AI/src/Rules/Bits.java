@@ -43,6 +43,11 @@ public class Bits {
         Manipulator.makeBoards(this);
     } 
 
+    public Bits(char[][] board) {
+        chessBoard = board;
+        Manipulator.makeBoards(this);
+    } 
+
     @Override
     public Bits clone() {
         Bits b = new Bits();

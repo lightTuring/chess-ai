@@ -19,11 +19,8 @@ public class Teste {
         Bits bit = new Bits();
         Movements move = new Movements(bit);
         Manipulator.init();
-        Manipulator.makeBoards(bit);
-        Manipulator.printImage(bit);
-        System.out.println(" ");
-        int i = Translator.NotationChessToComputer('e', 4);
-        System.out.println(Manipulator.positionOfBit(Long.parseLong("100000",2)));
+        long x = move.queenMoves(59);
+        System.out.println(Long.toBinaryString(x));
 
         
 

@@ -337,8 +337,14 @@ public class Manipulator {
     }
     //automaticamente faz os bitboards ao mover;
     public static void changePos(int sqi, int sqf, Bits bit) {
+        long x = getPieceSet(sqi, bit);
+        long y = getColorSet(sqi, bit);
+
         bit.chessBoard[sqf/8][sqf%8] = bit.chessBoard[sqi/8][sqi%8];
         bit.chessBoard[sqi/8][sqi%8] = 'o';
+
+        x = (x & ~(1<<sqi)) | (1<<sqf);
+        y = (y & ~(1<<sqi)) | (1<<sqf);
     }
     
     public static long getColorSet(int sq, Bits bit) {

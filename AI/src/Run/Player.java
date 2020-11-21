@@ -10,9 +10,7 @@ public class Player {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         Manipulator.init();
-        Bits bit = new Bits();
-        Manipulator.makeBoards(bit);
-        
+        Bits bit = new Bits();        
 
         while(!bit.endOfGame) {
             try {

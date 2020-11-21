@@ -30,7 +30,6 @@ public class Game {
         if ((stateBoard[sqi] & target) != 0L) {
             Manipulator.changePos(sqi, sqf, bit);
             bit.turn = !bit.turn;
-            Manipulator.makeBoards(bit);
         }
         else {
             throw new IllegalMoveException("Movimento errado");
@@ -42,7 +41,6 @@ public class Game {
         if ((stateBoard[sqi] & target) != 0L) {
             Manipulator.changePos(sqi, sqf, bit);
             bit.turn = !bit.turn;
-            Manipulator.makeBoards(bit);
         }
         else {
             throw new IllegalMoveException("Movimento errado");
@@ -72,7 +70,6 @@ public class Game {
                     int pos = Manipulator.positionOfBit(lsb);
                     Bits copy = bit.clone();
                     Manipulator.changePos(sq, pos, copy);
-                    Manipulator.makeBoards(copy);
                     if (!(Manipulator.isCheck(copy))) {
                         a |= lsb;
                     }
