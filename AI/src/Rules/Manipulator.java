@@ -337,14 +337,51 @@ public class Manipulator {
     }
     //automaticamente faz os bitboards ao mover;
     public static void changePos(int sqi, int sqf, Bits bit) {
-        long x = getPieceSet(sqi, bit);
-        long y = getColorSet(sqi, bit);
+        char c = bit.chessBoard[sqi/8][sqi%8];
+        if (c != 'o') {     
+            long x = 1L<<sqi;
+            long y = 1L<<sqf;
 
-        bit.chessBoard[sqf/8][sqf%8] = bit.chessBoard[sqi/8][sqi%8];
-        bit.chessBoard[sqi/8][sqi%8] = 'o';
-
-        x = (x & ~(1<<sqi)) | (1<<sqf);
-        y = (y & ~(1<<sqi)) | (1<<sqf);
+            bit.board = (bit.board & ~x) | y;
+            if (Character.isUpperCase(c)) {
+                bit.white = (bit.white & ~x) | y;
+                switch (c) {
+                    case 'P': bit.pw = (bit.pw & ~x) | y;
+                        break;
+                    case 'B': bit.bw = (bit.bw & ~x) | y;
+                        break;
+                    case 'C': bit.cw = (bit.cw & ~x) | y;
+                        break;
+                    case 'T': bit.tw = (bit.tw& ~x) | y;
+                        break;
+                    case 'K': bit.kw = (bit.kw & ~x) | y;
+                        break;
+                    case 'Q': bit.qw = (bit.qw & ~x) | y;
+                        break;                  
+            
+                }
+            }
+            else {
+                bit.black = (bit.black & ~x) | y;
+                switch (c) {
+                    case 'p': bit.pb = (bit.pb & ~x) | y;
+                        break;
+                    case 'b': bit.bb = (bit.bb & ~x) | y;
+                        break;
+                    case 'c': bit.cb = (bit.cb & ~x) | y;
+                        break;
+                    case 't': bit.tb = (bit.tb & ~x) | y;
+                        break;
+                    case 'k': bit.kb = (bit.kb & ~x) | y;
+                        break;
+                    case 'q': bit.qb = (bit.qb & ~x) | y;
+                        break;           
+            
+                }
+            }
+            bit.chessBoard[sqf/8][sqf%8] = bit.chessBoard[sqi/8][sqi%8];
+            bit.chessBoard[sqi/8][sqi%8] = 'o';
+        }
     }
     
     public static long getColorSet(int sq, Bits bit) {

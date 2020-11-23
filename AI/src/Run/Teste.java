@@ -19,9 +19,9 @@ public class Teste {
         Bits bit = new Bits();
         Movements move = new Movements(bit);
         Manipulator.init();
-        long x = move.queenMoves(59);
+        long x = move.bishopGen(2);
         System.out.println(Long.toBinaryString(x));
-
+        
         
 
         /*
