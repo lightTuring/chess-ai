@@ -1,5 +1,7 @@
 package Rules;
 
+import java.util.HashMap;
+
 public class Manipulator {
    
     // 0 - nordeste, 1 - norte, 2 - noroeste, 3 - leste, 4 - oeste, 5 - sudeste, 6 -
@@ -19,6 +21,9 @@ public class Manipulator {
                                         Long.parseLong("0000000000000000000000000000000000000001111111100000000000000000", 2), 
                                         Long.parseLong("0000000000000000000000000000000000000000000000001111111100000000", 2), 
                                         Long.parseLong("0000000000000000000000000000000000000000000000000000000011111111", 2)};
+    //pretas pares, brancas ímpares
+    // peão 0 e 1; cavalo: 2 e 3; bispo: 4 e 5; torre: 6 e 7; rainha: 8 e 9; rei: 10 e 11
+    public static HashMap<Character, Integer> mapa = new HashMap<Character, Integer>();
     //INVOCAR ANTES DO JOGO:
     public static void init() {
    
@@ -53,7 +58,18 @@ public class Manipulator {
             c |= soEa(b);
             kingAttacks[i] = c;
         }
-        
+        mapa.put('p', 0);
+        mapa.put('P', 1);
+        mapa.put('c', 2);
+        mapa.put('C', 3);
+        mapa.put('b', 4);
+        mapa.put('B', 5);
+        mapa.put('t', 6);
+        mapa.put('T', 7);
+        mapa.put('q', 8);
+        mapa.put('Q', 9);
+        mapa.put('k', 10);
+        mapa.put('K', 11);
     }
 
     public static long noNoEa(long b) {return (b & ~AFile) << 15;}
@@ -73,51 +89,29 @@ public class Manipulator {
     public static long soEa(long b) {return (b & ~AFile) >> 9;}
 
     public static void makeBoards(Bits bit) {
-        for (int i = 0; i <64; i++) {
-            long mask = (1L << i);
-            if (bit.chessBoard[i/8][i%8] != 'o') {
-                bit.board = (bit.board | mask);
-                if (Character.isUpperCase(bit.chessBoard[i/8][i%8])) {
-                    bit.white = (bit.white | mask);
+        for (int sq = 0; sq <64; sq++) {
+            long mask = (1L << sq);
+            char c = bit.chessBoard[sq/8][sq%8];
+            if (isPiece(sq, bit)) {
+                bit.board |= mask;
+                if(Character.isUpperCase(c)) {
+                    bit.white = bit.white | mask;
                 }
                 else {
-                    bit.black = (bit.black | mask);
+                    bit.black = bit.black | mask;
                 }
-                switch (bit.chessBoard[i/8][i%8]) {
-                    case 'p': bit.pb = (bit.pb | mask);
-                        break;
-                    case 'P': bit.pw = (bit.pw | mask);
-                        break;
-                    case 'b': bit.bb = (bit.bb | mask);
-                        break;
-                    case 'B': bit.bw = (bit.bw | mask);
-                        break;
-                    case 'c': bit.cb = (bit.cb | mask);
-                        break;
-                    case 'C': bit.cw = (bit.cw | mask);
-                        break;
-                    case 't': bit.tb = (bit.tb | mask);
-                        break;
-                    case 'T': bit.tw = (bit.tw | mask);
-                        break;
-                    case 'k': bit.kb = (bit.kb | mask);
-                        break;
-                    case 'K': bit.kw = (bit.kw | mask);
-                        break;
-                    case 'q': bit.qb = (bit.qb | mask);
-                        break;
-                    case 'Q': bit.qw = (bit.qw | mask);
-                        break;                  
-            
-                }
+                int i = Manipulator.mapa.get(c);
+                bit.pieceBoard[i] = bit.pieceBoard[i] | mask;
             }
+            
+            
         }
     }
     //posição do bit 1 em um long com um único bit 1:
     public static int positionOfBit(long x) {
         int count = 0;
         while (x != 0L) {
-            x>>=1;
+            x>>>=1;
             count++;
         }
         return count-1;
@@ -234,88 +228,6 @@ public class Manipulator {
         return (bit.chessBoard[i][j]); 
     }
 
-    public static long getPieceSet(int sq, Bits bit) {
-        char set = getPiece(sq, bit);
-        if (set == 'p') {
-            return bit.pb;
-        }
-        if (set == 'P') {
-            return bit.pw;
-        }
-        if (set == 'C') {
-            return bit.cw;
-        }
-        if (set == 'c') {
-            return bit.cb;
-        }
-        if (set == 'b') {
-            return bit.bb;
-        }
-        if (set == 'B') {
-            return bit.bw;
-        }
-
-        if (set == 't') {
-            return bit.tb;
-        }
-        if (set == 'T') {
-            return bit.tw;
-        }
-        if (set == 'q') {
-            return bit.qb;
-        }
-        if (set == 'Q') {
-            return bit.qw;
-        }
-        if (set == 'k') {
-            return bit.kb;
-        }
-        if (set == 'K') {
-            return bit.kw;
-        }
-        return 0L;
-    }
-    //considerar otimizar
-    public static long getPieceSet(char set, Bits bit) {
-        if (set == 'p') {
-            return bit.pb;
-        }
-        if (set == 'P') {
-            return bit.pw;
-        }
-        if (set == 'C') {
-            return bit.cw;
-        }
-        if (set == 'c') {
-            return bit.cb;
-        }
-        if (set == 'b') {
-            return bit.bb;
-        }
-        if (set == 'B') {
-            return bit.bw;
-        }
-
-        if (set == 't') {
-            return bit.tb;
-        }
-        if (set == 'T') {
-            return bit.tw;
-        }
-        if (set == 'q') {
-            return bit.qb;
-        }
-        if (set == 'Q') {
-            return bit.qw;
-        }
-        if (set == 'k') {
-            return bit.kb;
-        }
-        if (set == 'K') {
-            return bit.kw;
-        }
-        return 0L;
-    }
     public static boolean isWhite(int sq, Bits bit) {
         return (Character.isUpperCase(getPiece(sq, bit)));
     }
@@ -326,7 +238,7 @@ public class Manipulator {
         return (getPiece(sq, bit) != 'o');
     }
     public static long indexOfPiece(char b, Bits bit) {
-        long positions = getPieceSet(b, bit);
+        long positions = bit.pieceBoard[Manipulator.mapa.get(b)];
         return positions;
     }
     public static int squareOfPiece(char b, Bits bit) {
@@ -338,6 +250,7 @@ public class Manipulator {
     //automaticamente faz os bitboards ao mover;
     public static void changePos(int sqi, int sqf, Bits bit) {
         char c = bit.chessBoard[sqi/8][sqi%8];
+        char d = bit.chessBoard[sqf/8][sqf%8];
         if (c != 'o') {     
             long x = 1L<<sqi;
             long y = 1L<<sqf;
@@ -345,40 +258,25 @@ public class Manipulator {
             bit.board = (bit.board & ~x) | y;
             if (Character.isUpperCase(c)) {
                 bit.white = (bit.white & ~x) | y;
-                switch (c) {
-                    case 'P': bit.pw = (bit.pw & ~x) | y;
-                        break;
-                    case 'B': bit.bw = (bit.bw & ~x) | y;
-                        break;
-                    case 'C': bit.cw = (bit.cw & ~x) | y;
-                        break;
-                    case 'T': bit.tw = (bit.tw& ~x) | y;
-                        break;
-                    case 'K': bit.kw = (bit.kw & ~x) | y;
-                        break;
-                    case 'Q': bit.qw = (bit.qw & ~x) | y;
-                        break;                  
-            
-                }
             }
             else {
                 bit.black = (bit.black & ~x) | y;
-                switch (c) {
-                    case 'p': bit.pb = (bit.pb & ~x) | y;
-                        break;
-                    case 'b': bit.bb = (bit.bb & ~x) | y;
-                        break;
-                    case 'c': bit.cb = (bit.cb & ~x) | y;
-                        break;
-                    case 't': bit.tb = (bit.tb & ~x) | y;
-                        break;
-                    case 'k': bit.kb = (bit.kb & ~x) | y;
-                        break;
-                    case 'q': bit.qb = (bit.qb & ~x) | y;
-                        break;           
-            
-                }
             }
+
+            int i = Manipulator.mapa.get(c);
+            bit.pieceBoard[i] = (bit.pieceBoard[i]& ~x) | y;
+
+            if (d != 'o') {
+                if (Character.isUpperCase(d)) {
+                    bit.white = (bit.white & ~y);
+                }
+                else {
+                    bit.black = (bit.black & ~y);
+                }
+                int j = Manipulator.mapa.get(d);
+                bit.pieceBoard[j] = (bit.pieceBoard[j]& ~y);
+            }
+
             bit.chessBoard[sqf/8][sqf%8] = bit.chessBoard[sqi/8][sqi%8];
             bit.chessBoard[sqi/8][sqi%8] = 'o';
         }
@@ -412,12 +310,12 @@ public class Manipulator {
 
     public static boolean isCheckWhite(Bits bit) {
         Movements move = new Movements(bit);
-        long k = bit.kw;
+        long k = indexOfPiece('K', bit);
         return ((move.blackAttackMap()&k) != 0L);
     }
     public static boolean isCheckBlack(Bits bit) {
         Movements move = new Movements(bit);
-        long k = bit.kb;
+        long k = indexOfPiece('k', bit);
         return ((move.whiteAttackMap()&k) != 0L);
     }
     public static boolean isCheck(Bits bit) {

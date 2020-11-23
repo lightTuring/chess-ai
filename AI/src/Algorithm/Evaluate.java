@@ -93,8 +93,8 @@ public class Evaluate {
     private double pawnAdvancement() {
         double white = 0;
         double black = 0;
-        long whitePawn = bit.pw;
-        long blackPawn = bit.pb;
+        long whitePawn = Manipulator.indexOfPiece('P', bit);
+        long blackPawn = Manipulator.indexOfPiece('p', bit);
         while (whitePawn != 0L) {
             long x = Manipulator.lsb(whitePawn);
             int pos = Manipulator.positionOfBit(x);

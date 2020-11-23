@@ -8,18 +8,9 @@ public class Bits {
     public long board = 0L;
     public long white = 0L;
     public long black = 0L;
-    public long cb = 0L;
-    public long cw = 0L;
-    public long pb = 0L;
-    public long pw = 0L;
-    public long bb = 0L;
-    public long bw = 0L;
-    public long tb = 0L;
-    public long tw = 0L;
-    public long kb = 0L;
-    public long kw = 0L;
-    public long qb = 0L;
-    public long qw = 0L;
+    //pretas pares; brancas ímpares.
+    // peão 0 e 1; cavalo: 2 e 3; bispo: 4 e 5; torre: 6 e 7; rainha: 8 e 9; rei: 10 e 11
+    public long[] pieceBoard = new long[12];
     public boolean endOfGame = false;
     public boolean checkmateBlack = false;
     public boolean checkmateWhite = false;
@@ -57,18 +48,9 @@ public class Bits {
             }
         }
         b.board = this.board;
-        b.pb = this.pb;
-        b.pw = this.pw;
-        b.bb = this.bb;
-        b.bw = this.bw;
-        b.cb = this.cb;
-        b.cw = this.cw;
-        b.tb = this.tb;
-        b.tw = this.tw;
-        b.kb = this.kb;
-        b.kw = this.kw;
-        b.qb = this.qb;
-        b.qw = this.qw;
+        for (int i = 0; i <pieceBoard.length; i++) {
+            b.pieceBoard[i] = this.pieceBoard[i];
+        }
         b.white = this.white;
         b.black = this.black;
         b.checkmateBlack = this.checkmateBlack;

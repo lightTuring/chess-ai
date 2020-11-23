@@ -16,12 +16,12 @@ public class Teste {
         return false;
     }
     public static void main(String[] args) {
-        Bits bit = new Bits();
-        Movements move = new Movements(bit);
         Manipulator.init();
+        Bits bit = new Bits();
+        Movements move = new Movements(bit);        
         long x = move.bishopGen(2);
         System.out.println(Long.toBinaryString(x));
-        
+        System.out.println(Manipulator.mapa.get('k'));
         
 
         /*

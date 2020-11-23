@@ -13,11 +13,10 @@ import Rules.UnexpectedPieceException;
 //rodar em um while
 public class PvM {
     public static void main(String[] args) throws Exception {
-
-        Bits bit = new Bits();
-        Scanner s = new Scanner(System.in);
         Manipulator.init();
-        int depth = 4;
+        Bits bit = new Bits();
+        Scanner s = new Scanner(System.in);        
+        int depth = 5;
 
         while (!bit.endOfGame) {
             Manipulator.printImage(bit);
@@ -25,8 +24,7 @@ public class PvM {
             System.out.println();
             if(!bit.turn){
                 try {
-                    long time = System.currentTimeMillis();
-                    
+                    long time = System.currentTimeMillis();                    
                     bit = foraNucleo.bestPlaying(0, depth, false);
                     //System.out.println(foraNucleo.getGraph().HowManyNodes());
                     Game g = new Game(bit);
