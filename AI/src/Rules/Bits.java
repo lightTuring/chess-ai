@@ -1,5 +1,7 @@
 package Rules;
 
+import java.util.Arrays;
+
 //Métodos foram movidos para manipulator, deixando essa classe apenas para armazenar dados
 public class Bits {
     public char[][] chessBoard = new char[8][8];
@@ -22,14 +24,13 @@ public class Bits {
                 chessBoard[i][j] = 'o';
             }
         }
-        for (int i = 0; i < chessBoard.length; i++)
-            chessBoard[1][i] = 'p';
-        for (int i = 0; i < chessBoard.length; i++)
-            chessBoard[6][i] = 'P';
-        for (int i = 0; i < chessBoard.length; i++)
-            chessBoard[0][i] = initPosBlack[i];
-        for (int i = 0; i < chessBoard.length; i++)
-            chessBoard[7][i] = initPosWhite[i];
+        
+        // Ao invés de usar for-loop, java.util já tem um método otimizado pra isso:
+        Arrays.fill(chessBoard[1], 'p');
+        Arrays.fill(chessBoard[6], 'P');
+        // initPosBlack e White são "final", então não tem problema dar assignment direto assim:
+        chessBoard[0] = initPosBlack;
+        chessBoard[7] = initPosWhite;
 
         Manipulator.makeBoards(this);
     } 
