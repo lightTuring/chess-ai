@@ -15,14 +15,26 @@ public class Teste {
         }
         return false;
     }
+    public static String number(String n) {
+        while (n.length() < 64) {
+            n = "0" + n;
+        }
+        return n;
+    }
     public static void main(String[] args) {
         Manipulator.init();
-        Bits bit = new Bits();
+        char[][] chess ={   {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                            {'o', 'o', 'b', 'o', 't', 'o', 'b', 'o',},
+                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},};
+        Bits bit = new Bits(chess);
         Movements move = new Movements(bit);        
-        long x = move.bishopGen(2);
-        System.out.println(Long.toBinaryString(x));
-        System.out.println(Manipulator.mapa.get('k'));
-        
+        long x = move.rookGen(36);
+        System.out.println(number(Long.toBinaryString(x)));        
 
         /*
         00000000
@@ -33,42 +45,16 @@ public class Teste {
         00000000
         00000000
         00000000
+
+        00010000
+        00010000
+        00010000
+        11101100
+        00010000
+        00010000
+        00010000
+        00010000
         
-        00000000
-        00000000
-        00000000
-        00000001
-        00000000
-        00000000
-        00000000
-        00000000
-
-        00000000
-        00000000
-        00000000
-        00000000
-        00000000
-        00000000
-        00000000
-        11111111
-
-        00000000
-        00000000
-        00000010
-        00000010
-        00000000
-        00000000
-        00000000
-        00000000
-
-        00000000
-        00000000
-        00000000
-        00000000
-        00000000
-        10100101
-        11111111
-        01010110
         */
         
     }

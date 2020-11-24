@@ -74,19 +74,19 @@ public class Manipulator {
 
     public static long noNoEa(long b) {return (b & ~AFile) << 15;}
     public static long noEaEa(long b) {return (b & ~BAFile) << 6;} 
-    public static long soEaEa(long b) {return (b & ~BAFile) >> 10;}
-    public static long soSoEa(long b) {return (b & ~AFile ) >> 17;} 
+    public static long soEaEa(long b) {return (b & ~BAFile) >>> 10;}
+    public static long soSoEa(long b) {return (b & ~AFile ) >>> 17;} 
     public static long noNoWe(long b) {return (b & ~HFile) << 17;}
     public static long noWeWe(long b) {return (b & ~HGFile) <<  10;}
-    public static long soWeWe(long b) {return (b & ~HGFile) >> 6;}
-    public static long soSoWe(long b) {return (b & ~HFile ) >> 15;}
+    public static long soWeWe(long b) {return (b & ~HGFile) >>> 6;}
+    public static long soSoWe(long b) {return (b & ~HFile ) >>> 15;}
 
     public static long noEa(long b) {return (b & ~AFile) << 7;}
     public static long nort(long b) {return (b << 8);}
     public static long noWe(long b) {return (b & ~HFile) << 9;}
-    public static long soWe(long b) {return (b & ~HFile) >> 7;}
-    public static long south(long b) {return (b >> 8);}
-    public static long soEa(long b) {return (b & ~AFile) >> 9;}
+    public static long soWe(long b) {return (b & ~HFile) >>> 7;}
+    public static long south(long b) {return (b >>> 8);}
+    public static long soEa(long b) {return (b & ~AFile) >>> 9;}
 
     public static void makeBoards(Bits bit) {
         for (int sq = 0; sq <64; sq++) {
@@ -134,13 +134,13 @@ public class Manipulator {
     } 
     //bit 1 mais significativo:
     public static long msb(long x) {
-        x |= x >> 32;
-        x |= x >> 16;
-        x |= x >>  8;
-        x |= x >>  4;
-        x |= x >>  2;
-        x |= x >>  1;
-        return ((x >> 1) + 1);
+        x |= x >>> 32;
+        x |= x >>> 16;
+        x |= x >>>  8;
+        x |= x >>>  4;
+        x |= x >>>  2;
+        x |= x >>>  1;
+        return ((x >>> 1) + 1);
     }
 
     public static long reset(long x) {
@@ -161,7 +161,7 @@ public class Manipulator {
     }
     public static void noEaRay() {
         long a = 72624976668147712L;
-        for (int j=7; j >= 0; j--, a >>= 8, a &= (a-1)) {
+        for (int j=7; j >= 0; j--, a >>>= 8, a &= (a-1)) {
             long ne = a;
             for (int i = 0; i < 64; i += 8, ne <<= 8)
                rayAttacks[i+j][0] = ne;
@@ -170,7 +170,7 @@ public class Manipulator {
 
     public static void noWeRay() {
         long a = -(9205322385119247872L);
-        for (int j=0; j < 8; j++, a <<= 1) {
+        for (int j=0; j < 8; j++, a <<= 1, a &= ~AFile) {
             long nw = a;
             for (int i = 0; i < 64; i += 8, nw <<= 8)
                rayAttacks[i+j][2] = nw;
@@ -179,7 +179,7 @@ public class Manipulator {
 
     public static void eastRay() {
         long a = 127L;
-        for (int j=7; j >= 0; j--, a >>= 1) {
+        for (int j=7; j >= 0; j--, a >>>= 1) {
             long e = a;
             for (int i = 0; i < 64; i += 8, e <<= 8)
                rayAttacks[i+j][3] = e;
@@ -190,7 +190,7 @@ public class Manipulator {
         long a = -(144115188075855872L);
         for (int j=0; j < 8; j++, a <<= 1) {
             long W = a;
-            for (int i = 56; i >= 0; i -= 8, W >>= 8)
+            for (int i = 56; i >= 0; i -= 8, W >>>= 8)
                rayAttacks[i+j][4] = W;
         }
     }
@@ -199,7 +199,7 @@ public class Manipulator {
         long a = (282578800148737L);
         for (int j=0; j < 8; j++, a <<= 1) {
             long W = a;
-            for (int i = 56; i >= 0; i -= 8, W >>= 8)
+            for (int i = 56; i >= 0; i -= 8, W >>>= 8)
                rayAttacks[i+j][6] = W;
         }
     }
@@ -208,16 +208,16 @@ public class Manipulator {
         long a = (567382630219904L);
         for (int j=0; j < 8; j++, a <<= 1, a &= (a-1)) {
             long W = a;
-            for (int i = 56; i >= 0; i -= 8, W >>= 8)
+            for (int i = 56; i >= 0; i -= 8, W >>>= 8)
                rayAttacks[i+j][7] = W;
         }
     }
 
     public static void soEaRay() {
         long a = (18049651735527937L);
-        for (int j=7; j >= 0; j--, a >>= 1) {
+        for (int j=7; j >= 0; j--, a >>>= 1, a &= ~HFile) {
             long se = a;
-            for (int i = 56; i >= 0; i -= 8, se >>= 8)
+            for (int i = 56; i >= 0; i -= 8, se >>>= 8)
                rayAttacks[i+j][5] = se;
         }
     }

@@ -32,7 +32,7 @@ public class Evaluate {
                         white = white + 3.5;
                     if (Manipulator.getPiece(i, bit) == 'C')
                         white = white + 3;
-                } else {
+                } else if (Manipulator.isBlack(i, bit)) {
                     if (Manipulator.getPiece(i, bit) == 'p')
                         black = black + 1;
                     if (Manipulator.getPiece(i, bit) == 'q')

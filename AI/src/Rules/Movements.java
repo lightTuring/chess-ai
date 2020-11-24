@@ -52,7 +52,7 @@ public class Movements {
     } 
     private long pawnWhite(int sq) {
         long a = (1L << sq);
-        a >>= 8;
+        a >>>= 8;
         return a& ~bit.board;
     }
     private long pawnBlack(int sq) {
@@ -95,7 +95,7 @@ public class Movements {
     public long doublePawnWhite(int sq) {
         long b = (1L << sq);
         long mask = 71776119061217280L;
-        return ((b&mask)>>16) & ~bit.board;
+        return ((b&mask)>>>16) & ~bit.board;
     }
 
     private long doublePawnBlack(int sq) {

@@ -87,7 +87,7 @@ public class AlphaBeta {
     }
     public Bits bestPlaying(int node, int depth, boolean isMaximizing) throws Exception {
 
-		double search = algorithm(node, depth,(double)-inf, (double)inf, isMaximizing);
+		double search = algorithm(node, depth,(double)(-inf), (double)inf, isMaximizing);
 
 		//Zero-based
 		LinkedList<Integer> son = gb.getSon(0);
