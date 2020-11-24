@@ -16,36 +16,24 @@ public class Evaluate {
         this.attackWhite = move.whiteAttackMap();
         this.attackBlack= move.blackAttackMap();
     }
-
+    //pretas pares, brancas ímpares
+    // peão 0 e 1; cavalo: 2 e 3; bispo: 4 e 5; torre: 6 e 7; rainha: 8 e 9; rei: 10 e 11
     private double piece() {
         double white = 0;
         double black = 0;
-        for (int i = 0; i < 64; i++) {
-                if (Manipulator.isWhite(i, bit)) {
-                    if (Manipulator.getPiece(i, bit) == 'P')
-                        white = white + 1;
-                    if (Manipulator.getPiece(i, bit) == 'Q')
-                        white = white + 9;
-                    if (Manipulator.getPiece(i, bit) == 'T')
-                        white = white + 5;
-                    if (Manipulator.getPiece(i, bit) == 'B')
-                        white = white + 3.5;
-                    if (Manipulator.getPiece(i, bit) == 'C')
-                        white = white + 3;
-                } else if (Manipulator.isBlack(i, bit)) {
-                    if (Manipulator.getPiece(i, bit) == 'p')
-                        black = black + 1;
-                    if (Manipulator.getPiece(i, bit) == 'q')
-                        black = black + 9;
-                    if (Manipulator.getPiece(i, bit) == 't')
-                        black = black + 5;
-                    if (Manipulator.getPiece(i, bit) == 'b')
-                        black = black + 3.5;
-                    if (Manipulator.getPiece(i, bit) == 'c')
-                        black = black + 3;
-                }
-            }
-        
+      
+        white += Long.bitCount(bit.pieceBoard[1]); 
+        white += Long.bitCount(bit.pieceBoard[3])*3;
+        white += Long.bitCount(bit.pieceBoard[5])*3.5;
+        white += Long.bitCount(bit.pieceBoard[7])*5;
+        white += Long.bitCount(bit.pieceBoard[9])*9;
+
+        black += Long.bitCount(bit.pieceBoard[0]); 
+        black += Long.bitCount(bit.pieceBoard[2])*3;
+        black += Long.bitCount(bit.pieceBoard[4])*3.5;
+        black += Long.bitCount(bit.pieceBoard[6])*5;
+        black += Long.bitCount(bit.pieceBoard[8])*9;
+
         return (white - black);
     }
 
@@ -55,11 +43,11 @@ public class Evaluate {
         int w = Manipulator.squareOfPiece('K', bit);
         int b = Manipulator.squareOfPiece('k', bit);
 
-        long x = move.queenMoves(w);
+        long x = move.queenMoves(w)& ~bit.white;
         white = -(Math.sqrt((double)Long.bitCount(x))/1.5);
 
             
-        long y = move.queenMoves(b);
+        long y = move.queenMoves(b)& ~bit.black;
         black = -(Math.sqrt((double)Long.bitCount(y))/1.5);
             
         
@@ -72,18 +60,18 @@ public class Evaluate {
         for (int i = 0; i < 64; i++) {
                 if (Manipulator.isBlack(i, bit) && move.isDefendedBlack(i)) {
                     if ((Manipulator.getPiece(i, bit) == 'b') || (Manipulator.getPiece(i, bit) == 't') || (Manipulator.getPiece(i, bit) == 'c')) {
-                        black++;
+                        black+=0.2;
                     }
                     if ((Manipulator.getPiece(i, bit) == 'p')) {
-                        black += 0.1;
+                        black += 0.05;
                     }
                 }
                 else if (Manipulator.isWhite(i, bit) && move.isDefendedWhite(i)) {
                     if (Manipulator.getPiece(i, bit) == 'B' || (Manipulator.getPiece(i, bit) == 'T') || (Manipulator.getPiece(i, bit) == 'C')) {
-                        white++;
+                        white+=0.2;
                     }
                     if ((Manipulator.getPiece(i, bit) == 'P')) {
-                        white += 0.1;
+                        white += 0.05;
                     }
                 }
         }
