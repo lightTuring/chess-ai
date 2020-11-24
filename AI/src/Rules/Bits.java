@@ -1,5 +1,7 @@
 package Rules;
 
+import java.util.Arrays;
+
 //Métodos foram movidos para manipulator, deixando essa classe apenas para armazenar dados
 public class Bits {
     public char[][] chessBoard = new char[8][8];
