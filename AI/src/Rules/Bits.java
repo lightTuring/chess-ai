@@ -49,9 +49,7 @@ public class Bits {
             }
         }
         b.board = this.board;
-        for (int i = 0; i <pieceBoard.length; i++) {
-            b.pieceBoard[i] = this.pieceBoard[i];
-        }
+        b.pieceBoard = this.pieceBoard.clone();
         b.white = this.white;
         b.black = this.black;
         b.checkmateBlack = this.checkmateBlack;

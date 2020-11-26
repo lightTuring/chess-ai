@@ -5,15 +5,13 @@ public class Movements {
 
     //de 0 (Torre preta) a 63 (torre branca).
     //da esquerda para direita na visão das brancas.
-    //a = qual a direção (norte, nordeste, noroeste e leste).
+    //a = qual a direção (norte, nordeste, noroeste etc.).
     //elas não diferenciam a cor das peças, logo ataques e defesas são vistos
     //por igual.
 
     public Movements (Bits bit) {
         this.bit = bit;
-    }
-
-    
+    }    
 
     public long positiveMove(int sq, int a) {
         long board = bit.board;
@@ -95,13 +93,15 @@ public class Movements {
     public long doublePawnWhite(int sq) {
         long b = (1L << sq);
         long mask = 71776119061217280L;
-        return ((b&mask)>>>16) & ~bit.board;
+        b &= mask;
+        return (((b >>> 8) & ~bit.board) >>> 8)& ~bit.board;
     }
 
     private long doublePawnBlack(int sq) {
         long b = (1L << sq);
         long mask = 65280L;
-        return ((b&mask)<<16) & ~bit.board;
+        b &= mask;
+        return (((b << 8) & ~bit.board) << 8)& ~bit.board;
     }
 
     public long pawnWhiteTotal(int sq) {
@@ -189,6 +189,30 @@ public class Movements {
         for (int i = 0; i<64; i++) {
             moves[i] = getPieceMove(i) & ~Manipulator.getColorSet(i, bit);
         }
+        return moves;
+    }
+    public long[] uncheckedMoves(boolean turn) {
+        long[] moves = new long[64];
+        if (turn) {
+            long a = bit.white;
+            while (a != 0L) {
+                long lsb = Manipulator.lsb(a);
+                int sq = Manipulator.positionOfBit(lsb);
+                char c = getPiece(sq);
+                moves[sq] = getPieceMove(sq) & ~bit.white &~bit.pieceBoard[10];
+                a = Manipulator.reset(a);
+            }
+        }  
+        else {
+            long a = bit.black;
+            while (a != 0L) {
+                long lsb = Manipulator.lsb(a);
+                int sq = Manipulator.positionOfBit(lsb);
+                char c = getPiece(sq);
+                moves[sq] = getPieceMove(sq)& ~bit.black &~bit.pieceBoard[11];
+                a = Manipulator.reset(a);
+            }
+        }      
         return moves;
     }
     //tentar otimizar

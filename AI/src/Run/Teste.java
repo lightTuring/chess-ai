@@ -27,14 +27,26 @@ public class Teste {
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                            {'o', 'o', 'o', 'Q', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
-                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
-                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},};
+                            {'o', 'o', 'o', 'K', 'o', 'o', 'o', 'o',},};
         Bits bit = new Bits(chess);
+        bit.turn = false;
         Movements move = new Movements(bit);        
-        long x = move.kingMoves(7);
-        System.out.println(number(Long.toBinaryString(x)));        
+        long[] x = move.uncheckedMoves(bit.turn);
+        for (int sq = 0; sq <64; sq++) {
+            while (x[sq] != 0L) {
+                long lsb = Manipulator.lsb(x[sq]);
+                int pos = Manipulator.positionOfBit(lsb);
+                Bits copy = bit.clone();
+                Manipulator.changePos(sq, pos, copy);
+                Manipulator.printImage(copy);
+                System.out.println(" ");
+                x[sq] = Manipulator.reset(x[sq]);
+            }
+        }
+        System.out.println(Manipulator.isCheck(bit));
 
         /*
         00000000

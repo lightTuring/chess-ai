@@ -246,6 +246,7 @@ public class Manipulator {
         long positions = bit.pieceBoard[Manipulator.mapa.get(b)];
         return positions;
     }
+    //só funciona para o rei, pois é a única peça na qual só pode haver uma por cor
     public static int squareOfPiece(char b, Bits bit) {
         return (positionOfBit(indexOfPiece(b, bit)));
     }

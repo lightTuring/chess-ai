@@ -16,7 +16,7 @@ public class PvM {
         Manipulator.init();
         Bits bit = new Bits();
         Scanner s = new Scanner(System.in);        
-        int depth = 5;
+        int depth = 4;
 
         while (!bit.endOfGame) {
             Manipulator.printImage(bit);

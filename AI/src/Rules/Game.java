@@ -60,10 +60,13 @@ public class Game {
     //arranjar um jeito de otimizar
     public void allLegal() {
         Movements move = new Movements(bit);
-        long[] b = move.uncheckedMoves();
-        for (int sq = 0; sq<64; sq++) {
-            long a = 0L;
-            if (Manipulator.isWhite(sq, bit) == bit.turn) {
+        long[] b = move.uncheckedMoves(bit.turn);
+        if (!Manipulator.isCheck(bit)) {
+            stateBoard = b;
+        }
+        else {
+            for (int sq = 0; sq<64; sq++) {
+                long a = 0L;
                 long x = b[sq];  
                 while (x != 0L) {
                     long lsb = Manipulator.lsb(x);
@@ -75,9 +78,11 @@ public class Game {
                     }
                     x = Manipulator.reset(x);
                 }
+                
+                stateBoard[sq] = a;
             }
-            stateBoard[sq] = a;
         }
+        
     }
     public boolean isCheckMateWhite() {
         if (Manipulator.isCheckWhite(bit) && bit.turn && isEmpty(stateBoard) && isEmpty(enPassantBoard)){
