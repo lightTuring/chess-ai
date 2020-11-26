@@ -69,12 +69,9 @@ public class Evaluate {
     }
 
     private double pieceSafety(){
-        int l = 0;
-        int r = 63;
         double white= 0;
         double black = 0;
-        while(l<=r){
-            int mid = (l+r)/2;
+        for(int mid = 0; mid < 64; mid++){
             if (Manipulator.isBlack(mid, bit) && move.isDefendedBlack(mid)) {
                 if ((Manipulator.getPiece(mid, bit) == 'b') || (Manipulator.getPiece(mid, bit) == 't') || (Manipulator.getPiece(mid, bit) == 'c')) {
                     black+=0.2;
@@ -91,33 +88,7 @@ public class Evaluate {
                     white += 0.05;
                 }
             }
-            l = mid + 1;
         }
-
-        l = 0;
-        r = 63;
-
-        while(l<=r){
-            int mid = (l+r)/2;
-            if (Manipulator.isBlack(mid, bit) && move.isDefendedBlack(mid)) {
-                if ((Manipulator.getPiece(mid, bit) == 'b') || (Manipulator.getPiece(mid, bit) == 't') || (Manipulator.getPiece(mid, bit) == 'c')) {
-                    black+=0.2;
-                }
-                if ((Manipulator.getPiece(mid, bit) == 'p')) {
-                    black += 0.05;
-                }
-            }
-            else if (Manipulator.isWhite(mid, bit) && move.isDefendedWhite(mid)) {
-                if (Manipulator.getPiece(mid, bit) == 'B' || (Manipulator.getPiece(mid, bit) == 'T') || (Manipulator.getPiece(mid, bit) == 'C')) {
-                    white+=0.2;
-                }
-                if ((Manipulator.getPiece(mid, bit) == 'P')) {
-                    white += 0.05;
-                }
-            }
-            r = mid - 1;
-        }
-
         return (white - black);
 
     }
@@ -144,14 +115,11 @@ public class Evaluate {
 
         
     }
+
     private double pieceMobility() {
-        int l = 0;
-        int r = 63;
         double white = 0;
         double black = 0;
-        
-        while(l<=r){
-            int mid = (l+r)/2;
+        for(int mid = 0; mid < 64; mid++){
             if (Manipulator.getPiece(mid, bit) != 'q' || Manipulator.getPiece(mid, bit) != 'Q') {
                 long x = move.getPieceMove(mid) & ~bit.board;
                 if (Manipulator.isWhite(mid, bit)) {
@@ -161,25 +129,9 @@ public class Evaluate {
                     black += Math.sqrt((double)Long.bitCount(x));
                 }                                
             } 
-            l = mid + 1;
-        }
-
-        while(l<=r){
-            int mid = (l+r)/2;
-            if (Manipulator.getPiece(mid, bit) != 'q' || Manipulator.getPiece(mid, bit) != 'Q') {
-                long x = move.getPieceMove(mid) & ~bit.board;
-                if (Manipulator.isWhite(mid, bit)) {
-                    white += Math.sqrt((double)Long.bitCount(x));
-                }
-                else if(Manipulator.isBlack(mid, bit)) {
-                    black += Math.sqrt((double)Long.bitCount(x));
-                }                                
-            } 
-            r = mid - 1;
         }
         return (white-black);
     }
-
    
     public double total () {
         return (pieceSafety() + piece() + kingSafety() + pawnAdvancement() + pieceMobility());
