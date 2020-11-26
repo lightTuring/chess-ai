@@ -23,17 +23,17 @@ public class Teste {
     }
     public static void main(String[] args) {
         Manipulator.init();
-        char[][] chess ={   {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+        char[][] chess ={   {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'k',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
-                            {'o', 'o', 'b', 'o', 't', 'o', 'b', 'o',},
+                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},};
         Bits bit = new Bits(chess);
         Movements move = new Movements(bit);        
-        long x = move.rookGen(36);
+        long x = move.kingMoves(7);
         System.out.println(number(Long.toBinaryString(x)));        
 
         /*

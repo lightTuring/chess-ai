@@ -56,6 +56,9 @@ public class Manipulator {
             c |= soWe(b);
             c |= south(b);
             c |= soEa(b);
+            c |= east(b);
+            c |= west(b);
+
             kingAttacks[i] = c;
         }
         mapa.put('p', 0);
@@ -87,6 +90,8 @@ public class Manipulator {
     public static long soWe(long b) {return (b & ~HFile) >>> 7;}
     public static long south(long b) {return (b >>> 8);}
     public static long soEa(long b) {return (b & ~AFile) >>> 9;}
+    public static long east(long b) {return (b & ~AFile) >>> 1;}
+    public static long west(long b) {return (b & ~HFile) << 1;}
 
     public static void makeBoards(Bits bit) {
         for (int sq = 0; sq <64; sq++) {
