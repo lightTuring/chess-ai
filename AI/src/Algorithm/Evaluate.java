@@ -71,24 +71,15 @@ public class Evaluate {
     private double pieceSafety(){
         double white= 0;
         double black = 0;
-        for(int mid = 0; mid < 64; mid++){
-            if (Manipulator.isBlack(mid, bit) && move.isDefendedBlack(mid)) {
-                if ((Manipulator.getPiece(mid, bit) == 'b') || (Manipulator.getPiece(mid, bit) == 't') || (Manipulator.getPiece(mid, bit) == 'c')) {
-                    black+=0.2;
-                }
-                if ((Manipulator.getPiece(mid, bit) == 'p')) {
-                    black += 0.05;
-                }
-            }
-            else if (Manipulator.isWhite(mid, bit) && move.isDefendedWhite(mid)) {
-                if (Manipulator.getPiece(mid, bit) == 'B' || (Manipulator.getPiece(mid, bit) == 'T') || (Manipulator.getPiece(mid, bit) == 'C')) {
-                    white+=0.2;
-                }
-                if ((Manipulator.getPiece(mid, bit) == 'P')) {
-                    white += 0.05;
-                }
-            }
-        }
+        long wd = move.whiteDefendMap();
+        long bd = move.blackDefendMap();
+
+        wd &= bit.white;
+        bd &= bit.black;
+
+        white += Long.bitCount(wd) * 0.1;
+        black += Long.bitCount(bd) * 0.1;
+
         return (white - black);
 
     }
