@@ -125,7 +125,7 @@ public class Evaluate {
     }
    
     public double total () {
-        return (pieceSafety() + piece() + kingSafety() + pawnAdvancement() + pieceMobility());
+        return (pieceSafety() + 1.5*piece() + kingSafety() + 0.7*pawnAdvancement() + pieceMobility());
     }
     
 }
