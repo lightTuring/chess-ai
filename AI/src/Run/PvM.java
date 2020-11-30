@@ -16,7 +16,7 @@ public class PvM {
         Manipulator.init();
         Bits bit = new Bits();
         Scanner s = new Scanner(System.in);        
-        int depth = 4;
+        int depth = 5;
 
         while (!bit.endOfGame) {
             Manipulator.printImage(bit);
@@ -39,9 +39,6 @@ public class PvM {
                 }
                 catch (IllegalMoveException i) {
                     System.err.println("\n*Movimento ilegal*\n");
-                }
-                catch(ArrayIndexOutOfBoundsException a){
-                    System.err.println("\n*Indice inválido*\n");
                 }
                 //game.setTurn(!game.getTurn());
             }else {

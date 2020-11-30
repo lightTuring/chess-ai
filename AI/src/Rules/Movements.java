@@ -198,7 +198,6 @@ public class Movements {
             while (a != 0L) {
                 long lsb = Manipulator.lsb(a);
                 int sq = Manipulator.positionOfBit(lsb);
-                char c = getPiece(sq);
                 moves[sq] = getPieceMove(sq) & ~bit.white &~bit.pieceBoard[10];
                 a = Manipulator.reset(a);
             }
@@ -208,7 +207,6 @@ public class Movements {
             while (a != 0L) {
                 long lsb = Manipulator.lsb(a);
                 int sq = Manipulator.positionOfBit(lsb);
-                char c = getPiece(sq);
                 moves[sq] = getPieceMove(sq)& ~bit.black &~bit.pieceBoard[11];
                 a = Manipulator.reset(a);
             }

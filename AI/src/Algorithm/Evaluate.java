@@ -68,6 +68,18 @@ public class Evaluate {
         return (white - black);
     }
 
+    private double pieceAttack() {
+        double white= 0;
+        double black = 0;
+        long wa = bit.black & attackWhite;
+        long ba = bit.white & attackBlack;
+
+        white += Long.bitCount(wa) * 0.3;
+        black += Long.bitCount(ba) * 0.3;
+
+        return (white - black);
+    }
+
     private double pieceSafety(){
         double white= 0;
         double black = 0;
@@ -110,7 +122,7 @@ public class Evaluate {
     private double pieceMobility() {
         double white = 0;
         double black = 0;
-        for(int mid = 0; mid < 64; mid++){
+        for(int mid = 0; mid < 64; mid++) {
             if (Manipulator.getPiece(mid, bit) != 'q' || Manipulator.getPiece(mid, bit) != 'Q') {
                 long x = move.getPieceMove(mid) & ~bit.board;
                 if (Manipulator.isWhite(mid, bit)) {
@@ -125,7 +137,7 @@ public class Evaluate {
     }
    
     public double total () {
-        return (pieceSafety() + 1.5*piece() + kingSafety() + 0.7*pawnAdvancement() + pieceMobility());
+        return (pieceSafety() + 1.5*piece() + kingSafety() + 0.8*pawnAdvancement() + 1.3*pieceMobility() + pieceAttack());
     }
     
 }

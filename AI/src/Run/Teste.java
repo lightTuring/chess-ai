@@ -1,4 +1,5 @@
 package Run;
+import Algorithm.AlphaBeta;
 import Notation.Translator;
 import Rules.*;
 
@@ -21,10 +22,10 @@ public class Teste {
         }
         return n;
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Manipulator.init();
         char[][] chess ={   {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'k',},
-                            {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
+                            {'o', 'o', 'o', 'o', 'o', 'o', 'p', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'Q', 'o', 'o', 'o', 'o',},
@@ -32,9 +33,14 @@ public class Teste {
                             {'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',},
                             {'o', 'o', 'o', 'K', 'o', 'o', 'o', 'o',},};
         Bits bit = new Bits(chess);
-        bit.turn = false;
+        bit.turn = true;
         Movements move = new Movements(bit);        
         long[] x = move.uncheckedMoves(bit.turn);
+        AlphaBeta ab = new AlphaBeta(bit);
+        bit = ab.bestPlaying(0, 4, true);
+        Manipulator.printImage(bit);
+
+        /*      
         for (int sq = 0; sq <64; sq++) {
             while (x[sq] != 0L) {
                 long lsb = Manipulator.lsb(x[sq]);
@@ -46,9 +52,6 @@ public class Teste {
                 x[sq] = Manipulator.reset(x[sq]);
             }
         }
-        System.out.println(Manipulator.isCheck(bit));
-
-        /*
         00000000
         00000000
         00000001

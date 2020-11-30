@@ -24,6 +24,9 @@ public class GraphBuilder {
         }
       //  depthNode[0] = 0;
     }
+    public int getCountNodes() {
+        return countNodes;
+    }
     public void createGraph(Bits c){
         //graph[0].add(0);
         nodesPos.add(c);
@@ -38,6 +41,14 @@ public class GraphBuilder {
             depthNode[countNodes] = depthNode[nodeFather] + 1;
             countNodes++;
 		}
+    }
+    public void createGraph(int nodeFather, Bits u){
+        if(nodeFather==-1) return;
+        //countNodes++;
+        nodesPos.add(u);
+        graph[nodeFather].add(countNodes);
+        depthNode[countNodes] = depthNode[nodeFather] + 1;
+        countNodes++;		
     }
 	public void setWeight(int u, double weight){
 		nodeWeights[u] = weight;

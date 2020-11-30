@@ -1,8 +1,10 @@
 package Algorithm;
+
 import java.util.LinkedList;
 
 import Rules.Bits;
 import Rules.Manipulator;
+import Rules.Movements;
 import Rules.Game;
 import Rules.IllegalMoveException;
 
@@ -48,19 +50,38 @@ public class AlphaBeta {
     
     private double algorithm(int node, int depth, double a, double b, boolean isMaximizing)
             throws Exception {
-		if(depth == 0 || gb.getBits(node).endOfGame){
-            if (gb.getBits(node).checkmateBlack) {
-                gb.setWeight(node, Integer.MAX_VALUE);
-            }
-            else if (gb.getBits(node).checkmateWhite) {
-                gb.setWeight(node, Integer.MIN_VALUE);
-            }
-            else {
-                Evaluate e = new Evaluate(gb.getBits(node));
-                gb.setWeight(node, e.total());
-            }
+		if(depth == 0){
+            Evaluate e = new Evaluate(gb.getBits(node));
+            gb.setWeight(node, e.total());
+            
             return gb.getWeight(node);
         }
+        else if (isMaximizing) {
+            double value = -inf;
+            Bits p = gb.getBits(node);
+            Movements move = new Movements(p);
+            long[] x = move.uncheckedMoves(p.turn);
+			for (int sq = 0; sq<64; sq++) {
+                while (x[sq] != 0L) {
+                    long lsb = Manipulator.lsb(x[sq]);
+                    int pos = Manipulator.positionOfBit(lsb);
+                    Bits copy = p.clone();
+                    Manipulator.changePos(sq, pos, copy);
+                    copy.turn = !copy.turn;
+                    if (!(Manipulator.isCheckWhite(copy))) {
+                        gb.createGraph(node, copy);
+                        value = Math.max(value, algorithm((gb.getCountNodes() - 1), (depth-1), a, b, false));
+                        a = Math.max(a, value);
+                    }                 
+                    x[sq] = Manipulator.reset(x[sq]);
+                    if(a >= b) break;
+                }
+                if(a >= b) break;               
+			}
+			gb.setWeight(node, value);
+			return value;
+        }
+        /*
 		else if(isMaximizing){
             double value = -inf;
             createSon(node);
@@ -71,14 +92,28 @@ public class AlphaBeta {
 			}
 			gb.setWeight(node, value);
 			return value;
-		}
+		}*/
 		else{
             double value = inf;
-            createSon(node);
-			for (Integer child : gb.getSon(node)) {
-                value = Math.min(value, algorithm(child, (depth-1), a, b, true));
-                b = Math.min(b, value);
-                if(b <= a) break;	
+            Bits p = gb.getBits(node);
+            Movements move = new Movements(p);
+            long[] x = move.uncheckedMoves(p.turn);
+			for (int sq = 0; sq<64; sq++) {
+                while (x[sq] != 0L) {
+                    long lsb = Manipulator.lsb(x[sq]);
+                    int pos = Manipulator.positionOfBit(lsb);
+                    Bits copy = p.clone();
+                    Manipulator.changePos(sq, pos, copy);
+                    copy.turn = !copy.turn;
+                    if (!(Manipulator.isCheckBlack(copy))) {
+                        gb.createGraph(node, copy);
+                        value = Math.min(value, algorithm((gb.getCountNodes() - 1), (depth-1), a, b, true));
+                        b = Math.min(b, value);
+                    }
+                    x[sq] = Manipulator.reset(x[sq]);
+                    if(b <= a) break;	
+                }
+                if(b <= a) break;                
 			}
 			gb.setWeight(node, value);
 			return value;
