@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.*;
 import Algorithm.*;
 import Notation.*;
-import Rules.Board;
+import Rules.Bits;
 import Rules.BoardOutOfBoundsException;
 import Rules.Game;
 import Rules.IllegalMoveException;
@@ -82,7 +82,7 @@ public class Main {
         
         FAZ A JOGADA PELO TERMINAL
         
-        -> *TURNO DA MÁQUINA*
+        -> *TURNO DA MaQUINA*
         
         VERIFICA SE OS MOVIMENTOS GERADOS SÃO LEGAIS
         ATUALIZA O ARRAY
@@ -100,7 +100,7 @@ public class Main {
         
         PYTHON MANDA PRO JAVA A JOGADA
         
-        -> *TURNO DA MÁQUINA*
+        -> *TURNO DA MaQUINA*
         
         VERIFICA SE OS MOVIMENTOS GERADOS SÃO LEGAIS
         ATUALIZA O ARRAY
@@ -114,7 +114,7 @@ public class Main {
         
                 ...
         
-        */
+        
         Board board = new Board();
         Scanner s = new Scanner(System.in);
         
@@ -212,7 +212,7 @@ public class Main {
         board.printImage();
         System.out.println(" ");
         System.out.println("Jogo Acabou");
-        s.close();
+        s.close();*/
     }
 }
 /* e2

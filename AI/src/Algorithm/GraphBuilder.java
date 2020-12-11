@@ -13,7 +13,7 @@ public class GraphBuilder {
 
     @SuppressWarnings("unchecked")
     private LinkedList<Integer>[] graph = new LinkedList[maxn];//Grafo NÓSxARESTA
-	private LinkedList<Bits> nodesPos = new LinkedList<>();//Lista com as coordenadas das peças
+	private Bits[] nodesPos = new Bits[maxn];//Lista com as coordenadas das peças
 	private double[] nodeWeights = new double[maxn];
 	private int[] depthNode = new int[maxn];//profundidades dos nós
 
@@ -27,16 +27,22 @@ public class GraphBuilder {
     public int getCountNodes() {
         return countNodes;
     }
+    public void removeBit(int node) {
+        nodesPos[node] = null;
+    }
+    public void removeBitIf(int node) {
+        if (depthNode[node] > 1) {nodesPos[node] = null;}            
+    }
     public void createGraph(Bits c){
         //graph[0].add(0);
-        nodesPos.add(c);
+        nodesPos[0] = c;
         depthNode[0] = 0;
     }
     public void createGraph(int nodeFather, LinkedList<Bits> u){
         if(nodeFather==-1) return;
         for (int i = 0; i < u.size(); i++) {
             //countNodes++;
-            nodesPos.add(u.get(i));
+            nodesPos[countNodes] = (u.get(i));
             graph[nodeFather].add(countNodes);
             depthNode[countNodes] = depthNode[nodeFather] + 1;
             countNodes++;
@@ -45,7 +51,7 @@ public class GraphBuilder {
     public void createGraph(int nodeFather, Bits u){
         if(nodeFather==-1) return;
         //countNodes++;
-        nodesPos.add(u);
+        nodesPos[countNodes] = (u);
         graph[nodeFather].add(countNodes);
         depthNode[countNodes] = depthNode[nodeFather] + 1;
         countNodes++;		
@@ -88,7 +94,7 @@ public class GraphBuilder {
 		return depthNode[u];
 	}
 	public Bits getBits(int node){
-		return nodesPos.get(node); 
+		return nodesPos[node]; 
 	}
     public LinkedList<Integer> getSon(int u){
         return graph[u];

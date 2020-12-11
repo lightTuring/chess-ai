@@ -5,8 +5,6 @@ import java.util.LinkedList;
 import Rules.Bits;
 import Rules.Manipulator;
 import Rules.Movements;
-import Rules.Game;
-import Rules.IllegalMoveException;
 
 public class AlphaBeta {
     public Bits bit;
@@ -23,6 +21,7 @@ public class AlphaBeta {
         return gb;
     }
     //otimizar criacao
+    /*
     private void createSon(int h) throws IllegalMoveException {
         Bits b = gb.getBits(h);
         Game g = new Game(b);
@@ -46,14 +45,14 @@ public class AlphaBeta {
         }
 
 		
-    }
+    }*/
     
     private double algorithm(int node, int depth, double a, double b, boolean isMaximizing)
             throws Exception {
 		if(depth == 0){
             Evaluate e = new Evaluate(gb.getBits(node));
             gb.setWeight(node, e.total());
-            
+            gb.removeBit(node);
             return gb.getWeight(node);
         }
         else if (isMaximizing) {
@@ -77,8 +76,9 @@ public class AlphaBeta {
                     if(a >= b) break;
                 }
                 if(a >= b) break;               
-			}
-			gb.setWeight(node, value);
+            }
+            gb.removeBitIf(node);
+            gb.setWeight(node, value);
 			return value;
         }
         /*
@@ -114,7 +114,8 @@ public class AlphaBeta {
                     if(b <= a) break;	
                 }
                 if(b <= a) break;                
-			}
+            }
+            gb.removeBitIf(node);
 			gb.setWeight(node, value);
 			return value;
 		}

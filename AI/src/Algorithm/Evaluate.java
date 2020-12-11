@@ -16,7 +16,7 @@ public class Evaluate {
         this.attackWhite = move.whiteAttackMap();
         this.attackBlack= move.blackAttackMap();
     }
-    //pretas pares, brancas ímpares
+    //pretas pares, brancas impares
     // peão 0 e 1; cavalo: 2 e 3; bispo: 4 e 5; torre: 6 e 7; rainha: 8 e 9; rei: 10 e 11
     private double piece() {
         double white = 0;
@@ -119,6 +119,20 @@ public class Evaluate {
         
     }
 
+    private double pieceDevelopment() {
+        double white = 0;
+        double black = 0;
+        //                     peão branco           rainha branca         rei branco
+        long w = 255L & (bit.white & ~bit.pieceBoard[1] & ~bit.pieceBoard[9] & ~bit.pieceBoard[11]);
+        //                     peão preto            rainha preta         rei preto
+        long b = -72057594037927936L & (bit.black & ~bit.pieceBoard[0] & ~bit.pieceBoard[8] & ~bit.pieceBoard[10]);
+
+        white -= Long.bitCount(w);
+        black -= Long.bitCount(b);
+
+        return (white-black);
+    }
+
     private double pieceMobility() {
         double white = 0;
         double black = 0;
@@ -137,7 +151,7 @@ public class Evaluate {
     }
    
     public double total () {
-        return (pieceSafety() + 1.5*piece() + kingSafety() + 0.8*pawnAdvancement() + 1.3*pieceMobility() + pieceAttack());
+        return (0.3*pieceDevelopment() + pieceSafety() + 1.5*piece() + kingSafety() + 0.5*pawnAdvancement() + 1.2*pieceMobility() + pieceAttack());
     }
     
 }
