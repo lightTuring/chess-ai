@@ -58,11 +58,11 @@ public class Evaluate {
         int b = Manipulator.squareOfPiece('k', bit);
 
         long x = move.queenMoves(w)& ~bit.white;
-        white = -(Math.sqrt((double)Long.bitCount(x))/1.5);
+        white = -(Math.sqrt((double)Long.bitCount(x))*0.66);
 
             
         long y = move.queenMoves(b)& ~bit.black;
-        black = -(Math.sqrt((double)Long.bitCount(y))/1.5);
+        black = -(Math.sqrt((double)Long.bitCount(y))*0.66);
             
         
         return (white - black);
