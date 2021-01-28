@@ -10,7 +10,7 @@
 
 #include <Stepper.h>
 #include <stdint.h>
-#define int64_t u64
+#define u64 int64_t
 
 int casas[8][8];//pinos das casas
 char letras[8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
@@ -56,6 +56,7 @@ void loop(){
 
 u64 createBoard() {
   for (int i = 0; i<64; i++)
+      for (int j = 0; j<64; j++)
         digitalRead(casas[i][j]);
 }
 
