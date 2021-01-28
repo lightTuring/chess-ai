@@ -17,6 +17,7 @@ public class Bits {
     public boolean checkmateBlack = false;
     public boolean checkmateWhite = false;
     public boolean turn = true;
+    public long lastMove[] = new long[2];
 
     public Bits() {
         for (int i = 0; i < chessBoard.length; i++) {
