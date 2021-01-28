@@ -1,9 +1,9 @@
 /*
-	Código da leitura dos pinos estrutura robótica
+  Código da leitura dos pinos estrutura robótica
     @authors: Felipe Santos, Lucas Absalão, Pedro Barros e Pedro Victor.
     
     * Componentes:
-	- Arduino Mega
+  - Arduino Mega
     - Reed switch
  
 */
@@ -55,9 +55,11 @@ void loop(){
 }
 
 u64 createBoard() {
+  u64 board = 0LL;
   for (int i = 0; i<64; i++)
-      for (int j = 0; j<64; j++)
-        digitalRead(casas[i][j]);
+    board += digitalRead(casas[i/8][i%8]) * (1LL << i);
+  
+  return board;
 }
 
 //Imprime a imagem do estado do tabuleiro
