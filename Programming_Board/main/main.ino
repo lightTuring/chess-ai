@@ -211,16 +211,54 @@ void loop(){
   void rotate(int motor, char sense);
   void axis_xy(int step_x, int step_y);
   int metricToRotation(int distance_cm);
+  chess.updateBoard(); 
+  chess.printStateBoard();
 
-  if(Serial.available() > 0){
-    String input_movement = Serial.readString();
-   
-    axis_xy(metricToRotation(lengthOfHouse * (((int)input_movement[0] - (int)'0') - lastHouse_x)), metricToRotation(lengthOfHouse * (((int)input_movement[1] - (int)'0') - lastHouse_y)));
-
-    lastHouse_x = ((int)input_movement[0] - (int)'0');
-    lastHouse_y = ((int)input_movement[1] - (int)'0');   
+  //movimento das brancas
+  if(chess.turn){
+    while(chess.turn){
+      //mover
+        if(Serial.available() > 0){
+          String input_movement = Serial.readString();
+         
+          axis_xy(metricToRotation(lengthOfHouse * (((int)input_movement[0] - (int)'0') - lastHouse_x)), metricToRotation(lengthOfHouse * (((int)input_movement[1] - (int)'0') - lastHouse_y)));
+      
+          lastHouse_x = ((int)input_movement[0] - (int)'0');
+          lastHouse_y = ((int)input_movement[1] - (int)'0');   
+        }
+      chess.movement(); 
+    }
   }
-  Serial.write(0);//this value is like a finalize...
+  //movimento das pretas
+  else if(!chess.turn) {   
+
+    /*
+     * MI -> MOVIMENTO ILEGAL
+     * CP -> CAPTURA DE PEÇA
+     * MS -> MOVIMENTO SIMPLES(TROCA DE CASA)
+     * 
+     */
+   
+    String in = Serial.readString();//Trocar pra comunicação Socket
+    
+    if(in == "MI"){
+      while(!chess.backGame()){
+        digitalWrite(GREEN_LED, LOW);
+        digitalWrite(RED_LED, HIGH);
+      }
+      digitalWrite(GREEN_LED, HIGH);
+      digitalWrite(RED_LED, LOW);     
+    }else if(in == "CP"){
+      
+    }else if(in == "MS"){
+      
+    }
+    chess.turn = true;
+  }
+  
+  delay(5);
+
+
 }
 
 u64 createBoard() {
