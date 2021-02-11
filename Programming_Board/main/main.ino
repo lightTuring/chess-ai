@@ -8,6 +8,9 @@
  
 */
 
+//declarar o servo na porta 6
+//atualizar a biblioteca do motor de passo
+
 #include <Stepper.h>
 #include <stdint.h>
 #define u64 int64_t
