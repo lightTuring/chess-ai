@@ -231,16 +231,17 @@ void loop(){
           lastHouse_y = ((int)input_movement[1] - (int)'0');   
         }
       chess.movement(); 
-      chess.turn = !chess.turn;
+      chess.turn = true;
     }
   }
   //movimento das brancas
   else if(chess.turn) {   
-   while(!chess.movement()){
-    Serial.println("JOGUE CONDENADOOOOOOO");
+    while(!chess.movement()){
+      Serial.println("JOGUE CONDENADOOOOOOO");
+    }
+   chess.turn = false;//segurança
   }
 }
-
 u64 createBoard() {
   u64 board = 0LL;
   for (int i = 0; i<64; i++)
