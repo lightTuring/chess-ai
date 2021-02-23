@@ -236,30 +236,7 @@ void loop(){
   }
   //movimento das brancas
   else if(chess.turn) {   
-   while(chess.movement()){
-      /*
-      String change="";
-      int cnt = 0;
-      for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
-          if(chess.lastState[i][j] != chess.stateBoard[i][j]){
-            change+=String(i)+String(j);
-            cnt++;
-          }
-        }
-      }
-      if(cnt==0){
-        continue;
-      }else{
-        if(cnt==1){
-           Serial.println("DIGA NO PROGAMA O DEST FINAL!!!!");
-        }
-        Serial.print(change);
-        chess.turn = !chess.turn;
-      }
-    delay(5);
-    }*/
-    //if() chess.turn = !chess.turn;
+   while(!chess.movement()){
     Serial.println("JOGUE CONDENADOOOOOOO");
   }
 }
