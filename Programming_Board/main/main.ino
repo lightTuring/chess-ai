@@ -167,7 +167,7 @@ typedef struct Board{
           }
         }
       }  
-      turn = !turn;
+     
     return false;
   }
   
@@ -217,51 +217,49 @@ void loop(){
   chess.updateBoard(); 
   chess.printStateBoard();
 
-  //movimento das brancas
-  if(chess.turn){
-    while(chess.turn){
+  //movimento das pretas
+  if(!chess.turn){
+    while(!chess.turn){
       //mover
         if(Serial.available() > 0){
           String input_movement = Serial.readString();
          
-          axis_xy(metricToRotation(lengthOfHouse * (((int)input_movement[0] - (int)'0') - lastHouse_x)), metricToRotation(lengthOfHouse * (((int)input_movement[1] - (int)'0') - lastHouse_y)));
+          axis_xy(metricToRotation(lengthOfHouse * (((int)input_movement[0] - (int)'0') - lastHouse_x)), 
+                  metricToRotation(lengthOfHouse * (((int)input_movement[1] - (int)'0') - lastHouse_y)));
       
           lastHouse_x = ((int)input_movement[0] - (int)'0');
           lastHouse_y = ((int)input_movement[1] - (int)'0');   
         }
       chess.movement(); 
+      chess.turn = !chess.turn;
     }
   }
-  //movimento das pretas
-  else if(!chess.turn) {   
-
-    /*
-     * MI -> MOVIMENTO ILEGAL
-     * CP -> CAPTURA DE PEÇA
-     * MS -> MOVIMENTO SIMPLES(TROCA DE CASA)
-     * 
-     */
-   
-    String in = Serial.readString();//Trocar pra comunicação Socket
-    
-    if(in == "MI"){
-      while(!chess.backGame()){
-        digitalWrite(GREEN_LED, LOW);
-        digitalWrite(RED_LED, HIGH);
+  //movimento das brancas
+  else if(chess.turn) {   
+   while(chess.turn){
+      
+      String change="";
+      int cnt = 0;
+      for(int i=0;i<8;i++){
+        for(int j=0;j<8;j++){
+          if(chess.lastState[i][j] != chess.stateBoard[i][j]){
+            change+=String(i)+String(j);
+            cnt++;
+          }
+        }
       }
-      digitalWrite(GREEN_LED, HIGH);
-      digitalWrite(RED_LED, LOW);     
-    }else if(in == "CP"){
-      
-    }else if(in == "MS"){
-      
+      if(cnt==0){
+        continue;
+      }else{
+        if(cnt==1){
+           Serial.println("DIGA NO PROGAMA O DEST FINAL!!!!");
+        }
+        Serial.print(change);
+        chess.turn = !chess.turn;
+      }
+    delay(5);
     }
-    chess.turn = true;
   }
-  
-  delay(5);
-
-
 }
 
 u64 createBoard() {
