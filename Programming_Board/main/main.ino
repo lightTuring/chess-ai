@@ -236,8 +236,8 @@ void loop(){
   }
   //movimento das brancas
   else if(chess.turn) {   
-   while(chess.turn){
-      
+   while(chess.movement()){
+      /*
       String change="";
       int cnt = 0;
       for(int i=0;i<8;i++){
@@ -258,7 +258,9 @@ void loop(){
         chess.turn = !chess.turn;
       }
     delay(5);
-    }
+    }*/
+    //if() chess.turn = !chess.turn;
+    Serial.println("JOGUE CONDENADOOOOOOO");
   }
 }
 
