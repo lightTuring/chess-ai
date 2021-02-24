@@ -231,37 +231,17 @@ void loop(){
           lastHouse_y = ((int)input_movement[1] - (int)'0');   
         }
       chess.movement(); 
-      chess.turn = !chess.turn;
+      chess.turn = true;
     }
   }
   //movimento das brancas
   else if(chess.turn) {   
-   while(chess.turn){
-      
-      String change="";
-      int cnt = 0;
-      for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
-          if(chess.lastState[i][j] != chess.stateBoard[i][j]){
-            change+=String(i)+String(j);
-            cnt++;
-          }
-        }
-      }
-      if(cnt==0){
-        continue;
-      }else{
-        if(cnt==1){
-           Serial.println("DIGA NO PROGAMA O DEST FINAL!!!!");
-        }
-        Serial.print(change);
-        chess.turn = !chess.turn;
-      }
-    delay(5);
+    while(!chess.movement()){
+      Serial.println("JOGUE CONDENADOOOOOOO");
     }
+   chess.turn = false;//segurança
   }
 }
-
 u64 createBoard() {
   u64 board = 0LL;
   for (int i = 0; i<64; i++)
