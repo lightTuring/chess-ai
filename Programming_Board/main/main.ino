@@ -94,9 +94,22 @@ typedef struct Board{
   bool turn = true;
   
   void updateBoard(){
+    String x;
+    while(true){
+   	  if(Serial1.available()>0){
+	      x = Serial1.readString();
+	      break;	
+	    }
+    }
+    int  lgt = 0;
+    for(int i=0;i<len;i++){
+	    for(int j=0;j<len-1;j++){
+	      stateBoard[i][j] = x[j+lgt] - '0'; 
+	    }
+	    lgt+=7;
+    }	    
     for(int i=0;i<len;i++)
-      for(int j=0;j<len;j++)
-        stateBoard[i][j] = digitalRead(board[i][j]);
+      stateBoard[7][i] = digitalRead(board[7][i]);
   }
   
   void init(){
@@ -206,7 +219,9 @@ void setup(){
   for(int i = 0; i < 2; i++)
     motors[i].setSpeed(300);
   
+ 
   Serial.begin(9600);
+   Serial1.begin(11250);
   chess.init();
 }
 
