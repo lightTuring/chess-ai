@@ -12,6 +12,7 @@
 //atualizar a biblioteca do motor de passo
 
 #include <Stepper.h>
+#include <Servo.h>
 #include <stdint.h>
 #define u64 int64_t
 
@@ -32,6 +33,9 @@ Stepper motors[2] = {
 #define len 8
 #define GREEN_LED 12
 #define RED_LED 13
+
+Servo z;
+Servo op;
 
 typedef struct Pair{
    int x, y;
@@ -219,9 +223,10 @@ void setup(){
   for(int i = 0; i < 2; i++)
     motors[i].setSpeed(300);
   
- 
+  z.attach(9);
+  op.attach(8);
   Serial.begin(9600);
-   Serial1.begin(11250);
+  Serial1.begin(11250);
   chess.init();
 }
 
@@ -238,12 +243,24 @@ void loop(){
       //mover
         if(Serial.available() > 0){
           String input_movement = Serial.readString();
-         
+          
           axis_xy(metricToRotation(lengthOfHouse * (((int)input_movement[0] - (int)'0') - lastHouse_x)), 
                   metricToRotation(lengthOfHouse * (((int)input_movement[1] - (int)'0') - lastHouse_y)));
+           
+         	for(int i=0;i<90;i++){z.write(i);delay(15);}
+          for(int i=0;i<90;i++){op.write(i);delay(15);}
+          for(int i=89;i>=0;i--){z.write(i);delay(15);}
+          
+          axis_xy(metricToRotation(lengthOfHouse * (((int)input_movement[3] - (int)'0') - ((int)input_movement[0] - (int)'0'))), 
+                  metricToRotation(lengthOfHouse * (((int)input_movement[4] - (int)'0') - ((int)input_movement[1] - (int)'0'))));
+
+          for(int i=0;i<90;i++){z.write(i);delay(15);}
+          for(int i=10;i<90;i++){op.write(i);delay(15);}
+          op.write(0);
+          for(int i=89;i>=0;i--){z.write(i);delay(15);}
       
-          lastHouse_x = ((int)input_movement[0] - (int)'0');
-          lastHouse_y = ((int)input_movement[1] - (int)'0');   
+          lastHouse_x = ((int)input_movement[3] - (int)'0');
+          lastHouse_y = ((int)input_movement[4] - (int)'0');   
         }
       chess.movement(); 
       chess.turn = true;
@@ -252,7 +269,7 @@ void loop(){
   //movimento das brancas
   else if(chess.turn) {   
     while(!chess.movement()){
-      Serial.println("JOGUE CONDENADOOOOOOO");
+      Serial.println("Por favor jogue");
     }
    chess.turn = false;//segurança
   }
