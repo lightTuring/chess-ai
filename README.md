@@ -23,7 +23,7 @@ Projeto para a disciplina Física e suas Tecnologias do 2º ano do ensino médio
 1. O usuário assume o controle das Brancas e o robô assume o controle das Pretas.
 2. As Pretas são as letras Minúsculas e as Brancas as Maiúsculas.
 
-|    Caractere      | Peça                                                   |
+|    Caractere      | Peça                                          |
 | ---------------- | ------------------------------------------------------ |
 | P/p                | Peão |
 | T/t                | Torre                                  |
