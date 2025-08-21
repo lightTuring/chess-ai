@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Animation Timing Functions Demo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+
+  h2 {
+    margin-top: 40px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .demo {
+    width: 300px;
+    height: 50px;
+    background-color: #e74c3c;
+    margin-bottom: 10px;
+    position: relative;
+    border-radius: 5px;
+  }
+
+  @keyframes moveRight {
+    from { left: 0; }
+    to { left: 300px; }
+  }
+
+  /* Timing Functions */
+  .linear {
+    animation: moveRight 2s linear infinite alternate;
+  }
+
+  .ease {
+    animation: moveRight 2s ease infinite alternate;
+  }
+
+  .ease-in {
+    animation: moveRight 2s ease-in infinite alternate;
+  }
+
+  .ease-out {
+    animation: moveRight 2s ease-out infinite alternate;
+  }
+
+  .ease-in-out {
+    animation: moveRight 2s ease-in-out infinite alternate;
+  }
+
+  .steps-start {
+    animation: moveRight 2s steps(5, start) infinite alternate;
+  }
+
+  .steps-end {
+    animation: moveRight 2s steps(5, end) infinite alternate;
+  }
+
+  .custom-bezier {
+    animation: moveRight 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate;
+  }
+
+  .label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h1>CSS Animation Timing Functions Demo</h1>
+
+<div class="container">
+  <div>
+    <div class="label">linear</div>
+    <div class="demo linear"></div>
+  </div>
+
+  <div>
+    <div class="label">ease (default)</div>
+    <div class="demo ease"></div>
+  </div>
+
+  <div>
+    <div class="label">ease-in</div>
+    <div class="demo ease-in"></div>
+  </div>
+
+  <div>
+    <div class="label">ease-out</div>
+    <div class="demo ease-out"></div>
+  </div>
+
+  <div>
+    <div class="label">ease-in-out</div>
+    <div class="demo ease-in-out"></div>
+  </div>
+
+  <div>
+    <div class="label">steps(5, start)</div>
+    <div class="demo steps-start"></div>
+  </div>
+
+  <div>
+    <div class="label">steps(5, end)</div>
+    <div class="demo steps-end"></div>
+  </div>
+
+  <div>
+    <div class="label">custom cubic-bezier(0.68, -0.55, 0.27, 1.55)</div>
+    <div class="demo custom-bezier"></div>
+  </div>
+</div>
+
+</body>
+</html>
